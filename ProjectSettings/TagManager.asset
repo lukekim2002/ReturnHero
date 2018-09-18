@@ -4,11 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Food
-  - Exit
   - Enemy
-  - Soda
   - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -20,8 +18,8 @@ TagManager:
   - 
   - Wall
   - AttackLayer
-  - 
-  - 
+  - Floor
+  - Obstacle
   - 
   - 
   - 

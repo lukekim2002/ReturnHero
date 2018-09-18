@@ -21,5 +21,4 @@ public class HeroAttackCollider : MonoBehaviour
             collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
         }
     }
-
 }

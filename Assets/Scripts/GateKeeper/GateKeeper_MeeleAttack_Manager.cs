@@ -17,5 +17,4 @@ public class GateKeeper_MeeleAttack_Manager : MonoBehaviour {
 
         this.transform.position = _gateKeeperPos;
     }
-
 }

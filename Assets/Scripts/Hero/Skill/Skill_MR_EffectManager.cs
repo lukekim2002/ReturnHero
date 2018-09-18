@@ -10,12 +10,9 @@ public class Skill_MR_EffectManager : MonoBehaviour
     private SpriteRenderer spr;
     private BoxCollider2D collider;
 
-
     private Vector2 colliderSize;
     private Vector2 colliderOffset;
     private int i = 0;
-
-    private int transparencyCount = 1;
     #endregion
 
     #region PUBLIC
