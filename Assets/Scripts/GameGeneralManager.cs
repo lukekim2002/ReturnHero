@@ -9,6 +9,7 @@ public class GameGeneralManager : MonoBehaviour {
     public static GameGeneralManager instance = null;
 
     public Image map;
+    public Image shadowPanel;
 
     private void Awake()
     {
@@ -74,11 +75,13 @@ public class GameGeneralManager : MonoBehaviour {
         if (Input.GetKey(KeyCode.Tab))
         {
             map.gameObject.SetActive(true);
+            shadowPanel.gameObject.SetActive(true);
             print("true");
         }
         else
         {
             map.gameObject.SetActive(false);
+            shadowPanel.gameObject.SetActive(false);
         }
     }
 }
