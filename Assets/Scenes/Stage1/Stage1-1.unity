@@ -35704,6 +35704,48 @@ MonoBehaviour:
   atkCollider: {fileID: 0}
   colliderSize: {x: 0.3, y: 0.2}
   colliderDiagonalLength: 0.18
+--- !u!1001 &941746351
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744342982730040, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b802ed36c3d9e77448931d19a8282791, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1052319844
 GameObject:
   m_ObjectHideFlags: 0
