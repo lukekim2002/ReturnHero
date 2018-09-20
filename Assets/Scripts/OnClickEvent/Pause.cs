@@ -8,7 +8,8 @@ public class Pause : MonoBehaviour {
 
     public void ClickPasueButton()
     {
-        setting.gameObject.SetActive(false);
+        GameGeneralManager.isPause = false;
+        setting.gameObject.SetActive(GameGeneralManager.isPause);
         Time.timeScale = 1f;
     }
 }
