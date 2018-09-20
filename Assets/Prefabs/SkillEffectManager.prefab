@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 212443678761884958}
   - component: {fileID: 95048002632978084}
   - component: {fileID: 114027174144946078}
+  - component: {fileID: 61332798115305558}
   m_Layer: 0
   m_Name: SkillMr_Effect
   m_TagString: Untagged
@@ -103,6 +104,31 @@ Transform:
   m_Father: {fileID: 4087952468091788}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61332798115305558
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829553915333420}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.16999999, y: 0.34999996}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.8863636, y: 0.11111111}
+    oldSize: {x: 0.44, y: 0.9}
+    newSize: {x: 0.44, y: 0.9}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.44, y: 0.9}
+  m_EdgeRadius: 0
 --- !u!95 &95048002632978084
 Animator:
   serializedVersion: 3
