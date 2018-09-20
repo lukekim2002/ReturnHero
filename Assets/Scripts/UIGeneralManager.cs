@@ -30,7 +30,8 @@ public class UIGeneralManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            setting.gameObject.SetActive(true);
+            GameGeneralManager.isPause = true;
+            setting.gameObject.SetActive(GameGeneralManager.isPause);
             Time.timeScale = 0;
         }
     }

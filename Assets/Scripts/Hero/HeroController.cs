@@ -27,7 +27,6 @@ public class HeroController : MonoBehaviour
 
     private void Awake()
     {
-
         _heroAnimator = GetComponent<Animator>();
         _attack_ML_Manager = GetComponent<Attack_ML_Manager>();
         _heroRigidbody = GetComponent<Rigidbody2D>();
@@ -43,63 +42,66 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 공격 상태가 아니라면
-        if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
+        if (!GameGeneralManager.isPause)
         {
-            // 키 입력
-            InputKey();
-        }
-
-        // Idle 상태
-        if (heroState == HEROSTATE.IDLE)
-        {
-            _heroAnimator.SetInteger("actionNum", 0);
-
-            // Idle 애니메이션으로 넘어갈 때 Idle할 방향 지정
-            _heroAnimator.SetFloat("actionX", direction.x);
-            _heroAnimator.SetFloat("actionY", direction.y);
-        }
-        // Move 상태
-        else if (heroState == HEROSTATE.MOVE)
-        {
-            _heroAnimator.SetInteger("actionNum", 1);
-
-            Vector2 heroPos = moveAxis;
-            Vector2 moveVelocity = (heroPos.normalized) * moveSpeed;
-
-            // velocity, transform.translate, addforce, MovePosition중에서 MovePosition이 벽과의 충돌에서 자연스러운 모습을 보임
-            // 캐릭터 움직임
-            _heroRigidbody.MovePosition(_heroRigidbody.position + moveVelocity * Time.deltaTime);
-
-            // 캐릭터가 움직일 방향 애니 지정
-            _heroAnimator.SetFloat("moveX", moveAxis.x);
-            _heroAnimator.SetFloat("moveY", moveAxis.y);
-
-            // 마지막으로 캐릭터가 움직인 방향을 저장
-            direction = moveAxis;
-        }
-
-        // Attack 상태 및 기본공격을 눌렀다면 실행하고 누르지 않았다면 실행 불가능
-        else if (heroState == HEROSTATE.ATTACK && _attack_ML_Manager.isMeeleAttack == true)
-        {
-            if (Input.GetMouseButtonDown(0))
+            // 공격 상태가 아니라면
+            if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
             {
-                _attack_ML_Manager.Attack();
+                // 키 입력
+                InputKey();
             }
-        }
-        else if (heroState == HEROSTATE.DEFENSE)
-        {
-            _heroAnimator.SetInteger("actionNum", 3);
 
-            _heroAnimator.SetFloat("actionX", direction.x);
-            _heroAnimator.SetFloat("actionY", direction.y);
-        }
-        else if (heroState == HEROSTATE.DASH)
-        {
-            _heroAnimator.SetInteger("actionNum", 4);
+            // Idle 상태
+            if (heroState == HEROSTATE.IDLE)
+            {
+                _heroAnimator.SetInteger("actionNum", 0);
 
-            _heroAnimator.SetFloat("actionX", direction.x);
-            _heroAnimator.SetFloat("actionY", direction.y);
+                // Idle 애니메이션으로 넘어갈 때 Idle할 방향 지정
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+            }
+            // Move 상태
+            else if (heroState == HEROSTATE.MOVE)
+            {
+                _heroAnimator.SetInteger("actionNum", 1);
+
+                Vector2 heroPos = moveAxis;
+                Vector2 moveVelocity = (heroPos.normalized) * moveSpeed;
+
+                // velocity, transform.translate, addforce, MovePosition중에서 MovePosition이 벽과의 충돌에서 자연스러운 모습을 보임
+                // 캐릭터 움직임
+                _heroRigidbody.MovePosition(_heroRigidbody.position + moveVelocity * Time.deltaTime);
+
+                // 캐릭터가 움직일 방향 애니 지정
+                _heroAnimator.SetFloat("moveX", moveAxis.x);
+                _heroAnimator.SetFloat("moveY", moveAxis.y);
+
+                // 마지막으로 캐릭터가 움직인 방향을 저장
+                direction = moveAxis;
+            }
+
+            // Attack 상태 및 기본공격을 눌렀다면 실행하고 누르지 않았다면 실행 불가능
+            else if (heroState == HEROSTATE.ATTACK && _attack_ML_Manager.isMeeleAttack == true)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _attack_ML_Manager.Attack();
+                }
+            }
+            else if (heroState == HEROSTATE.DEFENSE)
+            {
+                _heroAnimator.SetInteger("actionNum", 3);
+
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+            }
+            else if (heroState == HEROSTATE.DASH)
+            {
+                _heroAnimator.SetInteger("actionNum", 4);
+
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+            }
         }
     }
 
