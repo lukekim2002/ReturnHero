@@ -25,7 +25,7 @@ AnimationClip:
     - time: 0.2
       value: {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
     - time: 0.43333334
-      value: {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
+      value: {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
     - time: 0.5
       value: {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
     attribute: m_Sprite
@@ -50,7 +50,7 @@ AnimationClip:
     - {fileID: 21300000, guid: fd9f045cdd3c67041ab1d808bca37eb9, type: 3}
     - {fileID: 21300000, guid: 2851dabbeef032b40a7c299205bc99d4, type: 3}
     - {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
-    - {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
+    - {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
     - {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -80,6 +80,20 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: DashMove
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.1
+    functionName: Dash_Excute
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.2
+    functionName: Dash_Excute
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

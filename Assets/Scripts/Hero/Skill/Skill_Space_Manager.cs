@@ -9,6 +9,7 @@ public class Skill_Space_Manager : MonoBehaviour
 
     private RaycastHit2D _hitWall;
     private const float _dashDist = 1.6f;
+    private const float _dashMoveDist = 0.09f;
     private Vector2 _colliderSize;
     private float _colliderDiagonalLength;
     #endregion
@@ -29,13 +30,11 @@ public class Skill_Space_Manager : MonoBehaviour
 
     private void DashMove()
     {
-
         Vector2 direction = Vector2.zero;
         Vector2 heroPos = transform.position;
         Vector2 hitPoint;
 
         direction = _heroController.direction;
-
 
         hitPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(heroPos, direction, _dashDist);
         print(hitPoint);
@@ -56,7 +55,35 @@ public class Skill_Space_Manager : MonoBehaviour
         
         heroPos += direction;
         this.transform.position = heroPos;
+    }
 
+    private void Dash_Excute()
+    {
+        Vector2 direction = Vector2.zero;
+        Vector2 heroPos = transform.position;
+        Vector2 hitPoint;
+
+        direction = _heroController.direction;
+
+        hitPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(heroPos, direction, _dashMoveDist);
+        print(hitPoint);
+
+        if (hitPoint != Vector2.zero)
+        {
+            float magnitude = (hitPoint - heroPos).magnitude;
+
+            if (magnitude <= _colliderDiagonalLength)
+                direction = Vector2.zero;
+
+            direction = direction * (magnitude - _colliderSize.magnitude);
+        }
+        else
+        {
+            direction = direction * _dashMoveDist;
+        }
+
+        heroPos += direction;
+        this.transform.position = heroPos;
     }
 
     private void DashEnd()

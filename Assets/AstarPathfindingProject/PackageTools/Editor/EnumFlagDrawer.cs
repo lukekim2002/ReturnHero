@@ -11,8 +11,10 @@ namespace Pathfinding {
 
 			EditorGUI.BeginProperty(position, label, property);
 			EditorGUI.BeginChangeCheck();
-			Enum enumNew = EditorGUI.EnumMaskField(position, label, targetEnum);
-			if (EditorGUI.EndChangeCheck() || !property.hasMultipleDifferentValues) {
+#pragma warning disable CS0618 // 형식 또는 멤버는 사용되지 않습니다.
+            Enum enumNew = EditorGUI.EnumMaskField(position, label, targetEnum);
+#pragma warning restore CS0618 // 형식 또는 멤버는 사용되지 않습니다.
+            if (EditorGUI.EndChangeCheck() || !property.hasMultipleDifferentValues) {
 				property.intValue = (int)Convert.ChangeType(enumNew, targetEnum.GetType());
 			}
 			EditorGUI.EndProperty();

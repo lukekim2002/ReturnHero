@@ -21,11 +21,11 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: bae0c4fe6e11af64d905f26650447030, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: beb33ea118122e848b2595c5bf103ba4, type: 3}
+      value: {fileID: 21300000, guid: 9b5615c48e719a844969c23cc291ff77, type: 3}
     - time: 0.2
       value: {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
     - time: 0.43333334
-      value: {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
+      value: {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
     - time: 0.5
       value: {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
     attribute: m_Sprite
@@ -48,9 +48,9 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: bae0c4fe6e11af64d905f26650447030, type: 3}
-    - {fileID: 21300000, guid: beb33ea118122e848b2595c5bf103ba4, type: 3}
+    - {fileID: 21300000, guid: 9b5615c48e719a844969c23cc291ff77, type: 3}
     - {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
-    - {fileID: 21300000, guid: 69dac7be467032943981a00f56160300, type: 3}
+    - {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
     - {fileID: 21300000, guid: 0d23e103739e11340ba9217a4c4e9eec, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -80,6 +80,20 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: DashMove
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.1
+    functionName: Dash_Excute
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.2
+    functionName: Dash_Excute
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

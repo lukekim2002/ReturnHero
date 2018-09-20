@@ -8,9 +8,6 @@ public class GameGeneralManager : MonoBehaviour {
     // public instance of GGM which allows it to be accessed by any other scripts.
     public static GameGeneralManager instance = null;
 
-    public Image map;
-    public Image shadowPanel;
-
     private void Awake()
     {
         // Check if instance doesn't exist
@@ -38,11 +35,6 @@ public class GameGeneralManager : MonoBehaviour {
         print("Hi. This is GameGeneralManager.");
     }
 
-    private void Update()
-    {
-        InputSystem();
-    }
-
     /// <summary>
     /// This function checks whether there is a wall in front of the character.
     /// Return true if there is, else false.
@@ -68,20 +60,5 @@ public class GameGeneralManager : MonoBehaviour {
         }
 
         return hitPoint;
-    }
-
-    private void InputSystem()
-    {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            map.gameObject.SetActive(true);
-            shadowPanel.gameObject.SetActive(true);
-            print("true");
-        }
-        else
-        {
-            map.gameObject.SetActive(false);
-            shadowPanel.gameObject.SetActive(false);
-        }
     }
 }
