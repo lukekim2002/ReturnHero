@@ -6,7 +6,8 @@ public class Pause : MonoBehaviour {
 
     public Canvas setting;
 
-    public void ClickPasueButton()
+    // Resume 버튼 누를 때
+    public void ClickResumeButton()
     {
         GameGeneralManager.isPause = false;
         setting.gameObject.SetActive(GameGeneralManager.isPause);
