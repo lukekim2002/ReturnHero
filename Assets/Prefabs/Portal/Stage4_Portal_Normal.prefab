@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4905990808173588}
   - component: {fileID: 212062060529939908}
   - component: {fileID: 61747425091066558}
+  - component: {fileID: 114353315946122434}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_3
   m_TagString: Portal
@@ -53,6 +54,7 @@ GameObject:
   - component: {fileID: 4795099271187212}
   - component: {fileID: 212229340314842964}
   - component: {fileID: 61314220157719576}
+  - component: {fileID: 114418750340723446}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_2
   m_TagString: Portal
@@ -70,6 +72,7 @@ GameObject:
   - component: {fileID: 4172187689858156}
   - component: {fileID: 212357851848007676}
   - component: {fileID: 61916457047553708}
+  - component: {fileID: 114771160401425546}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_1
   m_TagString: Portal
@@ -87,6 +90,7 @@ GameObject:
   - component: {fileID: 4318144057873684}
   - component: {fileID: 212070596435449934}
   - component: {fileID: 61230687092252448}
+  - component: {fileID: 114558940028689264}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_4
   m_TagString: Portal
@@ -172,7 +176,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -197,7 +201,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -222,7 +226,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -247,7 +251,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.100000024}
@@ -263,6 +267,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6395874, y: 1.1524053}
   m_EdgeRadius: 0
+--- !u!114 &114353315946122434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321529959848284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114418750340723446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547340848856206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114558940028689264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645721327900686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114771160401425546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635467833091564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212062060529939908
 SpriteRenderer:
   m_ObjectHideFlags: 1
