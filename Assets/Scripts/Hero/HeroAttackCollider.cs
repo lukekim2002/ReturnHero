@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HeroAttackCollider : MonoBehaviour
 {
-    GameObject root;
+    //GameObject root;
 
     void Awake()
     {
-        root = transform.root.gameObject;
+        //root = transform.root.gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

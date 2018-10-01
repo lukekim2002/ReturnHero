@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4605817583593840}
   - component: {fileID: 212579001355550302}
   - component: {fileID: 61091868699966108}
+  - component: {fileID: 114793666734993128}
   m_Layer: 0
   m_Name: Portal_BossStage_4
   m_TagString: Portal
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4401541554966292}
   - component: {fileID: 212318713724350282}
   - component: {fileID: 61501443128883642}
+  - component: {fileID: 114330254651360386}
   m_Layer: 0
   m_Name: Portal_BossStage_2
   m_TagString: Portal
@@ -70,6 +72,7 @@ GameObject:
   - component: {fileID: 4808926849953010}
   - component: {fileID: 212404623542685602}
   - component: {fileID: 61436840608143448}
+  - component: {fileID: 114232825409295056}
   m_Layer: 0
   m_Name: Portal_BossStage_3
   m_TagString: Portal
@@ -87,6 +90,7 @@ GameObject:
   - component: {fileID: 4128572887095264}
   - component: {fileID: 212803158003301722}
   - component: {fileID: 61761082392988218}
+  - component: {fileID: 114572856580742066}
   m_Layer: 0
   m_Name: Portal_BossStage_1
   m_TagString: Portal
@@ -172,7 +176,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -197,7 +201,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -222,7 +226,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -247,7 +251,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
@@ -263,6 +267,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6395874, y: 1.152405}
   m_EdgeRadius: 0
+--- !u!114 &114232825409295056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495135724901394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114330254651360386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256618295237768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114572856580742066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1960941621192528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114793666734993128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1166217883377646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00002ce1be6f3dc47be95c3c0e3813b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212318713724350282
 SpriteRenderer:
   m_ObjectHideFlags: 1

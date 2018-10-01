@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIeycbQLGQAIAAMkEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVEtz2jAQ/iuMziVjMwFCb615tAcCE5rpxRchrbEGWfJIcnhk+O9dyTZ2yYnl2293v33In0QoWwJz2qyM4GvNgXwfEG+TbwNCg++NOqERjhERVhfgjGA/1EF6boRgpUSmTbHgB0i0dRbhjEoL6DLa+WiF0OeAnPFnOPMhF7RGU29d0ZpFgxuaDJQD01Fb4qyh1axKMUmLEvhOXKEjxy07rmkKe2kYXjjTUgrbKCHuUoZG3+jF98kFxa5C6fjJs3MQh9x5jf3QTZZZcI0wQy9zYXA8dU7yU7vc5yqoPdaqPqisfJXReBIU1UnXX/zDOLgzo4tfbd048jVcLtgRNTJqXW+ofXjekx6Gc6LySPcS/uagXvXK6EpxdDpT+dDKwmje/b23luTAjh1eS30Aq/LratoN+h5uoftzIkWx966n5xrYSR2mHRYPBvfyGwWHs7DNiBH1Kt4t/KEH25Vs8KUw1qGnaVJ5dXtdGc8kSzT84FnlEm0UmF58CYpKd9liFve4wAdfb74PniX176Op3fja838ICXDHj6IH11af7quyuT6tweabykmhoBPtHa84pUQrVd9X/0W1YbvKZJT1wg6V4P8fFqHPGbA427M9Z7Pp5GUYjSfxy2gyGY+AwpTPSLg8obBPKre10GY8uDPVJVd4Ze2XYbAytAy3zg09rcS10L2RC5XpHTMAalNnuAsHg0XwRfIFFzigHTgnVNg2+UyJ1OwIPL0nSkOni7MzNO2ypKQUH9p5JCVJ+F6k5EZu/wBQSwMEFAAACAgAAEgh7GSiN+NtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPUMzTTUVBKL0osyCgGihiCOKWZKSB2tFKiSVpqsmFaUnJSSrKluZmFroGpmaGFkZmZqVFqYqp5iqVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7JxtAsZAAgAAyQQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7GSiN+NtAAAAeAAAAAkAJAAAAAAAAAAAAAAAjQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABFAwAAAAA=
+    dataString: UEsDBBQAAAgIAABIIeyOt4gxQgIAAMoEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMmS2jAQ/RVK5zBlqMFAbglbcmCghqRy8UVIbaxCllySPCxT/Htaso0d50Tz+nX360X+JELZApjTZmME32oO5OuAeJt8GRAafO/UCY3wCBFhdQ7OCPZNnaTnRgiWSqTa5Ct+goW2ziKcUmkBXUY7H60Q+hyQK/4M5z7khtZ46q07WvNo8ECTgXJgWmrcEGc1r6KVikmaF8AP4g4te9bQp6NAU9hMzfDKmZZS2FoKcbcidPpOb75RLii2FWqPXjw7A3HKnK/dDd2lqQVXd23obSkMzqfKSb5rl/lcObXnStUHlaWvMp7EQVGVdPuff1gJTo3OfzR1R5Gv4TLBzqiRUes6U+3Cy470MJwLlWd6lPAnA/WmN0aXiqPTmdKHlhbGy/bvs7VFBuzc4pXUHlgW7bSbJTYr9D08QvfXhRT50bteXivgIHWYdtg8GNzLTxQc7sLWI0bUq/ht4Rc92bZkja+FsQ49dZPKqzvq0ngmWaPhB89Kt9BGgenEF6CodLc9ZnH9BfZ8nfn2PGvqH0hdu/Y1998LCXDLj6Kea68vz1XZTF+2YLNd6aRQ0Ir2jjec0kIrVd1X90k1YYfSpJR1wk6l4P8eFqGvKbBRemRHzubTeDaMJvFoNo7jyRgoTPmchMsTCvukcl8JrceDO1NtcoVX1nwaBhtDi3Dr3NDLRtxz3Rm5UKk+MAOgdlWGp3AwWARfJF9xgQM6gHNChW2Tz4RIzc7Ak2eiJHS6ujpDkzZLQgrxoZ1HErIIH4yEPMjjL1BLAwQUAAAICAAASCHsZKI3420AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9QzNNNRUEovSizIKAaKGII4pZkpIHa0UqJJWmqyYVpSclJKsqW5mYWugamZoYWRmZmpUWpiqnmKpVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAASCHsjreIMUICAADKBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAASCHsZKI3420AAAB4AAAACQAkAAAAAAAAAAAAAACPAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAEcDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -630,7 +630,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   minAreaSize: 0
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
@@ -60648,11 +60648,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1471158855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4ec9055fb02384f8fa27c975e5fdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curFloor: 1
 --- !u!4 &1471158858
 Transform:
   m_ObjectHideFlags: 0
@@ -60718,7 +60719,7 @@ MonoBehaviour:
   version: 2
   repathRate: 0.5
   canSearch: 1
-  canMove: 0
+  canMove: 1
   maxSpeed: 1
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
@@ -60727,7 +60728,7 @@ MonoBehaviour:
   centerOffset: 1
   rotationIn2D: 1
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 1
+  maxAcceleration: 2
   rotationSpeed: 0
   slowdownDistance: 0.4
   pickNextWaypointDist: 1
@@ -60813,7 +60814,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 20
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
