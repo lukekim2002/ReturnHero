@@ -42,7 +42,7 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameGeneralManager.isPause)
+        if (!GameGeneralManager.isPause && !GameGeneralManager.isInventory)
         {
             // 공격 상태가 아니라면
             if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
