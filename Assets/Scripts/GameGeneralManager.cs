@@ -10,6 +10,7 @@ public class GameGeneralManager : MonoBehaviour {
     public static GameGeneralManager instance = null;
     public static bool isPause = false;
     public int curFloor = 1;
+    public static bool isInventory = false;
 
     private void Awake()
     {
