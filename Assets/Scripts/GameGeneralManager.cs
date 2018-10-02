@@ -7,8 +7,6 @@ public class GameGeneralManager : MonoBehaviour {
 
     // public instance of GGM which allows it to be accessed by any other scripts.
     public static GameGeneralManager instance = null;
-    public static bool isPause = false;
-    public static bool isInventory = false;
 
     private void Awake()
     {
@@ -24,7 +22,6 @@ public class GameGeneralManager : MonoBehaviour {
             // then destroy this. This enforces our singleton pattern, meaning there caan only one instance of GGM.
             Destroy(this);
         }
-
 
         Application.targetFrameRate = 30;
 
