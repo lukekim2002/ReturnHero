@@ -44,6 +44,11 @@ public class HeroGeneralManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        heroObject.transform.position = Vector2.zero;
+    }
+
     private void Start()
     {
         atkCollider = attackCollider.GetComponent<BoxCollider2D>();

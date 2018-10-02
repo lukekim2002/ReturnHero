@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameGeneralManager : MonoBehaviour {
 
     // public instance of GGM which allows it to be accessed by any other scripts.
     public static GameGeneralManager instance = null;
+<<<<<<< HEAD
+=======
+    public static bool isPause = false;
+    public int curFloor = 1;
+    public static bool isInventory = false;
+>>>>>>> 8724dd28714a629b5722ead0f970f33543baee7d
 
     private void Awake()
     {
@@ -25,13 +32,24 @@ public class GameGeneralManager : MonoBehaviour {
 
         Application.targetFrameRate = 30;
 
+        curFloor = 1;
         // Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        curFloor += 1;
+        print("OnLevelWasLoaded in Scene : " + curFloor);
+        //SceneManager.UnloadSceneAsync(curFloor - 1);
     }
 
     private void Start()
     {
         print("Hi. This is GameGeneralManager.");
+        //curFloor = SceneManager.GetActiveScene().buildIndex;
+        print(curFloor);
+        SceneManager.LoadScene(curFloor, LoadSceneMode.Additive);
     }
 
     /// <summary>
@@ -60,4 +78,6 @@ public class GameGeneralManager : MonoBehaviour {
 
         return hitPoint;
     }
+
+    
 }

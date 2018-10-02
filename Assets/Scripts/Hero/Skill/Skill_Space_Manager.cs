@@ -37,7 +37,7 @@ public class Skill_Space_Manager : MonoBehaviour
         direction = _heroController.direction;
 
         hitPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(heroPos, direction, _dashDist);
-        print(hitPoint);
+        //print(hitPoint);
 
         if (hitPoint != Vector2.zero)
         {
@@ -66,7 +66,7 @@ public class Skill_Space_Manager : MonoBehaviour
         direction = _heroController.direction;
 
         hitPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(heroPos, direction, _dashMoveDist);
-        print(hitPoint);
+        //print(hitPoint);
 
         if (hitPoint != Vector2.zero)
         {
