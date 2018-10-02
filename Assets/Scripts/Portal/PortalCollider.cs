@@ -18,13 +18,14 @@ public class PortalCollider : MonoBehaviour {
         
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.transform.position = Vector2.zero;
+            
             if (isCalledAlready == false)
             {
                 isCalledAlready = true;
                 nextSceneNum = GameGeneralManager.instance.curFloor + 1;
                 GameGeneralManager.instance.curFloor = nextSceneNum;
 
+                collision.gameObject.transform.position = Vector2.zero;
                 SceneManager.LoadScene(nextSceneNum, LoadSceneMode.Additive);
             }
 
