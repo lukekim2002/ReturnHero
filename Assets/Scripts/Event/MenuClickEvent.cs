@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 메뉴 버튼 관련 이벤트 클래스
 public class MenuClickEvent : MonoBehaviour
 {
-    public Canvas option;
 
-    public void OnClickOption()
+    // Resume Button Click Event
+    public void OnClickResumeButton()
     {
-        option.gameObject.SetActive(true);
+        UIGeneralManager.isPause = false;
+        UIGeneralManager.setting.gameObject.SetActive(UIGeneralManager.isPause);
+        Time.timeScale = 1f;
     }
 
+    // Option Button Click Event
+    public void OnClickOptionButton()
+    {
+        UIGeneralManager.isOptionOpened = true;
+        UIGeneralManager.option.gameObject.SetActive(true);
+    }
+
+    // Game Exit Button Click Event
     public void OnClickGameExitButton()
     {
         #if UNITY_EDITOR

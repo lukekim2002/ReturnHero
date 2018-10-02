@@ -8,8 +8,6 @@ public class Attack_ML_Manager : MonoBehaviour
     private Animator _heroAnimator;
     private int _heroAttackCount = 0;
     private int _heroAttackState = 1;
-    private HeroController heroController;
-    private Animator heroAnimator;
 
     private Vector2 colliderSize;
     private Vector2 colliderOffset;
@@ -17,7 +15,6 @@ public class Attack_ML_Manager : MonoBehaviour
     #endregion
 
     #region PUBLIC
-
     public GameObject atkCollider;
 
     // Used for finding child in under order.
@@ -52,8 +49,6 @@ public class Attack_ML_Manager : MonoBehaviour
             _heroAttackCount++;
         }
     }
-
-
 
     #region Animation Event Function
     // 공격하면서 움직임
@@ -97,7 +92,6 @@ public class Attack_ML_Manager : MonoBehaviour
         HeroGeneralManager.instance.SetAttackColliderActive();
         HeroGeneralManager.instance.atkCollider.size = colliderSize;
         HeroGeneralManager.instance.atkCollider.offset = colliderOffset;
-
     }
 
     // 다음 연타 모션을 취할 지 판단.

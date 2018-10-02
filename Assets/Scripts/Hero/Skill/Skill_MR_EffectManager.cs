@@ -16,13 +16,11 @@ public class Skill_MR_EffectManager : MonoBehaviour
     #endregion
 
     #region PUBLIC
-
-
     public enum ATTACKDIRECTION { NONE, UP = 24, DOWN = 25, LEFT = 26, RIGHT = 27  };
     static public ATTACKDIRECTION attackDirection = ATTACKDIRECTION.NONE;
     public Transform heroPos;
     // MR 이펙트 애니메이션 타이밍
-    static public bool isSkillMr = false;
+    public static bool isSkillMr = false;
     #endregion
 
     private void Start()
