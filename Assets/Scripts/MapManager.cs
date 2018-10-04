@@ -7,8 +7,9 @@ public class MapManager : MonoBehaviour {
     public GameObject gateKeeper;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        
 	}
 
     public void SetChildrenIsTriggerOn()
