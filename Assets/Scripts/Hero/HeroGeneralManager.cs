@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class HeroGeneralManager : MonoBehaviour {
 
-
     #region PUBLIC STATIC VARAIBLES
     public static HeroGeneralManager instance = null;
-
-
-    #region General
-
-    public GameObject heroObject;
-
-    public decimal health = 3;
-
     #endregion
 
+    #region General
+    public GameObject heroObject;
+    public decimal health = 3;
+    #endregion
 
     #region Physics
     public GameObject attackCollider;
@@ -24,11 +19,8 @@ public class HeroGeneralManager : MonoBehaviour {
     public List<Dictionary<string, object>> heroAttackCollierSet;
     public Vector2 colliderSize = new Vector2(0.3f, 0.2f);
     public float colliderDiagonalLength = 0.18f;
-
-
     #endregion
 
-    #endregion
 
     private void Awake()
     {

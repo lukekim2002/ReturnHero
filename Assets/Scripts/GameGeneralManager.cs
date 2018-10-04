@@ -8,9 +8,7 @@ public class GameGeneralManager : MonoBehaviour {
 
     // public instance of GGM which allows it to be accessed by any other scripts.
     public static GameGeneralManager instance = null;
-    public static bool isPause = false;
     public int curFloor = 1;
-    public static bool isInventory = false;
 
     private void Awake()
     {

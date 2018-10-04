@@ -5,7 +5,6 @@ using UnityEngine;
 public class HeroController : MonoBehaviour
 {
     #region PRIVATE
-
     private Attack_ML_Manager _attack_ML_Manager;
     private Animator _heroAnimator;
     private Rigidbody2D _heroRigidbody;
@@ -22,7 +21,6 @@ public class HeroController : MonoBehaviour
 
     public Vector2 moveAxis;
     public Vector2 direction;
-
     #endregion
 
     private void Awake()
@@ -42,7 +40,7 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameGeneralManager.isPause && !GameGeneralManager.isInventory)
+        if (!UIGeneralManager.isPause && !UIGeneralManager.isInventoryOpened)
         {
             // 공격 상태가 아니라면
             if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
