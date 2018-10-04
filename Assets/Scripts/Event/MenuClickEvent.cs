@@ -24,8 +24,8 @@ public class MenuClickEvent : MonoBehaviour
     // Game Exit Button Click Event
     public void OnClickGameExitButton()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
         #else
             Application.Quit();
         #endif

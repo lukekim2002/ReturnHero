@@ -12,7 +12,6 @@ public class UIGeneralManager : MonoBehaviour
     public static bool isPause = false;
     // Inventory Open 상태 여부
     public static bool isInventoryOpened = false;
-
     // Option Open 상태 여부
     public static bool isOptionOpened = false;
 
@@ -24,6 +23,8 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas optionCanvas;
     public Image map;
     public Image shadowPanel;
+
+    private int _isFullScreenOn = 1;
 
     private void Awake()
     {
@@ -43,9 +44,9 @@ public class UIGeneralManager : MonoBehaviour
         // Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
 
-        setting = settingCanvas;
-        inventory = inventoryCanvas;
-        option = optionCanvas;
+        // static 변수에 값 대입
+        CreateStaticVariable();
+        InsertUIData();
     }
 
     void Update()
@@ -103,5 +104,22 @@ public class UIGeneralManager : MonoBehaviour
             isInventoryOpened = !isInventoryOpened;
             inventory.gameObject.SetActive(isInventoryOpened);
         }
+    }
+
+    private void CreateStaticVariable()
+    {
+        setting = settingCanvas;
+        inventory = inventoryCanvas;
+        option = optionCanvas;
+    }
+
+    private void InsertUIData()
+    {
+        option.transform.GetChild(2).GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("FullScreenOn") == 1 ? true : false;
+        option.transform.GetChild(3).GetComponent<Slider>().value = PlayerPrefs.GetFloat("Brightness");
+        option.transform.GetChild(4).GetComponent<Slider>().value = PlayerPrefs.GetFloat("BGM");
+        option.transform.GetChild(5).GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundEffect");
+        option.transform.GetChild(6).GetComponent<Slider>().value = PlayerPrefs.GetFloat("CameraShake");
+        option.transform.GetChild(2).GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("V-SYNC") == 1 ? true : false;
     }
 }
