@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Lich_Right_Idle
+  m_Name: Lich_Idle_Down
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,11 +19,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: fa6330e685eb4964283210f831958747, type: 3}
+      value: {fileID: 21300000, guid: 526f1dd3588260240a9f6f60507855ac, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: 37df181f33ba7a944801ef55025c9297, type: 3}
+      value: {fileID: 21300000, guid: b28996125c2d06d409268a8050b3c04a, type: 3}
     - time: 2
-      value: {fileID: 21300000, guid: fa6330e685eb4964283210f831958747, type: 3}
+      value: {fileID: 21300000, guid: 526f1dd3588260240a9f6f60507855ac, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,9 +43,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: fa6330e685eb4964283210f831958747, type: 3}
-    - {fileID: 21300000, guid: 37df181f33ba7a944801ef55025c9297, type: 3}
-    - {fileID: 21300000, guid: fa6330e685eb4964283210f831958747, type: 3}
+    - {fileID: 21300000, guid: 526f1dd3588260240a9f6f60507855ac, type: 3}
+    - {fileID: 21300000, guid: b28996125c2d06d409268a8050b3c04a, type: 3}
+    - {fileID: 21300000, guid: 526f1dd3588260240a9f6f60507855ac, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
