@@ -26,13 +26,15 @@ GameObject:
   - component: {fileID: 114344918589108620}
   - component: {fileID: 114636072323149068}
   - component: {fileID: 114358711084388154}
+  - component: {fileID: 114803840945183344}
+  - component: {fileID: 114747503636964144}
   m_Layer: 11
   m_Name: GateKeeper
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1419165776445494
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +282,37 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 1
   constrainInsideGraph: 0
+--- !u!114 &114747503636964144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214280467385892}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c42561b0aebfd4c98e04dfe9f2847c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroObj: {fileID: 0}
+--- !u!114 &114803840945183344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214280467385892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f9349eb7ef10647b6f3a3dc611de45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  isAttacking: 0
+  attackPriority: 0
+  direction: {x: 0, y: 0}
+  monsterUniqueId: 0
+  myState: 0
+  myAction: 0
+  myLookingDirection: 0
 --- !u!212 &212831377396541376
 SpriteRenderer:
   m_ObjectHideFlags: 1
