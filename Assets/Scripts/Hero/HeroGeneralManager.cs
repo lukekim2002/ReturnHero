@@ -11,6 +11,8 @@ public class HeroGeneralManager : MonoBehaviour {
     #region General
     public GameObject heroObject;
     public decimal health = 3;
+
+    public enum SKillCoolTime { SKILL_SPACE = 1, SKILL_MR = 5, SKILL_E = 8, SKILL_R = 30}
     #endregion
 
     #region Physics

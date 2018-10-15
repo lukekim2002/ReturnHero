@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroController : MonoBehaviour
 {
@@ -17,8 +18,7 @@ public class HeroController : MonoBehaviour
     #region PUBLIC
     public enum HEROSTATE { IDLE, MOVE, ATTACK, DEFENSE, DASH };
     static public HEROSTATE heroState = HEROSTATE.IDLE;
-
-
+    
     public Vector2 moveAxis;
     public Vector2 direction;
     #endregion
