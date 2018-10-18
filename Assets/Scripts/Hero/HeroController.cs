@@ -179,17 +179,22 @@ public class HeroController : MonoBehaviour
         #region E키 입력 처리
         if (Input.GetKeyDown(KeyCode.E))
         {
-            heroState = HEROSTATE.ATTACK;
-            _isAttack = true;
+            if (UIGeneralManager.instance.skill_E_CoolTimeClass.isInputKey == false)
+            {
+                heroState = HEROSTATE.ATTACK;
+                _isAttack = true;
 
-            _heroAnimator.SetInteger("actionNum", 2);
-            _heroAnimator.SetTrigger("isSkillE");
+                _heroAnimator.SetInteger("actionNum", 2);
+                _heroAnimator.SetTrigger("isSkillE");
 
-            ClickAttackDirection();
+                ClickAttackDirection();
 
-            _heroAnimator.SetFloat("actionX", direction.x);
-            _heroAnimator.SetFloat("actionY", direction.y);
-            
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+
+                UIGeneralManager.instance.skill_E_CoolTimeClass.isInputKey = true;
+                UIGeneralManager.instance.skill_E_CoolTimeClass.isSkillCoolTimeEnable = true;
+            }
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,16 +203,22 @@ public class HeroController : MonoBehaviour
         #region R키 입력 처리
         if (Input.GetKeyDown(KeyCode.R) && Skill_R_EffectManager.isSkillR == false)
         {
-            heroState = HEROSTATE.ATTACK;
-            _isAttack = true;
+            if (UIGeneralManager.instance.skill_R_CoolTimeClass.isInputKey == false)
+            {
+                heroState = HEROSTATE.ATTACK;
+                _isAttack = true;
 
-            _heroAnimator.SetInteger("actionNum", 2);
-            _heroAnimator.SetTrigger("isSkillR");
+                _heroAnimator.SetInteger("actionNum", 2);
+                _heroAnimator.SetTrigger("isSkillR");
 
-            ClickAttackDirection();
+                ClickAttackDirection();
 
-            _heroAnimator.SetFloat("actionX", direction.x);
-            _heroAnimator.SetFloat("actionY", direction.y);
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+
+                UIGeneralManager.instance.skill_R_CoolTimeClass.isInputKey = true;
+                UIGeneralManager.instance.skill_R_CoolTimeClass.isSkillCoolTimeEnable = true;
+            }
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +227,12 @@ public class HeroController : MonoBehaviour
         #region 대쉬 키 입력 처리
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            heroState = HEROSTATE.DASH;
+            if (UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey == false)
+            {
+                heroState = HEROSTATE.DASH;
+                UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey = true;
+                UIGeneralManager.instance.skill_Space_CoolTimeClass.isSkillCoolTimeEnable = true;
+            }
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,17 +256,23 @@ public class HeroController : MonoBehaviour
         // 스킬 이펙트가 끝난 후에야 다시 누를 수 있다.
         if (Input.GetMouseButtonDown(1) && Skill_MR_EffectManager.isSkillMr == false)
         {
-            heroState = HEROSTATE.ATTACK;
+            if (UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey == false)
+            {
+                heroState = HEROSTATE.ATTACK;
 
-            _heroAnimator.SetInteger("actionNum", 2);
-            _heroAnimator.SetTrigger("isSkillMr");
+                _heroAnimator.SetInteger("actionNum", 2);
+                _heroAnimator.SetTrigger("isSkillMr");
 
-            _isAttack = true;
+                _isAttack = true;
 
-            ClickAttackDirection();
+                ClickAttackDirection();
 
-            _heroAnimator.SetFloat("actionX", direction.x);
-            _heroAnimator.SetFloat("actionY", direction.y);
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+
+                UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey = true;
+                UIGeneralManager.instance.skill_MR_CoolTimeClass.isSkillCoolTimeEnable = true;
+            }
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

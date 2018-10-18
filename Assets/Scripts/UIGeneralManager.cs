@@ -21,11 +21,12 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas inventoryCanvas;
     public Canvas optionCanvas;
     public Image map;
-    public Image shadowPanel;
-    public Image skill_Space_Image;
-    public Image skill_Mr_Image;
-    public Image skill_E_Image;
-    public Image skill_R_Image;
+    public Image shadowPanel;   
+
+    public SkillCoolTimeClass skill_Space_CoolTimeClass;
+    public SkillCoolTimeClass skill_E_CoolTimeClass;
+    public SkillCoolTimeClass skill_MR_CoolTimeClass;
+    public SkillCoolTimeClass skill_R_CoolTimeClass;
 
     private const int FULLSCREEN = 2;
     private const int BRIGHTNESS = 3;
