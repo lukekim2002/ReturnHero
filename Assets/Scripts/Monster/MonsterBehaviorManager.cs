@@ -69,7 +69,19 @@ public class MonsterBehaviorManager : MonoBehaviour {
 	void Update ()
     {
 
-        myMonsterInfo.AttackMelee(direction, animator);
+        //myMonsterInfo.AttackMelee(direction, animator);
+
+        if (myAction == Action.Idle)
+        {
+            animator.SetInteger("actionNum", 0);
+        }
+        else if (myAction == Action.Move)
+        {
+            //ChangeAnimationWhileMoving();
+            animator.SetInteger("actionNum", 1);
+            animator.SetFloat("moveX", direction.x);
+            animator.SetFloat("moveX", direction.y);
+        }
 
     }
 
@@ -179,18 +191,24 @@ public class MonsterBehaviorManager : MonoBehaviour {
             {
                 case LookingDirection.Top:
 
+                    animator.SetInteger("actionNum", 1);
+                    animator.SetFloat("moveX", direction.x);
+                    animator.SetFloat("moveX", direction.y);
                     break;
 
                 case LookingDirection.Down:
 
+                    animator.SetInteger("actionNum", 1);
                     break;
 
                 case LookingDirection.Left:
 
+                    animator.SetInteger("actionNum", 1);
                     break;
 
                 case LookingDirection.Right:
 
+                    animator.SetInteger("actionNum", 1);
                     break;
             }
         }
