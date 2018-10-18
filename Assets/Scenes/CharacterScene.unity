@@ -162,6 +162,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1829553915333420, guid: 93b5d5d48bcb8624bab99fcd704cc51f, type: 2}
+      propertyPath: m_Name
+      value: Skill_MR_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775396319637132, guid: 93b5d5d48bcb8624bab99fcd704cc51f, type: 2}
+      propertyPath: m_Name
+      value: Skill_R_Effect
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93b5d5d48bcb8624bab99fcd704cc51f, type: 2}
   m_IsPrefabAsset: 0
@@ -276,6 +284,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroObject: {fileID: 574479168}
+  skill_Space_CoolTime: 1
+  skill_MR_CoolTime: 4
+  skill_E_CoolTime: 5
+  skill_R_CoolTime: 30
   attackCollider: {fileID: 127570065}
   atkCollider: {fileID: 0}
   colliderSize: {x: 0.3, y: 0.2}

@@ -10,6 +10,8 @@ public class GameGeneralManager : MonoBehaviour {
     public static GameGeneralManager instance = null;
     public int curFloor = 1;
 
+    private int UISceneNum = 16;
+
     private void Awake()
     {
         // Check if instance doesn't exist
@@ -45,6 +47,7 @@ public class GameGeneralManager : MonoBehaviour {
         //curFloor = SceneManager.GetActiveScene().buildIndex;
         print(curFloor);
         SceneManager.LoadScene(curFloor, LoadSceneMode.Additive);
+        SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
     }
 
     /// <summary>
