@@ -10,6 +10,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
     private const float LeftBottom = 225f;
     private const float RightBottom = 315f;
 
+    private const float delayForSettingDirection = 0.5f;
 
     #endregion
 
@@ -17,20 +18,23 @@ public class MonsterBehaviorManager : MonoBehaviour {
     public enum Action { Idle, Move, Attack }
     public enum LookingDirection { Top, Down, Left, Right }
 
+    public int monsterUniqueId = -1;                // Used for get which class object
+    public IMonsterInterface myMonsterInfo;
+    public List<Dictionary<string, object>> monsterPropertySet;
+    public List<Dictionary<string, object>> monsterAttackColliderSet;
+    public Pathfinding.AIPath aiMoveScript;
+    public BoxCollider2D attackCollider;
+    public Animator animator;
+
     public GameObject playerObject;
-    public bool isAttacking = false;
-    public int attackPriority;
-    public Vector2 direction = Vector2.zero; // related with myLookingDirection
-    public float delayForSettingDirection = 0.5f;
+    //public bool isAttacking = false;
+    public Vector2 direction = Vector2.zero;        // related with myLookingDirection
 
-    public int monsterUniqueId = -1; // Used for get which class object
-    public State myState;
-    public Action myAction;
-    public LookingDirection myLookingDirection;
+    public State myState;                           // Dead, Alive
+    public Action myAction;                         // Idle, Move, Attack
+    public LookingDirection myLookingDirection;     // Top, Down, Left, Right
 
-    public IMonsterPropertySet myProperty;
-    public IMonsterMethodSet mySkill;
-
+    
 
     #region MonoBehavior CallBacks
 
@@ -39,32 +43,46 @@ public class MonsterBehaviorManager : MonoBehaviour {
         // Initialize at here
         myState = State.Alive;
         myAction = Action.Idle;
+
         playerObject = HeroGeneralManager.instance.heroObject;
+        aiMoveScript = GetComponent<Pathfinding.AIPath>();
+        attackCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+
+        //print(playerObject);
+        print(animator);
 
         Initialize();
+
+        aiMoveScript.enabled = false;
+        
     }
 
     // Use this for initialization
-    void Start () {
-        StartCoroutine(FindAngleInEvery1Sec());
+    void Start ()
+    {
+        PlayerEnteredRoom();
 
-        mySkill.AttackMelee(direction);
-        mySkill.AttackSkill1(direction);
-        mySkill.AttackSkill2(direction);
-
-        print(myProperty.Health);
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+    {
+
+        myMonsterInfo.AttackMelee(direction, animator);
+
+    }
 
     private void OnDisable()
     {
         myState = State.Dead;
         myAction = Action.Idle;
+
+        //aiMoveScript.enabled = false;
     }
+    #endregion
+
+    #region Coroutines
 
     IEnumerator FindAngleInEvery1Sec()
     {
@@ -72,7 +90,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
         {
             myLookingDirection = FindAngleBetweenHeroAndMe(this.transform.position, playerObject.transform.position);
 
-            Debug.Log(myLookingDirection);
+            //Debug.Log(myLookingDirection);
 
             switch (myLookingDirection)
             {
@@ -97,7 +115,10 @@ public class MonsterBehaviorManager : MonoBehaviour {
             yield return new WaitForSeconds(delayForSettingDirection);
         }
     }
+
     #endregion
+
+
 
     #region Public Methods
 
@@ -121,13 +142,20 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
     public void Initialize()
     {
+
         switch (monsterUniqueId)
         {
             case 0: // GateKeeper
-                myProperty = new GateKeeperClass();
-                mySkill = new GateKeeperClass();
 
-                myProperty.Health = 3;
+                myMonsterInfo = gameObject.AddComponent<GateKeeperClass>() as IMonsterInterface;
+
+                //print(myProperty);
+                //print(mySkill);
+
+                myMonsterInfo.Health = 3;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+                myMonsterInfo.Skill1CoolDown = 15.0f;
+                myMonsterInfo.Skill2CoolDown = 15.0f;
 
                 break;
 
@@ -135,16 +163,49 @@ public class MonsterBehaviorManager : MonoBehaviour {
                 //throw new System.ArgumentOutOfRangeException("monsterUniqueId", "Invalid Value");
                 break;
         }
+
+        myMonsterInfo.isMeleeAttackReady = true;
+        myMonsterInfo.isSkill1AttackReady = true;
+        myMonsterInfo.isSkill2AttackReady = true;
+        myMonsterInfo.isSkill3AttackReady = true;
+        myMonsterInfo.isSkill4AttackReady = true;
     }
 
-    public void CoolDownCheck()
+    public void ChangeAnimationWhileMoving()
     {
+        if (myAction == Action.Move)
+        {
+            switch (myLookingDirection)
+            {
+                case LookingDirection.Top:
 
+                    break;
+
+                case LookingDirection.Down:
+
+                    break;
+
+                case LookingDirection.Left:
+
+                    break;
+
+                case LookingDirection.Right:
+
+                    break;
+            }
+        }
+    }
+
+    public void PlayerEnteredRoom() // called When OnTriggerExit() is called in Room
+    {
+        myAction = Action.Move;
+        aiMoveScript.enabled = true;
+        StartCoroutine(FindAngleInEvery1Sec());
     }
 
     public void getHit(int damage)
     {
-        mySkill.HitByPlayer(damage);
+        myMonsterInfo.HitByPlayer(damage);
     }
     #endregion
 }
