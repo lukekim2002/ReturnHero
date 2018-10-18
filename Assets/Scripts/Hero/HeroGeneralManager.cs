@@ -6,11 +6,16 @@ public class HeroGeneralManager : MonoBehaviour {
 
     #region PUBLIC STATIC VARAIBLES
     public static HeroGeneralManager instance = null;
+    
     #endregion
 
     #region General
     public GameObject heroObject;
     public decimal health = 3;
+    public float skill_Space_CoolTime = 1f;
+    public float skill_MR_CoolTime = 4f;
+    public float skill_E_CoolTime = 5f;
+    public float skill_R_CoolTime = 30f;
     #endregion
 
     #region Physics

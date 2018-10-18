@@ -4,13 +4,11 @@ using UnityEngine.UI;
 
 public class OptionMenuClickEvent : MonoBehaviour
 {
-    public Canvas option;
-
     // Option Button Click Event
     public void OnClickExitButton()
     {
-        UIGeneralManager.isOptionOpened = false;
-        option.gameObject.SetActive(false);
+        UIGeneralManager.instance.isOptionOpened = false;
+        UIGeneralManager.instance.optionCanvas.gameObject.SetActive(false);
         PlayerPrefs.Save();
     }
 
