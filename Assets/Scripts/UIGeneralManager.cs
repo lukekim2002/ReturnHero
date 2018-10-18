@@ -9,22 +9,30 @@ public class UIGeneralManager : MonoBehaviour
     // 이 클래스의 전역 instacne 변수로 다른 클래스에 의해 엑세스할 수 있다.
     public static UIGeneralManager instance = null;
     // Pause 상태 여부
-    public static bool isPause = false;
+    public bool isPause = false;
     // Inventory Open 상태 여부
-    public static bool isInventoryOpened = false;
+    public bool isInventoryOpened = false;
     // Option Open 상태 여부
-    public static bool isOptionOpened = false;
+    public bool isOptionOpened = false;
 
-    public static Canvas setting;
+    //public static Canvas setting;
+    public Canvas displayUICanvas;
     public Canvas settingCanvas;
-    public static Canvas inventory;
     public Canvas inventoryCanvas;
-    public static Canvas option;
     public Canvas optionCanvas;
     public Image map;
     public Image shadowPanel;
+    public Image skill_Space_Image;
+    public Image skill_Mr_Image;
+    public Image skill_E_Image;
+    public Image skill_R_Image;
 
-    private int _isFullScreenOn = 1;
+    private const int FULLSCREEN = 2;
+    private const int BRIGHTNESS = 3;
+    private const int BGM = 4;
+    private const int SOUNTEFFECT = 5;
+    private const int CAMERASAHKE = 6;
+    private const int V_SYNC = 7;
 
     private void Awake()
     {
@@ -43,9 +51,7 @@ public class UIGeneralManager : MonoBehaviour
 
         // Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-
-        // static 변수에 값 대입
-        CreateStaticVariable();
+        
         InsertUIData();
     }
 
@@ -60,7 +66,7 @@ public class UIGeneralManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape) && isOptionOpened == false)
             {
                 isPause = false;
-                setting.gameObject.SetActive(false);
+                settingCanvas.gameObject.SetActive(false);
                 Time.timeScale = 1f;
             }
         }
@@ -87,13 +93,13 @@ public class UIGeneralManager : MonoBehaviour
             if (!isPause)
             {
                 isPause = true;
-                setting.gameObject.SetActive(true);
+                settingCanvas.gameObject.SetActive(true);
                 Time.timeScale = 0;
             }
             else if (isPause)
             {
                 isPause = false;
-                setting.gameObject.SetActive(false);
+                settingCanvas.gameObject.SetActive(false);
                 Time.timeScale = 1f;
             }
         }
@@ -102,24 +108,17 @@ public class UIGeneralManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             isInventoryOpened = !isInventoryOpened;
-            inventory.gameObject.SetActive(isInventoryOpened);
+            inventoryCanvas.gameObject.SetActive(isInventoryOpened);
         }
-    }
-
-    private void CreateStaticVariable()
-    {
-        setting = settingCanvas;
-        inventory = inventoryCanvas;
-        option = optionCanvas;
     }
 
     private void InsertUIData()
     {
-        option.transform.GetChild(2).GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("FullScreenOn") == 1 ? true : false;
-        option.transform.GetChild(3).GetComponent<Slider>().value = PlayerPrefs.GetFloat("Brightness");
-        option.transform.GetChild(4).GetComponent<Slider>().value = PlayerPrefs.GetFloat("BGM");
-        option.transform.GetChild(5).GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundEffect");
-        option.transform.GetChild(6).GetComponent<Slider>().value = PlayerPrefs.GetFloat("CameraShake");
-        option.transform.GetChild(2).GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("V-SYNC") == 1 ? true : false;
+        optionCanvas.transform.GetChild(FULLSCREEN).GetComponent<Toggle>().isOn = (PlayerPrefs.GetInt("FullScreenOn") == 1 ? true : false);
+        optionCanvas.transform.GetChild(BRIGHTNESS).GetComponent<Slider>().value = PlayerPrefs.GetFloat("Brightness");
+        optionCanvas.transform.GetChild(BGM).GetComponent<Slider>().value = PlayerPrefs.GetFloat("BGM");
+        optionCanvas.transform.GetChild(SOUNTEFFECT).GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundEffect");
+        optionCanvas.transform.GetChild(CAMERASAHKE).GetComponent<Slider>().value = PlayerPrefs.GetFloat("CameraShake");
+        optionCanvas.transform.GetChild(V_SYNC).GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("V-SYNC") == 1 ? true : false;
     }
 }

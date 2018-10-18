@@ -9,21 +9,23 @@ public class MenuClickEvent : MonoBehaviour
     // Resume Button Click Event
     public void OnClickResumeButton()
     {
-        UIGeneralManager.isPause = false;
-        UIGeneralManager.setting.gameObject.SetActive(UIGeneralManager.isPause);
+        UIGeneralManager.instance.isPause = false;
+        UIGeneralManager.instance.settingCanvas.gameObject.SetActive(UIGeneralManager.instance.isPause);
         Time.timeScale = 1f;
     }
 
     // Option Button Click Event
     public void OnClickOptionButton()
     {
-        UIGeneralManager.isOptionOpened = true;
-        UIGeneralManager.option.gameObject.SetActive(true);
+        UIGeneralManager.instance.isOptionOpened = true;
+        UIGeneralManager.instance.optionCanvas.gameObject.SetActive(true);
     }
 
     // Game Exit Button Click Event
     public void OnClickGameExitButton()
     {
+        PlayerPrefs.Save();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else

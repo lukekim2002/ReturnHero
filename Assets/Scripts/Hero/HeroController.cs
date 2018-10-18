@@ -40,7 +40,7 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!UIGeneralManager.isPause && !UIGeneralManager.isInventoryOpened)
+        if (!UIGeneralManager.instance.isPause && !UIGeneralManager.instance.isInventoryOpened)
         {
             // 공격 상태가 아니라면
             if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
@@ -189,7 +189,7 @@ public class HeroController : MonoBehaviour
 
             _heroAnimator.SetFloat("actionX", direction.x);
             _heroAnimator.SetFloat("actionY", direction.y);
-
+            
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
