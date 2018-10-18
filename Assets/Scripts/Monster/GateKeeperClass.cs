@@ -313,7 +313,7 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     public void AttackMelee(Vector2 dir, Animator anim)
     {
         
-        //if (_isMeleeAttackReady == false) return;
+        if (_isMeleeAttackReady == false) return;
         
         /*
         if (_isSkill1AttackReady == true)
