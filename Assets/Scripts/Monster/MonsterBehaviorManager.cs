@@ -21,11 +21,13 @@ public class MonsterBehaviorManager : MonoBehaviour {
     public bool isAttacking = false;
     public int attackPriority;
     public Vector2 direction = Vector2.zero; // related with myLookingDirection
+    public float delayForSettingDirection = 0.5f;
 
-    public int monsterUniqueId = -1;
+    public int monsterUniqueId = -1; // Used for get which class object
     public State myState;
     public Action myAction;
     public LookingDirection myLookingDirection;
+
     public IMonsterPropertySet myProperty;
     public IMonsterMethodSet mySkill;
 
@@ -39,15 +41,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
         myAction = Action.Idle;
         playerObject = HeroGeneralManager.instance.heroObject;
 
-        switch (monsterUniqueId)
-        {
-            case 0: // GateKeeper
-                myProperty = new GateKeeperClass();
-                mySkill = new GateKeeperClass();
-                break;
-            default:
-                break;
-        }
+        Initialize();
     }
 
     // Use this for initialization
@@ -57,6 +51,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
         mySkill.AttackMelee(direction);
         mySkill.AttackSkill1(direction);
         mySkill.AttackSkill2(direction);
+
+        print(myProperty.Health);
     }
 	
 	// Update is called once per frame
@@ -98,8 +94,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
             }
 
-
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(delayForSettingDirection);
         }
     }
     #endregion
@@ -111,7 +106,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
         float angle = Mathf.Atan2(heroPos.y - myPos.y, heroPos.x - myPos.x) * 180 / Mathf.PI;
         if (angle < 0) angle += 360;
 
-        Debug.Log("Angle : " + angle);
+        //Debug.Log("Angle : " + angle);
 
         if (angle <= RightTop) return LookingDirection.Right;
         else if (angle <= LeftTop) return LookingDirection.Top;
@@ -124,6 +119,28 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
     }
 
+    public void Initialize()
+    {
+        switch (monsterUniqueId)
+        {
+            case 0: // GateKeeper
+                myProperty = new GateKeeperClass();
+                mySkill = new GateKeeperClass();
+
+                myProperty.Health = 3;
+
+                break;
+
+            default: // Error
+                //throw new System.ArgumentOutOfRangeException("monsterUniqueId", "Invalid Value");
+                break;
+        }
+    }
+
+    public void CoolDownCheck()
+    {
+
+    }
 
     public void getHit(int damage)
     {
