@@ -84,6 +84,8 @@ public class Skill_Space_Manager : MonoBehaviour
 
         heroPos += direction;
         this.transform.position = heroPos;
+
+        print("Dash Excute");
     }
 
     private void DashEnd()

@@ -37,7 +37,7 @@ public class SkillCoolTimeClass : MonoBehaviour
         {            
             translucencyCoolTimeImage.fillAmount -= 1 / (skillCoolTime * 10);
 
-            print(translucencyCoolTimeImage.name + " : " + translucencyCoolTimeImage.fillAmount);
+            // print(translucencyCoolTimeImage.name + " : " + translucencyCoolTimeImage.fillAmount);
             yield return new WaitForSeconds(0.1f);
         }
 

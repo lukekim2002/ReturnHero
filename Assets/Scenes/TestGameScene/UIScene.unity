@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   translucencyCoolTimeImage: {fileID: 1680225591}
-  skillCoolTime: 1
+  skillCoolTime: 0.5
   isSkillCoolTimeEnable: 0
   isInputKey: 0
 --- !u!1 &144103172
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   translucencyCoolTimeImage: {fileID: 1042528704}
-  skillCoolTime: 5
+  skillCoolTime: 1
   isSkillCoolTimeEnable: 0
   isInputKey: 0
 --- !u!1 &775791376
@@ -6312,7 +6312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   translucencyCoolTimeImage: {fileID: 1378765857}
-  skillCoolTime: 10
+  skillCoolTime: 1
   isSkillCoolTimeEnable: 0
   isInputKey: 0
 --- !u!1 &2015887985
@@ -6398,7 +6398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   translucencyCoolTimeImage: {fileID: 2123547521}
-  skillCoolTime: 4
+  skillCoolTime: 1
   isSkillCoolTimeEnable: 0
   isInputKey: 0
 --- !u!1 &2093112345
