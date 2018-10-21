@@ -18,7 +18,7 @@ public class HeroAttackCollider : MonoBehaviour
             print("OnTriggerEnter2D() called by " + transform.gameObject.name);
             print("Collided Object is : " + collision.gameObject.transform.name);
 
-            collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
+            //collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

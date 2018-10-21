@@ -27,7 +27,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
     public Animator animator;
 
     public GameObject playerObject;
-    //public bool isAttacking = false;
+    public bool isAttacking = false;
     public Vector2 direction = Vector2.zero;        // related with myLookingDirection
 
     public State myState;                           // Dead, Alive
@@ -71,18 +71,26 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
         //myMonsterInfo.AttackMelee(direction, animator);
 
-        if (myAction == Action.Idle)
+        if (myAction == Action.Idle && isAttacking == false)
         {
             animator.SetInteger("actionNum", 0);
         }
-        else if (myAction == Action.Move)
+        else if (myAction == Action.Move && isAttacking == false)
         {
-            //ChangeAnimationWhileMoving();
             animator.SetInteger("actionNum", 1);
             animator.SetFloat("moveX", direction.x);
-            animator.SetFloat("moveX", direction.y);
+            animator.SetFloat("moveY", direction.y);
         }
 
+        /*
+        if (myMonsterInfo.isMeleeAttackReady)
+        {
+            myAction = Action.Attack;
+            aiMoveScript.enabled = false;
+            myMonsterInfo.AttackMelee(direction, animator);
+            aiMoveScript.enabled = true;
+        }
+        */
     }
 
     private void OnDisable()
@@ -126,6 +134,12 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
             yield return new WaitForSeconds(delayForSettingDirection);
         }
+    }
+
+    IEnumerator WaitUntilAnimationEnds()
+    {
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            yield return null;
     }
 
     #endregion
@@ -183,35 +197,37 @@ public class MonsterBehaviorManager : MonoBehaviour {
         myMonsterInfo.isSkill4AttackReady = true;
     }
 
-    public void ChangeAnimationWhileMoving()
+
+    public void AttackMeleeFacade()
     {
-        if (myAction == Action.Move)
-        {
-            switch (myLookingDirection)
-            {
-                case LookingDirection.Top:
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
 
-                    animator.SetInteger("actionNum", 1);
-                    animator.SetFloat("moveX", direction.x);
-                    animator.SetFloat("moveX", direction.y);
-                    break;
+        myMonsterInfo.AttackMelee(direction, animator);
 
-                case LookingDirection.Down:
+        StartCoroutine(WaitUntilAnimationEnds());
+        aiMoveScript.enabled = true;
+        myAction = Action.Move;
+        isAttacking = false;
+    }
 
-                    animator.SetInteger("actionNum", 1);
-                    break;
+    public void AttackSkill1Facade()
+    {
 
-                case LookingDirection.Left:
+    }
 
-                    animator.SetInteger("actionNum", 1);
-                    break;
+    public void AttackSkill2Facade()
+    {
 
-                case LookingDirection.Right:
+    }
 
-                    animator.SetInteger("actionNum", 1);
-                    break;
-            }
-        }
+    public void AttackSkill3Facade()
+    {
+    }
+
+    public void AttackSkill4Facade()
+    {
     }
 
     public void PlayerEnteredRoom() // called When OnTriggerExit() is called in Room
