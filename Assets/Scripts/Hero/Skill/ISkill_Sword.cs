@@ -36,7 +36,6 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
 
     private void Start()
     {
-
         moveColliderSize = HeroGeneralManager.instance.colliderSize;
         colliderDiagonalLength = HeroGeneralManager.instance.colliderDiagonalLength;
     }
