@@ -314,7 +314,7 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
         
         if (_isMeleeAttackReady == false) return;
-        
+
         /*
         if (_isSkill1AttackReady == true)
         {
@@ -335,6 +335,7 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
          * 콜라이더에 공격력 보내기 -> 콜라이더는 공격력을 히어로로 보내기
          */
 
+        /*
         if (dir == Vector2.up)
         {
             //anim.Play("");
@@ -352,7 +353,15 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
 
         }
         else
+        {
             return;
+        }
+        */
+
+        anim.SetInteger("actionNum", 2);
+        anim.SetTrigger("isMelee");
+        anim.SetFloat("actionX", dir.x);
+        anim.SetFloat("actionY", dir.y);
 
         Debug.Log("\"AttackMelee\" called in GateKeeperClass");
         _isMeleeAttackReady = false;
