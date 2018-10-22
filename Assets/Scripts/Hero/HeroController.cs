@@ -204,8 +204,6 @@ public class HeroController : MonoBehaviour
             _heroAnimator.SetInteger("actionNum", 2);
             _isAttack = true;
             _attack_ML_Manager.isMeeleAttack = true;
-
-            print("Input Melee Attack");
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

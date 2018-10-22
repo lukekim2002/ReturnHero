@@ -44,7 +44,7 @@ public class Attack_ML_Manager : MonoBehaviour
 
             _heroAttackCount++;
         }
-        else if (_heroAttackCount == _heroAttackState) // && isAttack == true)
+        else if (_heroAttackCount == _heroAttackState)
         {
             _heroAttackCount++;
         }
@@ -123,7 +123,6 @@ public class Attack_ML_Manager : MonoBehaviour
         _heroController.moveAxis = Vector2.zero;
 
         isMeeleAttack = false;
-
     }
     #endregion
 }
