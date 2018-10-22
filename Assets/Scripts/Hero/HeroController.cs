@@ -40,11 +40,12 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!UIGeneralManager.instance.isPause && !UIGeneralManager.instance.isInventoryOpened)
         {
             // 공격 상태가 아니라면
             if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
-            {
+            {   
                 // 키 입력
                 InputKey();
             }
@@ -99,6 +100,8 @@ public class HeroController : MonoBehaviour
 
                 _heroAnimator.SetFloat("actionX", direction.x);
                 _heroAnimator.SetFloat("actionY", direction.y);
+
+                print("heroAnimator.SetIngeger(\"actionNum = 4\")");
             }
         }
     }
@@ -176,8 +179,66 @@ public class HeroController : MonoBehaviour
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region 대쉬 키 입력 처리
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey == false)
+            {
+                heroState = HEROSTATE.DASH;
+                UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey = true;
+                UIGeneralManager.instance.skill_Space_CoolTimeClass.isSkillCoolTimeEnable = true;
+            }
+
+            print("Input Dash");
+        }
+        #endregion
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region 공격 입력 키 (if - else if)
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region 기본 3단 공격 입력 처리
+        if (Input.GetMouseButtonDown(0) && _attack_ML_Manager.isMeeleAttack == false)
+        {
+            heroState = HEROSTATE.ATTACK;
+
+            _heroAnimator.SetInteger("actionNum", 2);
+            _isAttack = true;
+            _attack_ML_Manager.isMeeleAttack = true;
+
+            print("Input Melee Attack");
+        }
+        #endregion
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region MR 입력 처리
+        // 스킬 이펙트가 끝난 후에야 다시 누를 수 있다.
+        else if (Input.GetMouseButtonDown(1) && Skill_MR_EffectManager.isSkillMr == false)
+        {
+            if (UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey == false)
+            {
+                heroState = HEROSTATE.ATTACK;
+
+                _heroAnimator.SetInteger("actionNum", 2);
+                _heroAnimator.SetTrigger("isSkillMr");
+
+                _isAttack = true;
+
+                ClickAttackDirection();
+
+                _heroAnimator.SetFloat("actionX", direction.x);
+                _heroAnimator.SetFloat("actionY", direction.y);
+
+                UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey = true;
+                UIGeneralManager.instance.skill_MR_CoolTimeClass.isSkillCoolTimeEnable = true;
+            }
+        }
+        #endregion
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         #region E키 입력 처리
-        if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             if (UIGeneralManager.instance.skill_E_CoolTimeClass.isInputKey == false)
             {
@@ -201,7 +262,7 @@ public class HeroController : MonoBehaviour
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         #region R키 입력 처리
-        if (Input.GetKeyDown(KeyCode.R) && Skill_R_EffectManager.isSkillR == false)
+        else if (Input.GetKeyDown(KeyCode.R) && Skill_R_EffectManager.isSkillR == false)
         {
             if (UIGeneralManager.instance.skill_R_CoolTimeClass.isInputKey == false)
             {
@@ -222,60 +283,7 @@ public class HeroController : MonoBehaviour
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        #region 대쉬 키 입력 처리
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey == false)
-            {
-                heroState = HEROSTATE.DASH;
-                UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey = true;
-                UIGeneralManager.instance.skill_Space_CoolTimeClass.isSkillCoolTimeEnable = true;
-            }
-        }
         #endregion
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        #region 기본 3단 공격 입력 처리
-
-        if (Input.GetMouseButtonDown(0) && _attack_ML_Manager.isMeeleAttack == false)
-        {
-            heroState = HEROSTATE.ATTACK;
-
-            _heroAnimator.SetInteger("actionNum", 2);
-            _isAttack = true;
-            _attack_ML_Manager.isMeeleAttack = true;
-        }
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        #region 기본 스킬 공격 입력 처리
-        // 스킬 이펙트가 끝난 후에야 다시 누를 수 있다.
-        if (Input.GetMouseButtonDown(1) && Skill_MR_EffectManager.isSkillMr == false)
-        {
-            if (UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey == false)
-            {
-                heroState = HEROSTATE.ATTACK;
-
-                _heroAnimator.SetInteger("actionNum", 2);
-                _heroAnimator.SetTrigger("isSkillMr");
-
-                _isAttack = true;
-
-                ClickAttackDirection();
-
-                _heroAnimator.SetFloat("actionX", direction.x);
-                _heroAnimator.SetFloat("actionY", direction.y);
-
-                UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey = true;
-                UIGeneralManager.instance.skill_MR_CoolTimeClass.isSkillCoolTimeEnable = true;
-            }
-        }
-        #endregion
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     public void ClickAttackDirection()
@@ -354,9 +362,4 @@ public class HeroController : MonoBehaviour
             }
         }
     }
-
-
-
-    
-
 }
