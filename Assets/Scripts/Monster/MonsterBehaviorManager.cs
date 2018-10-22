@@ -204,9 +204,10 @@ public class MonsterBehaviorManager : MonoBehaviour {
         isAttacking = true;
         aiMoveScript.enabled = false;
 
+        //Debug.Log(animator);
         myMonsterInfo.AttackMelee(direction, animator);
 
-        StartCoroutine(WaitUntilAnimationEnds());
+        //StartCoroutine(WaitUntilAnimationEnds());
         aiMoveScript.enabled = true;
         myAction = Action.Move;
         isAttacking = false;
