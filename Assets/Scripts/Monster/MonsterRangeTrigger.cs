@@ -19,8 +19,9 @@ public class MonsterRangeTrigger : MonoBehaviour {
         {
             if (rootBehavior.myMonsterInfo.isMeleeAttackReady == true)
             {
-                print("OnTriggerEnter2D() called by " + transform.gameObject.name);
-                print("Collided Object is : " + collision.gameObject.transform.name);
+                //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
+                //print("Collided Object is : " + collision.gameObject.transform.name);
+
 
                 rootBehavior.SendMessage("AttackMeleeFacade", SendMessageOptions.DontRequireReceiver);
                 //collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);

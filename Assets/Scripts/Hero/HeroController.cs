@@ -40,7 +40,7 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (UIGeneralManager.instance == null) return;
         if (!UIGeneralManager.instance.isPause && !UIGeneralManager.instance.isInventoryOpened)
         {
             // 공격 상태가 아니라면

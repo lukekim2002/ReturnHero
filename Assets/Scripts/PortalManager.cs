@@ -36,7 +36,6 @@ public class PortalManager : MonoBehaviour {
         if (i >= wayPointSet.transform.childCount)
             i = 0;
         wayPointSet.transform.GetChild(i).gameObject.SetActive(true);
-        print(i);
     }
 
 

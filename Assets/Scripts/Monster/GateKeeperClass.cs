@@ -12,7 +12,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     private bool _isMeleeAttackReady;
     private int _meleeDamage;
     public float _meleeCoolDown;
-    private Vector2 _meleeRange;
     private Vector2 _meleeBoxSizeUp;
     private Vector2 _meleeBoxSizedown;
     private Vector2 _meleeBoxSizeLeft;
@@ -21,7 +20,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     private bool _isSkill1AttackReady;
     private int _skill1Damage;
     private float _Skill1CoolDown;
-    private  Vector2 _skill1Range;
     private Vector2 _skill1BoxSizeUp;
     private Vector2 _skill1BoxSizeDown;
     private Vector2 _skill1BoxSizeLeft;
@@ -30,7 +28,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     private bool _isSkill2AttackReady;
     private int _skill2Damage;
     private float _Skill2CoolDown;
-    private Vector2 _skill2Range;
     private Vector2 _skill2BoxSizeUp;
     private Vector2 _skill2BoxSizeDown;
     private Vector2 _skill2BoxSizeLeft;
@@ -70,12 +67,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
         get { return this._meleeCoolDown; }
         set { this._meleeCoolDown = value; }
-    }
-
-    Vector2 IMonsterInterface.MeleeRange
-    {
-        get { return this._meleeRange; }
-        set { this._meleeRange = value; }
     }
     
     Vector2 IMonsterInterface.MeleeBoxSizeUp
@@ -124,12 +115,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         set { this._Skill1CoolDown = value; }
     }
 
-    Vector2 IMonsterInterface.Skill1Range
-    {
-        get { return this._skill1Range; }
-        set { this._skill1Range = value; }
-    }
-
     Vector2 IMonsterInterface.Skill1BoxSizeUp
     {
         get { return this._skill1BoxSizeUp; }
@@ -173,12 +158,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
         get { return this._Skill2CoolDown; }
         set { this._Skill2CoolDown = value; }
-    }
-
-    Vector2 IMonsterInterface.Skill2Range
-    {
-        get { return this._skill2Range; }
-        set { this._skill2Range = value; }
     }
 
     Vector2 IMonsterInterface.Skill2BoxSizeUp
@@ -226,12 +205,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         set {  }
     }
 
-    Vector2 IMonsterInterface.Skill3Range
-    {
-        get { return new Vector2(0, 0); }
-        set {  }
-    }
-
     Vector2 IMonsterInterface.Skill3BoxSizeUp
     {
         get { return new Vector2(0, 0); }
@@ -274,12 +247,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         set { }
     }
 
-    Vector2 IMonsterInterface.Skill4Range
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
     Vector2 IMonsterInterface.Skill4BoxSizeUp
     {
         get { return new Vector2(0, 0); }
@@ -314,7 +281,9 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
         
         if (_isMeleeAttackReady == false) return;
+        _isMeleeAttackReady = false;
 
+        #region TODO LIST
         /*
         if (_isSkill1AttackReady == true)
         {
@@ -330,41 +299,23 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
 
         /*
          * 들어가야할 내용:
-         * 쿨타임 적용 -> 코루틴
+         * 쿨타임 적용 -> 코루틴 -> clear
          * 콜라이더 크기 변경
          * 콜라이더에 공격력 보내기 -> 콜라이더는 공격력을 히어로로 보내기
          */
+        #endregion
 
-        /*
-        if (dir == Vector2.up)
-        {
-            //anim.Play("");
-        }
-        else if (dir == Vector2.down)
-        {
-
-        }
-        else if (dir == Vector2.left)
-        {
-
-        }
-        else if (dir == Vector2.right)
-        {
-
-        }
-        else
-        {
-            return;
-        }
-        */
-
+        //Debug.Log(anim);
         anim.SetInteger("actionNum", 2);
         anim.SetTrigger("isMelee");
         anim.SetFloat("actionX", dir.x);
         anim.SetFloat("actionY", dir.y);
 
+        
+        StartCoroutine(WaitAnimationFinish(anim));
+
         Debug.Log("\"AttackMelee\" called in GateKeeperClass");
-        _isMeleeAttackReady = false;
+        
         StartCoroutine(CoolDownMelee());
     }
 
@@ -416,6 +367,42 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         _isSkill2AttackReady = true;
     }
 
+    private bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
+    {
+        return (stateInfo.IsName("Melee") || stateInfo.IsName("Skill1") || stateInfo.IsName("Skill2"));
+    }
+
+    public IEnumerator WaitAnimationFinish(Animator anim)
+    {
+
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        int i = 1;
+
+        
+        // Wait Attack State
+        while (!CheckAnimatorStateName(stateInfo))
+        {
+            //Debug.Log("Wait Attack State" + i++);
+            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        
+        // Wait Animation Ends
+        while (stateInfo.normalizedTime <= 1f)
+        {
+            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            //Debug.Log("Wait Aniamtion Ends~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            yield return null;
+        }
+
+        //StartCoroutine(CoolDownMelee());
+        //anim.ResetTrigger("isMelee");
+        GetComponent<MonsterBehaviorManager>().EndAttackMelee();
+
+        //throw new System.NotImplementedException();
+    }
+
     #region NOT USED
     public void AttackSkill3(Vector2 dir)
     {
@@ -458,6 +445,8 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
         // Initialization part
     }
+
+    
 
     #endregion
 }
