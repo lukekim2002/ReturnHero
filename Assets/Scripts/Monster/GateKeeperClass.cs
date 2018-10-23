@@ -314,7 +314,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         
         StartCoroutine(WaitAnimationFinish(anim));
 
-
         Debug.Log("\"AttackMelee\" called in GateKeeperClass");
         
         StartCoroutine(CoolDownMelee());
@@ -383,7 +382,8 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         // Wait Attack State
         while (!CheckAnimatorStateName(stateInfo))
         {
-            Debug.Log("Wait Attack State" + i++);
+            //Debug.Log("Wait Attack State" + i++);
+            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
             yield return null;
         }
 
@@ -391,7 +391,8 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         // Wait Animation Ends
         while (stateInfo.normalizedTime <= 1f)
         {
-            Debug.Log("Wait Aniamtion Ends~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            //Debug.Log("Wait Aniamtion Ends~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             yield return null;
         }
 
