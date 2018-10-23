@@ -100,8 +100,6 @@ public class HeroController : MonoBehaviour
 
                 _heroAnimator.SetFloat("actionX", direction.x);
                 _heroAnimator.SetFloat("actionY", direction.y);
-
-                print("heroAnimator.SetIngeger(\"actionNum = 4\")");
             }
         }
     }
@@ -188,8 +186,6 @@ public class HeroController : MonoBehaviour
                 UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey = true;
                 UIGeneralManager.instance.skill_Space_CoolTimeClass.isSkillCoolTimeEnable = true;
             }
-
-            print("Input Dash");
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,8 +200,6 @@ public class HeroController : MonoBehaviour
             _heroAnimator.SetInteger("actionNum", 2);
             _isAttack = true;
             _attack_ML_Manager.isMeeleAttack = true;
-
-            print("Input Melee Attack");
         }
         #endregion
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
