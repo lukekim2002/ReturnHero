@@ -311,7 +311,7 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         anim.SetFloat("actionX", dir.x);
         anim.SetFloat("actionY", dir.y);
 
-        Debug.Log("Animation Tag : " + anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"));
+        
         StartCoroutine(WaitAnimationFinish(anim));
 
 
@@ -368,25 +368,37 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         _isSkill2AttackReady = true;
     }
 
+    private bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
+    {
+        return (stateInfo.IsName("Melee") || stateInfo.IsName("Skill1") || stateInfo.IsName("Skill2"));
+    }
+
     public IEnumerator WaitAnimationFinish(Animator anim)
     {
-        //Debug.Log("WaitAnimationFinish is called");
-        
-        while (anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-        {
-            Debug.Log("WaitAnimationFinish is called");
-            yield return null;
-        }
-        
 
-        /*
-        while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        int i = 1;
+
+        
+        // Wait Attack State
+        while (!CheckAnimatorStateName(stateInfo))
         {
-            Debug.Log("WaitAnimationFinish is called");
+            Debug.Log("Wait Attack State" + i++);
             yield return null;
         }
-        */
+
         
+        // Wait Animation Ends
+        while (stateInfo.normalizedTime <= 1f)
+        {
+            Debug.Log("Wait Aniamtion Ends~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            yield return null;
+        }
+
+        //StartCoroutine(CoolDownMelee());
+        //anim.ResetTrigger("isMelee");
+        GetComponent<MonsterBehaviorManager>().EndAttackMelee();
+
         //throw new System.NotImplementedException();
     }
 

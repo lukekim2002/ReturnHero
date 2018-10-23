@@ -50,7 +50,6 @@ public class MonsterBehaviorManager : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         //print(playerObject);
-        print(animator);
 
         Initialize();
 
@@ -208,9 +207,18 @@ public class MonsterBehaviorManager : MonoBehaviour {
         myMonsterInfo.AttackMelee(direction, animator);
 
         //StartCoroutine(WaitUntilAnimationEnds());
-        aiMoveScript.enabled = true;
+        
+    }
+
+    public void EndAttackMelee()
+    {
+        Debug.Log("\"EndAttackMelee\" is called.");
         myAction = Action.Move;
+        animator.SetInteger("actionNum", 1);
+        animator.ResetTrigger("isMelee");
         isAttacking = false;
+        aiMoveScript.enabled = true;
+        
     }
 
     public void AttackSkill1Facade()
