@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour {
             BoxCollider2D boxCollider2D = transform.GetChild(i).GetComponent<BoxCollider2D>();
             boxCollider2D.isTrigger = false;
 
-            gateKeeper.SetActive(true);
+            //gateKeeper.SetActive(true);
         }
     }
 

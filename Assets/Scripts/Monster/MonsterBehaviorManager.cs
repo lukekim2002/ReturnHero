@@ -164,15 +164,30 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
                 myMonsterInfo = gameObject.AddComponent<GateKeeperClass>() as IMonsterInterface;
 
-                //print(myProperty);
-                //print(mySkill);
-
                 myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
                 myMonsterInfo.Skill1CoolDown = 3.0f;
                 myMonsterInfo.Skill2CoolDown = 3.0f;
 
                 break;
+
+            case 2: // Zombie
+
+                myMonsterInfo = gameObject.AddComponent<ZombieClass>() as IMonsterInterface;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+
+                break;
+
+            case 3: // Skeleton
+                break;
+
+            case 4: // Ghoul
+
+                myMonsterInfo = gameObject.AddComponent<GhoulClass>() as IMonsterInterface;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+
+                break;
+
 
             default: // Error
                 //throw new System.ArgumentOutOfRangeException("monsterUniqueId", "Invalid Value");
