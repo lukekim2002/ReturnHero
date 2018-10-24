@@ -80,11 +80,12 @@ public class MonsterBehaviorManager : MonoBehaviour {
             animator.SetFloat("moveX", direction.x);
             animator.SetFloat("moveY", direction.y);
         }
+        /*
         if (myAction != Action.Attack && myMonsterInfo.isSkill2AttackReady == true)
         {
             AttackSkill2Facade();
         }
-        
+        */
     }
 
     private void OnDisable()
@@ -163,15 +164,30 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
                 myMonsterInfo = gameObject.AddComponent<GateKeeperClass>() as IMonsterInterface;
 
-                //print(myProperty);
-                //print(mySkill);
-
                 myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
                 myMonsterInfo.Skill1CoolDown = 3.0f;
                 myMonsterInfo.Skill2CoolDown = 3.0f;
 
                 break;
+
+            case 2: // Zombie
+
+                myMonsterInfo = gameObject.AddComponent<ZombieClass>() as IMonsterInterface;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+
+                break;
+
+            case 3: // Skeleton
+                break;
+
+            case 4: // Ghoul
+
+                myMonsterInfo = gameObject.AddComponent<GhoulClass>() as IMonsterInterface;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+
+                break;
+
 
             default: // Error
                 //throw new System.ArgumentOutOfRangeException("monsterUniqueId", "Invalid Value");
