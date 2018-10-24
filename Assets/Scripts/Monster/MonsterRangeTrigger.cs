@@ -17,14 +17,27 @@ public class MonsterRangeTrigger : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            if (rootBehavior.myMonsterInfo.isMeleeAttackReady == true)
+            if (this.gameObject.name.Equals("MeleeAttackRange"))
             {
-                //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
-                //print("Collided Object is : " + collision.gameObject.transform.name);
+
+                if (rootBehavior.myMonsterInfo.isMeleeAttackReady == true)
+                {
+                    //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
+                    //print("Collided Object is : " + collision.gameObject.transform.name);
 
 
-                rootBehavior.SendMessage("AttackMeleeFacade", SendMessageOptions.DontRequireReceiver);
-                //collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
+                    rootBehavior.SendMessage("AttackMeleeFacade", SendMessageOptions.DontRequireReceiver);
+                    //collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
+                }
+            }
+
+            if (this.gameObject.name.Equals("Skill1AttackRange"))
+            {
+
+                if (rootBehavior.myMonsterInfo.isSkill1AttackReady == true)
+                {
+                    rootBehavior.SendMessage("AttackSkill1Facade", SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
     }

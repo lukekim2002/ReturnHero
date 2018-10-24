@@ -80,16 +80,11 @@ public class MonsterBehaviorManager : MonoBehaviour {
             animator.SetFloat("moveX", direction.x);
             animator.SetFloat("moveY", direction.y);
         }
-
-        /*
-        if (myMonsterInfo.isMeleeAttackReady)
+        if (myAction != Action.Attack && myMonsterInfo.isSkill2AttackReady == true)
         {
-            myAction = Action.Attack;
-            aiMoveScript.enabled = false;
-            myMonsterInfo.AttackMelee(direction, animator);
-            aiMoveScript.enabled = true;
+            AttackSkill2Facade();
         }
-        */
+        
     }
 
     private void OnDisable()
@@ -135,12 +130,6 @@ public class MonsterBehaviorManager : MonoBehaviour {
         }
     }
 
-    IEnumerator WaitUntilAnimationEnds()
-    {
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-            yield return null;
-    }
-
     #endregion
 
 
@@ -170,7 +159,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
         switch (monsterUniqueId)
         {
-            case 0: // GateKeeper
+            case 1: // GateKeeper
 
                 myMonsterInfo = gameObject.AddComponent<GateKeeperClass>() as IMonsterInterface;
 
@@ -179,8 +168,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
                 myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
-                myMonsterInfo.Skill1CoolDown = 15.0f;
-                myMonsterInfo.Skill2CoolDown = 15.0f;
+                myMonsterInfo.Skill1CoolDown = 3.0f;
+                myMonsterInfo.Skill2CoolDown = 3.0f;
 
                 break;
 
@@ -215,6 +204,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
         Debug.Log("\"EndAttackMelee\" is called.");
         myAction = Action.Move;
         animator.SetInteger("actionNum", 1);
+        animator.SetFloat("moveX", direction.x);
+        animator.SetFloat("moveY", direction.y);
         animator.ResetTrigger("isMelee");
         isAttacking = false;
         aiMoveScript.enabled = true;
@@ -223,12 +214,45 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
     public void AttackSkill1Facade()
     {
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+
+        myMonsterInfo.AttackSkill1(direction, animator);
+    }
+
+    public void EndAttackSkill1()
+    {
+        Debug.Log("\"EndAttackSkill1\" is called.");
+        myAction = Action.Move;
+        animator.SetInteger("actionNum", 1);
+        animator.SetFloat("moveX", direction.x);
+        animator.SetFloat("moveY", direction.y);
+        animator.ResetTrigger("isSkill1");
+        isAttacking = false;
+        aiMoveScript.enabled = true;
 
     }
 
     public void AttackSkill2Facade()
     {
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
 
+        myMonsterInfo.AttackSkill2(direction, animator);
+    }
+
+    public void EndAttackSkill2()
+    {
+        Debug.Log("\"EndAttackSkill2\" is called.");
+        myAction = Action.Move;
+        animator.SetInteger("actionNum", 1);
+        animator.SetFloat("moveX", direction.x);
+        animator.SetFloat("moveY", direction.y);
+        animator.ResetTrigger("isSkill2");
+        isAttacking = false;
+        aiMoveScript.enabled = true;
     }
 
     public void AttackSkill3Facade()
