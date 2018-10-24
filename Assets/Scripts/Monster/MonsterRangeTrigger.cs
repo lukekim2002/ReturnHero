@@ -39,6 +39,15 @@ public class MonsterRangeTrigger : MonoBehaviour {
                     rootBehavior.SendMessage("AttackSkill1Facade", SendMessageOptions.DontRequireReceiver);
                 }
             }
+
+            if (this.gameObject.name.Equals("Skill2AttackRange"))
+            {
+
+                if (rootBehavior.myMonsterInfo.isSkill2AttackReady == true)
+                {
+                    rootBehavior.SendMessage("AttackSkill2Facade", SendMessageOptions.DontRequireReceiver);
+                }
+            }
         }
     }
 }
