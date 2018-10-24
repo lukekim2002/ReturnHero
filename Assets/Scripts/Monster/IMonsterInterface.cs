@@ -53,10 +53,10 @@ public interface IMonsterInterface {
     void Initialize();
 
     void AttackMelee(Vector2 dir, Animator anim);
-    void AttackSkill1(Vector2 dir);
-    void AttackSkill2(Vector2 dir);
-    void AttackSkill3(Vector2 dir);
-    void AttackSkill4(Vector2 dir);
+    void AttackSkill1(Vector2 dir, Animator anim);
+    void AttackSkill2(Vector2 dir, Animator anim);
+    void AttackSkill3(Vector2 dir, Animator anim);
+    void AttackSkill4(Vector2 dir, Animator anim);
 
     IEnumerator CoolDownMelee();
     IEnumerator CoolDownSkill1();

@@ -314,56 +314,71 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         
         StartCoroutine(WaitAnimationFinish(anim));
 
-        Debug.Log("\"AttackMelee\" called in GateKeeperClass");
+        //Debug.Log("\"AttackMelee\" called in GateKeeperClass");
         
         StartCoroutine(CoolDownMelee());
     }
 
-    public void AttackSkill1(Vector2 dir)
+    public void AttackSkill1(Vector2 dir, Animator anim)
     {
         
         if (_isSkill1AttackReady == false) return;
-        Debug.Log("\"attackSkill1\" called in GateKeeperClass");
+        _isSkill1AttackReady = false;
+
+        //Debug.Log("\"attackSkill1\" called in GateKeeperClass");
+        /*
         if (_isSkill2AttackReady == true)
         {
-            AttackSkill2(dir);
+            AttackSkill2(dir, anim);
             //return;
         }
+        */
 
+        anim.SetInteger("actionNum", 2);
+        anim.SetTrigger("isSkill1");
+        anim.SetFloat("actionX", dir.x);
+        anim.SetFloat("actionY", dir.y);
 
-        
-        _isSkill1AttackReady = false;
+        StartCoroutine(WaitAnimationFinish(anim));
+
         StartCoroutine(CoolDownSkill1());
     }
 
-    public void AttackSkill2(Vector2 dir)
+    public void AttackSkill2(Vector2 dir, Animator anim)
     {
         
         if (_isSkill2AttackReady == false) return;
+        _isSkill2AttackReady = false;
         Debug.Log("\"AttackSkill2\" called in GateKeeperClass");
 
-        _isSkill2AttackReady = false;
+        anim.SetInteger("actionNum", 2);
+        anim.SetTrigger("isSkill2");
+        anim.SetFloat("actionX", dir.x);
+        anim.SetFloat("actionY", dir.y);
+
+        StartCoroutine(WaitAnimationFinish(anim));
+
         StartCoroutine(CoolDownSkill2());
     }
 
     public IEnumerator CoolDownMelee()
     {
-        Debug.Log("\"CoolDownMelee\" called in GateKeeperClass");
+        //Debug.Log("\"CoolDownMelee\" called in GateKeeperClass");
         yield return new WaitForSeconds(this._meleeCoolDown);
         _isMeleeAttackReady = true;
     }
 
     public IEnumerator CoolDownSkill1()
     {
-        Debug.Log("\"CoolDownSkill1\" called in GateKeeperClass");
-        yield return new WaitForSeconds(_Skill1CoolDown);
+        //Debug.Log("\"CoolDownSkill1\" called in GateKeeperClass");
+        yield return new WaitForSeconds(this._Skill1CoolDown);
         _isSkill1AttackReady = true;
     }
 
     public IEnumerator CoolDownSkill2()
     {
         Debug.Log("\"CoolDownSkill2\" called in GateKeeperClass");
-        yield return new WaitForSeconds(_Skill2CoolDown);
+        yield return new WaitForSeconds(this._Skill2CoolDown);
         _isSkill2AttackReady = true;
     }
 
@@ -376,13 +391,10 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
 
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        int i = 1;
 
-        
         // Wait Attack State
         while (!CheckAnimatorStateName(stateInfo))
         {
-            //Debug.Log("Wait Attack State" + i++);
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
             yield return null;
         }
@@ -392,24 +404,26 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         while (stateInfo.normalizedTime <= 1f)
         {
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            //Debug.Log("Wait Aniamtion Ends~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             yield return null;
         }
 
-        //StartCoroutine(CoolDownMelee());
-        //anim.ResetTrigger("isMelee");
-        GetComponent<MonsterBehaviorManager>().EndAttackMelee();
+        if(stateInfo.IsName("Melee"))
+            GetComponent<MonsterBehaviorManager>().EndAttackMelee();
+        else if(stateInfo.IsName("Skill1"))
+            GetComponent<MonsterBehaviorManager>().EndAttackSkill1();
+        else if(stateInfo.IsName("Skill2"))
+            GetComponent<MonsterBehaviorManager>().EndAttackSkill2();
 
         //throw new System.NotImplementedException();
     }
 
     #region NOT USED
-    public void AttackSkill3(Vector2 dir)
+    public void AttackSkill3(Vector2 dir, Animator anim)
     {
         throw new System.NotImplementedException();
     }
 
-    public void AttackSkill4(Vector2 dir)
+    public void AttackSkill4(Vector2 dir, Animator anim)
     {
         throw new System.NotImplementedException();
     }
@@ -445,8 +459,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     {
         // Initialization part
     }
-
-    
 
     #endregion
 }

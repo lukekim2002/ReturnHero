@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114636072323149068}
   - component: {fileID: 114358711084388154}
   - component: {fileID: 114560350635301786}
+  - component: {fileID: 114155578786783702}
   m_Layer: 11
   m_Name: GateKeeper
   m_TagString: Enemy
@@ -92,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627060045856574}
   - component: {fileID: 58289361806002192}
+  - component: {fileID: 114119416382049892}
   m_Layer: 11
   m_Name: Skill1AttackRange
   m_TagString: Untagged
@@ -301,6 +303,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114119416382049892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761094572352462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114155578786783702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214280467385892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8e5ece2bcb23b4b8a5cbf79e46653c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114344918589108620
 MonoBehaviour:
   m_ObjectHideFlags: 1
