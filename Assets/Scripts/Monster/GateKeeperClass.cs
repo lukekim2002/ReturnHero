@@ -282,6 +282,7 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         
         if (_isMeleeAttackReady == false) return;
         _isMeleeAttackReady = false;
+        //Debug.Log("\"AttackMelee\" called in GateKeeperClass");
 
         #region TODO LIST
         /*
@@ -313,9 +314,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
 
         
         StartCoroutine(WaitAnimationFinish(anim));
-
-        //Debug.Log("\"AttackMelee\" called in GateKeeperClass");
-        
         StartCoroutine(CoolDownMelee());
     }
 
@@ -340,7 +338,6 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
         anim.SetFloat("actionY", dir.y);
 
         StartCoroutine(WaitAnimationFinish(anim));
-
         StartCoroutine(CoolDownSkill1());
     }
 
@@ -401,9 +398,10 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
 
         
         // Wait Animation Ends
-        while (stateInfo.normalizedTime <= 1f)
+        while (stateInfo.normalizedTime <= 0.95f)
         {
             stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            //print(stateInfo.normalizedTime);
             yield return null;
         }
 

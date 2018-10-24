@@ -80,9 +80,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
             animator.SetFloat("moveX", direction.x);
             animator.SetFloat("moveY", direction.y);
         }
-
-        
-        if (myMonsterInfo.isSkill2AttackReady == true)
+        if (myAction != Action.Attack && myMonsterInfo.isSkill2AttackReady == true)
         {
             AttackSkill2Facade();
         }
