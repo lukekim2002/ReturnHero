@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieClass : MonoBehaviour, IMonsterInterface
-{
+public class SkeletonClass : MonoBehaviour, IMonsterInterface {
+
     #region PRIVATE VALUES
 
     private int _health;
@@ -126,43 +126,43 @@ public class ZombieClass : MonoBehaviour, IMonsterInterface
     bool IMonsterInterface.isSkill2AttackReady
     {
         get { return false; }
-        set {  }
+        set { }
     }
 
     int IMonsterInterface.Skill2Damage
     {
         get { return -1; }
-        set { ; }
+        set {; }
     }
 
     float IMonsterInterface.Skill2CoolDown
     {
         get { return -1; }
-        set {  }
+        set { }
     }
 
     Vector2 IMonsterInterface.Skill2BoxSizeUp
     {
         get { return Vector2.zero; }
-        set {  }
+        set { }
     }
 
     Vector2 IMonsterInterface.Skill2BoxSizeDown
     {
         get { return Vector2.zero; }
-        set {  }
+        set { }
     }
 
     Vector2 IMonsterInterface.Skill2BoxSizeLeft
     {
         get { return Vector2.zero; }
-        set {  }
+        set { }
     }
 
     Vector2 IMonsterInterface.Skill2BoxSizeRight
     {
         get { return Vector2.zero; }
-        set {  }
+        set { }
     }
 
 
@@ -311,9 +311,9 @@ public class ZombieClass : MonoBehaviour, IMonsterInterface
             GetComponent<MonsterBehaviorManager>().EndAttackMelee();
 
     }
-        #region NOT USED
+    #region NOT USED
 
-        public void AttackSkill1(Vector2 dir, Animator anim)
+    public void AttackSkill1(Vector2 dir, Animator anim)
     {
         throw new System.NotImplementedException();
     }
@@ -370,7 +370,7 @@ public class ZombieClass : MonoBehaviour, IMonsterInterface
         throw new System.NotImplementedException();
     }
 
-    
+
 
     #endregion
 }

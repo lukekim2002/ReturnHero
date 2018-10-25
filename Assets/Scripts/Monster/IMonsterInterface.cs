@@ -65,7 +65,7 @@ public interface IMonsterInterface {
     IEnumerator CoolDownSkill4();
     IEnumerator WaitAnimationFinish(Animator anim);
 
-    void DyingEvent();
-    void HitByPlayer(int damage);
+    void DyingEvent(Vector2 dir, Animator anim);
+    void HitByPlayer(Vector2 dir, Animator anim, int damage);
     #endregion
 }

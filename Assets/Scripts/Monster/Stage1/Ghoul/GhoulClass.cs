@@ -355,12 +355,12 @@ public class GhoulClass : MonoBehaviour, IMonsterInterface {
 
     #endregion
 
-    public void DyingEvent()
+    public void DyingEvent(Vector2 dir, Animator anim)
     {
         throw new System.NotImplementedException();
     }
 
-    public void HitByPlayer(int damage)
+    public void HitByPlayer(Vector2 dir, Animator anim, int damage)
     {
         throw new System.NotImplementedException();
     }

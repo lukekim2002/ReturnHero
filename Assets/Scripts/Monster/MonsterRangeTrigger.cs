@@ -29,6 +29,18 @@ public class MonsterRangeTrigger : MonoBehaviour {
                     rootBehavior.SendMessage("AttackMeleeFacade", SendMessageOptions.DontRequireReceiver);
                     //collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
                 }
+                /*
+                else // if not ready
+                {
+                    
+                    rootBehavior.animator.SetInteger("actionNum", 0);
+                    rootBehavior.animator.SetFloat("actionX", rootBehavior.direction.x);
+                    rootBehavior.animator.SetFloat("actionY", rootBehavior.direction.y);
+                    rootBehavior.aiMoveScript.enabled = false;
+                   
+                }
+                */
+                
             }
 
             if (this.gameObject.name.Equals("Skill1AttackRange"))
@@ -38,6 +50,7 @@ public class MonsterRangeTrigger : MonoBehaviour {
                 {
                     rootBehavior.SendMessage("AttackSkill1Facade", SendMessageOptions.DontRequireReceiver);
                 }
+                
             }
 
             if (this.gameObject.name.Equals("Skill2AttackRange"))
@@ -47,6 +60,7 @@ public class MonsterRangeTrigger : MonoBehaviour {
                 {
                     rootBehavior.SendMessage("AttackSkill2Facade", SendMessageOptions.DontRequireReceiver);
                 }
+                
             }
         }
     }

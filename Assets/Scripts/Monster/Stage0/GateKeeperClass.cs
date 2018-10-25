@@ -381,7 +381,10 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
 
     private bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        return (stateInfo.IsName("Melee") || stateInfo.IsName("Skill1") || stateInfo.IsName("Skill2"));
+        return (stateInfo.IsName("Melee")
+            || stateInfo.IsName("Skill1")
+            || stateInfo.IsName("Skill2")
+            || stateInfo.IsName("BeShot"));
     }
 
     public IEnumerator WaitAnimationFinish(Animator anim)
@@ -411,6 +414,8 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
             GetComponent<MonsterBehaviorManager>().EndAttackSkill1();
         else if(stateInfo.IsName("Skill2"))
             GetComponent<MonsterBehaviorManager>().EndAttackSkill2();
+        else if(stateInfo.IsName("Beshot"))
+            GetComponent<MonsterBehaviorManager>().EndGetHit();
 
         //throw new System.NotImplementedException();
     }
@@ -437,18 +442,32 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     }
     #endregion
 
-    public void DyingEvent()
+    public void DyingEvent(Vector2 dir, Animator anim)
     {
-        //AttackSkill2()
+        AttackSkill2(dir, anim);
+
+        anim.SetInteger("actionNum", 3);
+        anim.SetFloat("actionX", dir.x);
+        anim.SetFloat("actionY", dir.y);
+
+        StartCoroutine(WaitAnimationFinish(anim));
+
+        this.gameObject.SetActive(false);
     }
 
-    public void HitByPlayer(int damage)
+    public void HitByPlayer(Vector2 dir, Animator anim,int damage)
     {
+        anim.SetInteger("actionNum", 3);
+        anim.SetFloat("actionX", dir.x);
+        anim.SetFloat("actionY", dir.y);
+
+        StartCoroutine(WaitAnimationFinish(anim));
+
         // BeShot Animation
         _health -= damage;
         if (_health < 0)
         {
-            DyingEvent();
+            DyingEvent(dir, anim);
         }
         
     }
