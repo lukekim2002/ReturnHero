@@ -198,6 +198,16 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
                 break;
 
+            case 5: // Ghoul
+
+                myMonsterInfo = gameObject.AddComponent<LichClass>() as IMonsterInterface;
+
+                myMonsterInfo.Health = 3;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+                myMonsterInfo.Skill1CoolDown = 3.0f;
+
+                break;
+
 
             default: // Error
                 //throw new System.ArgumentOutOfRangeException("monsterUniqueId", "Invalid Value");
