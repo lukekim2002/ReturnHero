@@ -283,7 +283,8 @@ public class SkeletonClass : MonoBehaviour, IMonsterInterface {
 
     public bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        return (stateInfo.IsName("Melee"));
+        return (stateInfo.IsName("Melee")
+            || stateInfo.IsName("BeShot"));
     }
 
     public IEnumerator WaitAnimationFinish(Animator anim)
