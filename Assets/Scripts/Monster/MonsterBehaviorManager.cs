@@ -181,6 +181,12 @@ public class MonsterBehaviorManager : MonoBehaviour {
                 break;
 
             case 3: // Skeleton
+
+                myMonsterInfo = gameObject.AddComponent<SkeletonClass>() as IMonsterInterface;
+
+                myMonsterInfo.Health = 3;
+                myMonsterInfo.MeleeCoolDown = 3.0f;
+
                 break;
 
             case 4: // Ghoul
