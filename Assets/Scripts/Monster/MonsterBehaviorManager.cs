@@ -174,6 +174,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
             case 2: // Zombie
 
                 myMonsterInfo = gameObject.AddComponent<ZombieClass>() as IMonsterInterface;
+
+                myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
 
                 break;
@@ -184,6 +186,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
             case 4: // Ghoul
 
                 myMonsterInfo = gameObject.AddComponent<GhoulClass>() as IMonsterInterface;
+
+                myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
 
                 break;
@@ -286,9 +290,23 @@ public class MonsterBehaviorManager : MonoBehaviour {
         StartCoroutine(FindAngleInEvery1Sec());
     }
 
-    public void getHit(int damage)
+    public void GetHit(int damage)
     {
-        myMonsterInfo.HitByPlayer(damage);
+        Debug.Log("\"GetHit\" is called.");
+        myAction = Action.Idle;
+        aiMoveScript.enabled = false;
+        myMonsterInfo.HitByPlayer(direction, animator, damage);
     }
+
+    public void EndGetHit()
+    {
+        Debug.Log("\"EndGetHit\" is called.");
+        myAction = Action.Move;
+        animator.SetInteger("actionNum", 1);
+        animator.SetFloat("moveX", direction.x);
+        animator.SetFloat("moveY", direction.y);
+        aiMoveScript.enabled = true;
+    }
+
     #endregion
 }

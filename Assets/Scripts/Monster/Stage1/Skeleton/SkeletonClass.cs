@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhoulClass : MonoBehaviour, IMonsterInterface {
+public class SkeletonClass : MonoBehaviour, IMonsterInterface {
 
     #region PRIVATE VALUES
 
