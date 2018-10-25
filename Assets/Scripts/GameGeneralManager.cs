@@ -27,7 +27,7 @@ public class GameGeneralManager : MonoBehaviour {
             Destroy(this);
         }
 
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
 
         curFloor = 1;
         // Sets this to not be destroyed when reloading scene

@@ -174,6 +174,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
             case 2: // Zombie
 
                 myMonsterInfo = gameObject.AddComponent<ZombieClass>() as IMonsterInterface;
+
+                myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
 
                 break;
@@ -184,6 +186,8 @@ public class MonsterBehaviorManager : MonoBehaviour {
             case 4: // Ghoul
 
                 myMonsterInfo = gameObject.AddComponent<GhoulClass>() as IMonsterInterface;
+
+                myMonsterInfo.Health = 3;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
 
                 break;

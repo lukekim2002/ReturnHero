@@ -11,8 +11,7 @@ public class HeroController : MonoBehaviour
     private Rigidbody2D _heroRigidbody;
     private float moveSpeed = 1.28f;
     
-    [SerializeField]
-    private bool _isAttack = false;
+    
     #endregion
 
     #region PUBLIC
@@ -21,6 +20,8 @@ public class HeroController : MonoBehaviour
     
     public Vector2 moveAxis;
     public Vector2 direction;
+
+    public bool _isAttack = false;
     #endregion
 
     private void Awake()

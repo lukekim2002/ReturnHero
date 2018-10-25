@@ -283,7 +283,8 @@ public class ZombieClass : MonoBehaviour, IMonsterInterface
 
     public bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        return (stateInfo.IsName("Melee"));
+        return (stateInfo.IsName("Melee")
+            || stateInfo.IsName("BeShot"));
     }
 
     public IEnumerator WaitAnimationFinish(Animator anim)
@@ -309,6 +310,8 @@ public class ZombieClass : MonoBehaviour, IMonsterInterface
         // endAttackMelee
         if (stateInfo.IsName("Melee"))
             GetComponent<MonsterBehaviorManager>().EndAttackMelee();
+        else if (stateInfo.IsName("BeShot"))
+            GetComponent<MonsterBehaviorManager>().EndGetHit();
 
     }
         #region NOT USED
@@ -357,12 +360,29 @@ public class ZombieClass : MonoBehaviour, IMonsterInterface
 
     public void DyingEvent(Vector2 dir, Animator anim)
     {
-        throw new System.NotImplementedException();
+        //anim.SetInteger("actionNum", 3);
+        //anim.SetFloat("actionX", dir.x);
+        //anim.SetFloat("actionY", dir.y);
+
+        //StartCoroutine(WaitAnimationFinish(anim));
+
+        this.gameObject.SetActive(false);
     }
 
     public void HitByPlayer(Vector2 dir, Animator anim, int damage)
     {
-        throw new System.NotImplementedException();
+        anim.SetInteger("actionNum", 3);
+        anim.SetFloat("actionX", dir.x);
+        anim.SetFloat("actionY", dir.y);
+
+        StartCoroutine(WaitAnimationFinish(anim));
+
+        // BeShot Animation
+        _health -= damage;
+        if (_health < 0)
+        {
+            DyingEvent(dir, anim);
+        }
     }
 
     public void Initialize()

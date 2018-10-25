@@ -414,7 +414,7 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
             GetComponent<MonsterBehaviorManager>().EndAttackSkill1();
         else if(stateInfo.IsName("Skill2"))
             GetComponent<MonsterBehaviorManager>().EndAttackSkill2();
-        else if(stateInfo.IsName("Beshot"))
+        else if(stateInfo.IsName("BeShot"))
             GetComponent<MonsterBehaviorManager>().EndGetHit();
 
         //throw new System.NotImplementedException();
