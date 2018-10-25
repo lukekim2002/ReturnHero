@@ -18,6 +18,7 @@ public class UIGeneralManager : MonoBehaviour
     //public static Canvas setting;
     public Canvas displayUICanvas;
     public Canvas settingCanvas;
+    public Canvas productionCanvas;
     public Canvas inventoryCanvas;
     public Canvas optionCanvas;
     public Image map;
@@ -110,6 +111,7 @@ public class UIGeneralManager : MonoBehaviour
         {
             isInventoryOpened = !isInventoryOpened;
             inventoryCanvas.gameObject.SetActive(isInventoryOpened);
+            productionCanvas.gameObject.SetActive(isInventoryOpened);
         }
     }
 
