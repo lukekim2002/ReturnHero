@@ -25,6 +25,7 @@ public class ProductionClickEvent : MonoBehaviour
 
         UIGeneralManager.instance.inventoryCanvas.gameObject.SetActive(false);
         UIGeneralManager.instance.productionCanvas.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionCanvas.transform.GetChild(2).gameObject.SetActive(false);
 
         Debug.Log("Close");
     }
