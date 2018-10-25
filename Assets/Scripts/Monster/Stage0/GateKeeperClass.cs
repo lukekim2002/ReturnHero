@@ -478,4 +478,5 @@ public class GateKeeperClass : MonoBehaviour, IMonsterInterface {
     }
 
     #endregion
+
 }
