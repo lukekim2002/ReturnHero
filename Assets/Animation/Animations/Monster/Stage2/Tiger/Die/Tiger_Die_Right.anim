@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Skeleton_Die_Down
+  m_Name: Tiger_Die_Right
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,13 +19,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 93e0435751215404ba15c5435ea17ca2, type: 3}
+      value: {fileID: 21300000, guid: 5b48a60a9eacfe24e9bc0f1b87431da0, type: 3}
     - time: 0.11666667
-      value: {fileID: 21300000, guid: 6eb0b72878318dc46a53fe8fe9af4675, type: 3}
+      value: {fileID: 21300000, guid: 4be64210854afce42ba10da4e60a3cdb, type: 3}
     - time: 0.23333333
-      value: {fileID: 21300000, guid: 613e0aefcbc41124082201e755f66755, type: 3}
+      value: {fileID: 21300000, guid: 077fd620d6fc37149b749e8a305935b0, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: 0c065f3dd40213e468385eceede23ba3, type: 3}
+      value: {fileID: 21300000, guid: 077fd620d6fc37149b749e8a305935b0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -45,10 +45,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 93e0435751215404ba15c5435ea17ca2, type: 3}
-    - {fileID: 21300000, guid: 6eb0b72878318dc46a53fe8fe9af4675, type: 3}
-    - {fileID: 21300000, guid: 613e0aefcbc41124082201e755f66755, type: 3}
-    - {fileID: 21300000, guid: 0c065f3dd40213e468385eceede23ba3, type: 3}
+    - {fileID: 21300000, guid: 5b48a60a9eacfe24e9bc0f1b87431da0, type: 3}
+    - {fileID: 21300000, guid: 4be64210854afce42ba10da4e60a3cdb, type: 3}
+    - {fileID: 21300000, guid: 077fd620d6fc37149b749e8a305935b0, type: 3}
+    - {fileID: 21300000, guid: 077fd620d6fc37149b749e8a305935b0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
