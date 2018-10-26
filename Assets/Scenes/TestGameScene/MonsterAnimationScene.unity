@@ -35588,7 +35588,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425030378
 GameObject:
@@ -35754,7 +35754,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &607525280
 Animator:
@@ -35850,7 +35850,7 @@ Transform:
   - {fileID: 425030379}
   - {fileID: 1836260794}
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &660016309
 Animator:
@@ -35944,7 +35944,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &677920928
 SpriteRenderer:
@@ -59520,13 +59520,14 @@ GameObject:
   - component: {fileID: 824999872}
   - component: {fileID: 824999871}
   - component: {fileID: 824999870}
+  - component: {fileID: 824999873}
   m_Layer: 0
   m_Name: Skeleton_AttackEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &824999870
 Animator:
   serializedVersion: 3
@@ -59598,12 +59599,23 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824999869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1606971344}
-  m_RootOrder: 4
+  m_Father: {fileID: 1159569304}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824999873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 824999869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e205e07ee27bef43a7deea310c8b7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &843444429
 GameObject:
   m_ObjectHideFlags: 0
@@ -59632,7 +59644,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &843444431
 SpriteRenderer:
@@ -59738,6 +59750,7 @@ GameObject:
   - component: {fileID: 1159569304}
   - component: {fileID: 1159569303}
   - component: {fileID: 1159569302}
+  - component: {fileID: 1159569305}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -59818,10 +59831,23 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 824999872}
   m_Father: {fileID: 1606971344}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1159569305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1159569301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a4f796f5ec06f4bb452ba89c363bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonProjectile: {fileID: 824999869}
 --- !u!1 &1178683309
 GameObject:
   m_ObjectHideFlags: 0
@@ -60142,7 +60168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1478292174
 SpriteRenderer:
@@ -60300,7 +60326,6 @@ Transform:
   - {fileID: 1178683310}
   - {fileID: 806369156}
   - {fileID: 1159569304}
-  - {fileID: 824999872}
   - {fileID: 193975735}
   - {fileID: 607525279}
   - {fileID: 1478292173}
@@ -60589,7 +60614,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606971344}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2140294376
 SpriteRenderer:
