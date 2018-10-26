@@ -97,8 +97,9 @@ public class SkeletonProjectile : MonoBehaviour, IMonsterAnimationEvent {
     {
         rootBehaviour = transform.root.GetComponent<MonsterBehaviorManager>();
         //myPos = transform.position;
-        //myDir = rootBehaviour.direction;
 
+        //myDir = rootBehaviour.direction;
+        // 위 코드가 버그 뜨면 아래 주석 해제하고 테스트 돌릴 것.
         myDir = Vector2.down;
 
         skeletonObject = this.transform.parent;
