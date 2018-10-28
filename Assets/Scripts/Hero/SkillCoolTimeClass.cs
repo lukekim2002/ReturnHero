@@ -26,19 +26,22 @@ public class SkillCoolTimeClass : MonoBehaviour
         if (isSkillCoolTimeEnable)
         {
             translucencyCoolTimeImage.gameObject.SetActive(true);
-            StartCoroutine("CalcuateCoolTime");
+            StartCoroutine(CalcuateCoolTime());
             isSkillCoolTimeEnable = false;
         }
     }
 
     IEnumerator CalcuateCoolTime()
     {
-        while (translucencyCoolTimeImage.fillAmount > 0.0f)
-        {            
-            translucencyCoolTimeImage.fillAmount -= 1 / (skillCoolTime * 10);
+        var timer = 0f;
+        while (timer < skillCoolTime)
+        {
+            timer += Time.deltaTime;
+
+            translucencyCoolTimeImage.fillAmount = 1f - (timer / skillCoolTime);
 
             // print(translucencyCoolTimeImage.name + " : " + translucencyCoolTimeImage.fillAmount);
-            yield return new WaitForSeconds(0.1f);
+            yield return null; // per frame
         }
 
         ResetCoolTime();

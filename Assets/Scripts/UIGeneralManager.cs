@@ -91,18 +91,11 @@ public class UIGeneralManager : MonoBehaviour
         // 메뉴 온 & 오프 및 퍼즈 ( 한 번 누르는 키 )
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
             if (!isPause)
             {
                 isPause = true;
                 settingCanvas.gameObject.SetActive(true);
                 Time.timeScale = 0;
-            }
-            else if (isPause)
-            {
-                isPause = false;
-                settingCanvas.gameObject.SetActive(false);
-                Time.timeScale = 1f;
             }
         }
 
