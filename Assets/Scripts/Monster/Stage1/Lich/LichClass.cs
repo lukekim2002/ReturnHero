@@ -406,9 +406,8 @@ public class LichClass : MonoBehaviour, IMonsterInterface {
 
     public void DyingEvent(Vector2 dir, Animator anim)
     {
-        AttackSkill2(dir, anim);
 
-        anim.SetInteger("actionNum", 3);
+        anim.SetInteger("actionNum", 4);
         anim.SetFloat("actionX", dir.x);
         anim.SetFloat("actionY", dir.y);
 
