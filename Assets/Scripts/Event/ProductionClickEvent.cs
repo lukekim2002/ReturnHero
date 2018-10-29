@@ -14,6 +14,8 @@ public class ProductionClickEvent : MonoBehaviour
     #region PUBLIC
     public Image productionRightImage;
     public float duration = 0.5f;
+    public float closeProductionX = 323f;
+    public float openProductionX = 0f;
     #endregion
 
     // Production Left Image를 클릭할 때 Production Right Image가 드러남
@@ -22,26 +24,20 @@ public class ProductionClickEvent : MonoBehaviour
         if (!_isProductionImageOpened)
         {
             // 시작 좌표, 끝 좌표 설정
-            _startPos = new Vector2(330, 0);
-            _endPos = new Vector2(0, 0);
+            _startPos = new Vector2(closeProductionX, 0);
+            _endPos = new Vector2(openProductionX, 0);
 
             // 열리는 애니메이션 실행.
             StartCoroutine(MoveProductionCanvas());
-
-            print("Production Open Animation");
-            _isProductionImageOpened = true;
         }
         else
         {
             // 시작 좌표, 끝 좌표 설정
-            _startPos = new Vector2(0, 0);
-            _endPos = new Vector2(330, 0);
+            _startPos = new Vector2(openProductionX, 0);
+            _endPos = new Vector2(closeProductionX, 0);
 
             // 닫히는 애니메이션 실행.
             StartCoroutine(MoveProductionCanvas());
-
-            print("Production Close Animation");
-            _isProductionImageOpened = false;
         }
     }
 
@@ -63,6 +59,8 @@ public class ProductionClickEvent : MonoBehaviour
             }
             yield return null;
         }
+
+        _isProductionImageOpened = !_isProductionImageOpened;
 
         yield break;
     }
