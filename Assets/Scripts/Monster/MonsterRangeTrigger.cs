@@ -10,56 +10,32 @@ public class MonsterRangeTrigger : MonoBehaviour {
     void Awake()
     {
         root = transform.root.gameObject;
-        rootBehavior = root.gameObject.GetComponent<MonsterBehaviorManager>();
+        //rootBehavior = root.gameObject.GetComponent<MonsterBehaviorManager>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             if (this.gameObject.name.Equals("MeleeAttackRange"))
             {
 
-                if (rootBehavior.myMonsterInfo.isMeleeAttackReady == true)
-                {
-                    //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
-                    //print("Collided Object is : " + collision.gameObject.transform.name);
+                root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
 
-
-                    rootBehavior.SendMessage("AttackMeleeFacade", SendMessageOptions.DontRequireReceiver);
-                    //collision.SendMessage("EnemyHit", SendMessageOptions.DontRequireReceiver);
-                }
-                /*
-                else // if not ready
-                {
-                    
-                    rootBehavior.animator.SetInteger("actionNum", 0);
-                    rootBehavior.animator.SetFloat("actionX", rootBehavior.direction.x);
-                    rootBehavior.animator.SetFloat("actionY", rootBehavior.direction.y);
-                    rootBehavior.aiMoveScript.enabled = false;
-                   
-                }
-                */
-                
             }
 
             if (this.gameObject.name.Equals("Skill1AttackRange"))
             {
 
-                if (rootBehavior.myMonsterInfo.isSkill1AttackReady == true)
-                {
-                    rootBehavior.SendMessage("AttackSkill1Facade", SendMessageOptions.DontRequireReceiver);
-                }
+                rootBehavior.SendMessage("AttackSkill1", SendMessageOptions.DontRequireReceiver);
+                
                 
             }
 
             if (this.gameObject.name.Equals("Skill2AttackRange"))
             {
 
-                if (rootBehavior.myMonsterInfo.isSkill2AttackReady == true)
-                {
-                    rootBehavior.SendMessage("AttackSkill2Facade", SendMessageOptions.DontRequireReceiver);
-                }
+                    rootBehavior.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
                 
             }
         }

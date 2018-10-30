@@ -23,12 +23,12 @@ public class HeroAttackCollider : MonoBehaviour
             
             //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
             //print("Collided Object is : " + collision.gameObject.transform.name);
-            collisionBehaviour = collision.transform.root.GetComponent<MonsterBehaviorManager>();
+            //collisionBehaviour = collision.transform.root.GetComponent<MonsterBehaviorManager>();
 
             if (isAttackingAlready == false)
             {
                 isAttackingAlready = true;
-                collisionBehaviour.SendMessage("GetHit", 1, SendMessageOptions.DontRequireReceiver);
+                collision.SendMessage("GetHit", 1, SendMessageOptions.DontRequireReceiver);
             }
             else
             {

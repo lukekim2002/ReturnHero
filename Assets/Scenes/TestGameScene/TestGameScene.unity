@@ -146,7 +146,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 1.3, y: 0.3846154}
     oldSize: {x: 0.1, y: 0.13}
     newSize: {x: 0.1, y: 0.13}
     adaptiveTilingThreshold: 0.5
@@ -279,11 +279,42 @@ Prefab:
       objectReference: {fileID: 428819655}
     - target: {fileID: 1306522922355218, guid: 3c4dc8f804990134b9595e96c0859366, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222514377159188, guid: 3c4dc8f804990134b9595e96c0859366,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c4dc8f804990134b9595e96c0859366, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &227459990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1306522922355218, guid: 3c4dc8f804990134b9595e96c0859366,
+    type: 2}
+  m_PrefabInternal: {fileID: 227459989}
+--- !u!114 &227459991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 227459990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7077d0d7f88b04d8e118f48b22373b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myLookingDirection: 0
+  direction: {x: 0, y: 0}
+  playerObject: {fileID: 0}
+  _meleeCoolDown: 0
+  aiMoveScript: {fileID: 0}
+  attackCollider: {fileID: 0}
+  myAnimator: {fileID: 0}
+  myDirection: {x: 0, y: 0}
+  myAction: 0
+  isAttacking: 0
 --- !u!1 &240455156
 GameObject:
   m_ObjectHideFlags: 0
@@ -36291,6 +36322,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 428819655}
+    - target: {fileID: 1425297149121436, guid: 4cd8d4bc033d2c148ad6d585650bf726, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd8d4bc033d2c148ad6d585650bf726, type: 2}
   m_IsPrefabAsset: 0
