@@ -16,19 +16,19 @@ public class Item {
     public int itemID; // 아이템 ID
     public string itemDesc; // 아이템 설명
     public ItemType itemType; // 아이템 타입
-    public Sprite itemImage; // 아이템 이미지
     public int offensePower; // 아이템 공격력
     public int defensePower; // 아이템 방어력
+    public int itemCount; // 아이템 개수
 
-    public Item(string mItemName, int mItemID, string mItemDesc, ItemType mItemType, int mOffensePower, int mDefensePower, Sprite mItemImage)
+    public Item(string mItemName, int mItemID, string mItemDesc, ItemType mItemType, int mOffensePower, int mDefensePower, int mItemCount)
     {
         itemName = mItemName;
         itemID = mItemID;
         itemDesc = mItemDesc;
         itemType = mItemType;
-        itemImage = mItemImage;
         offensePower = mOffensePower;
         defensePower = mDefensePower;
+        itemCount = mItemCount;
     }
 
     public Item()

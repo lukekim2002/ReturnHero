@@ -49,30 +49,32 @@ public class Inventory : MonoBehaviour
                 newSlotRect.GetComponent<Slot>().slotNum = y * slot_X + x;
             }
         }
-        AddItemInInventory(0);
         AddItemInInventory(1);
         AddItemInInventory(2);
+        AddItemInInventory(3);
     }
 
     // Item 추가
-    public void AddItemInInventory(int ID)
+    public void AddItemInInventory(int mItemID)
     {
         for (int i = 0; i < slotScripts.Count; i++)
         {
             if(slotScripts[i].item.itemID == 0)
             {
-                slotScripts[i].item = ItemDatabase.instance.items[ID];
-
+                slotScripts[i].item = ItemDatabase.instance.items[mItemID - 1];
+                // 인벤토리에 아이템 이미지를 뿌림
+                slotScripts[i].SetSlotImage(mItemID);
+                
                 print(slotScripts[i].item.itemName);
-
                 break;
             }
         }
     }
 
     // Item 삭제
-    public void RemoveItem(Item itemToRemove)
+    public void RemoveItemInInventory(int mItemID)
     {
+        
     }
 
     // 포인터 올렸을 때 아이템 정보 뿌려줌
