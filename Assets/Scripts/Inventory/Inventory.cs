@@ -49,9 +49,8 @@ public class Inventory : MonoBehaviour
                 newSlotRect.GetComponent<Slot>().slotNum = y * slot_X + x;
             }
         }
-        AddItemInInventory(1);
-        AddItemInInventory(2);
-        AddItemInInventory(3);
+
+        ItemAddTestMethodCall();
     }
 
     // Item 추가
@@ -59,22 +58,70 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < slotScripts.Count; i++)
         {
-            if(slotScripts[i].item.itemID == 0)
+            // 슬롯에 들어간 똑같은 아이템이 하나 이상 있다면
+            if (slotScripts[i].item.itemID == mItemID)
+            {
+                // 슬롯에 들어간 똑같은 아이템이 5개 이하라면
+                if (slotScripts[i].itemCount < 5)
+                {
+                    slotScripts[i].itemCount += 1;
+                    slotScripts[i].SetSlotItemCount();
+                    print(slotScripts[i].item.itemName + " : " + slotScripts[i].itemCount);
+                    print("index : " + i);
+
+                    break;
+                }
+                // 슬롯에 들어간 똑같은 아이템이 5개이라면
+                else if (slotScripts[i].itemCount == 5)
+                {
+                    continue;
+                }
+            }
+            // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
+            else if (slotScripts[i].item.itemID == 0)
             {
                 slotScripts[i].item = ItemDatabase.instance.items[mItemID - 1];
+                slotScripts[i].itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
                 slotScripts[i].SetSlotImage(mItemID);
-                
-                print(slotScripts[i].item.itemName);
+
                 break;
             }
         }
     }
 
+    public void ItemAddTestMethodCall()
+    {
+        AddItemInInventory(1);
+        AddItemInInventory(1);
+        AddItemInInventory(1);
+        AddItemInInventory(1);
+        AddItemInInventory(2);
+        AddItemInInventory(2);
+        AddItemInInventory(2);
+        AddItemInInventory(2);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(2);
+        AddItemInInventory(2);
+        AddItemInInventory(2);
+        AddItemInInventory(2);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(2);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+        AddItemInInventory(3);
+    }
+
     // Item 삭제
     public void RemoveItemInInventory(int mItemID)
     {
-        
+
     }
 
     // 포인터 올렸을 때 아이템 정보 뿌려줌
