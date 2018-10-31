@@ -8,7 +8,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     private Vector2 _pos;
     private Vector2 _dir;
     private Vector2 _wallPoint;
-    MonsterBehaviorManager _behaviour;
+    GateKeeperClass _behaviour;
 
 
     public void AttackMelee_Ready()
@@ -18,7 +18,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackMelee_Execute()
     {
-        _behaviour = GetComponent<MonsterBehaviorManager>();
+        _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
         _dir = _behaviour.direction;
         _pos += _dir * 0.16f;
@@ -33,7 +33,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackSkill1_Ready()
     {
-        _behaviour = GetComponent<MonsterBehaviorManager>();
+        _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
         _dir = _behaviour.direction;
         _pos += _dir * 0.32f;
@@ -44,7 +44,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackSkill1_Execute()
     {
-        _behaviour = GetComponent<MonsterBehaviorManager>();
+        _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
         _dir = _behaviour.direction;
 

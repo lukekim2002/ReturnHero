@@ -52,6 +52,8 @@ public class ZombieClass : MonsterBase
 
         aiMoveScript.enabled = false;
 
+        StartCoroutine(myBase.FindLookingDirection());
+
         PlayerEnteredRoom();
     }
 
@@ -83,7 +85,7 @@ public class ZombieClass : MonsterBase
             Debug.LogError("myBase is null");
         }
         myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.ZOMBIE);
-        StartCoroutine(myBase.FindLookingDirection());
+   
 
 
         _id = (int)myDataSet["ID"];

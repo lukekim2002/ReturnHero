@@ -27,7 +27,7 @@ public class MonsterRangeTrigger : MonoBehaviour {
             if (this.gameObject.name.Equals("Skill1AttackRange"))
             {
 
-                rootBehavior.SendMessage("AttackSkill1", SendMessageOptions.DontRequireReceiver);
+                root.SendMessage("AttackSkill1", SendMessageOptions.DontRequireReceiver);
                 
                 
             }
@@ -35,7 +35,7 @@ public class MonsterRangeTrigger : MonoBehaviour {
             if (this.gameObject.name.Equals("Skill2AttackRange"))
             {
 
-                    rootBehavior.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
+                    root.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
                 
             }
         }
