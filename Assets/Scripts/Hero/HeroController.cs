@@ -14,6 +14,14 @@ public class HeroController : MonoBehaviour
     
     #endregion
 
+    private bool IsMovable
+    {
+        get
+        {
+            return (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE);
+        }
+    }
+
     #region PUBLIC
     public enum HEROSTATE { IDLE, MOVE, ATTACK, DEFENSE, DASH };
     static public HEROSTATE heroState = HEROSTATE.IDLE;
@@ -45,7 +53,7 @@ public class HeroController : MonoBehaviour
         if (!UIGeneralManager.instance.isPause && !UIGeneralManager.instance.isInventoryOpened)
         {
             // 공격 상태가 아니라면
-            if (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE)
+            if (IsMovable)
             {   
                 // 키 입력
                 InputKey();
@@ -64,9 +72,7 @@ public class HeroController : MonoBehaviour
             else if (heroState == HEROSTATE.MOVE)
             {
                 _heroAnimator.SetInteger("actionNum", 1);
-
-                Vector2 heroPos = moveAxis;
-                Vector2 moveVelocity = (heroPos.normalized) * moveSpeed;
+                Vector2 moveVelocity = (moveAxis.normalized) * moveSpeed;
 
                 // velocity, transform.translate, addforce, MovePosition중에서 MovePosition이 벽과의 충돌에서 자연스러운 모습을 보임
                 // 캐릭터 움직임

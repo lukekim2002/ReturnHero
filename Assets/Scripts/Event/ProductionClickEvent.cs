@@ -5,28 +5,63 @@ using UnityEngine.UI;
 
 public class ProductionClickEvent : MonoBehaviour
 {
-
     #region PRIVATE
+    private Vector2 _startPos;
+    private Vector2 _endPos;
+    private bool _isProductionImageOpened = false;
     #endregion
 
     #region PUBLIC
+    public Image productionRightImage;
+    public float duration = 0.5f;
+    public float closeProductionX = 323f;
+    public float openProductionX = 0f;
     #endregion
 
     // Production Left Image를 클릭할 때 Production Right Image가 드러남
-    public void OnClickProductionImage()
+    public void OnClickProductionOpenCloseButton()
     {
-        UIGeneralManager.instance.productionCanvas.transform.GetChild(2).gameObject.SetActive(true);
-        Debug.Log("Open");
+        if (!_isProductionImageOpened)
+        {
+            // 시작 좌표, 끝 좌표 설정
+            _startPos = new Vector2(closeProductionX, 0);
+            _endPos = new Vector2(openProductionX, 0);
+
+            // 열리는 애니메이션 실행.
+            StartCoroutine(MoveProductionCanvas());
+        }
+        else
+        {
+            // 시작 좌표, 끝 좌표 설정
+            _startPos = new Vector2(openProductionX, 0);
+            _endPos = new Vector2(closeProductionX, 0);
+
+            // 닫히는 애니메이션 실행.
+            StartCoroutine(MoveProductionCanvas());
+        }
     }
 
-    public void OnClickBackground()
+    IEnumerator MoveProductionCanvas()
     {
-        UIGeneralManager.instance.isInventoryOpened = false;
+        var timer = 0f;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            UIGeneralManager.instance.productionCanvas.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(_startPos, _endPos, timer / duration);
+            
+            if (UIGeneralManager.instance.productionCanvas.GetComponent<RectTransform>().anchoredPosition.x < 190)
+            {
+                productionRightImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                productionRightImage.gameObject.SetActive(false);
+            }
+            yield return null;
+        }
 
-        UIGeneralManager.instance.inventoryCanvas.gameObject.SetActive(false);
-        UIGeneralManager.instance.productionCanvas.gameObject.SetActive(false);
-        UIGeneralManager.instance.productionCanvas.transform.GetChild(2).gameObject.SetActive(false);
+        _isProductionImageOpened = !_isProductionImageOpened;
 
-        Debug.Log("Close");
+        yield break;
     }
 }
