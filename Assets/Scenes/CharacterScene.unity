@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 745878423}
   - component: {fileID: 745878422}
   - component: {fileID: 745878424}
+  - component: {fileID: 745878425}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -292,6 +293,17 @@ MonoBehaviour:
   atkCollider: {fileID: 0}
   colliderSize: {x: 0.3, y: 0.2}
   colliderDiagonalLength: 0.18
+--- !u!114 &745878425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745878421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1479ace6998a664792087f76077ffb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2075260284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1829553915333420, guid: 93b5d5d48bcb8624bab99fcd704cc51f,

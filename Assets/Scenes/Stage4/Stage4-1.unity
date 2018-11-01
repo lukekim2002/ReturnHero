@@ -155,11 +155,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e3be35e4d4fcb448bdb67366ebaeeb, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &127761605 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1165548375458874, guid: 85e3be35e4d4fcb448bdb67366ebaeeb,
-    type: 2}
-  m_PrefabInternal: {fileID: 127761604}
 --- !u!1 &983260792
 GameObject:
   m_ObjectHideFlags: 0
@@ -64761,45 +64756,4 @@ Transform:
   - {fileID: 983260793}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1539977033
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1539977035}
-  - component: {fileID: 1539977034}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1539977034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1539977033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db3d848aed3c2b743af1694439338160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPointSet: {fileID: 127761605}
---- !u!4 &1539977035
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1539977033}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

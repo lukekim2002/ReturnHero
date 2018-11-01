@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114701188325664214}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_1
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114285842612812058}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_2
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4540153789794618}
   m_Layer: 0
   m_Name: Stage5_Portal_Normal
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114874026533305110}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_3
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 114325161138730840}
   m_Layer: 0
   m_Name: Portal_NoarmalStage_4
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

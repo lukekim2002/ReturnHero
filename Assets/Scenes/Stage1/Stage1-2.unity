@@ -35538,47 +35538,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &919031409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 919031410}
-  - component: {fileID: 919031411}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &919031410
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 919031409}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919031411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 919031409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db3d848aed3c2b743af1694439338160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPointSet: {fileID: 2072490002}
 --- !u!1 &1052319844
 GameObject:
   m_ObjectHideFlags: 0
@@ -59128,7 +59087,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4558200308824488, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114627194051951320, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 2}
@@ -59137,8 +59096,3 @@ Prefab:
     - {fileID: 114811018149009482, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &2072490002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1884439097798564, guid: a43688ca4c03007439b2b14e5fd9c5a2,
-    type: 2}
-  m_PrefabInternal: {fileID: 2072490001}

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114793666734993128}
   m_Layer: 0
   m_Name: Portal_BossStage_4
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114330254651360386}
   m_Layer: 0
   m_Name: Portal_BossStage_2
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4887285129074178}
   m_Layer: 0
   m_Name: Stage5_Portal_Boss
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114232825409295056}
   m_Layer: 0
   m_Name: Portal_BossStage_3
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 114572856580742066}
   m_Layer: 0
   m_Name: Portal_BossStage_1
-  m_TagString: Portal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
