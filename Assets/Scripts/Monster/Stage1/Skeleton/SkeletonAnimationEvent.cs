@@ -8,7 +8,7 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
 
     public void AttackMelee_End()
     {
-        throw new System.NotImplementedException();
+        //this.GetComponent<Animator>().SetInteger("actionNum", 0);
     }
 
     public void AttackMelee_Execute()
@@ -24,7 +24,7 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
 
     public void AttackSkill1_End()
     {
-        this.GetComponent<Animator>().SetInteger("actionNum", 0);
+        throw new System.NotImplementedException();
     }
 
     public void AttackSkill1_Execute()

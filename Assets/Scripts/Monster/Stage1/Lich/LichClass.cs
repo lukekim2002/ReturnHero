@@ -85,7 +85,7 @@ public class LichClass : MonsterBase {
         {
             Debug.LogError("myBase is null");
         }
-        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.ZOMBIE);
+        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.LICH);
         StartCoroutine(myBase.FindLookingDirection());
 
 
@@ -100,6 +100,8 @@ public class LichClass : MonsterBase {
         //_skill1Damage = (int)myDataSet["Skill1Damage"];
         _Skill1CoolDown = (int)myDataSet["Skill1CoolDown"];
         _isSkill1AttackReady = true;
+
+        Debug.Log(_id);
 
         aiMoveScript.maxSpeed = _movingSpeed;
     }
@@ -140,12 +142,25 @@ public class LichClass : MonsterBase {
 
     }
 
-    #region NOT USED
-
     public override void AttackSkill1()
     {
         throw new System.NotImplementedException();
     }
+
+    public override void EndAttackSkill1()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override IEnumerator CoolDownSkill1()
+    {
+        yield return new WaitForSeconds(_Skill1CoolDown);
+        _isSkill1AttackReady = true;
+    }
+
+    #region NOT USED
+
+
 
     public override void AttackSkill2()
     {
@@ -162,10 +177,7 @@ public class LichClass : MonsterBase {
         throw new System.NotImplementedException();
     }
 
-    public override void EndAttackSkill1()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public override void EndAttackSkill2()
     {
@@ -182,10 +194,7 @@ public class LichClass : MonsterBase {
         throw new System.NotImplementedException();
     }
 
-    public override IEnumerator CoolDownSkill1()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public override IEnumerator CoolDownSkill2()
     {
