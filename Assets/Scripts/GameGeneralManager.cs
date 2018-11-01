@@ -34,18 +34,11 @@ public class GameGeneralManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        curFloor += 1;
-        print("OnLevelWasLoaded in Scene : " + curFloor);
-        //SceneManager.UnloadSceneAsync(curFloor - 1);
-    }
-
     private void Start()
     {
-        print("Hi. This is GameGeneralManager.");
+        //print("Hi. This is GameGeneralManager.");
         //curFloor = SceneManager.GetActiveScene().buildIndex;
-        print(curFloor);
+        print("Current Floor : " + curFloor);
         SceneManager.LoadScene(curFloor, LoadSceneMode.Additive);
         SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
     }

@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114575026551840282}
   - component: {fileID: 114164145361481148}
   - component: {fileID: 114955904676852994}
-  - component: {fileID: 114222514377159188}
+  - component: {fileID: 114681367178530374}
   - component: {fileID: 114056450680542770}
   m_Layer: 0
   m_Name: Zombie
@@ -66,7 +66,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1610264894664176
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1306522922355218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.78, y: 10.68, z: 0}
+  m_LocalPosition: {x: -0.38, y: 9.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4240107300147272}
@@ -183,7 +183,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 20
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -345,27 +345,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 1
   constrainInsideGraph: 0
---- !u!114 &114222514377159188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1306522922355218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f9349eb7ef10647b6f3a3dc611de45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterUniqueId: 2
-  aiMoveScript: {fileID: 0}
-  attackCollider: {fileID: 0}
-  animator: {fileID: 0}
-  playerObject: {fileID: 0}
-  isAttacking: 0
-  direction: {x: 0, y: 0}
-  myState: 0
-  myAction: 0
-  myLookingDirection: 0
 --- !u!114 &114575026551840282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,6 +382,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114681367178530374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1306522922355218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7077d0d7f88b04d8e118f48b22373b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myLookingDirection: 0
+  direction: {x: 0, y: 0}
+  playerObject: {fileID: 0}
+  _meleeCoolDown: 0
+  myBase: {fileID: 0}
+  aiMoveScript: {fileID: 0}
+  attackCollider: {fileID: 0}
+  myMeleeAttackRange: {fileID: 0}
+  myAnimator: {fileID: 0}
+  myDirection: {x: 0, y: 0}
+  myAction: 0
+  isAttacking: 0
 --- !u!114 &114955904676852994
 MonoBehaviour:
   m_ObjectHideFlags: 1

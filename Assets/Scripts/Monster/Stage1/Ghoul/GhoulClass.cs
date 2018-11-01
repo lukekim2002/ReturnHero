@@ -1,376 +1,276 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhoulClass : MonoBehaviour, IMonsterInterface {
+public class GhoulClass : MonsterBase {
 
     #region PRIVATE VALUES
 
+    private int _id;
     private int _health;
     private float _movingSpeed;
 
     private bool _isMeleeAttackReady;
     private int _meleeDamage;
     public float _meleeCoolDown;
-    private Vector2 _meleeBoxSizeUp;
-    private Vector2 _meleeBoxSizedown;
-    private Vector2 _meleeBoxSizeLeft;
-    private Vector2 _meleeBoxSizeRight;
+
+    private Vector2 attackColliderSize;
+    private Vector2 attackColliderOffSet;
 
     #endregion
 
-    #region PROPERTY IMPLEMENTATION
+    #region PUBLIC VALUES
 
-    int IMonsterInterface.Health
+    public Dictionary<string, object> myDataSet;
+    public List<Dictionary<string, object>> myColliderSet;
+
+    public MonsterBase myBase;
+    public Pathfinding.AIPath aiMoveScript;
+    public BoxCollider2D attackCollider;
+    public GameObject myMeleeAttackRange;
+    public Animator myAnimator;
+
+    public Vector2 myDirection;
+    public Action myAction;
+    public bool isAttacking = false;
+
+    #endregion
+
+    #region MonoBahvaiour CallBacks
+
+    private void OnEnable()
     {
-        get { return this._health; }
-        set { this._health = value; }
+        myAction = Action.Idle;
+
+        aiMoveScript = GetComponent<Pathfinding.AIPath>();
+        playerObject = HeroGeneralManager.instance.heroObject;
+        //attackCollider = 
+        myMeleeAttackRange = transform.GetChild(4).gameObject;
+        myAnimator = GetComponent<Animator>();
+
+        Initialize();
+
+        aiMoveScript.enabled = false;
+
+        StartCoroutine(myBase.FindLookingDirection());
+
+        PlayerEnteredRoom();
     }
 
-    float IMonsterInterface.MovingSpeed
-    {
-        get { return this._movingSpeed; }
-        set { this._movingSpeed = value; }
-    }
+   
 
-    #region MeleeAttack
-
-    bool IMonsterInterface.isMeleeAttackReady
+    private void Update()
     {
-        get { return this._isMeleeAttackReady; }
-        set { this._isMeleeAttackReady = value; }
-    }
+        myDirection = myBase.direction;
 
-    int IMonsterInterface.MeleeDamage
-    {
-        get { return this._meleeDamage; }
-        set { this._meleeDamage = value; }
-    }
-
-    float IMonsterInterface.MeleeCoolDown
-    {
-        get { return this._meleeCoolDown; }
-        set { this._meleeCoolDown = value; }
-    }
-
-    Vector2 IMonsterInterface.MeleeBoxSizeUp
-    {
-        get { return this._meleeBoxSizeUp; }
-        set { this._meleeBoxSizeUp = value; }
-    }
-
-    Vector2 IMonsterInterface.MeleeBoxSizeDown
-    {
-        get { return this._meleeBoxSizedown; }
-        set { this._meleeBoxSizedown = value; }
-    }
-
-    Vector2 IMonsterInterface.MeleeBoxSizeLeft
-    {
-        get { return this._meleeBoxSizeLeft; }
-        set { this._meleeBoxSizeLeft = value; }
-    }
-
-    Vector2 IMonsterInterface.MeleeBoxSizeRight
-    {
-        get { return this._meleeBoxSizeRight; }
-        set { this._meleeBoxSizeRight = value; }
+        if (myAction == Action.Idle && isAttacking == false)
+        {
+            myAnimator.SetInteger("actionNum", 0);
+            myAnimator.SetFloat("actionX", myDirection.x);
+            myAnimator.SetFloat("actionY", myDirection.y);
+        }
+        else if (myAction == Action.Move && isAttacking == false)
+        {
+            myAnimator.SetInteger("actionNum", 1);
+            myAnimator.SetFloat("moveX", myDirection.x);
+            myAnimator.SetFloat("moveY", myDirection.y);
+        }
     }
 
     #endregion
+
+    public override void Initialize()
+    {
+        myBase = GetComponent<MonsterBase>();
+        if (myBase == null)
+        {
+            Debug.LogError("myBase is null");
+        }
+        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.GHOUL);
+
+
+
+        _id = (int)myDataSet["ID"];
+        _health = (int)myDataSet["Health"];
+        _movingSpeed = (float)myDataSet["MovingSpeed"];
+        _meleeDamage = (int)myDataSet["MeleeDamage"];
+        _meleeCoolDown = (int)myDataSet["MeleeCoolDown"];
+        _isMeleeAttackReady = true;
+
+        aiMoveScript.maxSpeed = _movingSpeed;
+    }
+
+    public override void AttackMelee()
+    {
+        if (_isMeleeAttackReady == false && isAttacking == true) return;
+        _isMeleeAttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+        myMeleeAttackRange.SetActive(false);
+
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
+        StartCoroutine(CoolDownMelee());
+    }
+
+    public override void EndAttackMelee()
+    {
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
+    }
+
+    public override IEnumerator CoolDownMelee()
+    {
+        yield return new WaitForSeconds(_meleeCoolDown);
+        myMeleeAttackRange.SetActive(true);
+        _isMeleeAttackReady = true;
+
+    }
 
     #region NOT USED
 
-    bool IMonsterInterface.isSkill1AttackReady
+    public override void AttackSkill1()
     {
-        get { return false; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    int IMonsterInterface.Skill1Damage
+    public override void AttackSkill2()
     {
-        get { return -1; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    float IMonsterInterface.Skill1CoolDown
+    public override void AttackSkill3()
     {
-        get { return -1; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    Vector2 IMonsterInterface.Skill1BoxSizeUp
+    public override void AttackSkill4()
     {
-        get { return Vector2.zero; ; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    Vector2 IMonsterInterface.Skill1BoxSizeDown
+    public override void EndAttackSkill1()
     {
-        get { return Vector2.zero; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    Vector2 IMonsterInterface.Skill1BoxSizeLeft
+    public override void EndAttackSkill2()
     {
-        get { return Vector2.zero; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    Vector2 IMonsterInterface.Skill1BoxSizeRight
+    public override void EndAttackSkill3()
     {
-        get { return Vector2.zero; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    bool IMonsterInterface.isSkill2AttackReady
+    public override void EndAttackSkill4()
     {
-        get { return false; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    int IMonsterInterface.Skill2Damage
+    public override IEnumerator CoolDownSkill1()
     {
-        get { return -1; }
-        set {; }
+        throw new System.NotImplementedException();
     }
 
-    float IMonsterInterface.Skill2CoolDown
+    public override IEnumerator CoolDownSkill2()
     {
-        get { return -1; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    Vector2 IMonsterInterface.Skill2BoxSizeUp
+    public override IEnumerator CoolDownSkill3()
     {
-        get { return Vector2.zero; }
-        set { }
+        throw new System.NotImplementedException();
     }
 
-    Vector2 IMonsterInterface.Skill2BoxSizeDown
+    public override IEnumerator CoolDownSkill4()
     {
-        get { return Vector2.zero; }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill2BoxSizeLeft
-    {
-        get { return Vector2.zero; }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill2BoxSizeRight
-    {
-        get { return Vector2.zero; }
-        set { }
-    }
-
-
-
-    bool IMonsterInterface.isSkill3AttackReady
-    {
-        get { return false; }
-        set { }
-    }
-
-    int IMonsterInterface.Skill3Damage
-    {
-        get { return -1; }
-        set { }
-    }
-
-    float IMonsterInterface.Skill3CoolDown
-    {
-        get { return -1; }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill3BoxSizeUp
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill3BoxSizeDown
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill3BoxSizeLeft
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill3BoxSizeRight
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    bool IMonsterInterface.isSkill4AttackReady
-    {
-        get { return false; }
-        set { }
-    }
-
-    int IMonsterInterface.Skill4Damage
-    {
-        get { return -1; }
-        set { }
-    }
-
-    float IMonsterInterface.Skill4CoolDown
-    {
-        get { return -1; }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill4BoxSizeUp
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill4BoxSizeDown
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill4BoxSizeLeft
-    {
-        get { return new Vector2(0, 0); }
-        set { }
-    }
-
-    Vector2 IMonsterInterface.Skill4BoxSizeRight
-    {
-        get { return new Vector2(0, 0); }
-        set { }
+        throw new System.NotImplementedException();
     }
 
     #endregion
 
-    #endregion
-
-
-    #region METHOD IMPLEMENTATION
-
-    public void AttackMelee(Vector2 dir, Animator anim)
+    public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        if (_isMeleeAttackReady == false) return;
-        _isMeleeAttackReady = false;
-
-        anim.SetInteger("actionNum", 2);
-        //anim.SetTrigger("isMelee");
-        anim.SetFloat("actionX", dir.x);
-        anim.SetFloat("actionY", dir.y);
-
-
-        StartCoroutine(WaitAnimationFinish(anim));
-        StartCoroutine(CoolDownMelee());
-
+        return (stateInfo.IsName("Melee") ||
+            stateInfo.IsName("BeShot"));
     }
 
-    public IEnumerator CoolDownMelee()
+    public override IEnumerator WaitAnimationFinish()
     {
-        //Debug.Log("\"CoolDownMelee\" called in GateKeeperClass");
-        yield return new WaitForSeconds(this._meleeCoolDown);
-        _isMeleeAttackReady = true;
-    }
-
-    public bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
-    {
-        return (stateInfo.IsName("Melee"));
-    }
-
-    public IEnumerator WaitAnimationFinish(Animator anim)
-    {
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
 
         // Wait Attack State
         while (!CheckAnimatorStateName(stateInfo))
         {
-            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
             yield return null;
         }
-
 
         // Wait Animation Ends
         while (stateInfo.normalizedTime <= 0.95f)
         {
-            stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            //print(stateInfo.normalizedTime);
+            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
             yield return null;
         }
 
-        // endAttackMelee
         if (stateInfo.IsName("Melee"))
-            GetComponent<MonsterBehaviorManager>().EndAttackMelee();
-
+            EndAttackMelee();
+        else if (stateInfo.IsName("BeShot"))
+            EndGetHit();
     }
-    #region NOT USED
 
-    public void AttackSkill1(Vector2 dir, Animator anim)
+    public override void DyingMotion()
     {
-        throw new System.NotImplementedException();
+        myAnimator.SetInteger("actionNum", 4);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        gameObject.SetActive(false);
     }
 
-    public void AttackSkill2(Vector2 dir, Animator anim)
+    public override void HitByPlayer(int damage)
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Idle;
+        aiMoveScript.enabled = false;
+
+        myAnimator.SetInteger("actionNum", 3);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        _health -= damage;
+        if (_health <= 0)
+        {
+            // Dead
+            DyingMotion();
+        }
+
+        StartCoroutine(WaitAnimationFinish());
     }
 
-    public void AttackSkill3(Vector2 dir, Animator anim)
+    public override void EndGetHit()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        aiMoveScript.enabled = true;
     }
 
-    public void AttackSkill4(Vector2 dir, Animator anim)
+    private void PlayerEnteredRoom()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        aiMoveScript.enabled = true;
     }
-
-    public IEnumerator CoolDownSkill1()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public IEnumerator CoolDownSkill2()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public IEnumerator CoolDownSkill3()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public IEnumerator CoolDownSkill4()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    #endregion
-
-    public void DyingEvent(Vector2 dir, Animator anim)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HitByPlayer(Vector2 dir, Animator anim, int damage)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Initialize()
-    {
-        throw new System.NotImplementedException();
-    }
-
-
-
-    #endregion
 }

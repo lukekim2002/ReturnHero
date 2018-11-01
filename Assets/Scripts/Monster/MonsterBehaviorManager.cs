@@ -193,7 +193,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
                 myMonsterInfo = gameObject.AddComponent<GhoulClass>() as IMonsterInterface;
 
-                myMonsterInfo.Health = 3;
+                myMonsterInfo.Health = 100;
                 myMonsterInfo.MeleeCoolDown = 3.0f;
 
                 break;
@@ -308,7 +308,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
     public void GetHit(int damage)
     {
-        Debug.Log("\"GetHit\" is called.");
+        Debug.Log(this.name + " \"GetHit\" is called.");
         myAction = Action.Idle;
         aiMoveScript.enabled = false;
         myMonsterInfo.HitByPlayer(direction, animator, damage);
@@ -316,7 +316,7 @@ public class MonsterBehaviorManager : MonoBehaviour {
 
     public void EndGetHit()
     {
-        Debug.Log("\"EndGetHit\" is called.");
+        Debug.Log(this.name + " \"EndGetHit\" is called.");
         myAction = Action.Move;
         animator.SetInteger("actionNum", 1);
         animator.SetFloat("moveX", direction.x);
