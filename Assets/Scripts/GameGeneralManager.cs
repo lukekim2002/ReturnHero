@@ -8,7 +8,7 @@ public class GameGeneralManager : MonoBehaviour {
 
     // public instance of GGM which allows it to be accessed by any other scripts.
     public static GameGeneralManager instance = null;
-    public int curFloor = 1;
+    public int curFloor;
 
     private int UISceneNum = 16;
 
@@ -29,7 +29,7 @@ public class GameGeneralManager : MonoBehaviour {
 
         Application.targetFrameRate = 60;
 
-        curFloor = 1;
+        //curFloor = 1;
         // Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -130,7 +131,16 @@ public class SkeletonProjectile : MonoBehaviour, IMonsterAnimationEvent {
 
     public void OnDisable() // SetActive(false)일시 자동 호출
     {
-        transform.parent = skeletonObject;
+        try
+        {
+            transform.parent = skeletonObject;
+
+        }
+        catch(Exception e)
+        {
+            Debug.LogException(e, this);
+        }
+        
     }
 
     /*

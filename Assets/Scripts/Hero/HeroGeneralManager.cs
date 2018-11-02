@@ -42,7 +42,7 @@ public class HeroGeneralManager : MonoBehaviour {
             Destroy(this);
         }
 
-        heroObject = GameObject.FindGameObjectWithTag("Player");
+        //heroObject = GameObject.FindGameObjectWithTag("Player");
         heroAttackCollierSet = CSVReader.Read("HeroAttackCollider");
 
         // Sets this to not be destroyed when reloading scene
