@@ -8,15 +8,17 @@ public class Slot : MonoBehaviour
     public int slotNum;
     public Item item;
     public int itemCount = 0;
+    public Vector2 itemDescBackGroundPivot;
 
     private Image slotImage;
     private Image itemDescBackGround;
     private TextMeshProUGUI itemCountTextMeshPro;
+  
 
     private void Awake()
     {
         slotImage = this.GetComponent<Image>();
-        itemCountTextMeshPro = this.transform.GetComponentInChildren <TextMeshProUGUI>();
+        itemCountTextMeshPro = this.transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void SetSlotImage(int itemID)
@@ -50,9 +52,14 @@ public class Slot : MonoBehaviour
 
     public void SlotOnMouseEnter()
     {
-        Inventory.instance.itemDescBackGround.gameObject.SetActive(true);
-        Inventory.instance.itemDescBackGround.transform.position = this.transform.position;
-        Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = item.itemDesc;
+        if (this.item.itemID != 0)
+        {
+            Inventory.instance.itemDescBackGround.gameObject.SetActive(true);
+            Inventory.instance.itemDescBackGround.transform.position = this.transform.position;
+            Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = item.itemDesc;
+            print(this.itemDescBackGroundPivot);
+            Inventory.instance.ChangeSlotPivot(this.itemDescBackGroundPivot);
+        }
     }
 
     public void SlotOnMouseExit()

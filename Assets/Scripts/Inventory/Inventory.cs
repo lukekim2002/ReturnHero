@@ -46,7 +46,15 @@ public class Inventory : MonoBehaviour
 
                 newSlotRect.name = "Slot " + ((y * slot_X) + x);
 
-                slotScripts.Add(newSlotRect.GetComponent<Slot>());
+                var slotComponent = newSlotRect.GetComponent<Slot>();
+
+                // 각 Slot 마다 보여줄 ITemDescBackGround Pivot을 Slot 안에 담아둠
+                // x (0~2) : 0 / (3~5) : 1
+                // y는 0 -> 0.33 -> 0.66 -> 1
+                slotComponent.itemDescBackGroundPivot.x = (x > 2) ? 1 : 0;
+                slotComponent.itemDescBackGroundPivot.y = 1f - (y * (1f / (slot_Y - 1)));
+
+                slotScripts.Add(slotComponent);
                 newSlotRect.GetComponent<Slot>().slotNum = y * slot_X + x;
             }
         }
@@ -117,15 +125,20 @@ public class Inventory : MonoBehaviour
         AddItemInInventory(3);
         AddItemInInventory(3);
         AddItemInInventory(3);
-        RemoveAllItem(3);
-        RemoveOneItem(1);
+
+        for (int i = 0; i < 100; i++)
+        {
+            AddItemInInventory(3);
+        }
+        //RemoveAllItem(3);
+        //RemoveOneItem(1);
     }
 
     // Item 삭제
     public void RemoveAllItem(int index)
     {
         slotScripts[index].InitSlot();
-        slotScripts.RemoveAt(index);
+        //slotScripts.RemoveAt(index);
     }
 
     public void RemoveOneItem(int index)
@@ -140,9 +153,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // 포인터 올렸을 때 아이템 정보 뿌려줌
-    public void PointerOnItem()
+    public void ChangeSlotPivot(Vector2 pivotPos)
     {
-        
+        // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
+
+        itemDescBackGround.rectTransform.pivot = pivotPos;
+    }
+
+    private void ItemDescBackGroundPivotInsertIntoSlot()
+    { 
     }
 }
