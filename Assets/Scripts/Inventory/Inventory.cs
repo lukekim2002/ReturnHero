@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     public RectTransform slot;
     public List<Slot> slotScripts = new List<Slot>();
+    public Image itemDescBackGround;
 
     public const int slot_X = 6;
     public const int slot_Y = 4;
@@ -116,17 +117,32 @@ public class Inventory : MonoBehaviour
         AddItemInInventory(3);
         AddItemInInventory(3);
         AddItemInInventory(3);
+        RemoveAllItem(3);
+        RemoveOneItem(1);
     }
 
     // Item 삭제
-    public void RemoveItemInInventory(int mItemID)
+    public void RemoveAllItem(int index)
     {
+        slotScripts[index].InitSlot();
+        slotScripts.RemoveAt(index);
+    }
 
+    public void RemoveOneItem(int index)
+    {
+        if (slotScripts[index].itemCount == 0)
+        {
+            RemoveAllItem(index);
+        }
+        else
+        {
+            slotScripts[index].RemoveOneItemInSlot();
+        }
     }
 
     // 포인터 올렸을 때 아이템 정보 뿌려줌
     public void PointerOnItem()
     {
-
+        
     }
 }

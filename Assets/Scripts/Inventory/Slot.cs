@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Slot : MonoBehaviour
 {
@@ -9,12 +10,13 @@ public class Slot : MonoBehaviour
     public int itemCount = 0;
 
     private Image slotImage;
-    private TextMeshProUGUI textMeshProUGUI;
+    private Image itemDescBackGround;
+    private TextMeshProUGUI itemCountTextMeshPro;
 
     private void Awake()
     {
         slotImage = this.GetComponent<Image>();
-        textMeshProUGUI = this.transform.GetComponentInChildren <TextMeshProUGUI>();
+        itemCountTextMeshPro = this.transform.GetComponentInChildren <TextMeshProUGUI>();
     }
 
     public void SetSlotImage(int itemID)
@@ -24,6 +26,37 @@ public class Slot : MonoBehaviour
 
     public void SetSlotItemCount()
     {
-        textMeshProUGUI.text = "x" + itemCount;
+        itemCountTextMeshPro.text = "x" + itemCount;
+    }
+
+    public void InitSlotItemCount()
+    {
+        itemCountTextMeshPro.text = "";
+    }
+
+    public void InitSlot()
+    {
+        SetSlotImage(0);
+        this.item = new Item();
+        this.itemCount = 0;
+        InitSlotItemCount();
+    }
+
+    public void RemoveOneItemInSlot()
+    {
+        this.itemCount--;
+        SetSlotItemCount();
+    }
+
+    public void SlotOnMouseEnter()
+    {
+        Inventory.instance.itemDescBackGround.gameObject.SetActive(true);
+        Inventory.instance.itemDescBackGround.transform.position = this.transform.position;
+        Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = item.itemDesc;
+    }
+
+    public void SlotOnMouseExit()
+    {
+        Inventory.instance.itemDescBackGround.gameObject.SetActive(false);
     }
 }
