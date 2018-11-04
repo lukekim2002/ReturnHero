@@ -5,18 +5,23 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
     #region PRIVATE
     #endregion
 
     #region PUBLIC
     public static Inventory instance;
-    public RectTransform slot;
-    public List<Slot> slotScripts = new List<Slot>();
+    public RectTransform weaponSlot;
+    public RectTransform itemSlot;
+    public RectTransform accessroySlot;
+    public List<Slot> inventorySlotScripts = new List<Slot>();
+    public List<Slot> accessorySlotScripts = new List<Slot>();
+    public Slot weaponSlotScripts;
     public Image itemDescBackGround;
 
-    public const int slot_X = 6;
-    public const int slot_Y = 4;
+    public const int accessorySlot_X = 3;
+    public const int accessorySlot_Y = 2;
+    public const int itemSlot_X = 6;
+    public const int itemSlot_Y = 4;
     #endregion
 
     private void Awake()
@@ -29,35 +34,62 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        for (int y = 0; y < slot_Y; y++)
+        for (int y = 0; y < itemSlot_Y; y++)
         {
-            for (int x = 0; x < slot_X; x++)
+            for (int x = 0; x < itemSlot_X; x++)
             {
-                RectTransform newSlotRect = Instantiate(slot);
-                newSlotRect.SetParent(this.transform.GetChild(1));
+                RectTransform itemSlotPrefabs = Instantiate(itemSlot);
+                var slotComponent = itemSlotPrefabs.GetComponent<Slot>();
 
-                newSlotRect.localScale = new Vector2(1, 1);
+                // ItemSlot
+                itemSlotPrefabs.SetParent(this.transform.GetChild(3));
+                itemSlotPrefabs.localScale = new Vector2(1, 1);
 
-                Vector2 newSlotPos = slot.position;
-
+                Vector2 newSlotPos = itemSlot.position;
                 newSlotPos.x = newSlotPos.x + (x * 45f);
                 newSlotPos.y = newSlotPos.y - (y * 50f);
-                newSlotRect.GetComponent<RectTransform>().anchoredPosition = newSlotPos;
+                itemSlotPrefabs.anchoredPosition = newSlotPos;
 
-                newSlotRect.name = "Slot " + ((y * slot_X) + x);
-
-                var slotComponent = newSlotRect.GetComponent<Slot>();
+                itemSlotPrefabs.name = "Slot " + ((y * itemSlot_X) + x);
 
                 // 각 Slot 마다 보여줄 ITemDescBackGround Pivot을 Slot 안에 담아둠
                 // x (0~2) : 0 / (3~5) : 1
                 // y는 0 -> 0.33 -> 0.66 -> 1
                 slotComponent.itemDescBackGroundPivot.x = (x > 2) ? 1 : 0;
-                slotComponent.itemDescBackGroundPivot.y = 1f - (y * (1f / (slot_Y - 1)));
+                slotComponent.itemDescBackGroundPivot.y = 1f - (y * (1f / (itemSlot_Y - 1)));
 
-                slotScripts.Add(slotComponent);
-                newSlotRect.GetComponent<Slot>().slotNum = y * slot_X + x;
+                slotComponent.slotNum = y * itemSlot_X + x;
+                inventorySlotScripts.Add(slotComponent);
             }
         }
+
+        for (int y = 0; y < accessorySlot_Y; y++)
+        {
+            for (int x = 0; x < accessorySlot_X; x++)
+            {
+                RectTransform accessorySlotPrefabs = Instantiate(accessroySlot);
+                var accessorySlotComponent = accessorySlotPrefabs.GetComponent<Slot>();
+
+                accessorySlotPrefabs.transform.SetParent(this.transform.GetChild(2));
+                accessorySlotPrefabs.transform.localScale = new Vector2(1, 1);
+
+                Vector2 newSlotPos = accessroySlot.transform.position;
+                newSlotPos.x = newSlotPos.x + (x * 58f);
+                newSlotPos.y = newSlotPos.y - (y * 58f);
+                accessorySlotPrefabs.anchoredPosition = newSlotPos;
+
+                accessorySlotPrefabs.name = "Slot " + ((y * accessorySlot_X) + x);
+
+                accessorySlotComponent.itemDescBackGroundPivot.x = (x > 2) ? 1 : 0;
+                accessorySlotComponent.itemDescBackGroundPivot.y = 1f - (y * (1f / (accessorySlot_Y - 1)));
+
+                accessorySlotComponent.slotNum = y * accessorySlot_X + x;
+                accessorySlotScripts.Add(accessorySlotComponent);
+            }
+        }
+
+        // weaponSlot의 Slot 컴포넌트
+        weaponSlotScripts = weaponSlot.GetComponent<Slot>();
 
         ItemAddTestMethodCall();
     }
@@ -65,34 +97,32 @@ public class Inventory : MonoBehaviour
     // Item 추가
     public void AddItemInInventory(int mItemID)
     {
-        for (int i = 0; i < slotScripts.Count; i++)
+        for (int i = 0; i < inventorySlotScripts.Count; i++)
         {
             // 슬롯에 들어간 똑같은 아이템이 하나 이상 있다면
-            if (slotScripts[i].item.itemID == mItemID)
+            if (inventorySlotScripts[i].item.itemID == mItemID)
             {
                 // 슬롯에 들어간 똑같은 아이템이 5개 이하라면
-                if (slotScripts[i].itemCount < 5)
+                if (inventorySlotScripts[i].itemCount < 5)
                 {
-                    slotScripts[i].itemCount += 1;
-                    slotScripts[i].SetSlotItemCount();
-                    print(slotScripts[i].item.itemName + " : " + slotScripts[i].itemCount);
-                    print("index : " + i);
+                    inventorySlotScripts[i].itemCount += 1;
+                    inventorySlotScripts[i].SetSlotItemCount();
 
                     break;
                 }
                 // 슬롯에 들어간 똑같은 아이템이 5개이라면
-                else if (slotScripts[i].itemCount == 5)
+                else if (inventorySlotScripts[i].itemCount == 5)
                 {
                     continue;
                 }
             }
             // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
-            else if (slotScripts[i].item.itemID == 0)
+            else if (inventorySlotScripts[i].item.itemID == 0)
             {
-                slotScripts[i].item = ItemDatabase.instance.items[mItemID - 1];
-                slotScripts[i].itemCount = 1;
+                inventorySlotScripts[i].item = ItemDatabase.instance.items[mItemID - 1];
+                inventorySlotScripts[i].itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                slotScripts[i].SetSlotImage(mItemID);
+                inventorySlotScripts[i].SetSlotImage(mItemID);
 
                 break;
             }
@@ -101,55 +131,32 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        AddItemInInventory(1);
-        AddItemInInventory(1);
-        AddItemInInventory(1);
-        AddItemInInventory(1);
-        AddItemInInventory(2);
-        AddItemInInventory(2);
-        AddItemInInventory(2);
-        AddItemInInventory(2);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(2);
-        AddItemInInventory(2);
-        AddItemInInventory(2);
-        AddItemInInventory(2);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(2);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-        AddItemInInventory(3);
-
         for (int i = 0; i < 100; i++)
         {
             AddItemInInventory(3);
         }
         //RemoveAllItem(3);
         //RemoveOneItem(1);
+        ChangeAccessoryInInventory(1, 0);
+        ChangeWeaponInInventory(1);
     }
 
     // Item 삭제
     public void RemoveAllItem(int index)
     {
-        slotScripts[index].InitSlot();
+        inventorySlotScripts[index].InitSlot();
         //slotScripts.RemoveAt(index);
     }
 
     public void RemoveOneItem(int index)
     {
-        if (slotScripts[index].itemCount == 0)
+        if (inventorySlotScripts[index].itemCount == 0)
         {
             RemoveAllItem(index);
         }
         else
         {
-            slotScripts[index].RemoveOneItemInSlot();
+            inventorySlotScripts[index].RemoveOneItemInSlot();
         }
     }
 
@@ -160,7 +167,23 @@ public class Inventory : MonoBehaviour
         itemDescBackGround.rectTransform.pivot = pivotPos;
     }
 
-    private void ItemDescBackGroundPivotInsertIntoSlot()
-    { 
+    public void ChangeWeaponInInventory(int mItemID)
+    {
+        if (weaponSlotScripts.item.itemID != mItemID)
+        {
+            weaponSlotScripts.item = ItemDatabase.instance.items[mItemID - 1];
+        }
+    }
+
+    public void ChangeAccessoryInInventory(int mItemID, int index)
+    {
+        // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
+        if (accessorySlotScripts[index].item.itemID == 0)
+        {
+            accessorySlotScripts[index].item = ItemDatabase.instance.items[mItemID - 1];
+            accessorySlotScripts[index].itemCount = 1;
+            // 인벤토리에 아이템 이미지를 뿌림
+            accessorySlotScripts[index].SetSlotImage(mItemID);
+        }
     }
 }

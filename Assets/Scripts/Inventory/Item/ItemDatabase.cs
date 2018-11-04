@@ -18,6 +18,7 @@ public class ItemDatabase : MonoBehaviour
         AddItemInList("Sword", 1, "Normal Sword", ItemType.Equipment, 15, 0);
         AddItemInList("Bronze Ring", 2, "Normal Ring", ItemType.Accessory, 0, 0);
         AddItemInList("Potion", 3, "Healing hp 10.", ItemType.Misc, 0, 0);
+        
 
         for (int i = 0; i < items.Count; i++)
         {
