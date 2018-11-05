@@ -302,10 +302,7 @@ public class HeroController : MonoBehaviour
         // 클릭한 곳을 바라보면서 공격하는 코드
         if (raycastHit2D.collider != null && raycastHit2D.collider.gameObject.name.Equals("Top"))
         {
-            if (_isAttack)
-            {
                 direction = Vector2.up;
-            }
 
             if (!Skill_MR_EffectManager.isSkillMr)
             {

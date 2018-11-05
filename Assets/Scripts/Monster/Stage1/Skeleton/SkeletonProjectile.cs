@@ -155,7 +155,7 @@ public class SkeletonProjectile : MonoBehaviour, IMonsterAnimationEvent {
     {
         while (skeletonObjectMovePx < 18)
         {
-            Debug.Log(skeletonObjectMovePx);
+            //Debug.Log(skeletonObjectMovePx);
             tempSkeletonProjectileObjectPos = this.transform.position;
             tempSkeletonProjectileObjectPos += myDir * 0.1f;
 
