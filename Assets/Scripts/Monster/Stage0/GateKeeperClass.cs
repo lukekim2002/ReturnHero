@@ -35,7 +35,8 @@ public class GateKeeperClass : MonsterBase {
 
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
-    public BoxCollider2D attackCollider;
+    public GameObject attackCollider;
+    public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public GameObject mySkill1AttackRange;
     public GameObject mySkill2AttackRange;
@@ -43,6 +44,7 @@ public class GateKeeperClass : MonsterBase {
 
     public Vector2 myDirection;
     public Action myAction;
+    public AttackCase myAttackCase;
     public bool isAttacking = false;
 
     #endregion
@@ -52,14 +54,9 @@ public class GateKeeperClass : MonsterBase {
     private void OnEnable()
     {
         myAction = Action.Idle;
+        myAttackCase = AttackCase.None;
 
-        aiMoveScript = GetComponent<Pathfinding.AIPath>();
-        playerObject = HeroGeneralManager.instance.heroObject;
-        //attackCollider = 
-        myMeleeAttackRange = transform.GetChild(3).gameObject;
-        mySkill1AttackRange = transform.GetChild(4).gameObject;
-        mySkill2AttackRange = transform.GetChild(5).gameObject;
-        myAnimator = GetComponent<Animator>();
+        
 
         Initialize();
 
@@ -74,7 +71,9 @@ public class GateKeeperClass : MonsterBase {
 
     private void Update()
     {
-        myDirection = myBase.direction;
+        if(isAttacking == false)
+            myDirection = myBase.direction;
+
 
         if (myAction == Action.Idle && isAttacking == false)
         {
@@ -96,10 +95,22 @@ public class GateKeeperClass : MonsterBase {
 
     public override void Initialize()
     {
+        aiMoveScript = GetComponent<Pathfinding.AIPath>();
+        playerObject = HeroGeneralManager.instance.heroObject;
+        attackCollider = transform.GetChild(0).gameObject;
+        attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
+        myMeleeAttackRange = transform.GetChild(3).gameObject;
+        mySkill1AttackRange = transform.GetChild(4).gameObject;
+        mySkill2AttackRange = transform.GetChild(5).gameObject;
+        myAnimator = GetComponent<Animator>();
+
         myBase = GetComponent<MonsterBase>();
         if (myBase == null) Debug.LogError("myBase is null.");
 
         myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.GATEKEEPER);
+        myColliderSet = CSVReader.Read("CSV/Monster/Stage0/ReturnHero_GateKeeper_AttackCollider");
+
+        Debug.Log((int)myColliderSet[1]["Size_x"]);
 
         _id = (int)myDataSet["ID"];
         _health = (int)myDataSet["Health"];
