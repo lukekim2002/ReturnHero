@@ -82,6 +82,7 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     void ISkillInterface.Skill_MR_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAnimator.SetFloat("actionX", _heroController.direction.x);
         _heroAnimator.SetFloat("actionY", _heroController.direction.y);
@@ -164,6 +165,7 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     void ISkillInterface.Skill_E_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAnimator.SetFloat("actionX", _heroController.direction.x);
         _heroAnimator.SetFloat("actionY", _heroController.direction.y);
@@ -213,6 +215,7 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     void ISkillInterface.Skill_R_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAnimator.SetFloat("actionX", _heroController.direction.x);
         _heroAnimator.SetFloat("actionY", _heroController.direction.y);

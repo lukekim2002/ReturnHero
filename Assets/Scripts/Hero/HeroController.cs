@@ -25,6 +25,8 @@ public class HeroController : MonoBehaviour
     #region PUBLIC
     public enum HEROSTATE { IDLE, MOVE, ATTACK, DEFENSE, DASH };
     static public HEROSTATE heroState = HEROSTATE.IDLE;
+    public enum HEROATTACKSTATE { NONE, MELEE, MR, E, R };
+    static public HEROATTACKSTATE heroAttackState = HEROATTACKSTATE.NONE;
     
     public Vector2 moveAxis;
     public Vector2 direction;
@@ -203,6 +205,7 @@ public class HeroController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _attack_ML_Manager.isMeeleAttack == false)
         {
             heroState = HEROSTATE.ATTACK;
+            heroAttackState = HEROATTACKSTATE.MELEE;    
 
             _heroAnimator.SetInteger("actionNum", 2);
             _isAttack = true;
@@ -219,6 +222,7 @@ public class HeroController : MonoBehaviour
             if (UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey == false)
             {
                 heroState = HEROSTATE.ATTACK;
+                heroAttackState = HEROATTACKSTATE.MR;
 
                 _heroAnimator.SetInteger("actionNum", 2);
                 _heroAnimator.SetTrigger("isSkillMr");
@@ -244,6 +248,7 @@ public class HeroController : MonoBehaviour
             if (UIGeneralManager.instance.skill_E_CoolTimeClass.isInputKey == false)
             {
                 heroState = HEROSTATE.ATTACK;
+                heroAttackState = HEROATTACKSTATE.E;
                 _isAttack = true;
 
                 _heroAnimator.SetInteger("actionNum", 2);
@@ -268,6 +273,7 @@ public class HeroController : MonoBehaviour
             if (UIGeneralManager.instance.skill_R_CoolTimeClass.isInputKey == false)
             {
                 heroState = HEROSTATE.ATTACK;
+                heroAttackState = HEROATTACKSTATE.R;
                 _isAttack = true;
 
                 _heroAnimator.SetInteger("actionNum", 2);

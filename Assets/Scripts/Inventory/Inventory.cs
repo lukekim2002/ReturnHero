@@ -79,9 +79,8 @@ public class Inventory : MonoBehaviour
                 accessorySlotPrefabs.anchoredPosition = newSlotPos;
 
                 accessorySlotPrefabs.name = "Slot " + ((y * accessorySlot_X) + x);
-
-                accessorySlotComponent.itemDescBackGroundPivot.x = (x > 2) ? 1 : 0;
-                accessorySlotComponent.itemDescBackGroundPivot.y = 1f - (y * (1f / (accessorySlot_Y - 1)));
+                accessorySlotComponent.itemDescBackGroundPivot.x = (x * (1f / (accessorySlot_X - 1)));
+                accessorySlotComponent.itemDescBackGroundPivot.y = 1;
 
                 accessorySlotComponent.slotNum = y * accessorySlot_X + x;
                 accessorySlotScripts.Add(accessorySlotComponent);
@@ -92,6 +91,24 @@ public class Inventory : MonoBehaviour
         weaponSlotScripts = weaponSlot.GetComponent<Slot>();
 
         ItemAddTestMethodCall();
+    }
+
+    public void ItemAddTestMethodCall()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            AddItemInInventory(3);
+        }
+        RemoveAllItem(3);
+        RemoveOneItem(1);
+        ChangeAccessoryInInventory(2, 0);
+        ChangeAccessoryInInventory(2, 1);
+        ChangeAccessoryInInventory(2, 2);
+        ChangeAccessoryInInventory(2, 3);
+        ChangeAccessoryInInventory(2, 4);
+        ChangeAccessoryInInventory(2, 5);
+
+        ChangeWeaponInInventory(1);
     }
 
     // Item 추가
@@ -119,26 +136,14 @@ public class Inventory : MonoBehaviour
             // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
             else if (inventorySlotScripts[i].item.itemID == 0)
             {
-                inventorySlotScripts[i].item = ItemDatabase.instance.items[mItemID - 1];
+                inventorySlotScripts[i].item.itemID = mItemID;
                 inventorySlotScripts[i].itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                inventorySlotScripts[i].SetSlotImage(mItemID);
+                inventorySlotScripts[i].SetSlotImage();
 
                 break;
             }
         }
-    }
-
-    public void ItemAddTestMethodCall()
-    {
-        for (int i = 0; i < 100; i++)
-        {
-            AddItemInInventory(3);
-        }
-        //RemoveAllItem(3);
-        //RemoveOneItem(1);
-        ChangeAccessoryInInventory(1, 0);
-        ChangeWeaponInInventory(1);
     }
 
     // Item 삭제
@@ -171,7 +176,7 @@ public class Inventory : MonoBehaviour
     {
         if (weaponSlotScripts.item.itemID != mItemID)
         {
-            weaponSlotScripts.item = ItemDatabase.instance.items[mItemID - 1];
+            weaponSlotScripts.item.itemID = mItemID;
         }
     }
 
@@ -180,10 +185,10 @@ public class Inventory : MonoBehaviour
         // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
         if (accessorySlotScripts[index].item.itemID == 0)
         {
-            accessorySlotScripts[index].item = ItemDatabase.instance.items[mItemID - 1];
+            accessorySlotScripts[index].item.itemID = mItemID;
             accessorySlotScripts[index].itemCount = 1;
             // 인벤토리에 아이템 이미지를 뿌림
-            accessorySlotScripts[index].SetSlotImage(mItemID);
+            accessorySlotScripts[index].SetSlotImage();
         }
     }
 }

@@ -6,7 +6,15 @@ using UnityEngine.UI;
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
-    public List<Item> items = new List<Item>();
+    public List<Dictionary<string, object>> itemSet;
+    // public List<Item> items = new List<Item>();
+
+    private string _itemName;
+    private int _itemID;
+    private string _itemDesc;
+    private ItemType _itemType;
+    private int _offensePower;
+    private int _defensePower;
 
     private void Awake()
     {
@@ -15,21 +23,38 @@ public class ItemDatabase : MonoBehaviour
             instance = this;
         }
 
-        AddItemInList("Sword", 1, "Normal Sword", ItemType.Equipment, 15, 0);
-        AddItemInList("Bronze Ring", 2, "Normal Ring", ItemType.Accessory, 0, 0);
-        AddItemInList("Potion", 3, "Healing hp 10.", ItemType.Misc, 0, 0);
-        
+        itemSet = CSVReader.Read("Item");
 
-        for (int i = 0; i < items.Count; i++)
-        {
-            items[i].ShowItem();
-        }
+        //for (int index = 0; index < itemSet.Count; index++)
+        //{
+        //    _itemName = (string)itemSet[index]["Name"];
+        //    _itemID = (int)itemSet[index]["ID"];
+        //    _itemDesc = (string)itemSet[index]["Desc"];
+        //    _itemType = (ItemType)itemSet[index]["ItemType"];
+        //    _offensePower = (int)itemSet[index]["OffensePower"];
+        //    _defensePower = (int)itemSet[index]["DefensePower"];
+
+        //    AddItemInList(_itemName, _itemID, _itemDesc, _itemType, _offensePower, _defensePower);
+        //}
     }
     
 
     // 아이템 데이터베이스에 아이템을 추가한다.
-    private void AddItemInList(string mItemName, int mItemID, string mItemDesc, ItemType mItemType, int mOffensePower, int mDefensePower)
+    //private void AddItemInList(string mItemName, int mItemID, string mItemDesc, ItemType mItemType, int mOffensePower, int mDefensePower)
+    //{
+    //    items.Add(new Item(mItemName, mItemID, mItemDesc, mItemType, mOffensePower, mDefensePower));
+    //}
+    
+    public Dictionary<string, object> ThrowDataIntoContainer(int itemID)
     {
-        items.Add(new Item(mItemName, mItemID, mItemDesc, mItemType, mOffensePower, mDefensePower));
+        for (int index = 0; index < itemSet.Count; index++)
+        {
+            if (itemID == (int)itemSet[index]["ID"])
+            {
+                return this.itemSet[index];
+            }
+        }
+
+        return null;
     }
 }

@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
+using System.Collections.Generic;
 
 public class Slot : MonoBehaviour
 {
     public int slotNum;
-    public Item item;
+    public Item item = new Item();
     public int itemCount = 0;
     public Vector2 itemDescBackGroundPivot;
 
@@ -21,9 +21,9 @@ public class Slot : MonoBehaviour
         itemCountTextMeshPro = this.transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void SetSlotImage(int itemID)
+    public void SetSlotImage()
     {
-        slotImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(itemID);
+        slotImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(item.itemID);
     }
 
     public void SetSlotItemCount()
@@ -38,8 +38,8 @@ public class Slot : MonoBehaviour
 
     public void InitSlot()
     {
-        SetSlotImage(0);
         this.item = new Item();
+        SetSlotImage();
         this.itemCount = 0;
         InitSlotItemCount();
     }
@@ -52,11 +52,12 @@ public class Slot : MonoBehaviour
 
     public void SlotOnMouseEnter()
     {
-        if (this.item.itemID != 0)
+        if (item.itemID != 0)
         {
             Inventory.instance.itemDescBackGround.gameObject.SetActive(true);
             Inventory.instance.itemDescBackGround.transform.position = this.transform.position;
-            Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = item.itemDesc;
+            Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = (string)ItemDatabase.instance.ThrowDataIntoContainer(item.itemID)["Desc"];
+            print(item.itemID);
             Inventory.instance.ChangeSlotPivot(this.itemDescBackGroundPivot);
         }
     }
