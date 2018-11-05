@@ -10,6 +10,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     private Vector2 _wallPoint;
     GateKeeperClass _behaviour;
 
+    int tempTime;
 
     public void AttackMelee_Ready()
     {
@@ -35,7 +36,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
-        _dir = _behaviour.direction;
+        _dir = _behaviour.myDirection;
         _pos += _dir * 0.32f;
         this.transform.position = _pos;
 
@@ -46,7 +47,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
-        _dir = _behaviour.direction;
+        _dir = _behaviour.myDirection;
 
         _wallPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(_pos, _dir, 4.18f);
 
@@ -64,6 +65,16 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
         this.transform.position = _pos;
 
         //throw new System.NotImplementedException();
+    }
+
+    IEnumerator DashDelayTime()
+    {
+        tempTime = 0;
+        while (tempTime < 69)
+        {
+            tempTime++;
+            yield return new WaitForSeconds(1 / 30);
+        }
     }
 
     public void AttackSkill1_End()
