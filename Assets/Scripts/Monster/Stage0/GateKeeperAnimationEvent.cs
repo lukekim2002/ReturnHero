@@ -10,6 +10,8 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     private Vector2 _wallPoint;
     GateKeeperClass _behaviour;
 
+    public GameObject[] Skill2AttackEffect;
+
     int tempTime;
 
     public void AttackMelee_Ready()
@@ -89,12 +91,27 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackSkill2_Execute()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(Skill2AttackEffectOn());
+
+        //throw new System.NotImplementedException();
     }
 
     public void AttackSkill2_End()
     {
         throw new System.NotImplementedException();
+    }
+
+    IEnumerator Skill2AttackEffectOn()
+    {
+        int i = 0;
+        while (i < 3)
+        {
+            Skill2AttackEffect[i].transform.position = HeroGeneralManager.instance.heroObject.transform.position;
+            Skill2AttackEffect[i].SetActive(true);
+            i++;
+
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     #region NOT USED
@@ -128,4 +145,6 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
         throw new System.NotImplementedException();
     }
     #endregion
+
+ 
 }
