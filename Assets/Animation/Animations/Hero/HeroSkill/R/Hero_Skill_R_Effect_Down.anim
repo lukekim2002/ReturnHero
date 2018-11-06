@@ -73,7 +73,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.18333334
-    functionName: EndSkillMrEffect
+    functionName: EndSkillREffect
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

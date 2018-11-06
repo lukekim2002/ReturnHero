@@ -117,7 +117,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.3166667
+  - time: 1.2666667
     functionName: ISkillInterface.Skill_R_EffectOn
     data: 
     objectReferenceParameter: {fileID: 0}

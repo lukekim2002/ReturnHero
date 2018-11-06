@@ -7,7 +7,7 @@ public class Skill_MR_EffectManager : MonoBehaviour
     private Animator _skillMrAnimator;
     private int _transparencyCount = 0;
 
-    private SpriteRenderer spr;
+    private SpriteRenderer _skill_MR_Sprite;
     private BoxCollider2D collider;
 
     private Vector2 colliderSize;
@@ -33,7 +33,7 @@ public class Skill_MR_EffectManager : MonoBehaviour
     {
         _skillMrAnimator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
-        spr = GetComponent<SpriteRenderer>();
+        _skill_MR_Sprite = GetComponent<SpriteRenderer>();
 
         // MR Effect의 부모 오브젝트를 저장
         heroObject = this.transform.parent;
@@ -67,10 +67,9 @@ public class Skill_MR_EffectManager : MonoBehaviour
             skillMrAnimator.enabled = true;
             spr.enabled = true;
             */
-            this.GetComponent<Renderer>().enabled = true;
-            collider.enabled = true;
 
-        
+            collider.enabled = true;
+            _skill_MR_Sprite.enabled = true;
             StartCoroutine(MoveHeroMREffect());
         }
 
@@ -87,10 +86,10 @@ public class Skill_MR_EffectManager : MonoBehaviour
             print(heroMRObjectMovePx);
             heroMRObjectMovePx++;
 
-            //colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
-            //colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
-            //collider.size = colliderSize;
-            //collider.offset = colliderOffset;
+            colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
+            colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
+            collider.size = colliderSize;
+            collider.offset = colliderOffset;
 
             yield return new WaitForSeconds((float)1/27);
         }
@@ -109,6 +108,10 @@ public class Skill_MR_EffectManager : MonoBehaviour
         // 움직일 px 카운트를 0으로 초기화
         heroMRObjectMovePx = 0;
         // 그냥 꺼버려
+
+        _skill_MR_Sprite.enabled = false;
+        _skill_MR_Sprite.sprite = null;
+
         gameObject.SetActive(false);
     }
 
