@@ -35,12 +35,15 @@ public class GateKeeperClass : MonsterBase {
 
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
+    public Animator myAnimator;
+
     public GameObject attackCollider;
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public GameObject mySkill1AttackRange;
     public GameObject mySkill2AttackRange;
-    public Animator myAnimator;
+
+
 
     public Vector2 myDirection;
     public Action myAction;
@@ -110,11 +113,11 @@ public class GateKeeperClass : MonsterBase {
         myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.GATEKEEPER);
         myColliderSet = CSVReader.Read("CSV/Monster/Stage0/ReturnHero_GateKeeper_AttackCollider");
 
-        Debug.Log((int)myColliderSet[1]["Size_x"]);
 
         _id = (int)myDataSet["ID"];
         _health = (int)myDataSet["Health"];
         _movingSpeed = (float)myDataSet["MovingSpeed"];
+        aiMoveScript.maxSpeed = _movingSpeed;
 
         _meleeDamage = (int)myDataSet["MeleeDamage"];
         _meleeCoolDown = (int)myDataSet["MeleeCoolDown"];
@@ -130,6 +133,7 @@ public class GateKeeperClass : MonsterBase {
         _isSkill1AttackReady = true;
         _isSkill2AttackReady = true;
 
+
     }
 
     public override void AttackMelee()
@@ -139,6 +143,7 @@ public class GateKeeperClass : MonsterBase {
 
         myAction = Action.Attack;
         isAttacking = true;
+        myAttackCase = AttackCase.Melee;
         aiMoveScript.enabled = false;
         myMeleeAttackRange.SetActive(false);
 
@@ -163,6 +168,7 @@ public class GateKeeperClass : MonsterBase {
 
         myAction = Action.Attack;
         isAttacking = true;
+        myAttackCase = AttackCase.Skill1;
         aiMoveScript.enabled = false;
         mySkill1AttackRange.SetActive(false);
 
@@ -182,6 +188,7 @@ public class GateKeeperClass : MonsterBase {
 
         myAction = Action.Attack;
         isAttacking = true;
+        myAttackCase = AttackCase.Skill2;
         aiMoveScript.enabled = false;
         mySkill2AttackRange.SetActive(false);
 
@@ -194,10 +201,13 @@ public class GateKeeperClass : MonsterBase {
         StartCoroutine(CoolDownSkill2());
     }
 
+    
+
 
     public override void EndAttackMelee()
     {
         myAction = Action.Move;
+        myAttackCase = AttackCase.None;
         myAnimator.SetInteger("actionNum", 1);
         myAnimator.ResetTrigger("isMelee");
         myAnimator.SetFloat("moveX", myDirection.x);
@@ -205,13 +215,12 @@ public class GateKeeperClass : MonsterBase {
         isAttacking = false;
         aiMoveScript.enabled = true;
 
-
-
     }
 
     public override void EndAttackSkill1()
     {
         myAction = Action.Move;
+        myAttackCase = AttackCase.None;
         myAnimator.SetInteger("actionNum", 1);
         myAnimator.ResetTrigger("isSkill1");
         myAnimator.SetFloat("moveX", myDirection.x);
@@ -223,6 +232,7 @@ public class GateKeeperClass : MonsterBase {
     public override void EndAttackSkill2()
     {
         myAction = Action.Move;
+        myAttackCase = AttackCase.None;
         myAnimator.SetInteger("actionNum", 1);
         myAnimator.ResetTrigger("isSkill2");
         myAnimator.SetFloat("moveX", myDirection.x);
