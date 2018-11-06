@@ -4,11 +4,17 @@ using System.Collections;
 public class ItemSpriteManager : MonoBehaviour
 {
     public static ItemSpriteManager instance;
+    public Sprite slotSprite;
     public Sprite swordSprite;
     public Sprite bronzeRingSprite;
     public Sprite potionSprite;
 
-    public Sprite SwordImage
+    public Sprite SlotSprite
+    {
+        get { return slotSprite; }
+    }
+
+    public Sprite SwordSprite
     {
         get { return swordSprite; }
     }
@@ -33,7 +39,8 @@ public class ItemSpriteManager : MonoBehaviour
     {
         switch(itemID)
         {
-            case 1: return SwordImage;
+            case 0: return SlotSprite;
+            case 1: return SwordSprite;
             case 2: return bronzeRingSprite;
             case 3: return PotionSprite;
             default: return null;

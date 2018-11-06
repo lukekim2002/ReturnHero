@@ -12,7 +12,13 @@ public class Skill_MR_EffectManager : MonoBehaviour
 
     private Vector2 colliderSize;
     private Vector2 colliderOffset;
+    private Vector2 tempHeroMRObjectPos;
+    private Vector2 _direction;
     private int i = 0;
+
+    private Transform heroObject;
+
+    private int heroMRObjectMovePx = 0;
     #endregion
 
     #region PUBLIC
@@ -23,16 +29,21 @@ public class Skill_MR_EffectManager : MonoBehaviour
     public static bool isSkillMr = false;
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
         _skillMrAnimator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
         spr = GetComponent<SpriteRenderer>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // MR Effect의 부모 오브젝트를 저장
+        heroObject = this.transform.parent;
+        // 부모 오브젝트 좌표를 MR Effect에 설정
+        this.transform.position = heroObject.position;
+        // MR Effect의 부모 오브젝트를 MR Effect의 부모오브젝트의 부모오브젝트로 바꾼다. (Skeleton에서 해제한다.)
+        this.transform.parent = this.transform.parent.parent;
+
+        _direction = heroObject.GetComponent<HeroController>().direction;
+
         if (isSkillMr)
         {
             if (attackDirection == ATTACKDIRECTION.UP)
@@ -58,70 +69,47 @@ public class Skill_MR_EffectManager : MonoBehaviour
             */
             this.GetComponent<Renderer>().enabled = true;
             collider.enabled = true;
+
+        
+            StartCoroutine(MoveHeroMREffect());
         }
+
     }
 
-    private void Skill_MR_Effect_Excute()
+    IEnumerator MoveHeroMREffect()
     {
-        Vector2 skillPos = transform.position;
-        i = (int)attackDirection;
+        while (heroMRObjectMovePx < 12)
+        {
+            tempHeroMRObjectPos = this.transform.position;
+            tempHeroMRObjectPos += _direction * 0.2f;
 
-        if (attackDirection == ATTACKDIRECTION.UP)
-        {
-            
-            skillPos.y = skillPos.y + 0.2f;
-            this.transform.position = skillPos;
-        }
-        else if (attackDirection == ATTACKDIRECTION.LEFT)
-        {
-            skillPos.x = skillPos.x - 0.2f;
-            this.transform.position = skillPos;
-        }
-        else if (attackDirection == ATTACKDIRECTION.RIGHT)
-        {
-            skillPos.x = skillPos.x + 0.2f;
-            this.transform.position = skillPos;
-        }
-        else if (attackDirection == ATTACKDIRECTION.DOWN)
-        {
-            skillPos.y = skillPos.y - 0.2f;
-            this.transform.position = skillPos;
-        }
+            this.transform.position = tempHeroMRObjectPos;
+            print(heroMRObjectMovePx);
+            heroMRObjectMovePx++;
 
-        colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
-        colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
-        collider.size = colliderSize;
-        collider.offset = colliderOffset;
+            //colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
+            //colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
+            //collider.size = colliderSize;
+            //collider.offset = colliderOffset;
+
+            yield return new WaitForSeconds((float)1/27);
+        }
     }
 
     private void Skill_MR_Effect_End()
     {
-
+        // 콜라이더 모습 숨김
         collider.enabled = false;
+        // 방향 없음
         attackDirection = ATTACKDIRECTION.NONE;
+        // Skill MR 발동 해제
         isSkillMr = false;
-        this.GetComponent<Renderer>().enabled = false;
-    }
-
-    // MR 스킬 이펙트의 투명도를 낮춘다.
-    private void Skill_MR_Effect_ChangeAlpha()
-    {
-        Color color = spr.color;
-
-        // _transparencyCount가 3이면 원래대로 초기화
-        if (_transparencyCount == 3)
-        {
-            color.a = 1.0f;
-            spr.color = color;
-            _transparencyCount = 0;
-        }
-        // 3이 아니라면 투명도 낮춤
-        else
-        {
-            color.a -= 0.25f;
-            spr.color = color;
-            _transparencyCount++;
-        }
+        // 다시 자식 오브젝트로 기어들어감
+        transform.parent = heroObject;
+        // 움직일 px 카운트를 0으로 초기화
+        heroMRObjectMovePx = 0;
+        // 그냥 꺼버려
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

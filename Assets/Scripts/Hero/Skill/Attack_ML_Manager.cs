@@ -108,6 +108,7 @@ public class Attack_ML_Manager : MonoBehaviour
     private void AttackEnd()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAttackState = 1;
         _heroAttackCount = 0;

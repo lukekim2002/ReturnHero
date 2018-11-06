@@ -99,9 +99,9 @@ public class SkeletonProjectile : MonoBehaviour, IMonsterAnimationEvent {
         rootBehaviour = transform.root.GetComponent<SkeletonClass>();
         //myPos = transform.position;
 
-        myDir = rootBehaviour.myDirection;
+        // myDir = rootBehaviour.myDirection;
         // 위 코드가 버그 뜨면 아래 주석 해제하고 테스트 돌릴 것.
-        //myDir = Vector2.down;
+        myDir = Vector2.left;
 
         skeletonObject = this.transform.parent;
         // 이펙트를 스켈레톤 좌표랑 똑같이 한다.
@@ -147,7 +147,7 @@ public class SkeletonProjectile : MonoBehaviour, IMonsterAnimationEvent {
     {
         while (skeletonObjectMovePx < 18)
         {
-            Debug.Log(skeletonObjectMovePx);
+            //Debug.Log(skeletonObjectMovePx);
             tempSkeletonProjectileObjectPos = this.transform.position;
             tempSkeletonProjectileObjectPos += myDir * 0.1f;
 
