@@ -40,6 +40,7 @@ public class Skill_MR_EffectManager : MonoBehaviour
         // 부모 오브젝트 좌표를 MR Effect에 설정
         this.transform.position = heroObject.position;
         // MR Effect의 부모 오브젝트를 MR Effect의 부모오브젝트의 부모오브젝트로 바꾼다. (Skeleton에서 해제한다.)
+        this.transform.parent = this.transform.parent.parent;
 
         _direction = heroObject.GetComponent<HeroController>().direction;
 
