@@ -131,16 +131,8 @@ public class SkeletonProjectile : MonoBehaviour, IMonsterAnimationEvent {
 
     public void OnDisable() // SetActive(false)일시 자동 호출
     {
-        try
-        {
-            transform.parent = skeletonObject;
+        transform.parent = skeletonObject;
 
-        }
-        catch(Exception e)
-        {
-            Debug.LogException(e, this);
-        }
-        
     }
 
     /*

@@ -10,10 +10,6 @@ public class HeroController : MonoBehaviour
     private Animator _heroAnimator;
     private Rigidbody2D _heroRigidbody;
     private float moveSpeed = 1.28f;
-    
-    
-    #endregion
-
     private bool IsMovable
     {
         get
@@ -21,6 +17,8 @@ public class HeroController : MonoBehaviour
             return (heroState == HEROSTATE.IDLE || heroState == HEROSTATE.MOVE || heroState == HEROSTATE.DEFENSE);
         }
     }
+
+    #endregion
 
     #region PUBLIC
     public enum HEROSTATE { IDLE, MOVE, ATTACK, DEFENSE, DASH };
@@ -33,6 +31,8 @@ public class HeroController : MonoBehaviour
 
     public bool _isAttack = false;
     #endregion
+
+    #region MONOBEHAVIOUR CALLBCAKS
 
     private void Awake()
     {
@@ -112,6 +112,15 @@ public class HeroController : MonoBehaviour
             }
         }
     }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    #endregion
+
+    #region PUBLIC METHODS
 
     // WASD 입력 처리
     private void InputKey()
@@ -366,4 +375,11 @@ public class HeroController : MonoBehaviour
             }
         }
     }
+
+    public void HeroGetHit(int damage)
+    {
+
+    }
+
+    #endregion
 }
