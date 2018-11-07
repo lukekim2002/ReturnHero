@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114533230727646160}
   - component: {fileID: 114141114464499616}
   - component: {fileID: 114977821947338998}
+  - component: {fileID: 114282768382937418}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -60,13 +61,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNum: 0
   item:
-    itemName: 
     itemID: 0
-    itemDesc: 
-    itemType: 0
-    offensePower: 0
-    defensePower: 0
   itemCount: 0
+  itemDescBackGroundPivot: {x: 0, y: 0}
+--- !u!114 &114282768382937418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1591544079221454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3060e046513a5344591c2abbd2383892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114372309525034464
 MonoBehaviour:
   m_ObjectHideFlags: 1

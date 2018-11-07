@@ -23,7 +23,7 @@ public class ItemDatabase : MonoBehaviour
             instance = this;
         }
 
-        itemSet = CSVReader.Read("Item");
+        itemSet = CSVReader.Read("CSV/Item/Item");
 
         //for (int index = 0; index < itemSet.Count; index++)
         //{

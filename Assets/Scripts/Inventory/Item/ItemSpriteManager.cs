@@ -41,8 +41,8 @@ public class ItemSpriteManager : MonoBehaviour
         {
             case 0: return SlotSprite;
             case 1: return SwordSprite;
-            case 2: return bronzeRingSprite;
-            case 3: return PotionSprite;
+            case 3: return bronzeRingSprite;
+            case 9: return PotionSprite;
             default: return null;
         }
     }

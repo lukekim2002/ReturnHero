@@ -57,7 +57,6 @@ public class Slot : MonoBehaviour
             Inventory.instance.itemDescBackGround.gameObject.SetActive(true);
             Inventory.instance.itemDescBackGround.transform.position = this.transform.position;
             Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = (string)ItemDatabase.instance.ThrowDataIntoContainer(item.itemID)["Desc"];
-            print(item.itemID);
             Inventory.instance.ChangeSlotPivot(this.itemDescBackGroundPivot);
         }
     }

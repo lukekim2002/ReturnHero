@@ -101,12 +101,12 @@ public class Inventory : MonoBehaviour
         }
         RemoveAllItem(3);
         RemoveOneItem(1);
-        ChangeAccessoryInInventory(2, 0);
-        ChangeAccessoryInInventory(2, 1);
-        ChangeAccessoryInInventory(2, 2);
-        ChangeAccessoryInInventory(2, 3);
-        ChangeAccessoryInInventory(2, 4);
-        ChangeAccessoryInInventory(2, 5);
+        ChangeAccessoryInInventory(9, 0);
+        ChangeAccessoryInInventory(9, 1);
+        ChangeAccessoryInInventory(9, 2);
+        ChangeAccessoryInInventory(9, 3);
+        ChangeAccessoryInInventory(9, 4);
+        ChangeAccessoryInInventory(9, 5);
 
         ChangeWeaponInInventory(1);
     }
