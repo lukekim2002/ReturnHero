@@ -13,15 +13,18 @@ public class Inventory : MonoBehaviour
     public RectTransform weaponSlot;
     public RectTransform itemSlot;
     public RectTransform accessroySlot;
+    public RectTransform draggedItem;
     public List<Slot> inventorySlotScripts = new List<Slot>();
     public List<Slot> accessorySlotScripts = new List<Slot>();
     public Slot weaponSlotScripts;
+    public Slot enteredItemSlot;
     public Image itemDescBackGround;
 
     public const int accessorySlot_X = 3;
     public const int accessorySlot_Y = 2;
     public const int itemSlot_X = 6;
     public const int itemSlot_Y = 4;
+
     #endregion
 
     private void Awake()
@@ -120,15 +123,15 @@ public class Inventory : MonoBehaviour
             if (inventorySlotScripts[i].item.itemID == mItemID)
             {
                 // 슬롯에 들어간 똑같은 아이템이 5개 이하라면
-                if (inventorySlotScripts[i].itemCount < 5)
+                if (inventorySlotScripts[i].item.itemCount < 5)
                 {
-                    inventorySlotScripts[i].itemCount += 1;
+                    inventorySlotScripts[i].item.itemCount += 1;
                     inventorySlotScripts[i].SetSlotItemCount();
 
                     break;
                 }
                 // 슬롯에 들어간 똑같은 아이템이 5개이라면
-                else if (inventorySlotScripts[i].itemCount == 5)
+                else if (inventorySlotScripts[i].item.itemCount == 5)
                 {
                     continue;
                 }
@@ -137,7 +140,7 @@ public class Inventory : MonoBehaviour
             else if (inventorySlotScripts[i].item.itemID == 0)
             {
                 inventorySlotScripts[i].item.itemID = mItemID;
-                inventorySlotScripts[i].itemCount = 1;
+                inventorySlotScripts[i].item.itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
                 inventorySlotScripts[i].SetSlotImage();
 
@@ -155,7 +158,7 @@ public class Inventory : MonoBehaviour
 
     public void RemoveOneItem(int index)
     {
-        if (inventorySlotScripts[index].itemCount == 0)
+        if (inventorySlotScripts[index].item.itemCount == 0)
         {
             RemoveAllItem(index);
         }
@@ -186,9 +189,23 @@ public class Inventory : MonoBehaviour
         if (accessorySlotScripts[index].item.itemID == 0)
         {
             accessorySlotScripts[index].item.itemID = mItemID;
-            accessorySlotScripts[index].itemCount = 1;
+            accessorySlotScripts[index].item.itemCount = 1;
             // 인벤토리에 아이템 이미지를 뿌림
             accessorySlotScripts[index].SetSlotImage();
+        }
+    }
+
+    // 아이템 슬롯 위치를 서로 바꿔줌
+    public void ChangeItemSlotInInventory(Slot slot)
+    {
+        if (slot.item.itemID == 0)
+        {
+            slot.InitSlot();
+        }
+        else
+        {
+            slot.SetSlotImage();
+            slot.SetSlotItemCount();
         }
     }
 }
