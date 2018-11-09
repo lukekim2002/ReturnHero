@@ -72,8 +72,8 @@ public class ItemEvent : MonoBehaviour
             _slot.item = Inventory.instance.enteredItemSlot.item;
             Inventory.instance.enteredItemSlot.item = tempItem;
 
-            Inventory.instance.ChangeItemSlotInInventory(_slot);
-            Inventory.instance.ChangeItemSlotInInventory(Inventory.instance.enteredItemSlot);
+            Inventory.instance.ChangeItem(_slot);
+            Inventory.instance.ChangeItem(Inventory.instance.enteredItemSlot);
         }
 
         isDraging = false;

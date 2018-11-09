@@ -14,10 +14,12 @@ public class Inventory : MonoBehaviour
     public RectTransform itemSlot;
     public RectTransform accessroySlot;
     public RectTransform draggedItem;
-    public List<Slot> inventorySlotScripts = new List<Slot>();
+    public List<Slot> itemSlotScripts = new List<Slot>();
     public List<Slot> accessorySlotScripts = new List<Slot>();
     public Slot weaponSlotScripts;
+    // 자리를 바꿀 아이템 슬롯 위치
     public Slot enteredItemSlot;
+    // 아이템 설명창
     public Image itemDescBackGround;
 
     public const int accessorySlot_X = 3;
@@ -37,6 +39,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        // Item Slot 배치
         for (int y = 0; y < itemSlot_Y; y++)
         {
             for (int x = 0; x < itemSlot_X; x++)
@@ -62,10 +65,11 @@ public class Inventory : MonoBehaviour
                 slotComponent.itemDescBackGroundPivot.y = 1f - (y * (1f / (itemSlot_Y - 1)));
 
                 slotComponent.slotNum = y * itemSlot_X + x;
-                inventorySlotScripts.Add(slotComponent);
+                itemSlotScripts.Add(slotComponent);
             }
         }
 
+        // Accessrory Slot 배치
         for (int y = 0; y < accessorySlot_Y; y++)
         {
             for (int x = 0; x < accessorySlot_X; x++)
@@ -100,82 +104,63 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            AddItemInInventory(3);
+            AddItem(3);
         }
-        RemoveAllItem(3);
-        RemoveOneItem(1);
-        ChangeAccessoryInInventory(9, 0);
-        ChangeAccessoryInInventory(9, 1);
-        ChangeAccessoryInInventory(9, 2);
-        ChangeAccessoryInInventory(9, 3);
-        ChangeAccessoryInInventory(9, 4);
-        ChangeAccessoryInInventory(9, 5);
+        itemSlotScripts[3].RemoveAllItem();
+        itemSlotScripts[1].RemoveOneItem();
+        ChangeAccessory(9, 0);
+        ChangeAccessory(9, 1);
+        ChangeAccessory(9, 2);
+        ChangeAccessory(9, 3);
+        ChangeAccessory(9, 4);
+        ChangeAccessory(9, 5);
 
-        ChangeWeaponInInventory(1);
+        ChangeWeapon(1);
     }
 
     // Item 추가
-    public void AddItemInInventory(int mItemID)
+    public void AddItem(int mItemID)
     {
-        for (int i = 0; i < inventorySlotScripts.Count; i++)
+        for (int i = 0; i < itemSlotScripts.Count; i++)
         {
             // 슬롯에 들어간 똑같은 아이템이 하나 이상 있다면
-            if (inventorySlotScripts[i].item.itemID == mItemID)
+            if (itemSlotScripts[i].item.itemID == mItemID)
             {
                 // 슬롯에 들어간 똑같은 아이템이 5개 이하라면
-                if (inventorySlotScripts[i].item.itemCount < 5)
+                if (itemSlotScripts[i].item.itemCount < 5)
                 {
-                    inventorySlotScripts[i].item.itemCount += 1;
-                    inventorySlotScripts[i].SetSlotItemCount();
+                    itemSlotScripts[i].item.itemCount += 1;
+                    itemSlotScripts[i].SetSlotItemCount();
 
                     break;
                 }
                 // 슬롯에 들어간 똑같은 아이템이 5개이라면
-                else if (inventorySlotScripts[i].item.itemCount == 5)
+                else if (itemSlotScripts[i].item.itemCount == 5)
                 {
                     continue;
                 }
             }
             // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
-            else if (inventorySlotScripts[i].item.itemID == 0)
+            else if (itemSlotScripts[i].item.itemID == 0)
             {
-                inventorySlotScripts[i].item.itemID = mItemID;
-                inventorySlotScripts[i].item.itemCount = 1;
+                itemSlotScripts[i].item.itemID = mItemID;
+                itemSlotScripts[i].item.itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                inventorySlotScripts[i].SetSlotImage();
+                itemSlotScripts[i].SetSlotImage();
 
                 break;
             }
         }
     }
 
-    // Item 삭제
-    public void RemoveAllItem(int index)
-    {
-        inventorySlotScripts[index].InitSlot();
-        //slotScripts.RemoveAt(index);
-    }
-
-    public void RemoveOneItem(int index)
-    {
-        if (inventorySlotScripts[index].item.itemCount == 0)
-        {
-            RemoveAllItem(index);
-        }
-        else
-        {
-            inventorySlotScripts[index].RemoveOneItemInSlot();
-        }
-    }
-
+    // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
     public void ChangeSlotPivot(Vector2 pivotPos)
     {
-        // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
-
         itemDescBackGround.rectTransform.pivot = pivotPos;
     }
 
-    public void ChangeWeaponInInventory(int mItemID)
+    // 무기 슬롯의 무기를 교체한다.
+    public void ChangeWeapon(int mItemID)
     {
         if (weaponSlotScripts.item.itemID != mItemID)
         {
@@ -183,7 +168,8 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ChangeAccessoryInInventory(int mItemID, int index)
+    // 악세사리 슬롯의 악세사리를 교체한다.
+    public void ChangeAccessory(int mItemID, int index)
     {
         // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
         if (accessorySlotScripts[index].item.itemID == 0)
@@ -196,7 +182,7 @@ public class Inventory : MonoBehaviour
     }
 
     // 아이템 슬롯 위치를 서로 바꿔줌
-    public void ChangeItemSlotInInventory(Slot slot)
+    public void ChangeItem(Slot slot)
     {
         if (slot.item.itemID == 0)
         {
