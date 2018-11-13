@@ -447,7 +447,7 @@ Prefab:
     - target: {fileID: 114586424468157892, guid: d1c2d9c1a853cd040ac196dbc13f1d47,
         type: 2}
       propertyPath: slotType
-      value: -2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c2d9c1a853cd040ac196dbc13f1d47, type: 2}

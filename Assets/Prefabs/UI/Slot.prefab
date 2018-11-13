@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
+  slotType: 3
   item:
     itemID: 0
     itemCount: 0

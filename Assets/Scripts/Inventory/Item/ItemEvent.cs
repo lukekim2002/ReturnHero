@@ -51,7 +51,6 @@ public class ItemEvent : MonoBehaviour
         }
     }
 
-    // TODO : 무기 슬롯엔 무기만, 악세사리 슬롯엔 악세사리만 들어가게 하면서 두 타입의 아이템이 서로 교체되면 안되고 가방에 있는 아이템은 그대로여야 한다.
     // 아이템 드래그를 중지했을 때
     public void DragEndItem()
     {
@@ -65,25 +64,31 @@ public class ItemEvent : MonoBehaviour
         if (Inventory.instance.enteredItemSlot == null)
             return;
 
-        if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"]
-            == (int)ItemDatabase.instance.ThrowDataIntoContainer(Inventory.instance.enteredItemSlot.item.itemID)["ItemType"])
-        {
-            if (_slot.item.itemID == Inventory.instance.enteredItemSlot.item.itemID)
-            {
-                ChangeItemData();
-                print("0");
-            }
+        /*
+         * WeaponSlot SlotType = 1
+         * AccessotySlot SlotType = 2
+         * ItemSlot SlotType = 3
+         */
 
-            else
+        // 바꿀 슬롯이 WeaponSlot이나 Accessory 슬롯이라면
+        if (Inventory.instance.enteredItemSlot.slotType < 3)
+        {
+            // Weapon 혹은 Accessory가 아닌 다른 아이템이 Weapon Slot이나 Accessory 슬롯에 들어가는 것을 방지
+            // 드래그한 아이템의 ItemType이 Weapon이나 Accessroy의 slotType이랑 똑같은가?
+            if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"]
+             == Inventory.instance.enteredItemSlot.slotType)
             {
                 ChangeItemData(0);
-                print("1");
             }
+            print("Weapon or Accessory 장착!");
         }
+        //}
 
-        else if (0 == (int)ItemDatabase.instance.ThrowDataIntoContainer(Inventory.instance.enteredItemSlot.item.itemID)["ItemType"])
+        if (Inventory.instance.enteredItemSlot.slotType >= 3)
         {
-            ChangeItemData(); print("2"); 
+            ChangeItemData();
+            print("Inventory Swap! (2)");
+            return;
         }
     }
 
