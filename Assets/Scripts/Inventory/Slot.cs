@@ -13,6 +13,7 @@ public class Slot : MonoBehaviour
 
     #region PUBLIC
     public int slotNum;
+    public int slotType;
     public Item item = new Item();
     public Vector2 itemDescBackGroundPivot;
     #endregion
@@ -61,14 +62,12 @@ public class Slot : MonoBehaviour
     // 해당 칸 아이템 하나 삭제
     public void RemoveOneItem()
     {
+        item.itemCount--;
+        SetSlotItemCount();
+
         if (item.itemCount == 0)
         {
             RemoveAllItem();
-        }
-        else
-        {
-            item.itemCount--;
-            SetSlotItemCount();
         }
     }
 }

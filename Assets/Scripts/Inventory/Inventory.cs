@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    #region PRIVATE
-    #endregion
-
     #region PUBLIC
     public static Inventory instance;
     public RectTransform weaponSlot;
@@ -102,20 +99,18 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 5; i++)
         {
-            AddItem(3);
+            AddItem(9);
         }
-        itemSlotScripts[3].RemoveAllItem();
-        itemSlotScripts[1].RemoveOneItem();
-        ChangeAccessory(9, 0);
-        ChangeAccessory(9, 1);
-        ChangeAccessory(9, 2);
-        ChangeAccessory(9, 3);
-        ChangeAccessory(9, 4);
-        ChangeAccessory(9, 5);
 
-        ChangeWeapon(1);
+        for (int i = 0; i < 5; i++)
+        {
+            AddEquiment(1);
+            AddEquiment(3);
+        }
+
+        itemSlotScripts[3].RemoveOneItem();
     }
 
     // Item 추가
@@ -153,6 +148,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void AddEquiment(int mItemID)
+    {
+        for (int i = 0; i < itemSlotScripts.Count; i++)
+        {
+            // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
+            if (itemSlotScripts[i].item.itemID == 0)
+            {
+                itemSlotScripts[i].item.itemID = mItemID;
+                itemSlotScripts[i].item.itemCount = 1;
+                // 인벤토리에 아이템 이미지를 뿌림
+                itemSlotScripts[i].SetSlotImage();
+
+                break;
+            }
+        }
+    }
+
     // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
     public void ChangeSlotPivot(Vector2 pivotPos)
     {
@@ -165,6 +177,7 @@ public class Inventory : MonoBehaviour
         if (weaponSlotScripts.item.itemID != mItemID)
         {
             weaponSlotScripts.item.itemID = mItemID;
+            weaponSlotScripts.SetSlotImage();
         }
     }
 
@@ -191,7 +204,11 @@ public class Inventory : MonoBehaviour
         else
         {
             slot.SetSlotImage();
-            slot.SetSlotItemCount();
+
+            if (slot.item.itemCount > 1)
+                slot.SetSlotItemCount();
+            else
+                slot.InitSlotItemCount();
         }
     }
 }

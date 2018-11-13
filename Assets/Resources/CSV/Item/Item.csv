@@ -1,4 +1,7 @@
 Name,ID,Desc,ItemType,OffensePower,DefensePower
-Park,1,Park's,1,10,0
-Kim,3,Kim's,2,0,10
-Bong,9,Bong's,3,0,0
+EmptyWeapon,-2,Null,1,0,0
+EmptyAccessory,-1,Null,2,0,0
+EmptyItem,0,Null,3,0,0
+Park,1,Basic Weapon,1,10,0
+Kim,3,Basic Accessory,2,0,10
+Bong,9,Basic Misc,3,0,0

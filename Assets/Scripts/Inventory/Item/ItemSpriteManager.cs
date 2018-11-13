@@ -4,14 +4,26 @@ using System.Collections;
 public class ItemSpriteManager : MonoBehaviour
 {
     public static ItemSpriteManager instance;
-    public Sprite slotSprite;
+    public Sprite itemSlotSprite;
+    public Sprite accessorySlotSprite;
+    public Sprite weaponSlotSprite;
     public Sprite swordSprite;
     public Sprite bronzeRingSprite;
     public Sprite potionSprite;
 
-    public Sprite SlotSprite
+    public Sprite ItemSlotSprite
     {
-        get { return slotSprite; }
+        get { return itemSlotSprite; }
+    }
+
+    public Sprite AccessorySlotSprite
+    {
+        get { return accessorySlotSprite; }
+    }
+
+    public Sprite WeaponSlotSprite
+    {
+        get { return weaponSlotSprite; }
     }
 
     public Sprite SwordSprite
@@ -39,7 +51,9 @@ public class ItemSpriteManager : MonoBehaviour
     {
         switch(itemID)
         {
-            case 0: return SlotSprite;
+            case -2: return WeaponSlotSprite;
+            case -1: return AccessorySlotSprite;
+            case 0: return ItemSlotSprite;
             case 1: return SwordSprite;
             case 3: return bronzeRingSprite;
             case 9: return PotionSprite;
