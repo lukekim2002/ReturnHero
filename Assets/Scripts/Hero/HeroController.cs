@@ -198,11 +198,10 @@ public class HeroController : MonoBehaviour
         #region 대쉬 키 입력 처리
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey == false)
+            if (UIGeneralManager.instance.skill_Space_CoolTimeClass.enabled == false)
             {
                 heroState = HEROSTATE.DASH;
-                UIGeneralManager.instance.skill_Space_CoolTimeClass.isInputKey = true;
-                UIGeneralManager.instance.skill_Space_CoolTimeClass.isSkillCoolTimeEnable = true;
+                UIGeneralManager.instance.skill_Space_CoolTimeClass.enabled = true;
             }
         }
         #endregion
@@ -228,7 +227,7 @@ public class HeroController : MonoBehaviour
         // 스킬 이펙트가 끝난 후에야 다시 누를 수 있다.
         else if (Input.GetMouseButtonDown(1) && Skill_MR_EffectManager.isSkillMr == false)
         {
-            if (UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey == false)
+            if (UIGeneralManager.instance.skill_MR_CoolTimeClass.enabled == false)
             {
                 heroState = HEROSTATE.ATTACK;
                 heroAttackState = HEROATTACKSTATE.MR;
@@ -243,8 +242,7 @@ public class HeroController : MonoBehaviour
                 _heroAnimator.SetFloat("actionX", direction.x);
                 _heroAnimator.SetFloat("actionY", direction.y);
 
-                UIGeneralManager.instance.skill_MR_CoolTimeClass.isInputKey = true;
-                UIGeneralManager.instance.skill_MR_CoolTimeClass.isSkillCoolTimeEnable = true;
+                UIGeneralManager.instance.skill_MR_CoolTimeClass.enabled = true;
             }
         }
         #endregion
@@ -254,7 +252,7 @@ public class HeroController : MonoBehaviour
         #region E키 입력 처리
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            if (UIGeneralManager.instance.skill_E_CoolTimeClass.isInputKey == false)
+            if (UIGeneralManager.instance.skill_E_CoolTimeClass.enabled == false)
             {
                 heroState = HEROSTATE.ATTACK;
                 heroAttackState = HEROATTACKSTATE.E;
@@ -268,8 +266,7 @@ public class HeroController : MonoBehaviour
                 _heroAnimator.SetFloat("actionX", direction.x);
                 _heroAnimator.SetFloat("actionY", direction.y);
 
-                UIGeneralManager.instance.skill_E_CoolTimeClass.isInputKey = true;
-                UIGeneralManager.instance.skill_E_CoolTimeClass.isSkillCoolTimeEnable = true;
+                UIGeneralManager.instance.skill_E_CoolTimeClass.enabled = true;
             }
         }
         #endregion
@@ -279,7 +276,7 @@ public class HeroController : MonoBehaviour
         #region R키 입력 처리
         else if (Input.GetKeyDown(KeyCode.R) && Skill_R_EffectManager.isSkillR == false)
         {
-            if (UIGeneralManager.instance.skill_R_CoolTimeClass.isInputKey == false)
+            if (UIGeneralManager.instance.skill_R_CoolTimeClass.enabled == false)
             {
                 heroState = HEROSTATE.ATTACK;
                 heroAttackState = HEROATTACKSTATE.R;
@@ -293,8 +290,7 @@ public class HeroController : MonoBehaviour
                 _heroAnimator.SetFloat("actionX", direction.x);
                 _heroAnimator.SetFloat("actionY", direction.y);
 
-                UIGeneralManager.instance.skill_R_CoolTimeClass.isInputKey = true;
-                UIGeneralManager.instance.skill_R_CoolTimeClass.isSkillCoolTimeEnable = true;
+                UIGeneralManager.instance.skill_R_CoolTimeClass.enabled = true;
             }
         }
         #endregion

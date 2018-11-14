@@ -101,13 +101,15 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            AddItem(9);
+            AddItem(5);
         }
 
         for (int i = 0; i < 5; i++)
         {
             AddEquiment(1);
+            AddEquiment(2);
             AddEquiment(3);
+            AddEquiment(4);
         }
 
         itemSlotScripts[3].RemoveOneItem();

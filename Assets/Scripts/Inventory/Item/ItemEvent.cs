@@ -44,7 +44,7 @@ public class ItemEvent : MonoBehaviour
         else
         {
             if (transform.childCount > 0)
-                this.transform.GetChild(0).parent = Inventory.instance.draggedItem;
+                this.transform.GetChild(0).SetParent(Inventory.instance.draggedItem);
 
             Inventory.instance.draggedItem.GetChild(0).position = Input.mousePosition;
             Inventory.instance.draggedItem.GetChild(0).GetComponent<Image>().raycastTarget = false;
@@ -78,48 +78,66 @@ public class ItemEvent : MonoBehaviour
             if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"]
              == Inventory.instance.enteredItemSlot.slotType)
             {
-                ChangeItemData(0);
+                // 그 슬롯이 비어있는가?
+                if (Inventory.instance.enteredItemSlot.item.itemID < 0)
+                {
+                    ChangeItemData(0);
+                    return;
+                }
+                else
+                {
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                    return;
+                }
             }
-            print("Weapon or Accessory 장착!");
         }
-        //}
 
+        // 바꿀 슬롯이 Item 슬롯이라면
         if (Inventory.instance.enteredItemSlot.slotType >= 3)
         {
-            ChangeItemData();
-            print("Inventory Swap! (2)");
+            if (_slot.slotType == 1)
+            {
+                // 슬롯이 비어 있다면
+                if (Inventory.instance.enteredItemSlot.item.itemID == 0)
+                {
+                    ChangeItemData(-2);
+                    return;
+                }
+                else
+                {
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                    return;
+                }
+            }
+            else if (_slot.slotType == 2)
+            {
+                // 슬롯이 비어 있다면
+                if (Inventory.instance.enteredItemSlot.item.itemID == 0)
+                {
+                    ChangeItemData(-1);
+                    return;
+                }
+                else
+                {
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                    return;
+                }
+            }
+            else if (_slot.slotType == 3)
+            {
+                // 슬롯이 비어 있다면
+                if (Inventory.instance.enteredItemSlot.item.itemID == 0)
+                {
+                    ChangeItemData(0);
+                }
+                else
+                {
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                }
+            }
+            print("Inventory Swap!");
             return;
         }
-    }
-
-    public void DragEndAccessory()
-    {
-        if (_slot.item.itemID <= 0)
-            return;
-
-        ReturnOriginalSlot();
-
-        if (Inventory.instance.enteredItemSlot != null)
-        {
-            ChangeItemData(-1);
-        }
-
-        isDraging = false;
-    }
-
-    public void DragEndWeapon()
-    {
-        if (_slot.item.itemID <= 0)
-            return;
-
-        ReturnOriginalSlot();
-
-        if (Inventory.instance.enteredItemSlot != null)
-        {
-            ChangeItemData(-2);
-        }
-
-        isDraging = false;
     }
 
     public void PointerEnterItem()
@@ -170,9 +188,12 @@ public class ItemEvent : MonoBehaviour
         _slot.item = Inventory.instance.enteredItemSlot.item;
         Inventory.instance.enteredItemSlot.item = tempItem;
 
+        // 바꾸기 전에 원래 슬롯에 있던 아이템의 ID를 넘김
         _slot.item.itemID = itemBoxID;
 
         Inventory.instance.ChangeItem(_slot);
+        print(_slot);
         Inventory.instance.ChangeItem(Inventory.instance.enteredItemSlot);
+        print(Inventory.instance.enteredItemSlot);
     }
 }
