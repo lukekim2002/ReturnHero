@@ -83,7 +83,6 @@ public class Skill_MR_EffectManager : MonoBehaviour
             tempHeroMRObjectPos += _direction * 0.2f;
 
             this.transform.position = tempHeroMRObjectPos;
-            print(heroMRObjectMovePx);
             heroMRObjectMovePx++;
 
             colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
