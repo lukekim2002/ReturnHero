@@ -11,6 +11,8 @@ public class ItemEvent : MonoBehaviour
 
     #region PUBLIC
     public static bool isDraging = false;
+    // 아이템이 ProductionSlot에 들어갈 때마다 검사
+    public static bool isItemInProduction = false;
     #endregion
 
     // Use this for initialization
@@ -93,7 +95,7 @@ public class ItemEvent : MonoBehaviour
         }
 
         // 바꿀 슬롯이 Item 슬롯이라면
-        if (Inventory.instance.enteredItemSlot.slotType >= 3)
+        else if (Inventory.instance.enteredItemSlot.slotType >= 3)
         {
             if (_slot.slotType == 1)
             {
@@ -101,12 +103,13 @@ public class ItemEvent : MonoBehaviour
                 if (Inventory.instance.enteredItemSlot.item.itemID == 0)
                 {
                     ChangeItemData(-2);
-                    return;
+                }
+                else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(Inventory.instance.enteredItemSlot.item.itemID)["ItemType"] != 1)
+                {
                 }
                 else
                 {
                     ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                    return;
                 }
             }
             else if (_slot.slotType == 2)
@@ -115,12 +118,13 @@ public class ItemEvent : MonoBehaviour
                 if (Inventory.instance.enteredItemSlot.item.itemID == 0)
                 {
                     ChangeItemData(-1);
-                    return;
+                }
+                else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(Inventory.instance.enteredItemSlot.item.itemID)["ItemType"] != 2)
+                {
                 }
                 else
                 {
                     ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                    return;
                 }
             }
             else if (_slot.slotType == 3)
@@ -136,8 +140,9 @@ public class ItemEvent : MonoBehaviour
                 }
             }
             print("Inventory Swap!");
-            return;
         }
+
+        CallBackCheckMaterialItes();
     }
 
     public void PointerEnterItem()
@@ -172,16 +177,6 @@ public class ItemEvent : MonoBehaviour
         this.transform.GetChild(0).localPosition = Vector2.zero;
     }
 
-    private void ChangeItemData()
-    {
-        Item tempItem = _slot.item;
-        _slot.item = Inventory.instance.enteredItemSlot.item;
-        Inventory.instance.enteredItemSlot.item = tempItem;
-
-        Inventory.instance.ChangeItem(_slot);
-        Inventory.instance.ChangeItem(Inventory.instance.enteredItemSlot);
-    }
-
     private void ChangeItemData(int itemBoxID)
     {
         Item tempItem = _slot.item;
@@ -192,8 +187,20 @@ public class ItemEvent : MonoBehaviour
         _slot.item.itemID = itemBoxID;
 
         Inventory.instance.ChangeItem(_slot);
-        print(_slot);
         Inventory.instance.ChangeItem(Inventory.instance.enteredItemSlot);
-        print(Inventory.instance.enteredItemSlot);
+    }
+
+    public void InsetInProductionSlot()
+    {
+        isItemInProduction = true;
+    }
+
+    private void CallBackCheckMaterialItes()
+    {
+        if (isItemInProduction)
+        {
+            Production.instance.CheckMaterialItems();
+            isItemInProduction = false;
+        }
     }
 }
