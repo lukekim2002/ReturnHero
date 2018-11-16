@@ -7,7 +7,7 @@ public class Production : MonoBehaviour
 {
 
     private string[] readProductionRecipeCSVRow = { "Item1", "Item2", "Item3", "Item4", "Item5", "Item6" };
-    private int[] productionSlotItemID = new int[6];
+    private int[] productionSlotItemID = new int[24];
 
     //public static Production instance;
     public GameObject[] itemMaterials = new GameObject[6];
@@ -15,11 +15,6 @@ public class Production : MonoBehaviour
 
     private void Awake()
     {
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //}
-
         recipeSet = CSVReader.Read("CSV/Item/ProductionRecipe");
 
         InsertItemIDInArray();
@@ -43,12 +38,12 @@ public class Production : MonoBehaviour
                 (int)recipeSet[i][readProductionRecipeCSVRow[4]] == productionSlotItemID[4] &&
                 (int)recipeSet[i][readProductionRecipeCSVRow[5]] == productionSlotItemID[5])
             {
-                UIGeneralManager.instance.productionSelectButton.sprite = UIGeneralManager.instance.productionSelectButtonOn;
+                //UIGeneralManager.instance.productionRecipeImage.sprite = UIGeneralManager.instance.productionRecipeOn;
                 break;
             }
             else
             {
-                UIGeneralManager.instance.productionSelectButton.sprite = UIGeneralManager.instance.productionSelectButtonOff;
+                UIGeneralManager.instance.productionRecipeImage.sprite = UIGeneralManager.instance.productionRecipeOff;
             }
         }
     }

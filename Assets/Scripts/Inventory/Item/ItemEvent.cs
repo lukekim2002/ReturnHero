@@ -127,23 +127,7 @@ public class ItemEvent : MonoBehaviour
                     ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
                 }
             }
-            else if (_slot.slotType == 3)
-            {
-                // 슬롯이 비어 있다면
-                if (Inventory.instance.enteredItemSlot.item.itemID == 0)
-                {
-                    ChangeItemData(0);
-                    if (Inventory.instance.enteredItemSlot.slotType == 4)
-                    {
-                        CallBackCheckMaterialItems();
-                    }
-                }
-                else
-                {
-                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                }
-            }
-            else if (_slot.slotType == 4)
+            else if (_slot.slotType >= 3)
             {
                 // 슬롯이 비어 있다면
                 if (Inventory.instance.enteredItemSlot.item.itemID == 0)
@@ -154,11 +138,8 @@ public class ItemEvent : MonoBehaviour
                 {
                     ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
                 }
-                CallBackCheckMaterialItems();
-
             }
         }
-
 
         Inventory.instance.enteredItemSlot = null;
     }
@@ -212,14 +193,5 @@ public class ItemEvent : MonoBehaviour
     {
         if (_slot.slotType >= 3)
             isItemInProduction = true;
-    }
-
-    private void CallBackCheckMaterialItems()
-    {
-        if (isItemInProduction)
-        {
-            UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
-            isItemInProduction = false;
-        }
     }
 }

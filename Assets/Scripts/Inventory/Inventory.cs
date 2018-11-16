@@ -148,6 +148,7 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
     }
 
     public void AddEquiment(int mItemID)

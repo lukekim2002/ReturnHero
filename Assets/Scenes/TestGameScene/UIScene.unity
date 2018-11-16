@@ -2654,10 +2654,17 @@ MonoBehaviour:
   optionCanvas: {fileID: 494083282}
   map: {fileID: 1427952812}
   shadowPanel: {fileID: 1248102944}
-  productionSelectButton: {fileID: 1978923500}
-  productionSelectButtonOn: {fileID: 21300000, guid: e78599188babc6e4c83682189b642f09,
-    type: 3}
-  productionSelectButtonOff: {fileID: 21300000, guid: 0335e2bac33c425408c2bf5f86ff3629,
+  productionRecipeImage:
+  - {fileID: 1062612721}
+  - {fileID: 850968053}
+  - {fileID: 2015232760}
+  - {fileID: 1691374251}
+  - {fileID: 496111151}
+  - {fileID: 974003276}
+  - {fileID: 1055151821}
+  - {fileID: 379446468}
+  productionRecipeOn: {fileID: 21300000, guid: e6783c435415aa84a8c278a7af48b25e, type: 3}
+  productionRecipeOff: {fileID: 21300000, guid: 59ccab084e4d83d47a658a80d61cfc6a,
     type: 3}
   skill_Space_CoolTimeClass: {fileID: 71794559}
   skill_E_CoolTimeClass: {fileID: 773007381}
@@ -5058,7 +5065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -35, y: 0}
+  m_AnchoredPosition: {x: 323, y: 0}
   m_SizeDelta: {x: 1024, y: 576}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1225559343
@@ -5954,7 +5961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1284592471
 RectTransform:
   m_ObjectHideFlags: 0
