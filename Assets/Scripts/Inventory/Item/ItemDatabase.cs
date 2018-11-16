@@ -7,7 +7,6 @@ public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
     public List<Dictionary<string, object>> itemSet;
-    // public List<Item> items = new List<Item>();
 
     private string _itemName;
     private int _itemID;

@@ -22,7 +22,10 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas inventoryCanvas;
     public Canvas optionCanvas;
     public Image map;
-    public Image shadowPanel;   
+    public Image shadowPanel;
+    public Image productionSelectButton;
+    public Sprite productionSelectButtonOn;
+    public Sprite productionSelectButtonOff;
 
     public SkillCoolTimeClass skill_Space_CoolTimeClass;
     public SkillCoolTimeClass skill_E_CoolTimeClass;

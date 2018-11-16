@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 3
+  slotType: 4
   item:
     itemID: 0
     itemCount: 0
@@ -2654,6 +2654,11 @@ MonoBehaviour:
   optionCanvas: {fileID: 494083282}
   map: {fileID: 1427952812}
   shadowPanel: {fileID: 1248102944}
+  productionSelectButton: {fileID: 1978923500}
+  productionSelectButtonOn: {fileID: 21300000, guid: e78599188babc6e4c83682189b642f09,
+    type: 3}
+  productionSelectButtonOff: {fileID: 21300000, guid: 0335e2bac33c425408c2bf5f86ff3629,
+    type: 3}
   skill_Space_CoolTimeClass: {fileID: 71794559}
   skill_E_CoolTimeClass: {fileID: 773007381}
   skill_MR_CoolTimeClass: {fileID: 2015887989}
@@ -4685,7 +4690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 3
+  slotType: 4
   item:
     itemID: 0
     itemCount: 0
@@ -5053,7 +5058,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: 0}
+  m_AnchoredPosition: {x: -35, y: 0}
   m_SizeDelta: {x: 1024, y: 576}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1225559343
@@ -5566,7 +5571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 3
+  slotType: 4
   item:
     itemID: 0
     itemCount: 0
@@ -5949,7 +5954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1284592471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6291,7 +6296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 3
+  slotType: 4
   item:
     itemID: 0
     itemCount: 0
@@ -7938,7 +7943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 3
+  slotType: 4
   item:
     itemID: 0
     itemCount: 0
@@ -10003,7 +10008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 3
+  slotType: 4
   item:
     itemID: 0
     itemCount: 0

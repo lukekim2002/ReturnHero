@@ -133,16 +133,34 @@ public class ItemEvent : MonoBehaviour
                 if (Inventory.instance.enteredItemSlot.item.itemID == 0)
                 {
                     ChangeItemData(0);
+                    if (Inventory.instance.enteredItemSlot.slotType == 4)
+                    {
+                        CallBackCheckMaterialItems();
+                    }
                 }
                 else
                 {
                     ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
                 }
             }
-            print("Inventory Swap!");
+            else if (_slot.slotType == 4)
+            {
+                // 슬롯이 비어 있다면
+                if (Inventory.instance.enteredItemSlot.item.itemID == 0)
+                {
+                    ChangeItemData(0);
+                }
+                else
+                {
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                }
+                CallBackCheckMaterialItems();
+
+            }
         }
 
-        CallBackCheckMaterialItes();
+
+        Inventory.instance.enteredItemSlot = null;
     }
 
     public void PointerEnterItem()
@@ -192,14 +210,15 @@ public class ItemEvent : MonoBehaviour
 
     public void InsetInProductionSlot()
     {
-        isItemInProduction = true;
+        if (_slot.slotType >= 3)
+            isItemInProduction = true;
     }
 
-    private void CallBackCheckMaterialItes()
+    private void CallBackCheckMaterialItems()
     {
         if (isItemInProduction)
         {
-            Production.instance.CheckMaterialItems();
+            UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
             isItemInProduction = false;
         }
     }
