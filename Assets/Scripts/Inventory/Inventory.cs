@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class Inventory : MonoBehaviour
     public RectTransform itemSlot;
     public RectTransform accessroySlot;
     public RectTransform draggedItem;
+    public Dictionary<int, int> inventoryItemIDCount = new Dictionary<int, int>();
     public List<Slot> itemSlotScripts = new List<Slot>();
     public List<Slot> accessorySlotScripts = new List<Slot>();
     public Slot weaponSlotScripts;
@@ -92,27 +94,41 @@ public class Inventory : MonoBehaviour
         }
 
         // weaponSlot의 Slot 컴포넌트
-        weaponSlotScripts = weaponSlot.GetComponent<Slot>();
+        weaponSlotScripts = weaponSlot.GetComponent<Slot>(); 
 
         ItemAddTestMethodCall();
     }
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            AddItem(5);
-        }
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    AddItem(5);
+        //}
 
-        for (int i = 0; i < 5; i++)
-        {
-            AddEquiment(1);
-            AddEquiment(2);
-            AddEquiment(3);
-            AddEquiment(4);
-        }
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    AddEquiment(1);
+        //    AddEquiment(2);
+        //    AddEquiment(3);
+        //    AddEquiment(4);
+        //}
 
-        itemSlotScripts[3].RemoveOneItem();
+        AddEquiment(1);
+        AddEquiment(1);
+        AddEquiment(3);
+        AddEquiment(3);
+        AddEquiment(4);
+        AddEquiment(4);
+        AddEquiment(2);
+        AddEquiment(2);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        RemoveItemIDCount(itemSlotScripts[0]);
     }
 
     // Item 추가
@@ -148,6 +164,9 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
+
+        InsertItemIDCount(mItemID);
+
         UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
     }
 
@@ -166,6 +185,10 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
+
+        InsertItemIDCount(mItemID);
+
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
     }
 
     // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
@@ -213,5 +236,30 @@ public class Inventory : MonoBehaviour
             else
                 slot.InitSlotItemCount();
         }
+    }
+
+    public void InsertItemIDCount(int mItem)
+    {
+        if (!inventoryItemIDCount.ContainsKey(mItem))
+        {
+            inventoryItemIDCount.Add(mItem, 1);
+        }
+        else
+        {
+            inventoryItemIDCount[mItem]++;
+        }
+    }
+
+    public void RemoveItemIDCount(Slot slot)
+    {
+        if (inventoryItemIDCount[slot.item.itemID] > 0)
+        {
+            inventoryItemIDCount[slot.item.itemID]--;
+        }
+        else if (inventoryItemIDCount[slot.item.itemID] == 0)
+        {
+            inventoryItemIDCount.Remove(slot.item.itemID);
+        }
+        slot.RemoveOneItem();
     }
 }

@@ -73,6 +73,12 @@ public class ProductionListEvent : MonoBehaviour
         weaponButton.GetComponent<Image>().sprite = weaponOnImage;
         potionButton.GetComponent<Image>().sprite = potionOffImage;
 
+        var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
+        productionComponent.productionItemType = 1;
+        UIGeneralManager.instance.productionWeaponViewportContent.gameObject.SetActive(true);
+        UIGeneralManager.instance.productionPotionViewportContent.gameObject.SetActive(false);
+        productionComponent.CheckMaterialItems();
+
         OnClickProductionListButton();
     }
 
@@ -81,6 +87,12 @@ public class ProductionListEvent : MonoBehaviour
     {
         weaponButton.GetComponent<Image>().sprite = weaponOffImage;
         potionButton.GetComponent<Image>().sprite = potionOnImage;
+
+        var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
+        productionComponent.productionItemType = 2;
+        UIGeneralManager.instance.productionPotionViewportContent.gameObject.SetActive(true);
+        UIGeneralManager.instance.productionWeaponViewportContent.gameObject.SetActive(false);
+        productionComponent.CheckMaterialItems();
 
         OnClickProductionListButton();
     }

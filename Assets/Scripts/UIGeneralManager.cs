@@ -23,7 +23,6 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas optionCanvas;
     public Image map;
     public Image shadowPanel;
-    public Image[] productionRecipeImage;
     public Sprite productionRecipeOn;
     public Sprite productionRecipeOff;
 
@@ -31,6 +30,9 @@ public class UIGeneralManager : MonoBehaviour
     public SkillCoolTimeClass skill_E_CoolTimeClass;
     public SkillCoolTimeClass skill_MR_CoolTimeClass;
     public SkillCoolTimeClass skill_R_CoolTimeClass;
+
+    public RectTransform productionWeaponViewportContent;
+    public RectTransform productionPotionViewportContent;
 
     private const int FULLSCREEN = 2;
     private const int BRIGHTNESS = 3;

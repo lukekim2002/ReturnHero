@@ -95,7 +95,7 @@ public class ItemEvent : MonoBehaviour
         }
 
         // 바꿀 슬롯이 Item 슬롯이라면
-        else if (Inventory.instance.enteredItemSlot.slotType >= 3)
+        else if (Inventory.instance.enteredItemSlot.slotType == 3)
         {
             if (_slot.slotType == 1)
             {
@@ -127,7 +127,7 @@ public class ItemEvent : MonoBehaviour
                     ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
                 }
             }
-            else if (_slot.slotType >= 3)
+            else if (_slot.slotType == 3)
             {
                 // 슬롯이 비어 있다면
                 if (Inventory.instance.enteredItemSlot.item.itemID == 0)
