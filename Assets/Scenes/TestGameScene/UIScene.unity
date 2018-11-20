@@ -2111,7 +2111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.88944715, y: 1}
-  m_AnchoredPosition: {x: -0.000037520873, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 22, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &763109659
@@ -2685,8 +2685,8 @@ MonoBehaviour:
   skill_E_CoolTimeClass: {fileID: 773007381}
   skill_MR_CoolTimeClass: {fileID: 2015887989}
   skill_R_CoolTimeClass: {fileID: 1983808582}
-  productionWeaponViewportContent: {fileID: 1509254839}
-  productionPotionViewportContent: {fileID: 751409252}
+  productionWeaponViewport: {fileID: 1375000269}
+  productionPotionViewport: {fileID: 582796371}
 --- !u!1 &777654046
 GameObject:
   m_ObjectHideFlags: 0
@@ -7203,7 +7203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.88944715, y: 1}
-  m_AnchoredPosition: {x: -0.000037520873, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 22, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1514859840

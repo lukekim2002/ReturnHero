@@ -75,8 +75,13 @@ public class ProductionListEvent : MonoBehaviour
 
         var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
         productionComponent.productionItemType = 1;
-        UIGeneralManager.instance.productionWeaponViewportContent.gameObject.SetActive(true);
-        UIGeneralManager.instance.productionPotionViewportContent.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(true);
+        UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
+            = UIGeneralManager.instance.productionWeaponViewport.GetChild(0).GetComponent<RectTransform>();
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
+             = UIGeneralManager.instance.productionWeaponViewport;
+
         productionComponent.CheckMaterialItems();
 
         OnClickProductionListButton();
@@ -90,8 +95,12 @@ public class ProductionListEvent : MonoBehaviour
 
         var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
         productionComponent.productionItemType = 2;
-        UIGeneralManager.instance.productionPotionViewportContent.gameObject.SetActive(true);
-        UIGeneralManager.instance.productionWeaponViewportContent.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(true);
+        UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
+            = UIGeneralManager.instance.productionPotionViewport.GetChild(0).GetComponent<RectTransform>();
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
+            = UIGeneralManager.instance.productionPotionViewport;
         productionComponent.CheckMaterialItems();
 
         OnClickProductionListButton();

@@ -17,6 +17,7 @@ public class Production : MonoBehaviour
     public List<int> recipeIndex = new List<int>();
     public List<Dictionary<string, object>> recipeSet;
     public Dictionary<int, int> productionRecipeDictionary = new Dictionary<int, int>();
+    // 
     public List<int> productionRecipeKey = new List<int>();
     // 1 = Weapon, 2 = Potion
     public int productionItemType = 1;
@@ -31,11 +32,12 @@ public class Production : MonoBehaviour
 
     private void Start()
     {
+        // Weapon Recipe Image 배치
         for (int i = 0; i < ProductionRecipeSpriteManager.instance.productionWeaponSprite.Length; i++)
         {
             RectTransform productionRecipeSlotPrefabs = Instantiate(productionRecipeSlot);
 
-            productionRecipeSlotPrefabs.SetParent(UIGeneralManager.instance.productionWeaponViewportContent);
+            productionRecipeSlotPrefabs.SetParent(UIGeneralManager.instance.productionWeaponViewport.GetChild(0));
             productionRecipeSlotPrefabs.localScale = new Vector2(1, 1);
 
             Vector2 newSlotPos = productionRecipeSlot.position;
@@ -51,11 +53,12 @@ public class Production : MonoBehaviour
             productionImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
         }
 
+        // Potion Recipe Image 배치
         for (int i = 0; i < ProductionRecipeSpriteManager.instance.productionPotionSprite.Length; i++)
         {
             RectTransform productionRecipeSlotPrefabs = Instantiate(productionRecipeSlot);
 
-            productionRecipeSlotPrefabs.SetParent(UIGeneralManager.instance.productionPotionViewportContent);
+            productionRecipeSlotPrefabs.SetParent(UIGeneralManager.instance.productionPotionViewport.GetChild(0));
             productionRecipeSlotPrefabs.localScale = new Vector2(1, 1);
 
             Vector2 newSlotPos = productionRecipeSlot.position;
@@ -73,13 +76,13 @@ public class Production : MonoBehaviour
 
         if (productionItemType == 1)
         {
-            UIGeneralManager.instance.productionWeaponViewportContent.gameObject.SetActive(true);
-            UIGeneralManager.instance.productionPotionViewportContent.gameObject.SetActive(false);
+            UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(true);
+            UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(false);
         }
         else
         {
-            UIGeneralManager.instance.productionPotionViewportContent.gameObject.SetActive(true);
-            UIGeneralManager.instance.productionWeaponViewportContent.gameObject.SetActive(false);
+            UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(true);
+            UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(false);
         }
     }
 
@@ -132,7 +135,7 @@ public class Production : MonoBehaviour
                                     productionWeaponRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOn;
                                 }
                             }
-                            else
+                            else if (productionItemType == 2)
                             {
                                 if (productionPotionRecpieList[k].sprite != UIGeneralManager.instance.productionRecipeOn)
                                 {
@@ -160,13 +163,14 @@ public class Production : MonoBehaviour
     {
         countProductionType = 0;
 
+        recipeIndex.Clear();
+
         for (int i = 0; i < recipeSet.Count; i++)
         {
             if (productionItemType == (int)recipeSet[i]["ProuctionType"])
             {
                 countProductionType++;
                 recipeIndex.Add(i);
-
             }
         }
     }
