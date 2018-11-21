@@ -128,7 +128,6 @@ public class Inventory : MonoBehaviour
         AddItem(5);
         AddItem(5);
         AddItem(5);
-        RemoveItemIDCount(itemSlotScripts[0]);
     }
 
     // Item 추가
@@ -182,13 +181,13 @@ public class Inventory : MonoBehaviour
                 // 인벤토리에 아이템 이미지를 뿌림
                 itemSlotScripts[i].SetSlotImage();
 
+                InsertItemIDCount(mItemID);
+
+                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+
                 break;
             }
         }
-
-        InsertItemIDCount(mItemID);
-
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
     }
 
     // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
@@ -250,16 +249,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveItemIDCount(Slot slot)
+    public void RemoveItemIDCount(int mItem)
     {
-        if (inventoryItemIDCount[slot.item.itemID] > 0)
+        if (inventoryItemIDCount[mItem] > 0)
         {
-            inventoryItemIDCount[slot.item.itemID]--;
+            inventoryItemIDCount[mItem]--;
         }
-        else if (inventoryItemIDCount[slot.item.itemID] == 0)
+        else if (inventoryItemIDCount[mItem] == 0)
         {
-            inventoryItemIDCount.Remove(slot.item.itemID);
+            inventoryItemIDCount.Remove(mItem);
         }
-        slot.RemoveOneItem();
+        itemSlotScripts[mItem].RemoveOneItem();
+
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
     }
 }

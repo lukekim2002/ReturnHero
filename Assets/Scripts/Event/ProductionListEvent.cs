@@ -74,7 +74,8 @@ public class ProductionListEvent : MonoBehaviour
         potionButton.GetComponent<Image>().sprite = potionOffImage;
 
         var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
-        productionComponent.productionItemType = 1;
+        productionComponent.productionItemType = 0;
+        productionComponent.recipeSet = productionComponent.weaponRecipeSet;
         UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(true);
         UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(false);
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
@@ -94,7 +95,8 @@ public class ProductionListEvent : MonoBehaviour
         potionButton.GetComponent<Image>().sprite = potionOnImage;
 
         var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
-        productionComponent.productionItemType = 2;
+        productionComponent.productionItemType = 1;
+        productionComponent.recipeSet = productionComponent.potionRecipeSet;
         UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(true);
         UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(false);
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content

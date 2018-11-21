@@ -23,8 +23,14 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas optionCanvas;
     public Image map;
     public Image shadowPanel;
+    public Image[] productionMaterialsItemSlot;
+    public Image productionSelect;
+    public Image afterProductionImage;
+
     public Sprite productionRecipeOn;
     public Sprite productionRecipeOff;
+    public Sprite productionSelectOn;
+    public Sprite productionSelectOff;
 
     public SkillCoolTimeClass skill_Space_CoolTimeClass;
     public SkillCoolTimeClass skill_E_CoolTimeClass;
