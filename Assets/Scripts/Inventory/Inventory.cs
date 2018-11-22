@@ -116,10 +116,6 @@ public class Inventory : MonoBehaviour
 
         AddEquiment(1);
         AddEquiment(1);
-        AddEquiment(3);
-        AddEquiment(3);
-        AddEquiment(4);
-        AddEquiment(4);
         AddEquiment(2);
         AddEquiment(2);
         AddItem(5);
@@ -128,6 +124,10 @@ public class Inventory : MonoBehaviour
         AddItem(5);
         AddItem(5);
         AddItem(5);
+        AddEquiment(1);
+        AddEquiment(1);
+        AddEquiment(2);
+        AddEquiment(2);
     }
 
     // Item 추가
@@ -249,17 +249,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveItemIDCount(int mItem)
+    public void RemoveItemIDCount(int mItemID, int index)
     {
-        if (inventoryItemIDCount[mItem] > 0)
+        if (inventoryItemIDCount[mItemID] > 0)
         {
-            inventoryItemIDCount[mItem]--;
+            inventoryItemIDCount[mItemID]--;
         }
-        else if (inventoryItemIDCount[mItem] == 0)
+        else if (inventoryItemIDCount[mItemID] == 0)
         {
-            inventoryItemIDCount.Remove(mItem);
+            inventoryItemIDCount.Remove(mItemID);
         }
-        itemSlotScripts[mItem].RemoveOneItem();
+
+        itemSlotScripts[index].RemoveOneItem();
 
         UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
     }

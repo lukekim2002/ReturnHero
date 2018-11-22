@@ -30,7 +30,7 @@ public class Production : MonoBehaviour
     public int productionItemType = 0;
     public int afterProductionItemID;
     public RectTransform productionRecipeSlot;
-
+    public List<int> productionMaterialItemsID = new List<int>();
     #endregion
 
     private void Awake()
@@ -119,7 +119,7 @@ public class Production : MonoBehaviour
                 {
                     continue;
                 }
-                // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 0이 아니라면 계속 검사.
+                // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 0이 아니라면
                 else
                 {
                     // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 productionRecipeDictinary에 들어가지 않았다면
@@ -145,60 +145,51 @@ public class Production : MonoBehaviour
                 // Inventory의 inventoryITemIDCount의 키에 productionRecipeKey[k]가 있다면
                 if (Inventory.instance.inventoryItemIDCount.ContainsKey(productionRecipeKey[k]))
                 {
+                    // 아이템에 있는 제작 재료의 개수가 레시피에 필요한 제작 개수보다 많거나 같으면
                     if (Inventory.instance.inventoryItemIDCount[productionRecipeKey[k]] >= productionRecipeDictionary[productionRecipeKey[k]])
                     {
+                        // 끝까지 검사를 다 했고 조건에 맞는다면
                         if (k == productionRecipeKey.Count - 1)
                         {
                             if (productionItemType == 0)
                             {
-                                productionWeaponRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOn;
-                                productionWeaponRecpieList[k].GetComponent<Button>().enabled = true;
+                                productionWeaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOn;
+                                productionWeaponRecpieList[i].GetComponent<Button>().enabled = true;
                             }
                             else if (productionItemType == 1)
                             {
-                                productionPotionRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOn;
-                                productionPotionRecpieList[k].GetComponent<Button>().enabled = true;
+                                productionPotionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOn;
+                                productionPotionRecpieList[i].GetComponent<Button>().enabled = true;
                             }
-                            else
-                            {
-                                if (productionItemType == 0)
-                                {
-                                    productionWeaponRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOff;
-                                    productionWeaponRecpieList[k].GetComponent<Button>().enabled = false;
-                                }
-                                else if (productionItemType == 1)
-                                {
-                                    productionPotionRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOff;
-                                    productionPotionRecpieList[k].GetComponent<Button>().enabled = false;
-                                }
-                            }
+                            break;
                         }
                     }
                     else
                     {
                         if (productionItemType == 0)
                         {
-                            productionWeaponRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOff;
-                            productionWeaponRecpieList[k].GetComponent<Button>().enabled = false;
+                            productionWeaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                            productionWeaponRecpieList[i].GetComponent<Button>().enabled = false;
                         }
                         else if (productionItemType == 1)
                         {
-                            productionPotionRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOff;
-                            productionPotionRecpieList[k].GetComponent<Button>().enabled = false;
+                            productionPotionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                            productionPotionRecpieList[i].GetComponent<Button>().enabled = false;
                         }
+                        break;
                     }
                 }
                 else
                 {
                     if (productionItemType == 0)
                     {
-                        productionWeaponRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOff;
-                        productionWeaponRecpieList[k].GetComponent<Button>().enabled = false;
+                        productionWeaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                        productionWeaponRecpieList[i].GetComponent<Button>().enabled = false;
                     }
                     else if (productionItemType == 1)
                     {
-                        productionPotionRecpieList[k].sprite = UIGeneralManager.instance.productionRecipeOff;
-                        productionPotionRecpieList[k].GetComponent<Button>().enabled = false;
+                        productionPotionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                        productionPotionRecpieList[i].GetComponent<Button>().enabled = false;
                     }
                     break;
                 }
