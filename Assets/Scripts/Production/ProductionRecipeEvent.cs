@@ -42,8 +42,8 @@ public class ProductionRecipeEvent : MonoBehaviour
 
         isSelectOn = true;
     }
-
-    //TODO : Ciga 만드는 거 좀 더 섬세하게
+     
+    // TODO : Ciga 만드는 거 좀 더 섬세하게
     public void OnClickProductionSelect()
     {
         if (isSelectOn)
@@ -71,6 +71,12 @@ public class ProductionRecipeEvent : MonoBehaviour
                         if (Inventory.instance.itemSlotScripts[i].item.itemID == production.productionMaterialItemsID[j])
                         {
                             Inventory.instance.RemoveItemIDCount(Inventory.instance.itemSlotScripts[i].item.itemID, i);
+                            production.productionMaterialItemsID.RemoveAt(j);
+                            // 수량이 있는 아이템이라면
+                            if (Inventory.instance.itemSlotScripts[i].item.itemCount > 1)
+                            {
+                                i++;
+                            }
                             break;
                         }
                     }
@@ -83,7 +89,6 @@ public class ProductionRecipeEvent : MonoBehaviour
                 Inventory.instance.AddItem((int)production.recipeSet[production.afterProductionItemID]["ProductionItemID"]);
 
             production.productionMaterialItemsID.Clear();
-
         }
     }
 }
