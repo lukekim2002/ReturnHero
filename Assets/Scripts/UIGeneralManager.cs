@@ -32,6 +32,7 @@ public class UIGeneralManager : MonoBehaviour
     public Sprite productionRecipeOff;
     public Sprite productionSelectOn;
     public Sprite productionSelectOff;
+    public Animator productionSuccessAnimation;
 
     public SkillCoolTimeClass skill_Space_CoolTimeClass;
     public SkillCoolTimeClass skill_E_CoolTimeClass;

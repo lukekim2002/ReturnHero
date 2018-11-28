@@ -43,7 +43,6 @@ public class ProductionRecipeEvent : MonoBehaviour
         isSelectOn = true;
     }
      
-    // TODO : Ciga 만드는 거 좀 더 섬세하게
     public void OnClickProductionSelect()
     {
         if (isSelectOn)
@@ -57,7 +56,6 @@ public class ProductionRecipeEvent : MonoBehaviour
             isSelectOn = false;
             UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOff;
 
-            // TODO : 인벤토리에서 아이템 제거해야 한다.   
             for (int i = Inventory.instance.itemSlotScripts.Count - 1; i >= 0; i--)
             {
                 if (Inventory.instance.itemSlotScripts[i].item.itemID == 0)
@@ -89,6 +87,22 @@ public class ProductionRecipeEvent : MonoBehaviour
                 Inventory.instance.AddItem((int)production.recipeSet[production.afterProductionItemID]["ProductionItemID"]);
 
             production.productionMaterialItemsID.Clear();
+            StartCoroutine(ProductionSuccessAnimationPlay());
+
         }
+
+    }
+
+    private IEnumerator ProductionSuccessAnimationPlay()
+    {
+        UIGeneralManager.instance.productionSuccessAnimation.gameObject.SetActive(true);
+
+        while (UIGeneralManager.instance.productionSuccessAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.98f)
+        {
+            yield return null;
+        }
+
+        UIGeneralManager.instance.productionSuccessAnimation.gameObject.SetActive(false);
+
     }
 }
