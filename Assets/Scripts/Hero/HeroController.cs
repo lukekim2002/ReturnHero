@@ -243,6 +243,9 @@ public class HeroController : MonoBehaviour
                 _heroAnimator.SetFloat("actionY", direction.y);
 
                 UIGeneralManager.instance.skill_MR_CoolTimeClass.enabled = true;
+
+                GameGeneralManager.instance.mainCamera.GetComponent<CameraShake>().DoShake();
+
             }
         }
         #endregion
@@ -376,6 +379,5 @@ public class HeroController : MonoBehaviour
     {
 
     }
-
     #endregion
 }

@@ -116,18 +116,15 @@ public class Inventory : MonoBehaviour
 
         AddEquiment(1);
         AddEquiment(1);
-        AddEquiment(2);
-        AddEquiment(2);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
         AddEquiment(1);
         AddEquiment(1);
         AddEquiment(2);
-        AddEquiment(2);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
+        AddItem(5);
     }
 
     // Item 추가

@@ -21,6 +21,7 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas productionCanvas;
     public Canvas inventoryCanvas;
     public Canvas optionCanvas;
+
     public Image map;
     public Image shadowPanel;
     public Image[] productionMaterialsItemSlot;
@@ -114,8 +115,9 @@ public class UIGeneralManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             isInventoryOpened = !isInventoryOpened;
-            inventoryCanvas.gameObject.SetActive(isInventoryOpened);
+
             productionCanvas.gameObject.SetActive(isInventoryOpened);
+            inventoryCanvas.gameObject.SetActive(isInventoryOpened);
         }
     }
 
