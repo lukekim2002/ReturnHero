@@ -357,7 +357,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: -0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -61229,7 +61229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1620714554}
   - component: {fileID: 1620714553}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Minimap Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61460,7 +61460,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1214280467385892, guid: f318fb2a48d154d429ddfdfc291d11e9, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f318fb2a48d154d429ddfdfc291d11e9, type: 2}
@@ -61532,7 +61532,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 2.88
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

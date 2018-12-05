@@ -77,7 +77,6 @@ public class GateKeeperClass : MonsterBase {
         if(isAttacking == false)
             myDirection = myBase.direction;
 
-
         if (myAction == Action.Idle && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 0);
@@ -132,8 +131,6 @@ public class GateKeeperClass : MonsterBase {
         _isMeleeAttackReady = true;
         _isSkill1AttackReady = true;
         _isSkill2AttackReady = true;
-
-
     }
 
     public override void AttackMelee()
