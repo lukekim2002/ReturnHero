@@ -144,7 +144,5 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         throw new System.NotImplementedException();
     }
-    #endregion
-
- 
+    #endregion 
 }
