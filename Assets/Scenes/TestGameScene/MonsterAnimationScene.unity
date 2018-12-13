@@ -59934,6 +59934,10 @@ GameObject:
   - component: {fileID: 847478764}
   - component: {fileID: 847478765}
   - component: {fileID: 847478766}
+  - component: {fileID: 847478770}
+  - component: {fileID: 847478769}
+  - component: {fileID: 847478768}
+  - component: {fileID: 847478767}
   m_Layer: 0
   m_Name: Manticore_Attack_RedLine
   m_TagString: Untagged
@@ -60018,6 +60022,74 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!68 &847478767
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847478763}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -5.23, y: -4.605}
+  - {x: 5.23, y: -4.605}
+--- !u!68 &847478768
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847478763}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -5.23, y: -4.605}
+  - {x: 5.23, y: -4.605}
+--- !u!68 &847478769
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847478763}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -5.23, y: -4.605}
+  - {x: 5.23, y: -4.605}
+--- !u!68 &847478770
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847478763}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -5.23, y: -4.605}
+  - {x: 5.23, y: -4.605}
 --- !u!1 &875879016
 GameObject:
   m_ObjectHideFlags: 0
@@ -60904,8 +60976,8 @@ BoxCollider2D:
   m_Offset: {x: -1.225, y: 0.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.71147543, y: 0.34355828}
-    oldSize: {x: 3.05, y: 1.63}
+    pivot: {x: 0.5, y: 0.23021583}
+    oldSize: {x: 1.96, y: 1.39}
     newSize: {x: 1.79, y: 1.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
