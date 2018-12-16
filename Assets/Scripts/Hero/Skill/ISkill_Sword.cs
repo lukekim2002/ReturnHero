@@ -45,8 +45,6 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     #region Mouse Right Button Methods
     void ISkillInterface.Skill_MR_Ready()
     {
-        skillMREffect.SetActive(true);
-
         Vector2 heroPos = transform.position;
         heroPos += _heroController.direction * 0.09f;
         this.transform.position = heroPos;
@@ -61,11 +59,11 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
         else if (direction == Vector2.left) i = (int)Skill_MR.LEFT;
         else if (direction == Vector2.right) i = (int)Skill_MR.RIGHT;
 
-        colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
-        colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
-        HeroGeneralManager.instance.SetAttackColliderActive();
-        HeroGeneralManager.instance.atkCollider.size = colliderSize;
-        HeroGeneralManager.instance.atkCollider.offset = colliderOffset;
+        //colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
+        //colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
+        //HeroGeneralManager.instance.SetAttackColliderActive();
+        //HeroGeneralManager.instance.atkCollider.size = colliderSize;
+        //HeroGeneralManager.instance.atkCollider.offset = colliderOffset;
 
         Vector2 heroPos = transform.position;
 
@@ -76,12 +74,14 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     void ISkillInterface.Skill_MR_EffectOn()
     {
         Skill_MR_EffectManager.isSkillMr = true;
+        skillMREffect.SetActive(true);
         skillMREffect.transform.position = this.transform.position;
     }
 
     void ISkillInterface.Skill_MR_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAnimator.SetFloat("actionX", _heroController.direction.x);
         _heroAnimator.SetFloat("actionY", _heroController.direction.y);
@@ -153,6 +153,7 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
 
         colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
         colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
+
         HeroGeneralManager.instance.SetAttackColliderActive();
         HeroGeneralManager.instance.atkCollider.size = colliderSize;
         HeroGeneralManager.instance.atkCollider.offset = colliderOffset;
@@ -164,6 +165,7 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     void ISkillInterface.Skill_E_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAnimator.SetFloat("actionX", _heroController.direction.x);
         _heroAnimator.SetFloat("actionY", _heroController.direction.y);
@@ -192,12 +194,6 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
         else if (direction == Vector2.left) i = (int)Skill_R.LEFT;
         else if (direction == Vector2.right) i = (int)Skill_R.RIGHT;
 
-        colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
-        colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
-        HeroGeneralManager.instance.SetAttackColliderActive();
-        HeroGeneralManager.instance.atkCollider.size = colliderSize;
-        HeroGeneralManager.instance.atkCollider.offset = colliderOffset;
-
         Vector2 heroPos = transform.position;
 
         heroPos += direction * 0.18f;
@@ -207,12 +203,21 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
     void ISkillInterface.Skill_R_EffectOn()
     {
         Skill_R_EffectManager.isSkillR = true;
+
+        colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
+        colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
+        HeroGeneralManager.instance.SetAttackColliderActive();
+        HeroGeneralManager.instance.atkCollider.size = colliderSize;
+        HeroGeneralManager.instance.atkCollider.offset = colliderOffset;
+
+        skillREffect.SetActive(true);
         skillREffect.transform.position = this.transform.position;
     }
 
     void ISkillInterface.Skill_R_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAnimator.SetFloat("actionX", _heroController.direction.x);
         _heroAnimator.SetFloat("actionY", _heroController.direction.y);

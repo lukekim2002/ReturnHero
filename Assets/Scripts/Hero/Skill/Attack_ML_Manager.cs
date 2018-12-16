@@ -87,7 +87,6 @@ public class Attack_ML_Manager : MonoBehaviour
             this.transform.position = heroPos;
         }
 
-        colliderSize = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Size_Height"]);
         colliderOffset = new Vector2((float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Width"], (float)HeroGeneralManager.instance.heroAttackCollierSet[i]["Offset_Height"]);
         HeroGeneralManager.instance.SetAttackColliderActive();
         HeroGeneralManager.instance.atkCollider.size = colliderSize;
@@ -108,6 +107,7 @@ public class Attack_ML_Manager : MonoBehaviour
     private void AttackEnd()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;
+        HeroController.heroAttackState = HeroController.HEROATTACKSTATE.NONE;
 
         _heroAttackState = 1;
         _heroAttackCount = 0;

@@ -35,9 +35,6 @@ public class HeroAttackCollider : MonoBehaviour
                 isAttackingAlready = false;
                 return;
             }
-
-            
         }
-        
     }
 }

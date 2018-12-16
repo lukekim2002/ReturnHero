@@ -1,0 +1,10 @@
+Name,ID,Desc,ItemType,OffensePower,DefensePower
+EmptyWeapon,-2,Null,1,0,0
+EmptyAccessory,-1,Null,2,0,0
+EmptyItem,0,Null,3,0,0
+Bronze Sword,1,Basic Weapon,1,10,0
+Silver Sword,2,Basic Weapon,1,20,0
+Bronze Ring,3,Basic Accessory,2,0,10
+Silver Ring,4,Basic Accessory,2,0,15
+Book,5,Basic Misc,3,0,0
+Ciga,6,Basic Misc,3,0,0

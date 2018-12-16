@@ -6,6 +6,8 @@ public class Skill_R_EffectManager : MonoBehaviour {
 
     #region PRIVATE
     private Animator _skill_R_Animator;
+    private Transform _heroObject;
+    private SpriteRenderer _Skill_R_Sprite;
     #endregion
 
     #region PUBLIC
@@ -14,17 +16,20 @@ public class Skill_R_EffectManager : MonoBehaviour {
     static public bool isSkillR = false;
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
         _skill_R_Animator = GetComponent<Animator>();
-    }
+        _Skill_R_Sprite = GetComponent<SpriteRenderer>();
 
-    // Update is called once per frame
-    void Update()
-    {
+        // MR Effect의 부모 오브젝트를 저장
+        _heroObject = this.transform.parent;
+        // 부모 오브젝트 좌표를 MR Effect에 설정
+        this.transform.position = _heroObject.position;
+        // MR Effect의 부모 오브젝트를 MR Effect의 부모오브젝트의 부모오브젝트로 바꾼다. (Skeleton에서 해제한다.)
+        this.transform.parent = this.transform.parent.parent;
+
         if (isSkillR)
         {
-            this.GetComponent<Renderer>().enabled = true;
 
             if (attackDirection == ATTACKDIRECTION.UP)
             {
@@ -43,12 +48,18 @@ public class Skill_R_EffectManager : MonoBehaviour {
                 _skill_R_Animator.SetTrigger("SkillRDown");
             }
         }
+        this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    private void EndSkillMrEffect()
+    private void EndSkillREffect()
     {
         attackDirection = ATTACKDIRECTION.NONE;
         isSkillR = false;
-        this.GetComponent<Renderer>().enabled = false;
+        transform.parent = _heroObject;
+
+        _Skill_R_Sprite.enabled = false;
+        _Skill_R_Sprite.sprite = null;
+
+        this.gameObject.SetActive(false);
     }
 }

@@ -10,6 +10,9 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     private Vector2 _wallPoint;
     GateKeeperClass _behaviour;
 
+    public GameObject[] Skill2AttackEffect;
+
+    int tempTime;
 
     public void AttackMelee_Ready()
     {
@@ -35,7 +38,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
-        _dir = _behaviour.direction;
+        _dir = _behaviour.myDirection;
         _pos += _dir * 0.32f;
         this.transform.position = _pos;
 
@@ -46,7 +49,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
-        _dir = _behaviour.direction;
+        _dir = _behaviour.myDirection;
 
         _wallPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(_pos, _dir, 4.18f);
 
@@ -66,6 +69,16 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
         //throw new System.NotImplementedException();
     }
 
+    IEnumerator DashDelayTime()
+    {
+        tempTime = 0;
+        while (tempTime < 69)
+        {
+            tempTime++;
+            yield return new WaitForSeconds(1 / 30);
+        }
+    }
+
     public void AttackSkill1_End()
     {
         //throw new System.NotImplementedException();
@@ -78,12 +91,27 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackSkill2_Execute()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(Skill2AttackEffectOn());
+
+        //throw new System.NotImplementedException();
     }
 
     public void AttackSkill2_End()
     {
         throw new System.NotImplementedException();
+    }
+
+    IEnumerator Skill2AttackEffectOn()
+    {
+        int i = 0;
+        while (i < 3)
+        {
+            Skill2AttackEffect[i].transform.position = HeroGeneralManager.instance.heroObject.transform.position;
+            Skill2AttackEffect[i].SetActive(true);
+            i++;
+
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     #region NOT USED
@@ -116,5 +144,5 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         throw new System.NotImplementedException();
     }
-    #endregion
+    #endregion 
 }

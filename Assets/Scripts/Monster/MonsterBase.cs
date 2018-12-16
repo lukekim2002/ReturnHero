@@ -20,6 +20,7 @@ public abstract class MonsterBase : MonoBehaviour {
     //public enum State { Dead, Alive }
     public enum Action { Idle, Move, Attack }
     public enum LookingDirection { Top, Down, Left, Right }
+    public enum AttackCase { None, Melee, Skill1, Skill2, Skill3, Skill4 }
 
     //public State myState;                           // Dead, Alive
     //public Action myAction;                         // Idle, Move, Attack

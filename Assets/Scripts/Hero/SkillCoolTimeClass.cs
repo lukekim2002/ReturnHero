@@ -7,28 +7,19 @@ public class SkillCoolTimeClass : MonoBehaviour
 {
 
     #region PRIVATE
+    
     #endregion
 
     #region PUBLIC
     public Image translucencyCoolTimeImage;
     public float skillCoolTime;
-    public bool isSkillCoolTimeEnable = false;
-    public bool isInputKey = false;
     #endregion
 
-    private void Start()
+    private void OnEnable()
     {
         ResetCoolTime();
-    }
-
-    private void Update()
-    {
-        if (isSkillCoolTimeEnable)
-        {
-            translucencyCoolTimeImage.gameObject.SetActive(true);
-            StartCoroutine(CalcuateCoolTime());
-            isSkillCoolTimeEnable = false;
-        }
+        translucencyCoolTimeImage.gameObject.SetActive(true);
+        StartCoroutine(CalcuateCoolTime());
     }
 
     IEnumerator CalcuateCoolTime()
@@ -45,14 +36,30 @@ public class SkillCoolTimeClass : MonoBehaviour
         }
 
         ResetCoolTime();
+        StartCoroutine(OnSkillCoolTimeEndAnimation());
+
         yield break;
     }
 
     // 쿨타임 초기화
     private void ResetCoolTime()
     {
-        isInputKey = false;
         translucencyCoolTimeImage.fillAmount = 1;
         translucencyCoolTimeImage.gameObject.SetActive(false);
+    }
+
+    private IEnumerator OnSkillCoolTimeEndAnimation()
+    {
+        this.transform.GetChild(1).gameObject.SetActive(true);
+
+        while(this.transform.GetChild(1).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            yield return null;
+        }
+
+        this.transform.GetChild(1).gameObject.SetActive(false);
+        this.enabled = false;
+
+        yield return null;
     }
 }

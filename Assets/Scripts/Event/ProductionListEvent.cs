@@ -73,6 +73,18 @@ public class ProductionListEvent : MonoBehaviour
         weaponButton.GetComponent<Image>().sprite = weaponOnImage;
         potionButton.GetComponent<Image>().sprite = potionOffImage;
 
+        var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
+        productionComponent.productionItemType = 0;
+        productionComponent.recipeSet = productionComponent.weaponRecipeSet;
+        UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(true);
+        UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
+            = UIGeneralManager.instance.productionWeaponViewport.GetChild(0).GetComponent<RectTransform>();
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
+             = UIGeneralManager.instance.productionWeaponViewport;
+
+        productionComponent.CheckMaterialItems();
+
         OnClickProductionListButton();
     }
 
@@ -81,6 +93,17 @@ public class ProductionListEvent : MonoBehaviour
     {
         weaponButton.GetComponent<Image>().sprite = weaponOffImage;
         potionButton.GetComponent<Image>().sprite = potionOnImage;
+
+        var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
+        productionComponent.productionItemType = 1;
+        productionComponent.recipeSet = productionComponent.potionRecipeSet;
+        UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(true);
+        UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(false);
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
+            = UIGeneralManager.instance.productionPotionViewport.GetChild(0).GetComponent<RectTransform>();
+        UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
+            = UIGeneralManager.instance.productionPotionViewport;
+        productionComponent.CheckMaterialItems();
 
         OnClickProductionListButton();
     }

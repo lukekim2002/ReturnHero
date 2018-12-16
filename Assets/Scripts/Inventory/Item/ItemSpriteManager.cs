@@ -4,13 +4,40 @@ using System.Collections;
 public class ItemSpriteManager : MonoBehaviour
 {
     public static ItemSpriteManager instance;
-    public Sprite swordSprite;
+    public Sprite itemSlotSprite;
+    public Sprite accessorySlotSprite;
+    public Sprite weaponSlotSprite;
+    public Sprite bronzeSwordSprite;
+    public Sprite silverSwordSprite;
     public Sprite bronzeRingSprite;
-    public Sprite potionSprite;
+    public Sprite silverRingSprite;
+    public Sprite bookSprite;
+    public Sprite cigaSprite;
+    
 
-    public Sprite SwordImage
+    public Sprite ItemSlotSprite
     {
-        get { return swordSprite; }
+        get { return itemSlotSprite; }
+    }
+
+    public Sprite AccessorySlotSprite
+    {
+        get { return accessorySlotSprite; }
+    }
+
+    public Sprite WeaponSlotSprite
+    {
+        get { return weaponSlotSprite; }
+    }
+
+    public Sprite BronzeSwordSprite
+    {
+        get { return bronzeSwordSprite; }
+    }
+
+    public Sprite SilverSwordSprite
+    {
+        get { return silverSwordSprite; }
     }
 
     public Sprite BronzeRingSprite
@@ -18,9 +45,19 @@ public class ItemSpriteManager : MonoBehaviour
         get { return bronzeRingSprite; }
     }
 
-    public Sprite PotionSprite
+    public Sprite SilverRingSprite
     {
-        get { return potionSprite; }
+        get { return silverRingSprite; }
+    }
+
+    public Sprite BookSprite
+    {
+        get { return bookSprite; }
+    }
+
+    public Sprite CIgaSprite
+    {
+        get { return cigaSprite; }
     }
 
     private void Awake()
@@ -33,9 +70,15 @@ public class ItemSpriteManager : MonoBehaviour
     {
         switch(itemID)
         {
-            case 1: return SwordImage;
-            case 2: return bronzeRingSprite;
-            case 3: return PotionSprite;
+            case -2: return WeaponSlotSprite;
+            case -1: return AccessorySlotSprite;
+            case 0: return ItemSlotSprite;
+            case 1: return BronzeSwordSprite;
+            case 2: return SilverSwordSprite;
+            case 3: return bronzeRingSprite;
+            case 4: return silverRingSprite;
+            case 5: return BookSprite;
+            case 6: return CIgaSprite;
             default: return null;
         }
     }

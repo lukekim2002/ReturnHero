@@ -21,13 +21,26 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas productionCanvas;
     public Canvas inventoryCanvas;
     public Canvas optionCanvas;
+
     public Image map;
-    public Image shadowPanel;   
+    public Image shadowPanel;
+    public Image[] productionMaterialsItemSlot;
+    public Image productionSelect;
+    public Image afterProductionImage;
+
+    public Sprite productionRecipeOn;
+    public Sprite productionRecipeOff;
+    public Sprite productionSelectOn;
+    public Sprite productionSelectOff;
+    public Animator productionSuccessAnimation;
 
     public SkillCoolTimeClass skill_Space_CoolTimeClass;
     public SkillCoolTimeClass skill_E_CoolTimeClass;
     public SkillCoolTimeClass skill_MR_CoolTimeClass;
     public SkillCoolTimeClass skill_R_CoolTimeClass;
+
+    public RectTransform productionWeaponViewport;
+    public RectTransform productionPotionViewport;
 
     private const int FULLSCREEN = 2;
     private const int BRIGHTNESS = 3;
@@ -103,8 +116,9 @@ public class UIGeneralManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             isInventoryOpened = !isInventoryOpened;
-            inventoryCanvas.gameObject.SetActive(isInventoryOpened);
+
             productionCanvas.gameObject.SetActive(isInventoryOpened);
+            inventoryCanvas.gameObject.SetActive(isInventoryOpened);
         }
     }
 
