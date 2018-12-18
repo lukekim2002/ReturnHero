@@ -1215,7 +1215,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.88
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1789,7 +1789,7 @@ GameObject:
   - component: {fileID: 631876506}
   - component: {fileID: 631876505}
   m_Layer: 5
-  m_Name: minimap
+  m_Name: minimap Raw Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3146,7 +3146,7 @@ GameObject:
   - component: {fileID: 861519831}
   - component: {fileID: 861519830}
   - component: {fileID: 861519829}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Production_Success_Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
