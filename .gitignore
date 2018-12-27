@@ -39,3 +39,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Packages/manifest.json
+Logs/Packages-Update.log
