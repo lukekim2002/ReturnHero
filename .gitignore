@@ -40,5 +40,3 @@ sysinfo.txt
 *.unitypackage
 Packages/manifest.json
 Logs/Packages-Update.log
-*.log
-*.log
