@@ -51,6 +51,7 @@ public class GateKeeperClass : MonsterBase {
     public AttackCase myAttackCase;
     public bool isAttacking = false;
 
+
     #endregion
 
     #region MONOBEHAVIOUR CALLBACKS
@@ -100,7 +101,7 @@ public class GateKeeperClass : MonsterBase {
     {
         aiMoveScript = GetComponent<Pathfinding.AIPath>();
         playerObject = HeroGeneralManager.instance.heroObject;
-        attackCollider = transform.GetChild(0).gameObject;
+        attackCollider = transform.GetChild(1).gameObject;
         attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
         myMeleeAttackRange = transform.GetChild(3).gameObject;
         mySkill1AttackRange = transform.GetChild(4).gameObject;
@@ -149,10 +150,46 @@ public class GateKeeperClass : MonsterBase {
          * AttackColliderSize & AttaackColliderOffset
          */
 
+        switch (myLookingDirection)
+        {
+            case LookingDirection.Top:
+
+                attackColliderSize = new Vector2((float)myColliderSet[0]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[0]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Down:
+
+                attackColliderSize = new Vector2((float)myColliderSet[1]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[1]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Left:
+
+                attackColliderSize = new Vector2((float)myColliderSet[2]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[2]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Right:
+
+                attackColliderSize = new Vector2((float)myColliderSet[3]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[3]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+        }
+
         myAnimator.SetInteger("actionNum", 2);
         myAnimator.SetTrigger("isMelee");
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
+
+        attackCollider.SetActive(true);
+        attackColliderScript.size = attackColliderSize;
+        attackColliderScript.offset = attackColliderOffset;
 
         StartCoroutine(WaitAnimationFinish());
         StartCoroutine(CoolDownMelee());
@@ -170,10 +207,46 @@ public class GateKeeperClass : MonsterBase {
         aiMoveScript.enabled = false;
         mySkill1AttackRange.SetActive(false);
 
+        switch (myLookingDirection)
+        {
+            case LookingDirection.Top:
+
+                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Down:
+
+                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Left:
+
+                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Right:
+
+                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+        }
+
         myAnimator.SetInteger("actionNum", 2);
         myAnimator.SetTrigger("isSkill1");
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
+
+        attackCollider.SetActive(true);
+        attackColliderScript.size = attackColliderSize;
+        attackColliderScript.offset = attackColliderOffset;
 
         StartCoroutine(WaitAnimationFinish());
         StartCoroutine(CoolDownSkill1());
@@ -213,6 +286,8 @@ public class GateKeeperClass : MonsterBase {
         isAttacking = false;
         aiMoveScript.enabled = true;
 
+        attackCollider.SetActive(false);
+
     }
 
     public override void EndAttackSkill1()
@@ -225,6 +300,8 @@ public class GateKeeperClass : MonsterBase {
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;
         aiMoveScript.enabled = true;
+
+        attackCollider.SetActive(false);
     }
 
     public override void EndAttackSkill2()
@@ -342,7 +419,7 @@ public class GateKeeperClass : MonsterBase {
         _isSkill2AttackReady = true;
         AttackSkill2();
 
-        myAnimator.SetInteger("actionNum", 3);
+        //myAnimator.SetInteger("actionNum", 3);
         myAnimator.SetInteger("actionNum", 4);
 
         StartCoroutine(WaitAnimationFinish());

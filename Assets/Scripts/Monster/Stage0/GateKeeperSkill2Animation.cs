@@ -12,9 +12,15 @@ public class GateKeeperSkill2Animation : MonoBehaviour {
     {
         oldParentTransform = transform.parent;
         transform.parent = transform.parent.parent;
+
     }
 
     private void OnDisable()
+    {
+        Invoke("ReAttach", 1.0f);
+    }
+
+    public void ReAttach()
     {
         transform.parent = oldParentTransform;
     }
