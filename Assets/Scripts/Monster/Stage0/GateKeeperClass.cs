@@ -13,7 +13,7 @@ public class GateKeeperClass : MonsterBase {
 
     private bool _isMeleeAttackReady;
     private int _meleeDamage;
-    public float _meleeCoolDown;
+    private float _meleeCoolDown;
 
     private bool _isSkill1AttackReady;
     private int _skill1Damage;
@@ -33,6 +33,7 @@ public class GateKeeperClass : MonsterBase {
     public Dictionary<string, object> myDataSet;
     public List<Dictionary<string, object>> myColliderSet;
 
+    [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
     public Animator myAnimator;
@@ -44,7 +45,7 @@ public class GateKeeperClass : MonsterBase {
     public GameObject mySkill2AttackRange;
 
 
-
+    [Header("State Values")]
     public Vector2 myDirection;
     public Action myAction;
     public AttackCase myAttackCase;
@@ -300,7 +301,8 @@ public class GateKeeperClass : MonsterBase {
         return (stateInfo.IsName("Melee")
             || stateInfo.IsName("Skill1")
             || stateInfo.IsName("Skill2")
-            || stateInfo.IsName("BeShot"));
+            || stateInfo.IsName("BeShot"))
+            || stateInfo.IsName("Die");
     }
 
     public override IEnumerator WaitAnimationFinish()
@@ -324,23 +326,28 @@ public class GateKeeperClass : MonsterBase {
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
         else if (stateInfo.IsName("Skill1"))
-            EndGetHit();
+            EndAttackSkill1();
         else if (stateInfo.IsName("Skill2"))
-            EndGetHit();
+            EndAttackSkill2();
         else if (stateInfo.IsName("BeShot"))
             EndGetHit();
+        else if(stateInfo.IsName("Die"))
+            gameObject.SetActive(false);
     }
 
     public override void DyingMotion()
     {
+        Debug.Log("Die");
+
         _isSkill2AttackReady = true;
         AttackSkill2();
 
+        myAnimator.SetInteger("actionNum", 3);
         myAnimator.SetInteger("actionNum", 4);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
 
-        gameObject.SetActive(false);
+        StartCoroutine(WaitAnimationFinish());
+
+        //gameObject.SetActive(false);
     }
 
     public override void HitByPlayer(int damage)
@@ -353,17 +360,21 @@ public class GateKeeperClass : MonsterBase {
         myAnimator.SetFloat("actionY", myDirection.y);
 
         _health -= damage;
+        Debug.Log("current health : " + _health);
+
+        StartCoroutine(WaitAnimationFinish());
+
         if (_health <= 0)
         {
             // Dead
             DyingMotion();
         }
-
-        StartCoroutine(WaitAnimationFinish());
     }
 
     public override void EndGetHit()
     {
+        Debug.Log("GateKeeper EndGetHit");
+
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
         myAnimator.SetFloat("moveX", myDirection.x);

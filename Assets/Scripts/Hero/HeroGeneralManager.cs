@@ -44,7 +44,7 @@ public class HeroGeneralManager : MonoBehaviour {
 
         //heroObject = GameObject.FindGameObjectWithTag("Player");
         heroAttackCollierSet = CSVReader.Read("CSV/Hero/ReturnHero_Hero_AttackCollider");
-        print(heroAttackCollierSet);
+
 
         // Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
