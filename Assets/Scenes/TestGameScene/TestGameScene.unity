@@ -606,7 +606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428819646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.19, z: 0}
+  m_LocalPosition: {x: 0, y: 7.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2000043894}
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIewANkdrQwIAAMwEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMmS2jAQ/RVK50AZathyS9iSAwM1JJWLL0JqYxWy5JLkYSv+PS3Zxo5zonm9vX7d8oMIZXNgTpuNEXyrOZCvPeJt8qVHaPB9UCc0wkNEhNUZOCPYN3WSPjZCsFAi0SZb8RMstHUW4YRKC+gy2vlshdCjR67405/7lBtao6m37mjNo94TTQbKgWlCJ3XgbDCuIsvAQjFJsxz4QdyhiZ/VCdNhCFM4ThXhuTMtpbAVGeJueZj1g978qFxQHCx0Hw58dArilDrfvZ26SxILrprb0NtSGFSorEm+a5f6Whm155LVJ5WF7zIaTwKjsuj2P3+/JJwYnf2o+w4j38Olgp2RI6PWtXRtw8sW9SDOhcozPUr4k4J61xujC8XR6UzhUwsLo2Xz9zXaIgV2bvCSagcs8kbteo31Ev0MzzD9dSFFdvSuwVsJHKQOaofdg8G9/ETC4TJsJTGinsVvC7/oyTYtK3wtjHXoqYZUnt1RF8ZHkjUaXnhWuIU2CkwrPwdFpbvtsYrrLrDja+nb8aypfyJV78pXv4BOSoCb+CjquPb68lqVTfVlCzbdFU4KBQ1p73hHlRZaqfK+2o+qTjsUJqGslXYqBP/3sAh9S4ANkyM7cjafTmb9aDwZzkaTyXgEFKZ8TsLlCYVzUrkviVby4M5UU1zhldUfh97G0DzcOjf0shH3TLckFyrRB2YA1K6s8CIOBpvgi+QrLlCgAzgnVNg2ecREanYGHr8KxWHS1dUZGjdVYpKLT+08EpNF+GTE5EmefwFQSwMEFAAACAgAAEgh7GSiN+NtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPUMzTTUVBKL0osyCgGihiCOKWZKSB2tFKiSVpqsmFaUnJSSrKluZmFroGpmaGFkZmZqVFqYqp5iqVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7AA2R2tDAgAAzAQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7GSiN+NtAAAAeAAAAAkAJAAAAAAAAAAAAAAAkAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABIAwAAAAA=
+    dataString: UEsDBBQAAAgIAABIIew4XGt1QgIAAM4EAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMuu2jAQ/RXkdUGALgG6a3m1Cy7o0qqbbIw9IRaOHdnO5SX+vWMnIWm6YjjzOnNmnAcRyubAnDYbI/hWcyBfe8Tb5EuP0OD7oE5ohEeICKszcEawb+okfewQwUKJRJtsxU+w0NZZhBMqLaDLaOezFUKPHrniT3/uU25ojafeuqM1H/aeaDJQDkwTGtWBs8GkiiwDC8UkzXLgB3GHJn5WJ0xHIUzhOFWE5860lMJWZIi75WHWD3rzo3JBcbDQfTTw0SmIU+p893bqLkksuGpuQ29LYVChsib5rl3qa2XUnktWn1QWvst4EgVGZdHtf/5+STgxOvtR9x0NfQ+XCnZGjoxa19K1DS9b1IM4FyrP9CjhTwrqXW+MLhRHpzOFTy0sjJfN39doixTYucFLqh2wyBu16zXWS/QzPMP014UU2dG7Bm8lcJA6qB12Dwb38hMJh8uwlcSIeha/LfyiJ9u0rPC1MNahpxpSeXZHXRgfSdZoeOFZ4RbaKDCt/BwUle62xyquu8COr6Vvx7Om/olUvStf/QI6KQFu4ofDjmuvL69V2VRftmDTXeGkUO1i3vOOMi20UuWB2Y7X5x0Kk1DWzjsVgv97WoS+JcBGyZEdOZtPo1l/OIlGs3EUTcZAYcrnJNyeUDgplfuSaiUQbk01Uiq8s/rz0NsYmodr54ZeNuKe6ZboQiX6wAyA2pUVXszBYBN8k3zFBUp0AOeECvsmj5hIzc7A41ehOIy6ujpD46ZKTHLxqZ1HYrIIH42YPMnzL1BLAwQUAAAICAAASCHsZKI3420AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9QzNNNRUEovSizIKAaKGII4pZkpIHa0UqJJWmqyYVpSclJKsqW5mYWugamZoYWRmZmpUWpiqnmKpVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAASCHsOFxrdUICAADOBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAASCHsZKI3420AAAB4AAAACQAkAAAAAAAAAAAAAACPAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAEcDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -60712,7 +60712,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 4}
+  m_Size: {x: 4.01, y: 2.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -61545,6 +61545,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1214280467385892, guid: f318fb2a48d154d429ddfdfc291d11e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214280467385892, guid: f318fb2a48d154d429ddfdfc291d11e9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4585281021559164, guid: f318fb2a48d154d429ddfdfc291d11e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.919
@@ -61582,6 +61590,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 428819655}
+    - target: {fileID: 114358711084388154, guid: f318fb2a48d154d429ddfdfc291d11e9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114344918589108620, guid: f318fb2a48d154d429ddfdfc291d11e9,
+        type: 3}
+      propertyPath: drawGizmos
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f318fb2a48d154d429ddfdfc291d11e9, type: 3}
 --- !u!1 &1838947917
@@ -61696,7 +61714,7 @@ GameObject:
   - component: {fileID: 2000043894}
   - component: {fileID: 2000043896}
   - component: {fileID: 2000043895}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
