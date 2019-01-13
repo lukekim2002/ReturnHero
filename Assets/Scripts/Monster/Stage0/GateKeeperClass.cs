@@ -146,10 +146,8 @@ public class GateKeeperClass : MonsterBase {
         aiMoveScript.enabled = false;
         myMeleeAttackRange.SetActive(false);
 
-        /* TODO :
-         * AttackColliderSize & AttaackColliderOffset
-         */
 
+        // Setting collider size and offset by its direction
         switch (myLookingDirection)
         {
             case LookingDirection.Top:
@@ -161,22 +159,22 @@ public class GateKeeperClass : MonsterBase {
 
             case LookingDirection.Down:
 
-                attackColliderSize = new Vector2((float)myColliderSet[1]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[1]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[1]["Size_x"], (float)myColliderSet[1]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[1]["Offset_x"], (float)myColliderSet[1]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Left:
 
-                attackColliderSize = new Vector2((float)myColliderSet[2]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[2]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[2]["Size_x"], (float)myColliderSet[2]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[2]["Offset_x"], (float)myColliderSet[2]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Right:
 
-                attackColliderSize = new Vector2((float)myColliderSet[3]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[3]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[3]["Size_x"], (float)myColliderSet[3]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[3]["Offset_x"], (float)myColliderSet[3]["Offset_y"]);
 
                 break;
 
@@ -272,9 +270,6 @@ public class GateKeeperClass : MonsterBase {
         StartCoroutine(CoolDownSkill2());
     }
 
-    
-
-
     public override void EndAttackMelee()
     {
         myAction = Action.Move;
@@ -315,8 +310,6 @@ public class GateKeeperClass : MonsterBase {
         isAttacking = false;
         aiMoveScript.enabled = true;
     }
-
-    
 
     public override IEnumerator CoolDownMelee()
     {
