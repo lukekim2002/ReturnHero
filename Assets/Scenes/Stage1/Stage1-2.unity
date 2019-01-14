@@ -124006,7 +124006,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4558200308824488, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4558200308824488, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -124035,6 +124035,38 @@ PrefabInstance:
     - target: {fileID: 4558200308824488, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445385633655270, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445385633655270, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096925331276230, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 83.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096925331276230, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122222652234788, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 80.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122222652234788, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 66.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421054240552450, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421054240552450, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 69.8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114627194051951320, guid: a43688ca4c03007439b2b14e5fd9c5a2, type: 3}
