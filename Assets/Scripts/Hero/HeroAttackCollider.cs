@@ -8,7 +8,7 @@ public class HeroAttackCollider : MonoBehaviour
     HeroController rootBehaviour;
     MonsterBehaviorManager collisionBehaviour;
 
-    bool isAttackingAlready = false;
+    //bool isAttackingAlready = false;
 
     void Awake()
     {
@@ -20,21 +20,26 @@ public class HeroAttackCollider : MonoBehaviour
     {
         if (collision.CompareTag("Hit"))// && rootBehaviour._isAttack == false)
         {
-            
+            Debug.Log("Hit");
             //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
             //print("Collided Object is : " + collision.gameObject.transform.name);
             //collisionBehaviour = collision.transform.root.GetComponent<MonsterBehaviorManager>();
 
+            /*
             if (isAttackingAlready == false)
             {
                 isAttackingAlready = true;
-                collision.SendMessage("GetHit", 1, SendMessageOptions.DontRequireReceiver);
+                Debug.Log(collision.transform.root.gameObject.name);
+                
             }
             else
             {
                 isAttackingAlready = false;
                 return;
             }
+            */
+
+            collision.transform.root.gameObject.SendMessage("HitByPlayer", 250, SendMessageOptions.DontRequireReceiver);
         }
     }
 }

@@ -22,6 +22,7 @@ public abstract class MonsterBase : MonoBehaviour {
     public enum LookingDirection { Top, Down, Left, Right }
     public enum AttackCase { None, Melee, Skill1, Skill2, Skill3, Skill4 }
 
+    [Header("Base Objects")]
     //public State myState;                           // Dead, Alive
     //public Action myAction;                         // Idle, Move, Attack
     public LookingDirection myLookingDirection;     // Top, Down, Left, Right
