@@ -79,6 +79,8 @@ public class GateKeeperClass : MonsterBase {
         if(isAttacking == false)
             myDirection = myBase.direction;
 
+        
+
         if (myAction == Action.Idle && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 0);
@@ -401,8 +403,10 @@ public class GateKeeperClass : MonsterBase {
             EndAttackSkill2();
         else if (stateInfo.IsName("BeShot"))
             EndGetHit();
+        /*
         else if(stateInfo.IsName("Die"))
             gameObject.SetActive(false);
+            */
     }
 
     public override void DyingMotion()
@@ -417,7 +421,7 @@ public class GateKeeperClass : MonsterBase {
 
         StartCoroutine(WaitAnimationFinish());
 
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public override void HitByPlayer(int damage)
@@ -439,11 +443,13 @@ public class GateKeeperClass : MonsterBase {
             // Dead
             DyingMotion();
         }
+
+
     }
 
     public override void EndGetHit()
     {
-        Debug.Log("GateKeeper EndGetHit");
+        //Debug.Log("GateKeeper EndGetHit");
 
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);

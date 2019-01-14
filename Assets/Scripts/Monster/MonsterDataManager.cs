@@ -7,7 +7,11 @@ public class MonsterDataManager : MonoBehaviour {
     #region PUBLIC VALUES
 
     public enum MONSTER { GATEKEEPER = 0, // Stage 0
-        ZOMBIE, SKELETON, GHOUL, LICH, NECROMANCER // Stage 1
+        ZOMBIE, SKELETON, GHOUL, LICH, NECROMANCER, // Stage 1
+        COW, TIGER, GORILLA, EAGLE, MANTICORE, // Stage 2
+        DARK_ELEMENTAL, LIGHT_ELEMENTAL, FIRE_ELEMENTAL, ICE_ELEMENTAL, ELEMENTAL_KING, // Stage 3
+        RED_BABY_DRAGON, BLUE_BABY_DRAGON, RED_DRAGON, BLUE_DRAGON, // Stage 4
+        FINALBOSS // Final Stage
     };
 
     public static MonsterDataManager instance = null;

@@ -7,6 +7,7 @@ public class ZombieClass : MonsterBase
     #region PRIVATE VALUES
 
     private int _id;
+    [SerializeField]
     private int _health;
     private float _movingSpeed;
 
@@ -60,6 +61,12 @@ public class ZombieClass : MonsterBase
     {
         if(isAttacking == false)
             myDirection = myBase.direction;
+
+        if (_health <= 0)
+        {
+            // Dead
+            DyingMotion();
+        }
 
         if (myAction == Action.Idle && isAttacking == false)
         {
@@ -278,15 +285,17 @@ public class ZombieClass : MonsterBase
             EndAttackMelee();
         else if (stateInfo.IsName("BeShot"))
             EndGetHit();
+        /*
         else if (stateInfo.IsName("Die"))
             gameObject.SetActive(false);
+            */
     }
 
     public override void DyingMotion()
     {
         myAnimator.SetInteger("actionNum", 4);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
 
         gameObject.SetActive(false);
     }
@@ -301,13 +310,11 @@ public class ZombieClass : MonsterBase
         myAnimator.SetFloat("actionY", myDirection.y);
 
         _health -= damage;
-        if (_health <= 0)
-        {
-            // Dead
-            DyingMotion();
-        }
+        Debug.Log("current health : " + _health);
 
         StartCoroutine(WaitAnimationFinish());
+
+        
     }
 
     public override void EndGetHit()
