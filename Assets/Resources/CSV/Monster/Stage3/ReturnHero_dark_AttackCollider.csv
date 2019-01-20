@@ -1,8 +1,8 @@
 Name,Size_x,Size_y,Offset_x,Offset_y
-Melee1_Up,66,65,3,47
-Melee1_Down,66,65,-3,15
-Melee1_Left,66,65,-14,32
-Melee1_Right,66,65,14,32
+Melee1_Up,0.66,0.65,0.03,0.47
+Melee1_Down,0.66,0.65,-0.03,0.15
+Melee1_Left,0.66,0.65,-0.14,0.32
+Melee1_Right,0.66,0.65,0.14,0.32
 Skill1_Up,0,0,0,0
 Skill1_Down,0,0,0,0
 Skill1_Left,0,0,0,0

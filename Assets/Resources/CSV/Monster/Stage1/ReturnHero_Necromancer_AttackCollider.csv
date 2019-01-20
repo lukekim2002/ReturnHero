@@ -1,9 +1,9 @@
 Name,Size_x,Size_y,Offset_x,Offset_y
-Melee_Up,331,227,-0.5,135
-Melee_Down,331,227,0.5,-31
-Melee_Left,227,331,-106.5,93.5
-Melee_Right,227,331,106.5,93.5
-Skill1_Effect,48,48,0,0
+Melee_Up,3.31,2.27,-0.005,1.35
+Melee_Down,3.31,2.27,0.005,-0.31
+Melee_Left,2.27,3.31,-106.5,93.5
+Melee_Right,2.27,3.31,106.5,93.5
+Skill1_Effect,0.48,0.48,0,0
 Skill2_Up,0,0,0,0
 Skill2_Down,0,0,0,0
 Skill2_Left,0,0,0,0
