@@ -307,7 +307,7 @@ SpriteRenderer:
   m_Size: {x: 0.79, y: 1.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &39285048
@@ -35837,6 +35837,7 @@ GameObject:
   - component: {fileID: 84907410}
   - component: {fileID: 84907412}
   - component: {fileID: 84907411}
+  - component: {fileID: 84907413}
   m_Layer: 0
   m_Name: Final Boss
   m_TagString: Untagged
@@ -35925,6 +35926,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &84907413
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84907409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.735, y: 0.415}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.67391306, y: 0.172}
+    oldSize: {x: 0.92, y: 1.25}
+    newSize: {x: 0.92, y: 1.23}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.73, y: 1.68}
+  m_EdgeRadius: 0
 --- !u!1 &193975732
 GameObject:
   m_ObjectHideFlags: 0
