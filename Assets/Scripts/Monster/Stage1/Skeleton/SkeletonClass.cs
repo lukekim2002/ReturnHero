@@ -24,12 +24,15 @@ public class SkeletonClass : MonsterBase {
     public Dictionary<string, object> myDataSet;
     public List<Dictionary<string, object>> myColliderSet;
 
+    [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
-    public BoxCollider2D attackCollider;
+    public GameObject attackCollider;
+    public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public Animator myAnimator;
 
+    [Header("State Values")]
     public Vector2 myDirection;
     public Action myAction;
     public bool isAttacking = false;
@@ -42,11 +45,7 @@ public class SkeletonClass : MonsterBase {
     {
         myAction = Action.Idle;
 
-        aiMoveScript = GetComponent<Pathfinding.AIPath>();
-        playerObject = HeroGeneralManager.instance.heroObject;
-        //attackCollider = 
-        myMeleeAttackRange = transform.GetChild(3).gameObject;
-        myAnimator = GetComponent<Animator>();
+       
 
         Initialize();
 
@@ -59,7 +58,13 @@ public class SkeletonClass : MonsterBase {
 
     private void Update()
     {
-        myDirection = myBase.direction;
+        if(isAttacking == false)
+            myDirection = myBase.direction;
+
+        if (_health <= 0)
+        {
+            DyingMotion();
+        }
 
         if (myAction == Action.Idle && isAttacking == false)
         {
@@ -79,23 +84,34 @@ public class SkeletonClass : MonsterBase {
 
     public override void Initialize()
     {
+        aiMoveScript = GetComponent<Pathfinding.AIPath>();
+        playerObject = HeroGeneralManager.instance.heroObject;
+        attackCollider = transform.GetChild(1).gameObject;
+        attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
+        myMeleeAttackRange = transform.GetChild(3).gameObject;
+        myAnimator = GetComponent<Animator>();
+
         myBase = GetComponent<MonsterBase>();
         if (myBase == null)
         {
             Debug.LogError("myBase is null");
         }
         myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.SKELETON);
-
+        myColliderSet = CSVReader.Read("CSV/Monster/Stage1/ReturnHero_Skeleton_AttackCollider");
 
 
         _id = (int)myDataSet["ID"];
         _health = (int)myDataSet["Health"];
         _movingSpeed = (float)myDataSet["MovingSpeed"];
+
         _meleeDamage = (int)myDataSet["MeleeDamage"];
         _meleeCoolDown = (int)myDataSet["MeleeCoolDown"];
+
         _isMeleeAttackReady = true;
 
-        aiMoveScript.maxSpeed = _movingSpeed;
+        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
+
+        //aiMoveScript.maxSpeed = _movingSpeed;
     }
 
     public override void AttackMelee()
@@ -108,9 +124,46 @@ public class SkeletonClass : MonsterBase {
         aiMoveScript.enabled = false;
         myMeleeAttackRange.SetActive(false);
 
+        // Setting collider size and offset by its direction
+        switch (myLookingDirection)
+        {
+            case LookingDirection.Top:
+
+                attackColliderSize = new Vector2((float)myColliderSet[0]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[0]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Down:
+
+                attackColliderSize = new Vector2((float)myColliderSet[1]["Size_x"], (float)myColliderSet[1]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[1]["Offset_x"], (float)myColliderSet[1]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Left:
+
+                attackColliderSize = new Vector2((float)myColliderSet[2]["Size_x"], (float)myColliderSet[2]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[2]["Offset_x"], (float)myColliderSet[2]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Right:
+
+                attackColliderSize = new Vector2((float)myColliderSet[3]["Size_x"], (float)myColliderSet[3]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[3]["Offset_x"], (float)myColliderSet[3]["Offset_y"]);
+
+                break;
+
+        }
+
         myAnimator.SetInteger("actionNum", 2);
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
+
+        attackCollider.SetActive(true);
+        attackColliderScript.size = attackColliderSize;
+        attackColliderScript.offset = attackColliderOffset;
 
         StartCoroutine(WaitAnimationFinish());
         StartCoroutine(CoolDownMelee());
@@ -125,6 +178,8 @@ public class SkeletonClass : MonsterBase {
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;
         aiMoveScript.enabled = true;
+
+        attackCollider.SetActive(false);
     }
 
     public override IEnumerator CoolDownMelee()
@@ -202,8 +257,9 @@ public class SkeletonClass : MonsterBase {
 
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        return (stateInfo.IsName("Melee") ||
-            stateInfo.IsName("BeShot"));
+        return (stateInfo.IsName("Melee")
+            ||  stateInfo.IsName("BeShot")
+            ||  stateInfo.IsName("Die"));
     }
 
     public override IEnumerator WaitAnimationFinish()
@@ -236,6 +292,8 @@ public class SkeletonClass : MonsterBase {
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
+        StartCoroutine(WaitAnimationFinish());
+
         gameObject.SetActive(false);
     }
 
@@ -249,11 +307,7 @@ public class SkeletonClass : MonsterBase {
         myAnimator.SetFloat("actionY", myDirection.y);
 
         _health -= damage;
-        if (_health <= 0)
-        {
-            // Dead
-            DyingMotion();
-        }
+        Debug.Log("current health : " + _health);
 
         StartCoroutine(WaitAnimationFinish());
     }
