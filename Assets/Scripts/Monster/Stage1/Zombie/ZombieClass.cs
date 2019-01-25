@@ -113,6 +113,8 @@ public class ZombieClass : MonsterBase
 
         _isMeleeAttackReady = true;
 
+        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
+
         //aiMoveScript.maxSpeed = _movingSpeed;
     }
 
@@ -259,8 +261,8 @@ public class ZombieClass : MonsterBase
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
         return (stateInfo.IsName("Melee")
-            || stateInfo.IsName("BeShot")
-            || stateInfo.IsName("Die"));
+            ||  stateInfo.IsName("BeShot")
+            ||  stateInfo.IsName("Die"));
     }
 
     public override IEnumerator WaitAnimationFinish()
@@ -294,6 +296,8 @@ public class ZombieClass : MonsterBase
     public override void DyingMotion()
     {
         myAnimator.SetInteger("actionNum", 4);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
 
         StartCoroutine(WaitAnimationFinish());
 
