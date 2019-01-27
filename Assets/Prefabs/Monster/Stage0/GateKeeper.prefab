@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4852792936763516}
   - component: {fileID: 61840724195796152}
-  - component: {fileID: 114539958282335386}
+  - component: {fileID: 4648799658380544794}
   m_Layer: 0
   m_Name: Skill1AttackRange
   m_TagString: Untagged
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114539958282335386
+--- !u!114 &4648799658380544794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029646026568326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9789fd4422d196a49978e8b317ec0d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1107775018543964
@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4379255351618532}
   - component: {fileID: 61689069358683332}
-  - component: {fileID: 114259038514043286}
+  - component: {fileID: 1611190230296628263}
   m_Layer: 0
   m_Name: Skill1AttackRange
   m_TagString: Untagged
@@ -160,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 6}
   m_EdgeRadius: 0
---- !u!114 &114259038514043286
+--- !u!114 &1611190230296628263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1155929685087206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9789fd4422d196a49978e8b317ec0d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1214280467385892
@@ -777,7 +777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4227195590675350}
   - component: {fileID: 58629052887713970}
-  - component: {fileID: 114698695560979200}
+  - component: {fileID: 6978637921628940219}
   m_Layer: 0
   m_Name: MeleeAttackRange
   m_TagString: Untagged
@@ -815,7 +815,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &114698695560979200
+--- !u!114 &6978637921628940219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1684498453638798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: d19eb37f71c25b641b949ba0f398065c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1761094572352462
@@ -837,7 +837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627060045856574}
   - component: {fileID: 58289361806002192}
-  - component: {fileID: 114119416382049892}
+  - component: {fileID: 3416524364069590656}
   m_Layer: 0
   m_Name: Skill2AttackRange
   m_TagString: Untagged
@@ -875,7 +875,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
---- !u!114 &114119416382049892
+--- !u!114 &3416524364069590656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1761094572352462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: df1c17085ee2da744bf7fbc6d0cd80b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1778947052770614
