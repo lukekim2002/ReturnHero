@@ -5,6 +5,7 @@ using UnityEngine;
 public class LichClass : MonsterBase {
 
     #region PRIVATE VALUES
+
     int _id;
     private int _health;
     private float _movingSpeed;
@@ -14,11 +15,10 @@ public class LichClass : MonsterBase {
     public float _meleeCoolDown;
 
     private bool _isSkill1AttackReady;
-    //private int _skill1Damage;
     private float _Skill1CoolDown;
 
-    private Vector2 attackColliderSize;
-    private Vector2 attackColliderOffSet;
+    //private Vector2 attackColliderSize;
+    //private Vector2 attackColliderOffset;
 
     #endregion
 
@@ -27,12 +27,15 @@ public class LichClass : MonsterBase {
     public Dictionary<string, object> myDataSet;
     public List<Dictionary<string, object>> myColliderSet;
 
+    [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
-    public BoxCollider2D attackCollider;
+    public GameObject attackCollider;
+    public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public Animator myAnimator;
 
+    [Header("State Values")]
     public Vector2 myDirection;
     public Action myAction;
     public bool isAttacking = false;
@@ -45,15 +48,13 @@ public class LichClass : MonsterBase {
     {
         myAction = Action.Idle;
 
-        aiMoveScript = GetComponent<Pathfinding.AIPath>();
-        playerObject = HeroGeneralManager.instance.heroObject;
-        //attackCollider = 
-        myMeleeAttackRange = transform.GetChild(4).gameObject;
-        myAnimator = GetComponent<Animator>();
+        
 
         Initialize();
 
         aiMoveScript.enabled = false;
+
+        StartCoroutine(myBase.FindLookingDirection());
 
         PlayerEnteredRoom();
     }
@@ -61,6 +62,11 @@ public class LichClass : MonsterBase {
     private void Update()
     {
         myDirection = myBase.direction;
+
+        if (_health <= 0)
+        {
+            DyingMotion();
+        }
 
         if (myAction == Action.Idle && isAttacking == false)
         {
@@ -80,13 +86,20 @@ public class LichClass : MonsterBase {
 
     public override void Initialize()
     {
+        aiMoveScript = GetComponent<Pathfinding.AIPath>();
+        playerObject = HeroGeneralManager.instance.heroObject;
+        //attackCollider = transform.GetChild(1).gameObject;
+        //attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
+        myMeleeAttackRange = transform.GetChild(4).gameObject;
+        myAnimator = GetComponent<Animator>();
+
         myBase = GetComponent<MonsterBase>();
         if (myBase == null)
         {
             Debug.LogError("myBase is null");
         }
         myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.LICH);
-        StartCoroutine(myBase.FindLookingDirection());
+
 
 
         _id = (int)myDataSet["ID"];
@@ -101,7 +114,7 @@ public class LichClass : MonsterBase {
         _Skill1CoolDown = (int)myDataSet["Skill1CoolDown"];
         _isSkill1AttackReady = true;
 
-        Debug.Log(_id);
+        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
 
         aiMoveScript.maxSpeed = _movingSpeed;
     }
@@ -215,8 +228,9 @@ public class LichClass : MonsterBase {
 
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        return (stateInfo.IsName("Melee") ||
-            stateInfo.IsName("BeShot"));
+        return (stateInfo.IsName("Melee")
+            ||  stateInfo.IsName("BeShot")
+            ||  stateInfo.IsName("Die"));
     }
 
     public override IEnumerator WaitAnimationFinish()
@@ -249,6 +263,8 @@ public class LichClass : MonsterBase {
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
+        StartCoroutine(WaitAnimationFinish());
+
         gameObject.SetActive(false);
     }
 
@@ -262,11 +278,7 @@ public class LichClass : MonsterBase {
         myAnimator.SetFloat("actionY", myDirection.y);
 
         _health -= damage;
-        if (_health <= 0)
-        {
-            // Dead
-            DyingMotion();
-        }
+        Debug.Log("current health : " + _health);
 
         StartCoroutine(WaitAnimationFinish());
     }

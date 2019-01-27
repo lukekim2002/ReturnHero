@@ -350,6 +350,7 @@ MonoBehaviour:
   myLookingDirection: 0
   direction: {x: 0, y: 0}
   playerObject: {fileID: 0}
+  _health: 0
   _meleeCoolDown: 0
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
@@ -382,7 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4888778045164784}
   - component: {fileID: 58699292592864742}
-  - component: {fileID: 114581523854521742}
+  - component: {fileID: 8163287874872482688}
   m_Layer: 0
   m_Name: MeleeAttackRange
   m_TagString: Untagged
@@ -420,7 +421,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.38
---- !u!114 &114581523854521742
+--- !u!114 &8163287874872482688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,7 +430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610264894664176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: d19eb37f71c25b641b949ba0f398065c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1932886005387438
