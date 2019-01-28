@@ -6,6 +6,12 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
 
     public GameObject skeletonProjectile;
 
+    private Vector2 _pos;
+    private Vector2 _dir;
+    private Vector2 _wallPoint;
+    SkeletonClass _behaviour;
+
+
     public void AttackMelee_End()
     {
         //this.GetComponent<Animator>().SetInteger("actionNum", 0);
@@ -13,13 +19,17 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
 
     public void AttackMelee_Execute()
     {
-        throw new System.NotImplementedException();
+        // 스켈레톤 투사체 SetActive
+        skeletonProjectile.SetActive(true);
     }
 
     public void AttackMelee_Ready()
     {
-        // 스켈레톤 투사체 SetActive
-        skeletonProjectile.SetActive(true);
+        _behaviour = GetComponent<SkeletonClass>();
+        _pos = this.transform.position;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.1f;
+        this.transform.position = _pos;
     }
 
     public void AttackSkill1_End()

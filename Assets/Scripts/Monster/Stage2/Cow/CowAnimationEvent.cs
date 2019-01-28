@@ -20,8 +20,8 @@ public class CowAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         _behaviour = GetComponent<CowClass>();
         _pos = this.transform.position;
-        _dir = _behaviour.direction;
-        _pos += _dir * 0.16f;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.16f; // 문지기
         this.transform.position = _pos;
     }
 
