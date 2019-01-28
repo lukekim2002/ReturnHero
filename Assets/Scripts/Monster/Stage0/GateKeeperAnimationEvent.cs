@@ -23,7 +23,7 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
     {
         _behaviour = GetComponent<GateKeeperClass>();
         _pos = this.transform.position;
-        _dir = _behaviour.direction;
+        _dir = _behaviour.myDirection;
         _pos += _dir * 0.16f;
         this.transform.position = _pos;
         //throw new System.NotImplementedException();
