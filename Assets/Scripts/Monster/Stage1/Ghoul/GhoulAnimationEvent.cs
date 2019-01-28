@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GhoulAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 {
+    private Vector2 _pos;
+    private Vector2 _dir;
+    private Vector2 _wallPoint;
+    GhoulClass _behaviour;
+
     public void AttackMelee_Ready()
     {
         throw new System.NotImplementedException();
@@ -11,7 +16,11 @@ public class GhoulAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackMelee_Execute()
     {
-        throw new System.NotImplementedException();
+        _behaviour = GetComponent<GhoulClass>();
+        _pos = this.transform.position;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.12f;
+        this.transform.position = _pos;
     }
 
     public void AttackMelee_End()

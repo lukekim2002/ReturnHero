@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class LichAttackEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator animator;
+
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        animator.SetTrigger("isLichAttackEffect");
+        transform.position = HeroGeneralManager.instance.heroObject.transform.position;
+    }
+
+    private void OnDisable()
+    {
+        animator.ResetTrigger("isLichAttackEffect");
     }
 }

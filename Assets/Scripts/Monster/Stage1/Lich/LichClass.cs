@@ -16,6 +16,7 @@ public class LichClass : MonsterBase {
 
     private bool _isSkill1AttackReady;
     private float _Skill1CoolDown;
+    public bool _isSkill1TriggerOk;
 
     //private Vector2 attackColliderSize;
     //private Vector2 attackColliderOffset;
@@ -34,6 +35,8 @@ public class LichClass : MonsterBase {
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public Animator myAnimator;
+    public GameObject skillEffect1;
+    public GameObject skillEffect2;
 
     [Header("State Values")]
     public Vector2 myDirection;
@@ -80,6 +83,11 @@ public class LichClass : MonsterBase {
             myAnimator.SetFloat("moveX", myDirection.x);
             myAnimator.SetFloat("moveY", myDirection.y);
         }
+
+        if (_isSkill1AttackReady == true && _isSkill1TriggerOk == true)
+        {
+            AttackSkill1();
+        }
     }
 
     #endregion
@@ -113,6 +121,7 @@ public class LichClass : MonsterBase {
         //_skill1Damage = (int)myDataSet["Skill1Damage"];
         _Skill1CoolDown = (int)myDataSet["Skill1CoolDown"];
         _isSkill1AttackReady = true;
+        _isSkill1TriggerOk = true;
 
         Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
 
@@ -157,12 +166,32 @@ public class LichClass : MonsterBase {
 
     public override void AttackSkill1()
     {
-        throw new System.NotImplementedException();
+        if (_isSkill1AttackReady == false && isAttacking == true) return;
+        _isSkill1AttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        //myAttackCase = AttackCase.Skill1;
+        aiMoveScript.enabled = false;
+        //mySkill1AttackRange.SetActive(false);
+
+        // Instantiate Skeleton and skill1Effect
+        skillEffect1.SetActive(true);
+        skillEffect2.SetActive(true);
+        print("Lich AttackSkill1 Executed");
+
+        StartCoroutine(CoolDownSkill1());
+        Invoke("EndAttackSkill1", 0.5f);
     }
 
     public override void EndAttackSkill1()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
     }
 
     public override IEnumerator CoolDownSkill1()

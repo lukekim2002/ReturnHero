@@ -46,7 +46,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.6
+  m_Radius: 1.8
 --- !u!1 &3476627507259753727
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +337,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c726d4d1a2dfdd746811ae1ed54935c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLookingDirection: 0
+  direction: {x: 0, y: 0}
+  playerObject: {fileID: 0}
+  myBase: {fileID: 0}
+  aiMoveScript: {fileID: 0}
+  myAnimator: {fileID: 0}
+  attackCollider: {fileID: 0}
+  attackColliderScript: {fileID: 0}
+  myMeleeAttackRange: {fileID: 0}
+  myDirection: {x: 0, y: 0}
+  myAction: 0
+  myAttackCase: 0
+  isAttacking: 0
 --- !u!114 &158692484954724281
 MonoBehaviour:
   m_ObjectHideFlags: 0

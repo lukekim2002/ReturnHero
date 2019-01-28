@@ -21,7 +21,7 @@ public class LichAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
     {
         // Lich attackEffect SetActive
         LichAttackEffect.SetActive(true);
-        LichAttackEffect.transform.position = HeroGeneralManager.instance.heroObject.transform.position;
+        //LichAttackEffect.transform.position = HeroGeneralManager.instance.heroObject.transform.position;
     }
 
     public void AttackSkill1_End()
