@@ -7,6 +7,7 @@ public class HeroAttackCollider : MonoBehaviour
     GameObject root;
     HeroController rootBehaviour;
     MonsterBehaviorManager collisionBehaviour;
+    Animator rootAnimator;
 
     //bool isAttackingAlready = false;
 
@@ -14,6 +15,7 @@ public class HeroAttackCollider : MonoBehaviour
     {
         root = transform.root.gameObject;
         rootBehaviour = root.GetComponent<HeroController>();
+        rootAnimator = root.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,23 +23,26 @@ public class HeroAttackCollider : MonoBehaviour
         if (collision.CompareTag("Hit"))// && rootBehaviour._isAttack == false)
         {
             Debug.Log("Hit");
-            //print("OnTriggerEnter2D() called by " + transform.gameObject.name);
-            //print("Collided Object is : " + collision.gameObject.transform.name);
-            //collisionBehaviour = collision.transform.root.GetComponent<MonsterBehaviorManager>();
 
-            /*
-            if (isAttackingAlready == false)
+            if (rootAnimator.GetBool("isMelee") == true)
             {
-                isAttackingAlready = true;
-                Debug.Log(collision.transform.root.gameObject.name);
-                
+                // Melee Attack
             }
-            else
+
+            if (rootAnimator.GetBool("isSkillMr") == true)
             {
-                isAttackingAlready = false;
-                return;
+                // MR Attack
             }
-            */
+
+            if (rootAnimator.GetBool("isSkillE") == true)
+            {
+                // E Attack
+            }
+
+            if (rootAnimator.GetBool("isSkillR") == true)
+            {
+                // R Attack
+            }
 
             collision.transform.root.gameObject.SendMessage("HitByPlayer", 250, SendMessageOptions.DontRequireReceiver);
         }
