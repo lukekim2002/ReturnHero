@@ -39,5 +39,5 @@ MonoBehaviour:
   - randomTiles:
     - {fileID: 11400000, guid: 8bd5df239a995a64996b9e9d4dcaa982, type: 2}
   - randomTiles:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 3f974df4a9deba549a103591cec903cc, type: 2}
   pickRandomTiles: 0
