@@ -121,9 +121,10 @@ GameObject:
   - component: {fileID: 6320311712767814767}
   - component: {fileID: 3432593048805726600}
   - component: {fileID: 5637007904213256449}
+  - component: {fileID: 6934214778193717050}
   m_Layer: 0
   m_Name: IceSpirit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,7 +334,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6889182532904729397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e269966f7e9c9c48bffe6d86eafc511, type: 3}
+  m_Script: {fileID: 11500000, guid: 79b1be3700f20e748880ba3f2175be60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6934214778193717050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889182532904729397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27fc434ac2afef4d8694803b13acdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8059641627019049120

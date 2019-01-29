@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GorillaClass : MonsterBase
+public class DarkSpiritClass : MonsterBase
 {
     #region PRIVATE VALUES
 
@@ -49,6 +49,10 @@ public class GorillaClass : MonsterBase
 
 
         Initialize();
+        GameGeneralManager.HealInfo myHeal;
+        myHeal.value = 5; myHeal.option = GameGeneralManager.NumericTypeOption.Percentage;
+        GetHealed(myHeal);
+        print(_health);
 
         aiMoveScript.enabled = false;
 
@@ -100,8 +104,8 @@ public class GorillaClass : MonsterBase
         {
             Debug.LogError("myBase is null");
         }
-        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.GORILLA);
-        myColliderSet = CSVReader.Read("CSV/Monster/Stage2/ReturnHero_gorilla_AttackCollider");
+        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.DARK_ELEMENTAL);
+        myColliderSet = CSVReader.Read("CSV/Monster/Stage3/ReturnHero_dark_AttackCollider");
 
 
         _id = (int)myDataSet["ID"];
@@ -163,6 +167,7 @@ public class GorillaClass : MonsterBase
 
 
         myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isMelee");
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
@@ -178,6 +183,7 @@ public class GorillaClass : MonsterBase
     {
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;

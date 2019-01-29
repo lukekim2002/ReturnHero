@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceClass : MonoBehaviour
+public class IceSpiritAnimationEvent : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
