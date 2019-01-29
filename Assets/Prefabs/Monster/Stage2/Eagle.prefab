@@ -464,6 +464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5804044644252706492}
   - component: {fileID: 5507015472043007243}
+  - component: {fileID: 1868464213817843360}
   m_Layer: 8
   m_Name: MoveCollider
   m_TagString: Untagged
@@ -501,3 +502,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.000002443751, y: 0.00033277276}
   m_Size: {x: 0.39439166, y: 0.2861344}
   m_Direction: 1
+--- !u!50 &1868464213817843360
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804044644252706467}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

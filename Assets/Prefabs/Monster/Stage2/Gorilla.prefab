@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1599361470180107453}
   - component: {fileID: 2014024459585745706}
+  - component: {fileID: 2136386539158564346}
   m_Layer: 9
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1599361470180107453
 Transform:
   m_ObjectHideFlags: 0
@@ -57,6 +58,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2136386539158564346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599361470180107452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599361470244740986
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599361470364361148}
   - component: {fileID: 779914891552578059}
+  - component: {fileID: 4847980258049508875}
   m_Layer: 8
   m_Name: MoveCollider
   m_TagString: Untagged
@@ -161,6 +175,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0009105819, y: -0.013743015}
   m_Size: {x: 0.6377725, y: 0.4486894}
   m_Direction: 1
+--- !u!50 &4847980258049508875
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599361470364361123}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1599361471182906992
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +429,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31c8d348b41da946a1b2f92fdaa0512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLookingDirection: 0
+  direction: {x: 0, y: 0}
+  playerObject: {fileID: 0}
+  _health: 0
+  _meleeCoolDown: 0
+  myBase: {fileID: 0}
+  aiMoveScript: {fileID: 0}
+  attackCollider: {fileID: 0}
+  attackColliderScript: {fileID: 0}
+  myMeleeAttackRange: {fileID: 0}
+  myAnimator: {fileID: 0}
+  myDirection: {x: 0, y: 0}
+  myAction: 0
+  isAttacking: 0
 --- !u!114 &7141142352235623119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599361471785847344}
   - component: {fileID: 4047128438997028800}
+  - component: {fileID: 5755538599171106262}
   m_Layer: 0
   m_Name: MeleeAttackRange
   m_TagString: Untagged
@@ -447,9 +497,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.97
+--- !u!114 &5755538599171106262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599361471785847351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19eb37f71c25b641b949ba0f398065c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
