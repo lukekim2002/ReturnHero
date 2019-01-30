@@ -158,7 +158,20 @@ public class NecromancerClass : MonsterBase {
         throw new System.NotImplementedException();
     }
 
-    
+    public override void GetHealed(GameGeneralManager.HealInfo myHeal)
+    {
+
+        if (myHeal.option == GameGeneralManager.NumericTypeOption.Fixed) // 고정 값
+        {
+            _health += myHeal.value;
+        }
+
+        else if (myHeal.option == GameGeneralManager.NumericTypeOption.Percentage) // 퍼센트 값
+        {
+            float pValue = myHeal.value * 0.01f;
+            _health += (int)(_health * pValue);
+        }
+    }
 
     #endregion
 

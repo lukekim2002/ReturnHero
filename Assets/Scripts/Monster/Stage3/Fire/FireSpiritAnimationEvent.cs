@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireClass : MonoBehaviour
+public class FireSpiritAnimationEvent : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

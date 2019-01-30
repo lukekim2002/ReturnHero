@@ -9,6 +9,20 @@ public class GameGeneralManager : MonoBehaviour {
     // public instance of GGM which allows it to be accessed by any other scripts.
     public static GameGeneralManager instance = null;
 
+    public enum NumericTypeOption { Fixed, Percentage }
+    public struct DamageInfo
+    {
+        public int value;
+        public NumericTypeOption option;
+    }
+    public struct HealInfo
+    {
+        public int value;
+        public NumericTypeOption option;
+
+    }
+
+    [Header("Setting value")]
     public Camera mainCamera;
     public int curFloor;
 
