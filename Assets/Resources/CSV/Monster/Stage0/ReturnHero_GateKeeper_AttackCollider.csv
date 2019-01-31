@@ -1,10 +1,10 @@
 Name,Size_x,Size_y,Offset_x,Offset_y
 Melee_Up,1.57,1.89,0.005,0.395
-Melee_Down,1.57,1.93,0,0.465
+Melee_Down,1.57,1.93,0.0,0.465
 Melee_Left,1.57,1.89,-0.0135,0.615
 Melee_Right,1.57,1.89,0.0135,0.615
-Skill1_Up,1.14,4.22,0,-1.17
-Skill1_Down,1.14,4.22,0,2.01
+Skill1_Up,1.14,4.22,0.0,-1.17
+Skill1_Down,1.14,4.22,0.0,2.01
 Skill1_Left,4.42,1.14,1.71,0.47
 Skill1_Right,4.42,1.14,-1.71,0.47
 Skill3_Up,0,0,0,0
