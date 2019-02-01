@@ -4,7 +4,8 @@
 AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Necromancer_Idle_Up
   serializedVersion: 6
   m_Legacy: 0
@@ -24,6 +25,32 @@ AnimationClip:
     path: 
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 7b755e0f686f0b8499b260e9b034f1c2, type: 3}
+    - time: 0.13333334
+      value: {fileID: 21300000, guid: 8b6f87f9d5bccdf4498fb8016bb0a803, type: 3}
+    - time: 0.26666668
+      value: {fileID: 21300000, guid: 842d3050b8c33504881f57bb7a1ea144, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: 842d3050b8c33504881f57bb7a1ea144, type: 3}
+    attribute: m_Sprite
+    path: Necromancer_Effect_Left
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: cdbb85e40e6daa743871f538b5e8e2ab, type: 3}
+    - time: 0.13333334
+      value: {fileID: 21300000, guid: a61ae8311c43f6f46b73a803b427b947, type: 3}
+    - time: 0.26666668
+      value: {fileID: 21300000, guid: 803f768dad22442459610370a5e8199e, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: 803f768dad22442459610370a5e8199e, type: 3}
+    attribute: m_Sprite
+    path: Necromancer_Effect_Right
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -38,14 +65,36 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 936960578
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 1866204103
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: 3c26e56d116e3a74ba251187f20720b1, type: 3}
+    - {fileID: 21300000, guid: 7b755e0f686f0b8499b260e9b034f1c2, type: 3}
+    - {fileID: 21300000, guid: 8b6f87f9d5bccdf4498fb8016bb0a803, type: 3}
+    - {fileID: 21300000, guid: 842d3050b8c33504881f57bb7a1ea144, type: 3}
+    - {fileID: 21300000, guid: 842d3050b8c33504881f57bb7a1ea144, type: 3}
+    - {fileID: 21300000, guid: cdbb85e40e6daa743871f538b5e8e2ab, type: 3}
+    - {fileID: 21300000, guid: a61ae8311c43f6f46b73a803b427b947, type: 3}
+    - {fileID: 21300000, guid: 803f768dad22442459610370a5e8199e, type: 3}
+    - {fileID: 21300000, guid: 803f768dad22442459610370a5e8199e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.4166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -64,5 +113,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_GenerateMotionCurves: 0
   m_Events: []
