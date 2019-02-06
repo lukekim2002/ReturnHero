@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Manticore_Skill3_Right
+  m_Name: Manticore_AttackReady_Up
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -27,20 +27,6 @@ AnimationClip:
       value: {fileID: 21300000, guid: 6e39770d9c9b07f45b5e58531a04a9f2, type: 3}
     - time: 0.21666667
       value: {fileID: 21300000, guid: c1d8316f32b711f4bb01502902cf67d6, type: 3}
-    - time: 0.71666664
-      value: {fileID: 21300000, guid: 2254673559f838e45846ae8f6138f219, type: 3}
-    - time: 0.8666667
-      value: {fileID: 21300000, guid: c1d8316f32b711f4bb01502902cf67d6, type: 3}
-    - time: 1.3666667
-      value: {fileID: 21300000, guid: 2254673559f838e45846ae8f6138f219, type: 3}
-    - time: 1.5166667
-      value: {fileID: 21300000, guid: c1d8316f32b711f4bb01502902cf67d6, type: 3}
-    - time: 2.0166667
-      value: {fileID: 21300000, guid: 2254673559f838e45846ae8f6138f219, type: 3}
-    - time: 2.1666667
-      value: {fileID: 21300000, guid: ddf22c2ce22c3b2498b79fef2ac466f2, type: 3}
-    - time: 2.2333333
-      value: {fileID: 21300000, guid: ddf22c2ce22c3b2498b79fef2ac466f2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -64,24 +50,17 @@ AnimationClip:
     - {fileID: 21300000, guid: 23a9a5335ed9ca54999df5774e8f3150, type: 3}
     - {fileID: 21300000, guid: 6e39770d9c9b07f45b5e58531a04a9f2, type: 3}
     - {fileID: 21300000, guid: c1d8316f32b711f4bb01502902cf67d6, type: 3}
-    - {fileID: 21300000, guid: 2254673559f838e45846ae8f6138f219, type: 3}
-    - {fileID: 21300000, guid: c1d8316f32b711f4bb01502902cf67d6, type: 3}
-    - {fileID: 21300000, guid: 2254673559f838e45846ae8f6138f219, type: 3}
-    - {fileID: 21300000, guid: c1d8316f32b711f4bb01502902cf67d6, type: 3}
-    - {fileID: 21300000, guid: 2254673559f838e45846ae8f6138f219, type: 3}
-    - {fileID: 21300000, guid: ddf22c2ce22c3b2498b79fef2ac466f2, type: 3}
-    - {fileID: 21300000, guid: ddf22c2ce22c3b2498b79fef2ac466f2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.25
+    m_StopTime: 0.23333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
