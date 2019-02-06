@@ -216,6 +216,7 @@ public class HeroController : MonoBehaviour
             heroAttackState = HEROATTACKSTATE.MELEE;    
 
             _heroAnimator.SetInteger("actionNum", 2);
+            _heroAnimator.SetTrigger("isMelee");
             _isAttack = true;
             _attack_ML_Manager.isMeeleAttack = true;
         }
