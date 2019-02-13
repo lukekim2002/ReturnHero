@@ -2799,6 +2799,7 @@ MonoBehaviour:
   productionCanvas: {fileID: 1225559345}
   inventoryCanvas: {fileID: 1634480789}
   optionCanvas: {fileID: 494083282}
+  uiCamera: {fileID: 385741631}
   map: {fileID: 1427952812}
   shadowPanel: {fileID: 1248102944}
   productionMaterialsItemSlot:
