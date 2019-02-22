@@ -112,7 +112,7 @@ public class NecromancerClass : MonsterBase {
         if (myBase == null) Debug.LogError("myBase is null.");
 
         myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.NECROMANCER);
-        myColliderSet = CSVReader.Read("CSV/MonsterStage1/ReturnHero_Necromancer_AttackCollider");
+        myColliderSet = CSVReader.Read("CSV/Monster/Stage1/ReturnHero_Necromancer_AttackCollider");
 
         _id = (int)myDataSet["ID"];
         _health = (int)myDataSet["Health"];
@@ -125,6 +125,7 @@ public class NecromancerClass : MonsterBase {
         _skill1Damage = (int)myDataSet["Skill1Damage"];
         _Skill1CoolDown = (int)myDataSet["Skill1CoolDown"];
 
+        _Skill2CoolDown = (int)myDataSet["Skill2CoolDown"];
 
         _isMeleeAttackReady = true;
         _isSkill1AttackReady = true;
@@ -191,11 +192,34 @@ public class NecromancerClass : MonsterBase {
 
     public override void AttackSkill1()
     {
-        throw new System.NotImplementedException();
+        /* Attack with 5 circles
+         * 
+         */
+
+        if (_isSkill1AttackReady == false && isAttacking == true) return;
+        _isSkill1AttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        //myAttackCase = AttackCase.Skill2;
+        aiMoveScript.enabled = false;
+        //mySkill1AttackRange.SetActive(false);
+
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isSkill1");
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
+        StartCoroutine(CoolDownSkill1());
     }
 
     public override void AttackSkill2()
     {
+        /* Spawn 3 Liches
+         * 
+         */
+
         throw new System.NotImplementedException();
     }
 
