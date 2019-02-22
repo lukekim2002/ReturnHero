@@ -654,6 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8874526716354915697}
+  - component: {fileID: 3235352835501936077}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect2
   m_TagString: Untagged
@@ -680,3 +681,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3235352835501936077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874526716354915696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
