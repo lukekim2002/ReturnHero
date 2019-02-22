@@ -22,6 +22,8 @@ public class UIGeneralManager : MonoBehaviour
     public Canvas inventoryCanvas;
     public Canvas optionCanvas;
 
+    public Camera uiCamera;
+
     public Image map;
     public Image shadowPanel;
     public Image[] productionMaterialsItemSlot;

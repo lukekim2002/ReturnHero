@@ -48,7 +48,9 @@ public class ItemEvent : MonoBehaviour
             if (transform.childCount > 0)
                 this.transform.GetChild(0).SetParent(Inventory.instance.draggedItem);
 
-            Inventory.instance.draggedItem.GetChild(0).position = Input.mousePosition;
+            var screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, UIGeneralManager.instance.displayUICanvas.planeDistance);
+
+            Inventory.instance.draggedItem.GetChild(0).position = UIGeneralManager.instance.uiCamera.ScreenToWorldPoint(screenPoint);
             Inventory.instance.draggedItem.GetChild(0).GetComponent<Image>().raycastTarget = false;
         }
     }
