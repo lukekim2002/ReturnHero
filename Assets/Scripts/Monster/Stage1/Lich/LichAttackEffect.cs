@@ -20,5 +20,6 @@ public class LichAttackEffect : MonoBehaviour
     private void OnDisable()
     {
         animator.ResetTrigger("isLichAttackEffect");
+        transform.gameObject.SetActive(false);
     }
 }

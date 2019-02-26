@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 320066611227227888}
   - component: {fileID: 5913817182343167423}
   - component: {fileID: 576700290570330333}
+  - component: {fileID: 3059009577291036405}
   - component: {fileID: 5675501106296804916}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect (4)
@@ -117,6 +118,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
+--- !u!114 &3059009577291036405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258411742534505015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lichObject: {fileID: 1429325400231378, guid: 999fd163372958840bad1e0149c5319a, type: 3}
 --- !u!114 &5675501106296804916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +155,7 @@ GameObject:
   - component: {fileID: 8285980843792889966}
   - component: {fileID: 970728550256212066}
   - component: {fileID: 3748792023048542365}
+  - component: {fileID: 7541903955677171348}
   - component: {fileID: 6002446325026363043}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect (3)
@@ -246,6 +261,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
+--- !u!114 &7541903955677171348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2417995546554130588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lichObject: {fileID: 1429325400231378, guid: 999fd163372958840bad1e0149c5319a, type: 3}
 --- !u!114 &6002446325026363043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +298,7 @@ GameObject:
   - component: {fileID: 6847260733700290971}
   - component: {fileID: 9175299290655167557}
   - component: {fileID: 7121416354224030929}
+  - component: {fileID: 4246334720187390633}
   - component: {fileID: 3289667812242069492}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect (2)
@@ -375,6 +404,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
+--- !u!114 &4246334720187390633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867485956205454299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lichObject: {fileID: 1429325400231378, guid: 999fd163372958840bad1e0149c5319a, type: 3}
 --- !u!114 &3289667812242069492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +441,7 @@ GameObject:
   - component: {fileID: 4916252967496657946}
   - component: {fileID: 6969011062258164472}
   - component: {fileID: 6184632996477089197}
+  - component: {fileID: 188900773099454521}
   - component: {fileID: 3074574874745813968}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect (1)
@@ -504,6 +547,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
+--- !u!114 &188900773099454521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018820998585042955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lichObject: {fileID: 1429325400231378, guid: 999fd163372958840bad1e0149c5319a, type: 3}
 --- !u!114 &3074574874745813968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,7 +581,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5233663261186645988}
-  - component: {fileID: 4889355517890246388}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect1
   m_TagString: Untagged
@@ -552,18 +607,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4889355517890246388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233663261186645989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7430168945567406128
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +619,7 @@ GameObject:
   - component: {fileID: 7925102390475257269}
   - component: {fileID: 6012714635753100975}
   - component: {fileID: 1073124963972677836}
+  - component: {fileID: 9055086744206758974}
   - component: {fileID: 9028463412248500109}
   m_Layer: 0
   m_Name: Necromancer_Skill1Effect
@@ -681,6 +725,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.28
+--- !u!114 &9055086744206758974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430168945567406128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8664cc25c4a0c46a98f9babc168b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lichObject: {fileID: 1429325400231378, guid: 999fd163372958840bad1e0149c5319a, type: 3}
 --- !u!114 &9028463412248500109
 MonoBehaviour:
   m_ObjectHideFlags: 0

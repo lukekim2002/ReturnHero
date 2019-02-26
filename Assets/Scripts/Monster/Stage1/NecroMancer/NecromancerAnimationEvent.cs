@@ -34,6 +34,8 @@ public class NecromancerAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackSkill1_End()
     {
+        Skill1AttackEffects[randomSeed].transform.parent = transform;
+
         Skill1AttackEffects[randomSeed].SetActive(false);
     }
 
@@ -48,6 +50,8 @@ public class NecromancerAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
         Skill1AttackEffects[randomSeed].transform.position = HeroGeneralManager.instance.heroObject.transform.position;
         Skill1AttackEffects[randomSeed].SetActive(true);
+
+        Skill1AttackEffects[randomSeed].transform.parent = Skill1AttackEffects[randomSeed].transform.parent.parent;
 
         /*
         if (randomSeed == 0)
