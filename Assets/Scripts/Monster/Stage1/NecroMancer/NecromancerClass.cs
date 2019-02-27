@@ -41,6 +41,8 @@ public class NecromancerClass : MonsterBase {
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
 
+    public GameObject mySkill2Object; // Animation Object for spawning lich
+
 
     [Header("State Values")]
     public Vector2 myDirection;
@@ -91,6 +93,11 @@ public class NecromancerClass : MonsterBase {
             myAnimator.SetInteger("actionNum", 1);
             myAnimator.SetFloat("moveX", myDirection.x);
             myAnimator.SetFloat("moveY", myDirection.y);
+        }
+
+        if (_isSkill1AttackReady && !isAttacking)
+        {
+            AttackSkill1();
         }
 
     }
@@ -220,7 +227,17 @@ public class NecromancerClass : MonsterBase {
          * 
          */
 
-        throw new System.NotImplementedException();
+        if (_isSkill2AttackReady == false && isAttacking == true) return;
+        _isSkill2AttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+
+        mySkill2Object.SetActive(true);
+
+        StartCoroutine(CoolDownSkill2());
+        Invoke("EndAttackSkill2", 0.32f);
     }
 
     
@@ -271,7 +288,16 @@ public class NecromancerClass : MonsterBase {
 
     public override void EndAttackSkill2()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        //myAttackCase = AttackCase.None;
+        myAnimator.SetInteger("actionNum", 1);
+        //myAnimator.ResetTrigger("isSkill1");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
+
+        mySkill2Object.SetActive(false);
     }
 
     
@@ -304,7 +330,7 @@ public class NecromancerClass : MonsterBase {
 
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
-        else if (stateInfo.IsName("Cow_Skill1_Down"))
+        else if (stateInfo.IsName("Skill"))
             EndAttackSkill1();
         else if (stateInfo.IsName("BeShot"))
             EndGetHit();

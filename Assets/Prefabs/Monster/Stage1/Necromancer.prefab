@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3449983983735867566}
   - component: {fileID: 2577918950928923780}
+  - component: {fileID: 805642544196945460}
   m_Layer: 0
   m_Name: MeleeAttackRange
   m_TagString: Untagged
@@ -243,6 +244,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.8
+--- !u!114 &805642544196945460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736869430081522406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7197021565754419827
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +379,7 @@ Transform:
   - {fileID: 7197021565754419824}
   - {fileID: 6562567773135750456}
   - {fileID: 3060788885453602971}
+  - {fileID: 7464844839507686284}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -568,6 +582,7 @@ MonoBehaviour:
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
+  mySkill2Object: {fileID: 5194572655779764237}
   myDirection: {x: 0, y: 0}
   myAction: 0
   myAttackCase: 0
@@ -584,7 +599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b7edbd2dba9b7498dc2ae966e61ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill1AttackEffects: []
+  Skill1AttackEffects:
+  - {fileID: 6562567773135750457}
+  - {fileID: 3060788885453602970}
 --- !u!1 &7197021567702287648
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +755,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acaddf859ef399d48ac25fe268f5449a, type: 3}
+--- !u!1 &6562567773135750457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5233663261186645989, guid: acaddf859ef399d48ac25fe268f5449a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1419576848616266460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6562567773135750456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5233663261186645988, guid: acaddf859ef399d48ac25fe268f5449a,
@@ -818,9 +841,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73f28356e97a12b43bf8aa9fb095a3e9, type: 3}
+--- !u!1 &3060788885453602970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8874526716354915696, guid: 73f28356e97a12b43bf8aa9fb095a3e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5859953053458853354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3060788885453602971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8874526716354915697, guid: 73f28356e97a12b43bf8aa9fb095a3e9,
     type: 3}
   m_PrefabInstance: {fileID: 5859953053458853354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6592187022530057932
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7197021566662228862}
+    m_Modifications:
+    - target: {fileID: 1399198251406446273, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_Name
+      value: Necromancer_Skill2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 366f39ca7fee8944aa92eff3e52d0688, type: 3}
+--- !u!1 &5194572655779764237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1399198251406446273, guid: 366f39ca7fee8944aa92eff3e52d0688,
+    type: 3}
+  m_PrefabInstance: {fileID: 6592187022530057932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7464844839507686284 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4387724292865615168, guid: 366f39ca7fee8944aa92eff3e52d0688,
+    type: 3}
+  m_PrefabInstance: {fileID: 6592187022530057932}
   m_PrefabAsset: {fileID: 0}

@@ -139,6 +139,7 @@ public class LichClass : MonsterBase {
         myMeleeAttackRange.SetActive(false);
 
         myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isMelee");
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
@@ -150,6 +151,7 @@ public class LichClass : MonsterBase {
     {
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;
