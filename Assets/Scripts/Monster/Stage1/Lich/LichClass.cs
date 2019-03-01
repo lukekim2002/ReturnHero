@@ -178,7 +178,7 @@ public class LichClass : MonsterBase {
 
         // Instantiate Skeleton and skill1Effect
         skillEffect.SetActive(true);
-        print("Lich AttackSkill1 Executed");
+        //print("Lich AttackSkill1 Executed");
 
         StartCoroutine(CoolDownSkill1());
         Invoke("EndAttackSkill1", 0.5f);

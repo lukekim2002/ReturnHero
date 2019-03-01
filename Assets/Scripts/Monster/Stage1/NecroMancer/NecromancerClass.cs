@@ -243,7 +243,7 @@ public class NecromancerClass : MonsterBase {
         aiMoveScript.enabled = false;
 
         mySkill2Object.SetActive(true);
-        Debug.Log(mySkill2Object.activeSelf);
+        //ebug.Log(mySkill2Object.activeSelf);
 
         StartCoroutine(CoolDownSkill2());
         Invoke("EndAttackSkill2", 0.32f);

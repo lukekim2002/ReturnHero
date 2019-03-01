@@ -315,8 +315,7 @@ MonoBehaviour:
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
   myAnimator: {fileID: 0}
-  skillEffect1: {fileID: 0}
-  skillEffect2: {fileID: 0}
+  skillEffect: {fileID: 2455296078638766011}
   myDirection: {x: 0, y: 0}
   myAction: 0
   isAttacking: 0
@@ -618,15 +617,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: LichSkill
       objectReference: {fileID: 0}
+    - target: {fileID: 7775084507603301674, guid: a8136824616318a4e856a05b9c788096,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 335390650801221772, guid: a8136824616318a4e856a05b9c788096,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 335390650801221772, guid: a8136824616318a4e856a05b9c788096,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 335390650801221772, guid: a8136824616318a4e856a05b9c788096,
         type: 3}
@@ -675,6 +679,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8136824616318a4e856a05b9c788096, type: 3}
+--- !u!1 &2455296078638766011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7775084507603301674, guid: a8136824616318a4e856a05b9c788096,
+    type: 3}
+  m_PrefabInstance: {fileID: 5328973233762476689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5572040057776525853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 335390650801221772, guid: a8136824616318a4e856a05b9c788096,

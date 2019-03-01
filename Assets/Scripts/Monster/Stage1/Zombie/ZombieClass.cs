@@ -163,8 +163,10 @@ public class ZombieClass : MonsterBase
 
 
         myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isMelee");
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
+
 
         attackCollider.SetActive(true);
         attackColliderScript.size = attackColliderSize;
@@ -178,6 +180,7 @@ public class ZombieClass : MonsterBase
     {
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;
