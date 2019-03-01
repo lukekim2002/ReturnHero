@@ -35,8 +35,7 @@ public class LichClass : MonsterBase {
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public Animator myAnimator;
-    public GameObject skillEffect1;
-    public GameObject skillEffect2;
+    public GameObject skillEffect;
 
     [Header("State Values")]
     public Vector2 myDirection;
@@ -84,7 +83,7 @@ public class LichClass : MonsterBase {
             myAnimator.SetFloat("moveY", myDirection.y);
         }
 
-        if (_isSkill1AttackReady == true && _isSkill1TriggerOk == true)
+        if (_isSkill1AttackReady && !isAttacking) //&& _isSkill1TriggerOk == true)
         {
             AttackSkill1();
         }
@@ -178,8 +177,7 @@ public class LichClass : MonsterBase {
         //mySkill1AttackRange.SetActive(false);
 
         // Instantiate Skeleton and skill1Effect
-        skillEffect1.SetActive(true);
-        skillEffect2.SetActive(true);
+        skillEffect.SetActive(true);
         print("Lich AttackSkill1 Executed");
 
         StartCoroutine(CoolDownSkill1());

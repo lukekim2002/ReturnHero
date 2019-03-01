@@ -342,7 +342,14 @@ public class NecromancerClass : MonsterBase {
         else if (stateInfo.IsName("Skill"))
             EndAttackSkill1();
         else if (stateInfo.IsName("BeShot"))
+        {
+            if (_health <= 0)
+            {
+                DyingMotion();
+            }
             EndGetHit();
+        }
+           
         /*
         else if(stateInfo.IsName("Die"))
             gameObject.SetActive(false);
