@@ -95,10 +95,17 @@ public class NecromancerClass : MonsterBase {
             myAnimator.SetFloat("moveY", myDirection.y);
         }
 
+        if (_isSkill2AttackReady && !isAttacking)
+        {
+            AttackSkill2();
+        }
+
         if (_isSkill1AttackReady && !isAttacking)
         {
             AttackSkill1();
         }
+
+       
 
     }
 
@@ -136,6 +143,7 @@ public class NecromancerClass : MonsterBase {
 
         _isMeleeAttackReady = true;
         _isSkill1AttackReady = true;
+        _isSkill2AttackReady = true;
         //_isSkill1TriggerOk = false;
     }
 
@@ -235,6 +243,7 @@ public class NecromancerClass : MonsterBase {
         aiMoveScript.enabled = false;
 
         mySkill2Object.SetActive(true);
+        Debug.Log(mySkill2Object.activeSelf);
 
         StartCoroutine(CoolDownSkill2());
         Invoke("EndAttackSkill2", 0.32f);
@@ -297,7 +306,7 @@ public class NecromancerClass : MonsterBase {
         isAttacking = false;
         aiMoveScript.enabled = true;
 
-        mySkill2Object.SetActive(false);
+        //mySkill2Object.SetActive(false);
     }
 
     
