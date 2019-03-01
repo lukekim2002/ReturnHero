@@ -26,6 +26,6 @@ public class LichSkillEffect : MonoBehaviour
     public void SpawnSkeleton()
     {
         Instantiate(SkeletonObject, transform.position, Quaternion.identity);
-        this.gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
     }
 }

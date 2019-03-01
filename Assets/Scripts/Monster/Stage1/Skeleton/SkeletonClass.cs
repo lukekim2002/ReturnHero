@@ -109,7 +109,7 @@ public class SkeletonClass : MonsterBase {
 
         _isMeleeAttackReady = true;
 
-        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
+        //Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
 
         //aiMoveScript.maxSpeed = _movingSpeed;
     }

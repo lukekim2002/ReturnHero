@@ -15,7 +15,7 @@ public class MeleeTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(transform.name);
+            //Debug.Log(transform.name);
             root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
         }
     }
