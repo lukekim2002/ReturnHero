@@ -100,7 +100,7 @@ public class BabyDragonClass : MonsterBase
         {
             Debug.LogError("myBase is null");
         }
-        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.ZOMBIE);
+        myDataSet = MonsterDataManager.instance.ThrowDataIntoContainer((int)MonsterDataManager.MONSTER.RED_BABY_DRAGON);
         myColliderSet = CSVReader.Read("CSV/Monster/Stage4/ReturnHero_bluebabydragon_AttackCollider");
 
 
