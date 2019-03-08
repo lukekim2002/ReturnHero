@@ -10,8 +10,9 @@ public class RedSkillEffectAnimationEvent : MonoBehaviour
     private void OnEnable()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+        
+        parentTransform = transform.parent;
         /*
-        parentTransform = this.transform.parent;
         this.transform.parent = this.transform.parent.parent;
         */
     }
@@ -29,8 +30,9 @@ public class RedSkillEffectAnimationEvent : MonoBehaviour
     public void On()
     {
         // get out from parent
-        parentTransform = transform.parent;
-        transform.parent = transform.parent.parent;
+        //parentTransform = transform.parent;
+        if(transform.parent != null)
+            transform.parent = transform.parent.parent;
 
         transform.position = HeroGeneralManager.instance.heroObject.transform.position;
 
@@ -39,6 +41,7 @@ public class RedSkillEffectAnimationEvent : MonoBehaviour
     public void Off()
     {
         // go in to parent
-        this.transform.parent = parentTransform;
+        transform.parent = parentTransform;
+        transform.gameObject.SetActive(false);
     }
 }

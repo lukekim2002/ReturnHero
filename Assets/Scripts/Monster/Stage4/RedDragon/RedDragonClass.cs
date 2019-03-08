@@ -38,7 +38,7 @@ public class RedDragonClass : MonsterBase
     public GameObject myMeleeAttackRange;
     public Animator myAnimator;
 
-    public GameObject mySkillEffect;
+    public GameObject[] mySkillEffect;
 
     [Header("State Values")]
     public Vector2 myDirection;
@@ -69,11 +69,13 @@ public class RedDragonClass : MonsterBase
         if (isAttacking == false)
             myDirection = myBase.direction;
 
+        /*
         if (_health <= 0)
         {
             // Dead
             DyingMotion();
         }
+        */
 
         if (myAction == Action.Idle && isAttacking == false)
         {
@@ -205,6 +207,7 @@ public class RedDragonClass : MonsterBase
         aiMoveScript.enabled = true;
 
         attackCollider.SetActive(false);
+        Debug.Log("EndAttackMelee has executed");
     }
 
     public override IEnumerator CoolDownMelee()
@@ -229,7 +232,22 @@ public class RedDragonClass : MonsterBase
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
-        mySkillEffect.SetActive(true);
+
+        StartCoroutine(Skill1AttackEffectOn());
+        //mySkillEffect.SetActive(true);
+    }
+
+    IEnumerator Skill1AttackEffectOn()
+    {
+        int i = 0;
+        while (i < 3)
+        {
+            //mySkillEffect[i].transform.position = HeroGeneralManager.instance.heroObject.transform.position;
+            mySkillEffect[i].SetActive(true);
+            i++;
+
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     public override void EndAttackSkill1()
@@ -242,7 +260,7 @@ public class RedDragonClass : MonsterBase
         isAttacking = false;
         aiMoveScript.enabled = true;
 
-        mySkillEffect.SetActive(false);
+        Debug.Log("EndAttackSkill1 has executed");
     }
 
     #region NOT USED
@@ -332,21 +350,22 @@ public class RedDragonClass : MonsterBase
             EndAttackSkill1();
         else if (stateInfo.IsName("BeShot"))
             EndGetHit();
-        /*
         else if (stateInfo.IsName("Die"))
             gameObject.SetActive(false);
-            */
+
     }
 
     public override void DyingMotion()
     {
+        Debug.Log("DyingMotion has executed");
+
         myAnimator.SetInteger("actionNum", 4);
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
         StartCoroutine(WaitAnimationFinish());
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public override void HitByPlayer(int damage)
@@ -354,26 +373,38 @@ public class RedDragonClass : MonsterBase
         myAction = Action.Idle;
         aiMoveScript.enabled = false;
 
-        myAnimator.SetInteger("actionNum", 3);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
-
         _health -= damage;
-        Debug.Log("current health : " + _health);
-
-
-        if (_skill1HealthFlag1 == false && _health <= ((int)myDataSet["Health"] / 3) * 2)
+        if (_health <= 0)
         {
-            _skill1HealthFlag1 = true;
-            _isSkill1AttackReady = true;
+            DyingMotion();
         }
-        else if (_skill1HealthFlag2 == false && _health <= ((int)myDataSet["Health"] / 3))
+        else
         {
-            _skill1HealthFlag2 = true;
-            _isSkill1AttackReady = true;
+            myAnimator.SetInteger("actionNum", 3);
+            myAnimator.SetFloat("actionX", myDirection.x);
+            myAnimator.SetFloat("actionY", myDirection.y);
+
+
+            Debug.Log("current health : " + _health);
+
+
+            if (_skill1HealthFlag1 == false && _health <= ((int)myDataSet["Health"] / 3) * 2)
+            {
+                _skill1HealthFlag1 = true;
+                _isSkill1AttackReady = true;
+                Debug.Log("_skill1HealthFlag1 " + _skill1HealthFlag1);
+            }
+            else if (_skill1HealthFlag2 == false && _health <= ((int)myDataSet["Health"] / 3))
+            {
+                _skill1HealthFlag2 = true;
+                _isSkill1AttackReady = true;
+                Debug.Log("_skill1HealthFlag2 " + _skill1HealthFlag2);
+            }
+
+            StartCoroutine(WaitAnimationFinish());
         }
 
-        StartCoroutine(WaitAnimationFinish());
+        
 
 
     }
@@ -382,6 +413,8 @@ public class RedDragonClass : MonsterBase
     {
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
+        myAnimator.ResetTrigger("isSkill1");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         aiMoveScript.enabled = true;
