@@ -30,9 +30,11 @@ public class RedSkillEffectAnimationEvent : MonoBehaviour
     public void On()
     {
         // get out from parent
+
         //parentTransform = transform.parent;
         if(transform.parent != null)
             transform.parent = transform.parent.parent;
+
 
         transform.position = HeroGeneralManager.instance.heroObject.transform.position;
 
