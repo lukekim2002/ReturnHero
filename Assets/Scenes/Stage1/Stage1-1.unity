@@ -1718,7 +1718,6 @@ Transform:
   - {fileID: 448009054}
   - {fileID: 1082180341}
   - {fileID: 2140145277}
-  - {fileID: 2091959535}
   - {fileID: 1767695445}
   - {fileID: 1188714154}
   - {fileID: 2071291686}
@@ -1727,6 +1726,7 @@ Transform:
   - {fileID: 587000374}
   - {fileID: 1113616146}
   - {fileID: 887915462}
+  - {fileID: 2091959535}
   - {fileID: 661353961}
   - {fileID: 945309205}
   - {fileID: 7358237}
@@ -1739,20 +1739,20 @@ Transform:
   - {fileID: 925680602}
   - {fileID: 675919652}
   - {fileID: 1986514296}
+  - {fileID: 1136297855}
   - {fileID: 10278075}
   - {fileID: 538239611}
-  - {fileID: 1755121762}
-  - {fileID: 1136297855}
   - {fileID: 1294593493}
   - {fileID: 378649119}
   - {fileID: 1164068957}
   - {fileID: 1492692925}
+  - {fileID: 1755121762}
   - {fileID: 1194070534}
   - {fileID: 1189531453}
   - {fileID: 1270059967}
+  - {fileID: 2143914878}
   - {fileID: 15836615}
   - {fileID: 1357020897}
-  - {fileID: 2143914878}
   - {fileID: 522592665}
   - {fileID: 988891947}
   - {fileID: 796831042}
@@ -50723,7 +50723,7 @@ GameObject:
   - component: {fileID: 2098807089}
   - component: {fileID: 2098807088}
   m_Layer: 0
-  m_Name: map_1_1
+  m_Name: Stage1-1 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

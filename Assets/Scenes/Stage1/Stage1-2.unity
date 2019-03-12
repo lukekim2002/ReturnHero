@@ -46140,7 +46140,7 @@ GameObject:
   - component: {fileID: 1685006465}
   - component: {fileID: 1685006467}
   m_Layer: 0
-  m_Name: map_1_2
+  m_Name: Stage1-2 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
