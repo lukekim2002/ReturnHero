@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 749291197}
   - component: {fileID: 749291196}
   m_Layer: 0
-  m_Name: mmap_2_1
+  m_Name: Stage2-1 Minimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41973,7 +41973,7 @@ GameObject:
   - component: {fileID: 1949758131}
   - component: {fileID: 1949758130}
   m_Layer: 0
-  m_Name: map_2_1
+  m_Name: Stage2-1 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
