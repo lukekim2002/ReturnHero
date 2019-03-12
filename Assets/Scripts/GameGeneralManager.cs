@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class GameGeneralManager : MonoBehaviour {
 
@@ -22,9 +23,16 @@ public class GameGeneralManager : MonoBehaviour {
 
     }
 
+    [Header("Custom GC")]
+    private float gcTime = 15.0f; // Should be adjusted
+
+    [SerializeField]
+    private List<GameObject> objectsInScene;
+
     [Header("Setting value")]
     public Camera mainCamera;
     public int curFloor;
+
 
     private int UISceneNum = 16;
 
@@ -45,6 +53,7 @@ public class GameGeneralManager : MonoBehaviour {
 
         Application.targetFrameRate = 60;
 
+
         //curFloor = 1;
         // Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
@@ -57,6 +66,45 @@ public class GameGeneralManager : MonoBehaviour {
         print("Current Floor : " + curFloor);
         SceneManager.LoadScene(curFloor, LoadSceneMode.Additive);
         SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
+
+        StartCoroutine(DestroyInactiveClone());
+    }
+
+    IEnumerator DestroyInactiveClone()
+    {
+        while (true)
+        {
+            objectsInScene = new List<GameObject>();
+
+            // Get all of objects in the scene
+            foreach (GameObject obj in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+            {
+                // exclude Prefab Asset
+                if (PrefabUtility.GetPrefabAssetType(obj) == PrefabAssetType.Regular ||
+                    PrefabUtility.GetPrefabAssetType(obj) == PrefabAssetType.Model)
+                    continue;
+
+                // Only Root GaeObjects
+                if (obj.transform.parent == null)
+                {
+                    objectsInScene.Add(obj);
+                }
+
+            }
+            
+            // Destory inactive clones in the scene
+            foreach (GameObject obj in objectsInScene)
+            {
+                if (obj.name.Contains("Clone") && !obj.activeInHierarchy)
+                {
+                    Destroy(obj);
+                }
+            }
+
+            
+            yield return new WaitForSeconds(gcTime);
+        }
+
     }
 
     /// <summary>
