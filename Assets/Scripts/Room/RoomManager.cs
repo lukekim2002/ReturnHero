@@ -33,7 +33,8 @@ public class RoomManager : MonoBehaviour
                 {
                     var wallBoxCollider = walls[i].GetComponent<BoxCollider2D>();
                     var wallSpriteRenderer = walls[i].GetComponent<SpriteRenderer>();
-
+                    wallBoxCollider.enabled = true;
+                    wallSpriteRenderer.color = new Color(1f, 1f, 1f, 1f);
                 }
             }
         }
@@ -50,7 +51,7 @@ public class RoomManager : MonoBehaviour
                 var wallBoxCollider = walls[i].GetComponent<BoxCollider2D>();
                 var wallSpriteRenderer = walls[i].GetComponent<SpriteRenderer>();
                 wallBoxCollider.enabled = false;
-                wallSpriteRenderer.color = new Color(255, 255, 255, 128);
+                wallSpriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
             }
             _isRoomClear = true;
         }
