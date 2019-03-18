@@ -2066,8 +2066,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1630062558}
-  m_Father: {fileID: 2105244188}
-  m_RootOrder: 0
+  m_Father: {fileID: 1658653418}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602271941
 GameObject:
@@ -2302,8 +2302,9 @@ Transform:
   m_Children:
   - {fileID: 21535142}
   - {fileID: 1602271943}
+  - {fileID: 1208412626}
   m_Father: {fileID: 2105244188}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1658653419
 MonoBehaviour:
@@ -2333,7 +2334,7 @@ GameObject:
   - component: {fileID: 1703127685}
   - component: {fileID: 1703127684}
   m_Layer: 0
-  m_Name: Stage0
+  m_Name: Stage0 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2441,7 +2442,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1208412626}
   - {fileID: 1658653418}
   m_Father: {fileID: 0}
   m_RootOrder: 2
