@@ -65,7 +65,7 @@ public class GameGeneralManager : MonoBehaviour {
         //curFloor = SceneManager.GetActiveScene().buildIndex;
         print("Current Floor : " + curFloor);
         SceneManager.LoadScene(curFloor, LoadSceneMode.Additive);
-        SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
+        //SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
 
         StartCoroutine(DestroyInactiveClone());
     }
