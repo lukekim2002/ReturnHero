@@ -145,17 +145,39 @@ public class ManticoreClass : MonsterBase
     #region Melee
     public override void AttackMelee()
     {
-        throw new System.NotImplementedException();
+        if (_isMeleeAttackReady == false && isAttacking == true) return;
+        _isMeleeAttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+        myMeleeAttackRange.SetActive(false);
+
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isMelee");
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
+        StartCoroutine(CoolDownMelee());
     }
 
     public override void EndAttackMelee()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
     }
 
     public override IEnumerator CoolDownMelee()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(_meleeCoolDown);
+        _isMeleeAttackReady = true;
+        myMeleeAttackRange.SetActive(true);
     }
     #endregion
 
@@ -213,7 +235,16 @@ public class ManticoreClass : MonsterBase
 
     public override void GetHealed(GameGeneralManager.HealInfo myHeal)
     {
-        throw new System.NotImplementedException();
+        if (myHeal.option == GameGeneralManager.NumericTypeOption.Fixed) // 고정 값
+        {
+            _health += myHeal.value;
+        }
+
+        else if (myHeal.option == GameGeneralManager.NumericTypeOption.Percentage) // 퍼센트 값
+        {
+            float pValue = myHeal.value * 0.01f;
+            _health += (int)(_health * pValue);
+        }
     }
     #endregion
 
@@ -238,12 +269,48 @@ public class ManticoreClass : MonsterBase
 
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
-        throw new System.NotImplementedException();
+        return (stateInfo.IsName("Melee")
+            || stateInfo.IsName("Skill1")
+            || stateInfo.IsName("Skill2")
+            //|| stateInfo.IsName("Skill3_1Phase")
+            //|| stateInfo.IsName("Skill3_2Phase")
+            || stateInfo.IsName("Skill3_3Phase")
+            || stateInfo.IsName("BeShot"))
+            || stateInfo.IsName("Die");
     }
 
     public override IEnumerator WaitAnimationFinish()
     {
-        throw new System.NotImplementedException();
+        AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+
+        // Wait Attack State
+        while (!CheckAnimatorStateName(stateInfo))
+        {
+            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        // Wait Animation Ends
+        while (stateInfo.normalizedTime <= 0.95f)
+        {
+            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        if (stateInfo.IsName("Melee"))
+            EndAttackMelee();
+        else if (stateInfo.IsName("Skill1"))
+            EndAttackSkill1();
+        else if (stateInfo.IsName("Skill2"))
+            EndAttackSkill2();
+        else if (stateInfo.IsName("Skill3_3Phase"))
+            EndAttackSkill3();
+        else if (stateInfo.IsName("BeShot"))
+            EndGetHit();
+        /*
+        else if(stateInfo.IsName("Die"))
+            gameObject.SetActive(false);
+            */
     }
     #endregion
 

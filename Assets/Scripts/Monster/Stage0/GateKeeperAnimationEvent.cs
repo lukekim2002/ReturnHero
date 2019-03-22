@@ -69,16 +69,6 @@ public class GateKeeperAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
         //throw new System.NotImplementedException();
     }
 
-    IEnumerator DashDelayTime()
-    {
-        tempTime = 0;
-        while (tempTime < 69)
-        {
-            tempTime++;
-            yield return new WaitForSeconds(1 / 30);
-        }
-    }
-
     public void AttackSkill1_End()
     {
         //throw new System.NotImplementedException();
