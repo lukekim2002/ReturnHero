@@ -125,14 +125,10 @@ public class IceSpiritClass : MonsterBase
         _skill1Damage = (int)myDataSet["Skill1Damage"];
         _Skill1CoolDown = (int)myDataSet["Skill1CoolDown"];
 
-        _skill2Damage = (int)myDataSet["Skill2Damage"];
-        _Skill2CoolDown = (int)myDataSet["Skill2CoolDown"];
-
 
         _isMeleeAttackReady = true;
         _isSkill1AttackReady = true;
-        _isSkill2AttackReady = true;
-        _isSkill2TriggerOk = true;
+
     }
 
     public override void AttackMelee()
@@ -195,78 +191,12 @@ public class IceSpiritClass : MonsterBase
 
     public override void AttackSkill1()
     {
-        if (_isSkill1AttackReady == false && isAttacking == true) return;
-        _isSkill1AttackReady = false;
-
-        myAction = Action.Attack;
-        isAttacking = true;
-        aiMoveScript.enabled = false;
-        //mySkill1AttackRange.SetActive(false);
-
-        switch (myLookingDirection)
-        {
-            case LookingDirection.Top:
-
-                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
-
-                break;
-
-            case LookingDirection.Down:
-
-                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
-
-                break;
-
-            case LookingDirection.Left:
-
-                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
-
-                break;
-
-            case LookingDirection.Right:
-
-                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
-
-                break;
-
-        }
-
-        myAnimator.SetInteger("actionNum", 2);
-        myAnimator.SetTrigger("isSkill1");
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
-
-        attackCollider.SetActive(true);
-        attackColliderScript.size = attackColliderSize;
-        attackColliderScript.offset = attackColliderOffset;
-
-        StartCoroutine(WaitAnimationFinish());
-        StartCoroutine(CoolDownSkill1());
+        
     }
 
     public override void AttackSkill2()
     {
-        Debug.Log(_Skill2CoolDown);
-
-        if (_isSkill2AttackReady == false && isAttacking == true) return;
-        _isSkill2AttackReady = false;
-
-        myAction = Action.Attack;
-        isAttacking = true;
-        aiMoveScript.enabled = false;
-        mySkill2AttackRange.SetActive(false);
-
-        myAnimator.SetInteger("actionNum", 2);
-        myAnimator.SetTrigger("isSkill2");
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
-
-        StartCoroutine(WaitAnimationFinish());
-        StartCoroutine(CoolDownSkill2());
+        
     }
 
     public override void EndAttackMelee()
@@ -298,13 +228,6 @@ public class IceSpiritClass : MonsterBase
 
     public override void EndAttackSkill2()
     {
-        myAction = Action.Move;
-        myAnimator.SetInteger("actionNum", 1);
-        myAnimator.ResetTrigger("isSkill2");
-        myAnimator.SetFloat("moveX", myDirection.x);
-        myAnimator.SetFloat("moveY", myDirection.y);
-        isAttacking = false;
-        aiMoveScript.enabled = true;
     }
 
     public override IEnumerator CoolDownMelee()
@@ -323,10 +246,7 @@ public class IceSpiritClass : MonsterBase
 
     public override IEnumerator CoolDownSkill2()
     {
-        yield return new WaitForSeconds(_Skill2CoolDown);
-        _isSkill2AttackReady = true;
-        _isSkill2TriggerOk = true;
-        mySkill2AttackRange.SetActive(true);
+        throw new System.NotImplementedException();
     }
 
     #region NOT USED
@@ -407,9 +327,6 @@ public class IceSpiritClass : MonsterBase
     public override void DyingMotion()
     {
         Debug.Log("Die");
-
-        _isSkill2AttackReady = true;
-        AttackSkill2();
 
         //myAnimator.SetInteger("actionNum", 3);
         myAnimator.SetInteger("actionNum", 4);
