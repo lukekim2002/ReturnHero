@@ -30,6 +30,7 @@ public class Slot : MonoBehaviour
     public void SetSlotImage()
     {
         slotImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(item.itemID);
+        slotImage.SetNativeSize();
     }
 
     // 슬롯 아이템 수량 세팅
