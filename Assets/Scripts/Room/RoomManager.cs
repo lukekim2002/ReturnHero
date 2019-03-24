@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RoomManager : MonoBehaviour
 {
     #region PRIVATE
     private BoxCollider2D _wallBoxcollider2D;
-    private SpriteRenderer _wallSprite;
     private bool _isRoomClear = false;
     private int _monsterNum;
     #endregion
@@ -14,12 +14,11 @@ public class RoomManager : MonoBehaviour
     #region PUBLIC
     // 방 안에 있는 몬스터들
     public GameObject[] monsters;
-    public GameObject[] walls;
+    public GameObject walls;
     #endregion
 
     private void Start()
     {
-        _wallSprite = GetComponent<SpriteRenderer>();
         _monsterNum = monsters.Length;
     }
 
@@ -29,13 +28,8 @@ public class RoomManager : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
-                for (int i = 0; i < walls.Length; i++)
-                {
-                    var wallBoxCollider = walls[i].GetComponent<BoxCollider2D>();
-                    var wallSpriteRenderer = walls[i].GetComponent<SpriteRenderer>();
-                    wallBoxCollider.enabled = true;
-                    wallSpriteRenderer.color = new Color(1f, 1f, 1f, 1f);
-                }
+                walls.GetComponent<TilemapCollider2D>().enabled = true;
+                walls.GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 1f);
             }
         }
     }
@@ -46,14 +40,9 @@ public class RoomManager : MonoBehaviour
 
         if (_monsterNum == 0)
         {
-            for (int i = 0; i < walls.Length; i++)
-            {
-                var wallBoxCollider = walls[i].GetComponent<BoxCollider2D>();
-                var wallSpriteRenderer = walls[i].GetComponent<SpriteRenderer>();
-                wallBoxCollider.enabled = false;
-                wallSpriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
-            }
-            _isRoomClear = true;
+            walls.GetComponent<TilemapCollider2D>().enabled = false;
+            walls.GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 0.5f);
+            this.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
