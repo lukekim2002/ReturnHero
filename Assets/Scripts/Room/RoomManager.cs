@@ -7,7 +7,6 @@ public class RoomManager : MonoBehaviour
 {
     #region PRIVATE
     private BoxCollider2D _wallBoxcollider2D;
-    private bool _isRoomClear = false;
     private int _monsterNum;
     #endregion
 
@@ -24,13 +23,11 @@ public class RoomManager : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_isRoomClear == false)
+        if (collision.CompareTag("Player"))
         {
-            if (collision.CompareTag("Player"))
-            {
-                walls.GetComponent<TilemapCollider2D>().enabled = true;
-                walls.GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 1f);
-            }
+            walls.GetComponent<TilemapCollider2D>().enabled = true;
+            walls.GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 1f);
+            this.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -42,7 +39,6 @@ public class RoomManager : MonoBehaviour
         {
             walls.GetComponent<TilemapCollider2D>().enabled = false;
             walls.GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 0.5f);
-            this.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
