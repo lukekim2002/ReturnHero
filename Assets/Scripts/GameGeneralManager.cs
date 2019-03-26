@@ -33,8 +33,7 @@ public class GameGeneralManager : MonoBehaviour {
     public Camera mainCamera;
     public int curFloor;
 
-
-    private int UISceneNum = 16;
+    private int UISceneNum = 14;
 
     private void Awake()
     {
@@ -53,6 +52,7 @@ public class GameGeneralManager : MonoBehaviour {
 
         Application.targetFrameRate = 60;
 
+        print("Test Success");
 
         //curFloor = 1;
         // Sets this to not be destroyed when reloading scene
@@ -65,7 +65,7 @@ public class GameGeneralManager : MonoBehaviour {
         //curFloor = SceneManager.GetActiveScene().buildIndex;
         print("Current Floor : " + curFloor);
         SceneManager.LoadScene(curFloor, LoadSceneMode.Additive);
-        //SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
+        SceneManager.LoadScene(UISceneNum, LoadSceneMode.Additive);
 
         StartCoroutine(DestroyInactiveClone());
     }
