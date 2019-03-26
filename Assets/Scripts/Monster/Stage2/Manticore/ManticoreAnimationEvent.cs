@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManticoreAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
+public class ManticoreAnimationEvent : MonoBehaviour
 {
     private Vector2 _pos;
     private Vector2 _dir;
@@ -53,11 +53,6 @@ public class ManticoreAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
             anim.ResetTrigger("isRight");
     }
 
-    public void AttackSkill1_Ready()
-    {
-        //throw new System.NotImplementedException();
-    }
-
     public void AttackSkill1_Execute()
     {
         _behaviour = GetComponent<ManticoreClass>();
@@ -67,58 +62,99 @@ public class ManticoreAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
         this.transform.position = _pos;
     }
 
-    public void AttackSkill1_End()
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void AttackSkill2_Ready()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void AttackSkill2_Execute()
     {
-     
-
-        throw new System.NotImplementedException();
+        _behaviour = GetComponent<ManticoreClass>();
+        _pos = this.transform.position;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.16f;
+        this.transform.position = _pos;
     }
 
-    public void AttackSkill2_End()
+    public void AttackSkill3_3way_Ready()
     {
-        throw new System.NotImplementedException();
+        _behaviour = GetComponent<ManticoreClass>();
+        _pos = this.transform.position;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.16f;
+        this.transform.position = _pos;
     }
 
-
-    #region NOT USED
-    public void AttackSkill3_End()
+    public void AttackSkill3_3way_Execute()
     {
-        throw new System.NotImplementedException();
+        _dir = _behaviour.myBase.direction;
+        Animator myAnimator = _behaviour.GetComponent<Animator>();
+        Animator anim = mySkillEffect_3Way.GetComponent<Animator>();
+
+        myAnimator.SetFloat("actionX", _dir.x);
+        myAnimator.SetFloat("actionY", _dir.y);
+
+        if (_dir == Vector2.up)
+            anim.SetTrigger("isUp");
+        else if (_dir == Vector2.down)
+            anim.SetTrigger("isDown");
+        else if (_dir == Vector2.left)
+            anim.SetTrigger("isLeft");
+        else if (_dir == Vector2.right)
+            anim.SetTrigger("isRight");
     }
 
-    public void AttackSkill3_Execute()
+    public void AttackSkill3_3way_End()
     {
-        throw new System.NotImplementedException();
+        //_dir = _behaviour.myDirection;
+        Animator anim = mySkillEffect_3Way.GetComponent<Animator>();
+
+        //if (_dir == Vector2.up)
+            anim.ResetTrigger("isUp");
+        //else if (_dir == Vector2.down)
+            anim.ResetTrigger("isDown");
+        //else if (_dir == Vector2.left)
+            anim.ResetTrigger("isLeft");
+        //else if (_dir == Vector2.right)
+            anim.ResetTrigger("isRight");
     }
 
-    public void AttackSkill3_Ready()
+    public void AttackSkill3_4way_Ready()
     {
-        throw new System.NotImplementedException();
+        _behaviour = GetComponent<ManticoreClass>();
+        _pos = this.transform.position;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.16f;
+        this.transform.position = _pos;
     }
 
-    public void AttackSkill4_End()
+    public void AttackSkill3_4way_Execute()
     {
-        throw new System.NotImplementedException();
+        _dir = _behaviour.myBase.direction;
+        Animator myAnimator = _behaviour.GetComponent<Animator>();
+        Animator anim = mySkillEffect_4Way.GetComponent<Animator>();
+
+        myAnimator.SetFloat("actionX", _dir.x);
+        myAnimator.SetFloat("actionY", _dir.y);
+
+        if (_dir == Vector2.up)
+            anim.SetTrigger("isUp");
+        else if (_dir == Vector2.down)
+            anim.SetTrigger("isDown");
+        else if (_dir == Vector2.left)
+            anim.SetTrigger("isLeft");
+        else if (_dir == Vector2.right)
+            anim.SetTrigger("isRight");
     }
 
-    public void AttackSkill4_Execute()
+    public void AttackSkill3_4way_End()
     {
-        throw new System.NotImplementedException();
+        //_dir = _behaviour.myDirection;
+        Animator anim = mySkillEffect_4Way.GetComponent<Animator>();
+
+        //if (_dir == Vector2.up)
+            anim.ResetTrigger("isUp");
+        //else if (_dir == Vector2.down)
+            anim.ResetTrigger("isDown");
+        //else if (_dir == Vector2.left)
+            anim.ResetTrigger("isLeft");
+        //else if (_dir == Vector2.right)
+            anim.ResetTrigger("isRight");
     }
 
-    public void AttackSkill4_Ready()
-    {
-        throw new System.NotImplementedException();
-    }
-    #endregion 
 }

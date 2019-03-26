@@ -633,6 +633,7 @@ Transform:
   - {fileID: 2021789031274775083}
   - {fileID: 4463514589631978496}
   - {fileID: 8795241942761476351}
+  - {fileID: 3558942667345569710}
   - {fileID: 6920123583318903633}
   - {fileID: 3704777377559480936}
   - {fileID: 6560661475144947798}
@@ -869,7 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021789031274775083}
   - component: {fileID: 3609227727784855515}
-  - component: {fileID: 1693400932}
+  - component: {fileID: 565545470375234797}
   m_Layer: 0
   m_Name: MeleeAttackRange
   m_TagString: Untagged
@@ -907,7 +908,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
---- !u!114 &1693400932
+--- !u!114 &565545470375234797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -916,7 +917,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2021789031274775084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: f5630f9ce0bedba4eb808931152613a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2087081602956708956
@@ -932,6 +933,7 @@ GameObject:
   - component: {fileID: 639415634612034033}
   - component: {fileID: 3046062067665071222}
   - component: {fileID: 2816088596190259882}
+  - component: {fileID: 5225831682092032438}
   m_Layer: 0
   m_Name: Skill3_4Way_EffectCollider_Right
   m_TagString: Untagged
@@ -963,7 +965,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -981,7 +983,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -999,7 +1001,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1017,7 +1019,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1025,6 +1027,18 @@ EdgeCollider2D:
   m_Points:
   - {x: 7.31, y: -6.77}
   - {x: 0.24, y: 0.3}
+--- !u!114 &5225831682092032438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087081602956708956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2308855557224000579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1052,7 @@ GameObject:
   - component: {fileID: 12560801773314929}
   - component: {fileID: 8460881594021843607}
   - component: {fileID: 1073980288485175463}
+  - component: {fileID: 6277167913187752417}
   m_Layer: 0
   m_Name: Skill3_4Way_EffectCollider_Down
   m_TagString: Untagged
@@ -1069,7 +1084,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1087,7 +1102,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1105,7 +1120,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1123,7 +1138,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1131,6 +1146,18 @@ EdgeCollider2D:
   m_Points:
   - {x: 7.43, y: -6.64}
   - {x: 0.36, y: 0.44}
+--- !u!114 &6277167913187752417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308855557224000579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3696896932662695406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1195,7 @@ Transform:
   - {fileID: 7719021707925617550}
   - {fileID: 5820589983500853953}
   m_Father: {fileID: 2021789030665580138}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5920758142336157095
 Animator:
@@ -1497,6 +1524,7 @@ GameObject:
   - component: {fileID: 5808583367068442538}
   - component: {fileID: 4367008285402797455}
   - component: {fileID: 6911919092077339539}
+  - component: {fileID: 4884452228165574715}
   m_Layer: 0
   m_Name: Skill3_3Way_EffectCollider_Down
   m_TagString: Untagged
@@ -1528,7 +1556,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1546,7 +1574,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1564,7 +1592,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1572,6 +1600,18 @@ EdgeCollider2D:
   m_Points:
   - {x: 5.22, y: -8.25}
   - {x: 0.13, y: 0.56}
+--- !u!114 &4884452228165574715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384397608259226382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4805241817159372671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,6 +1801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3704777377559480936}
   - component: {fileID: 6927450919106901554}
+  - component: {fileID: 4446491959974430537}
   m_Layer: 0
   m_Name: Manticore_Skill3(Three)_Effect
   m_TagString: Untagged
@@ -1787,7 +1828,7 @@ Transform:
   - {fileID: 7775656939080586884}
   - {fileID: 8873154882851561987}
   m_Father: {fileID: 2021789030665580138}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6927450919106901554
 Animator:
@@ -1808,6 +1849,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4446491959974430537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5826308741075173225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396775eefde5ca54497e576392bafc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myColliderSet:
+  - {fileID: 9126120321030762274}
+  - {fileID: 4384397608259226382}
+  - {fileID: 6697128800671010861}
+  - {fileID: 7860530988019333839}
 --- !u!1 &6201333437865664687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,6 +1958,7 @@ GameObject:
   - component: {fileID: 5767801541865821374}
   - component: {fileID: 2846177137487467783}
   - component: {fileID: 6161296881984669172}
+  - component: {fileID: 2609128301766610699}
   m_Layer: 0
   m_Name: Skill3_4Way_EffectCollider_Left
   m_TagString: Untagged
@@ -1931,7 +1990,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1949,7 +2008,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1967,7 +2026,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1985,7 +2044,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1993,6 +2052,18 @@ EdgeCollider2D:
   m_Points:
   - {x: -7.32, y: -6.77}
   - {x: -0.24, y: 0.3}
+--- !u!114 &2609128301766610699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523459778953815249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6697128800671010861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,6 +2076,7 @@ GameObject:
   - component: {fileID: 3333106520916752037}
   - component: {fileID: 1150558320757385982}
   - component: {fileID: 4641980138043937825}
+  - component: {fileID: 8492334903667236449}
   m_Layer: 0
   m_Name: Skill3_3Way_EffectCollider_Left
   m_TagString: Untagged
@@ -2036,7 +2108,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2054,7 +2126,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2072,7 +2144,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2080,6 +2152,18 @@ EdgeCollider2D:
   m_Points:
   - {x: -8.93, y: -4.56}
   - {x: -0.28, y: 0.44}
+--- !u!114 &8492334903667236449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697128800671010861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6806479767639544752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,7 +2173,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8795241942761476351}
-  - component: {fileID: 750343845130298017}
   - component: {fileID: 653446345}
   - component: {fileID: 653446346}
   - component: {fileID: 6680491826008919139}
@@ -2114,22 +2197,6 @@ Transform:
   m_Father: {fileID: 2021789030665580138}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &750343845130298017
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6806479767639544752}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.075
 --- !u!68 &653446345
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2250,6 +2317,7 @@ GameObject:
   - component: {fileID: 4725158475008178598}
   - component: {fileID: 9202530392324989613}
   - component: {fileID: 2709760109483542954}
+  - component: {fileID: 1366406908307148792}
   m_Layer: 0
   m_Name: Skill3_3Way_EffectCollider_Right
   m_TagString: Untagged
@@ -2281,7 +2349,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2299,7 +2367,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2317,7 +2385,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2325,6 +2393,18 @@ EdgeCollider2D:
   m_Points:
   - {x: 8.93, y: -4.56}
   - {x: 0.28, y: 0.44}
+--- !u!114 &1366406908307148792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860530988019333839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8224358428993254416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,6 +2594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6560661475144947798}
   - component: {fileID: 597544887564509010}
+  - component: {fileID: 7844709021657014304}
   m_Layer: 0
   m_Name: Manticore_Skill3(Four)_Effect
   m_TagString: Untagged
@@ -2540,7 +2621,7 @@ Transform:
   - {fileID: 5030469888827176106}
   - {fileID: 2752937487795917720}
   m_Father: {fileID: 2021789030665580138}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &597544887564509010
 Animator:
@@ -2561,6 +2642,83 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7844709021657014304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614923632967668210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396775eefde5ca54497e576392bafc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myColliderSet:
+  - {fileID: 8871871703185180945}
+  - {fileID: 2308855557224000579}
+  - {fileID: 6523459778953815249}
+  - {fileID: 2087081602956708956}
+--- !u!1 &8706054057375160166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3558942667345569710}
+  - component: {fileID: 2089433518120266047}
+  - component: {fileID: 1885265827}
+  m_Layer: 0
+  m_Name: Skill3AttackRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3558942667345569710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706054057375160166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3500004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2021789030665580138}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2089433518120266047
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706054057375160166}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.075
+--- !u!114 &1885265827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706054057375160166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f37d2fb7fd626d4f8014b45e4245c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8871871703185180945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2732,7 @@ GameObject:
   - component: {fileID: 5012488972819527918}
   - component: {fileID: 4306221567774574140}
   - component: {fileID: 7917603331915468829}
+  - component: {fileID: 3188701763780667235}
   m_Layer: 0
   m_Name: Skill3_4Way_EffectCollider_Up
   m_TagString: Untagged
@@ -2605,7 +2764,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2623,7 +2782,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2641,7 +2800,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2659,7 +2818,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2667,6 +2826,18 @@ EdgeCollider2D:
   m_Points:
   - {x: 7.42, y: 7.71}
   - {x: 0.35, y: 0.63}
+--- !u!114 &3188701763780667235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871871703185180945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9126120321030762274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2850,7 @@ GameObject:
   - component: {fileID: 1790502467240391303}
   - component: {fileID: 5649332061347198853}
   - component: {fileID: 6881473782780256336}
+  - component: {fileID: 2864699470088701766}
   m_Layer: 0
   m_Name: Skill3_3Way_EffectCollider_Up
   m_TagString: Untagged
@@ -2710,7 +2882,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2728,7 +2900,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2746,7 +2918,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2754,3 +2926,15 @@ EdgeCollider2D:
   m_Points:
   - {x: 5.21, y: 9.32}
   - {x: 0.21, y: 0.66}
+--- !u!114 &2864699470088701766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9126120321030762274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
