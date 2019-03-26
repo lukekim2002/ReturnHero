@@ -92,6 +92,9 @@ public class ManticoreClass : MonsterBase
             myAnimator.SetFloat("moveX", myDirection.x);
             myAnimator.SetFloat("moveY", myDirection.y);
         }
+
+        //Debug.Log(_isSkill3TriggerOk);
+
     }
 
     #endregion
@@ -133,11 +136,13 @@ public class ManticoreClass : MonsterBase
         _skill3Damage = (int)myDataSet["Skill3Damage"];
         _Skill3CoolDown = (int)myDataSet["Skill3CoolDown"];
 
+        Debug.Log(_Skill3CoolDown);
 
         _isMeleeAttackReady = true;
         _isSkill1AttackReady = true;
         _isSkill2AttackReady = true;
         _isSkill3AttackReady = true;
+        _isSkill3TriggerOk = true;
     }
 
     #region ATTACK
@@ -196,29 +201,29 @@ public class ManticoreClass : MonsterBase
         {
             case LookingDirection.Top:
 
-                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[4]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[4]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Down:
 
-                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[5]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[5]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Left:
 
-                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[6]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[6]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Right:
 
-                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[7]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[7]["Offset_y"]);
 
                 break;
 
@@ -338,17 +343,38 @@ public class ManticoreClass : MonsterBase
     #region Skill3
     public override void AttackSkill3()
     {
-        throw new System.NotImplementedException();
+        if (_isSkill3AttackReady == false && isAttacking == true) return;
+        _isSkill3AttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isSkill3");
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
+        StartCoroutine(CoolDownSkill3());
     }
 
     public override void EndAttackSkill3()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isSkill3");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
     }
 
     public override IEnumerator CoolDownSkill3()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(_Skill3CoolDown);
+        _isSkill3AttackReady = true;
+        _isSkill3TriggerOk = true;
     }
 
     #endregion
@@ -371,17 +397,43 @@ public class ManticoreClass : MonsterBase
     #region HIT
     public override void HitByPlayer(int damage)
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Idle;
+        aiMoveScript.enabled = false;
+
+        _health -= damage;
+        Debug.Log("current health : " + _health);
+
+        StartCoroutine(WaitAnimationFinish());
+
+        if (_health <= 0)
+        {
+            // Dead
+            DyingMotion();
+        }
+
+        myAnimator.SetInteger("actionNum", 3);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
     }
 
     public override void EndGetHit()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        aiMoveScript.enabled = true;
     }
 
     public override void DyingMotion()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Die");
+
+        myAnimator.SetInteger("actionNum", 4);
+
+        StartCoroutine(WaitAnimationFinish());
+
+        gameObject.SetActive(false);
     }
     #endregion
 

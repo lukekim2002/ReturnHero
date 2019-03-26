@@ -3,12 +3,12 @@ Melee1_Up,0,0,0,0
 Melee1_Down,0,0,0,0
 Melee1_Left,0,0,0,0
 Melee1_Right,0,0,0,0
-Skill1_Up,3.16,2.46,0,0.55
-Skill1_Down,3.16,2.46,0,0.2
+Skill1_Up,3.16,2.46,0.0,0.55
+Skill1_Down,3.16,2.46,0.0,0.2
 Skill1_Left,3.06,2.56,-0.02,0.23
 Skill1_Right,3.06,2.56,0.02,0.33
-Skill2_Up,1.6,1.89,0,1.05
-Skill2_Down,1.6,1.89,0,-0.775
+Skill2_Up,1.6,1.89,0.0,1.05
+Skill2_Down,1.6,1.89,0.0,-0.775
 Skill2_Left,1.89,1.6,1.225,0.24
 Skill2_Right,1.89,1.6,-1.225,0.24
 Skill3_Up,0,0,0,0
