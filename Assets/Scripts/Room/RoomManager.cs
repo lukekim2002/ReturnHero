@@ -14,6 +14,7 @@ public class RoomManager : MonoBehaviour
     // 방 안에 있는 몬스터들
     public GameObject[] monsters;
     public GameObject walls;
+    public GameObject portal;
     #endregion
 
     private void Start()
@@ -39,6 +40,12 @@ public class RoomManager : MonoBehaviour
         {
             walls.GetComponent<TilemapCollider2D>().enabled = false;
             walls.GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 0.5f);
+            OpenPortal();
         }
+    }
+
+    public void OpenPortal()
+    {
+        portal.SetActive(true);
     }
 }

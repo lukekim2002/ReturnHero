@@ -1891,7 +1891,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1658653418}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &862267743
 Rigidbody2D:
@@ -2141,6 +2141,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 927294505}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &927294508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927294507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110f24c789fc7df42a0cb99d2381dc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &933881577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,7 +2261,7 @@ Transform:
   m_Children:
   - {fileID: 1630062558}
   m_Father: {fileID: 1658653418}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1630062557
 PrefabInstance:
@@ -2357,8 +2369,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 927294506}
-  - {fileID: 1208412626}
   - {fileID: 862267742}
+  - {fileID: 1208412626}
   m_Father: {fileID: 2105244188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2377,6 +2389,7 @@ MonoBehaviour:
   monsters:
   - {fileID: 927294507}
   walls: {fileID: 862267741}
+  portal: {fileID: 1208412625}
 --- !u!156049354 &1658653420
 Grid:
   m_ObjectHideFlags: 0
