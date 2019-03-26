@@ -55,16 +55,16 @@ public class ManticoreAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
     public void AttackSkill1_Ready()
     {
-      
-
         //throw new System.NotImplementedException();
     }
 
     public void AttackSkill1_Execute()
     {
-       
-
-        //throw new System.NotImplementedException();
+        _behaviour = GetComponent<ManticoreClass>();
+        _pos = this.transform.position;
+        _dir = _behaviour.myDirection;
+        _pos += _dir * 0.16f;
+        this.transform.position = _pos;
     }
 
     public void AttackSkill1_End()

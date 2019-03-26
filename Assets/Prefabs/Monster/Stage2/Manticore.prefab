@@ -73,7 +73,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.07, y: 10.46}
+  m_Size: {x: 10.46, y: 10.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -310,7 +310,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.43, y: 0.64}
+  m_Size: {x: 0.64, y: 0.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -869,6 +869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021789031274775083}
   - component: {fileID: 3609227727784855515}
+  - component: {fileID: 1693400932}
   m_Layer: 0
   m_Name: MeleeAttackRange
   m_TagString: Untagged
@@ -906,6 +907,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
+--- !u!114 &1693400932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021789031274775084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2087081602956708956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6920123583318903633}
   - component: {fileID: 5920758142336157095}
+  - component: {fileID: 1617135475}
   m_Layer: 0
   m_Name: Manticore_Attack_Effect
   m_TagString: Untagged
@@ -1175,6 +1189,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1617135475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3696896932662695406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396775eefde5ca54497e576392bafc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myColliderSet:
+  - {fileID: 8433992646968485742}
+  - {fileID: 3833297563958427480}
+  - {fileID: 4240852405882883462}
+  - {fileID: 4805241817159372671}
 --- !u!1 &3746829322472924329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,6 +2090,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8795241942761476351}
   - component: {fileID: 750343845130298017}
+  - component: {fileID: 653446345}
+  - component: {fileID: 653446346}
+  - component: {fileID: 6680491826008919139}
   m_Layer: 0
   m_Name: Skill2AttackRange
   m_TagString: Untagged
@@ -2087,7 +2121,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6806479767639544752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -2096,6 +2130,54 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.075
+--- !u!68 &653446345
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806479767639544752}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.1
+  m_Points:
+  - {x: 0, y: 2}
+  - {x: 0, y: -2}
+--- !u!68 &653446346
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806479767639544752}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0.1
+  m_Points:
+  - {x: -2, y: 0}
+  - {x: 2, y: 0}
+--- !u!114 &6680491826008919139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806479767639544752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7792836876272016513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,6 +2188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463514589631978496}
   - component: {fileID: 2131156174256427544}
+  - component: {fileID: 7684464793893255934}
   m_Layer: 0
   m_Name: Skill1AttackRange
   m_TagString: Untagged
@@ -2143,6 +2226,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.4
+--- !u!114 &7684464793893255934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792836876272016513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7860530988019333839
 GameObject:
   m_ObjectHideFlags: 0
