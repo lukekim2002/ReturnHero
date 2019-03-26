@@ -9725,12 +9725,48 @@ MonoBehaviour:
   accessorySlotSprite: {fileID: 21300000, guid: 88faee2b7e59ad641acd402094c1fa96,
     type: 3}
   weaponSlotSprite: {fileID: 21300000, guid: b56c1b3739475da4b9f62d80c7bc7849, type: 3}
-  bronzeSwordSprite: {fileID: 21300000, guid: 56736e284c351e34db13435303e9e6fc, type: 3}
-  silverSwordSprite: {fileID: 21300000, guid: b325b9d7dedb35e4ab61ec1699c071dd, type: 3}
-  bronzeRingSprite: {fileID: 21300000, guid: 9a0198c23aa0c8f4e9b55bfa10f9a70f, type: 3}
-  silverRingSprite: {fileID: 21300000, guid: b0a0cd4c5125f864b8d1d6c9bb0155b4, type: 3}
-  bookSprite: {fileID: 21300000, guid: 9850fc6c4da4f8144849f5dca1734d49, type: 3}
-  cigaSprite: {fileID: 21300000, guid: c098ff7de553fad4b997dbbf30e85f51, type: 3}
+  weapon_A_Sprite: {fileID: 21300000, guid: b452f9d07441928459f875fa2e4380e1, type: 3}
+  weapon_B_Sprite: {fileID: 21300000, guid: a18c5f1e65fc8fe4194dc3238572a445, type: 3}
+  weapon_C_Sprite: {fileID: 21300000, guid: abfa5bf375b883347b611a74fb6868f8, type: 3}
+  weapon_D_Sprite: {fileID: 21300000, guid: 096596a30a810974295ff4fc2f35151c, type: 3}
+  ring_Damage_A: {fileID: 21300000, guid: 95f22d967a2b8f24e952f3ed57b95968, type: 3}
+  ring_Damage_B: {fileID: 21300000, guid: e1d83393bf77a91488755cd7ac0b6b76, type: 3}
+  ring_HP_A: {fileID: 21300000, guid: 7688fa7b365488b438dee48142f8820e, type: 3}
+  ring_HP_B: {fileID: 21300000, guid: a868990f46e63aa44a89f24229a18d46, type: 3}
+  last: {fileID: 21300000, guid: b7944f2679047964ea3459d1fdeb2d44, type: 3}
+  healingPotion_A: {fileID: 21300000, guid: 43ae0b03539c8d2478f957816d43b7f8, type: 3}
+  healingPotion_B: {fileID: 21300000, guid: 3ce4109eebbc1f54a858594ef5a271f0, type: 3}
+  healingPotion_C: {fileID: 21300000, guid: 29003b6b889adbc4e9ee34ff64c04d6c, type: 3}
+  drug_Immunizing_Poisoning: {fileID: 21300000, guid: 9785b1cc7ac72d1429de0b2e2f3c587a,
+    type: 3}
+  drug_Immunizing_Burned: {fileID: 21300000, guid: cd2ce769ed426934baef36e584fe98a7,
+    type: 3}
+  drug_Immunizing_Frosted: {fileID: 21300000, guid: db8bdf54dedfa484ba35da17ee9286e8,
+    type: 3}
+  cure_All: {fileID: 21300000, guid: aa76d4b8f77540e4a84d74bc159cc3cd, type: 3}
+  cheap_Iron: {fileID: 21300000, guid: 48269a49df8950f4da78a178c0b57f8e, type: 3}
+  steel: {fileID: 21300000, guid: 54b09dc0296e3e54098c5c3499e6195d, type: 3}
+  leather: {fileID: 21300000, guid: 0764285d2a2cb6144b418a5f9dcaf4e1, type: 3}
+  reinforced_Leather_Fire: {fileID: 21300000, guid: c7644e290ac74c14dbe4f7b248269d1d,
+    type: 3}
+  reinforced_Leather_Ice: {fileID: 21300000, guid: d5624af21632e464b8031a0ed4450cd6,
+    type: 3}
+  leather_Of_Dragon: {fileID: 21300000, guid: 22f6d50a3b4782041b1971bc9a6c3bd4, type: 3}
+  medicinal_Herbs_A: {fileID: 21300000, guid: 7b4470cc0ff26d449b688ea49a293ea0, type: 3}
+  medicinal_Herbs_B: {fileID: 21300000, guid: 3b2983b2095be314c9d6b3a4b53fd704, type: 3}
+  medicinal_Herbs_C: {fileID: 21300000, guid: 60e4346b137ec6848b71be3ff35175be, type: 3}
+  blood_Pack_A: {fileID: 21300000, guid: bffe1f82ea53fea49b599407897eff00, type: 3}
+  blood_Pack_B: {fileID: 21300000, guid: 42ebb7cd30135f14c9d80f6dce391223, type: 3}
+  toxin_A: {fileID: 21300000, guid: 43afc9f996632524181da04fa5736a16, type: 3}
+  toxin_B: {fileID: 21300000, guid: 36254cdd5affd69468b3acbcfb7a0b2e, type: 3}
+  ghost: {fileID: 21300000, guid: 22343ca3d85a2154ea9591d09c5975c0, type: 3}
+  ghost_Nightmare: {fileID: 21300000, guid: b3493b710ff253f4ab5bc8754a57ca8f, type: 3}
+  fragment_Of_Bone: {fileID: 21300000, guid: eef7bec80ac39f94d82b9b86c355da6f, type: 3}
+  fragment_Of_Ice: {fileID: 21300000, guid: b591cfba1a7e0604f86db8031688f393, type: 3}
+  piece_Of_Moonlight: {fileID: 21300000, guid: 4881c43c25adec442a1d435b8068e547, type: 3}
+  burning_Fire: {fileID: 21300000, guid: ad895d20bc62aa24096028bf83c0e807, type: 3}
+  element_Fire: {fileID: 21300000, guid: 1b20b2dbc816e5540b704739996e80ba, type: 3}
+  element_Ice: {fileID: 21300000, guid: 847ac3757f3cdc2468d7b8d3dfee9427, type: 3}
 --- !u!4 &1957187728
 Transform:
   m_ObjectHideFlags: 0

@@ -101,30 +101,11 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    AddItem(5);
-        //}
+        for (int i = 1; i <= 25; i++)
+        {
+            AddEquiment(i);
+        }
 
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    AddEquiment(1);
-        //    AddEquiment(2);
-        //    AddEquiment(3);
-        //    AddEquiment(4);
-        //}
-
-        AddEquiment(1);
-        AddEquiment(1);
-        AddEquiment(1);
-        AddEquiment(1);
-        AddEquiment(2);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
-        AddItem(5);
     }
 
     // Item 추가
