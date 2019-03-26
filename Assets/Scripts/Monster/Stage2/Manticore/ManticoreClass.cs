@@ -184,34 +184,154 @@ public class ManticoreClass : MonsterBase
     #region Skill1
     public override void AttackSkill1()
     {
-        throw new System.NotImplementedException();
+        if (_isSkill1AttackReady == false && isAttacking == true) return;
+        _isSkill1AttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+        mySkill1AttackRange.SetActive(false);
+
+        switch (myLookingDirection)
+        {
+            case LookingDirection.Top:
+
+                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Down:
+
+                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Left:
+
+                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Right:
+
+                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[0]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+
+                break;
+
+        }
+
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isSkill1");
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        attackCollider.SetActive(true);
+        attackColliderScript.size = attackColliderSize;
+        attackColliderScript.offset = attackColliderOffset;
+
+        StartCoroutine(WaitAnimationFinish());
+        StartCoroutine(CoolDownSkill1());
     }
 
     public override void EndAttackSkill1()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isSkill1");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
+
+        attackCollider.SetActive(false);
     }
 
     public override IEnumerator CoolDownSkill1()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(_Skill1CoolDown);
+        _isSkill1AttackReady = true;
+        mySkill1AttackRange.SetActive(true);
     }
     #endregion
 
     #region Skill2
     public override void AttackSkill2()
     {
-        throw new System.NotImplementedException();
+        if (_isSkill2AttackReady == false && isAttacking == true) return;
+        _isSkill2AttackReady = false;
+
+        myAction = Action.Attack;
+        isAttacking = true;
+        aiMoveScript.enabled = false;
+        mySkill2AttackRange.SetActive(false);
+
+        switch (myLookingDirection)
+        {
+            case LookingDirection.Top:
+
+                attackColliderSize = new Vector2((float)myColliderSet[8]["Size_x"], (float)myColliderSet[8]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[8]["Offset_x"], (float)myColliderSet[8]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Down:
+
+                attackColliderSize = new Vector2((float)myColliderSet[9]["Size_x"], (float)myColliderSet[9]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[9]["Offset_x"], (float)myColliderSet[9]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Left:
+
+                attackColliderSize = new Vector2((float)myColliderSet[10]["Size_x"], (float)myColliderSet[10]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[10]["Offset_x"], (float)myColliderSet[10]["Offset_y"]);
+
+                break;
+
+            case LookingDirection.Right:
+
+                attackColliderSize = new Vector2((float)myColliderSet[11]["Size_x"], (float)myColliderSet[11]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[11]["Offset_x"], (float)myColliderSet[11]["Offset_y"]);
+
+                break;
+
+        }
+
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isSkill2");
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        attackCollider.SetActive(true);
+        attackColliderScript.size = attackColliderSize;
+        attackColliderScript.offset = attackColliderOffset;
+
+        StartCoroutine(WaitAnimationFinish());
+        StartCoroutine(CoolDownSkill2());
     }
 
     public override void EndAttackSkill2()
     {
-        throw new System.NotImplementedException();
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isSkill2");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
+
+        attackCollider.SetActive(false);
     }
 
     public override IEnumerator CoolDownSkill2()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(_Skill2CoolDown);
+        _isSkill2AttackReady = true;
+        mySkill2AttackRange.SetActive(true);
     }
     #endregion
 
@@ -272,8 +392,6 @@ public class ManticoreClass : MonsterBase
         return (stateInfo.IsName("Melee")
             || stateInfo.IsName("Skill1")
             || stateInfo.IsName("Skill2")
-            //|| stateInfo.IsName("Skill3_1Phase")
-            //|| stateInfo.IsName("Skill3_2Phase")
             || stateInfo.IsName("Skill3_3Phase")
             || stateInfo.IsName("BeShot"))
             || stateInfo.IsName("Die");

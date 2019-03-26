@@ -211,29 +211,29 @@ public class GateKeeperClass : MonsterBase {
         {
             case LookingDirection.Top:
 
-                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[4]["Size_x"], (float)myColliderSet[4]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[4]["Offset_x"], (float)myColliderSet[4]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Down:
 
-                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[5]["Size_x"], (float)myColliderSet[5]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[5]["Offset_x"], (float)myColliderSet[5]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Left:
 
-                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[6]["Size_x"], (float)myColliderSet[6]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[6]["Offset_x"], (float)myColliderSet[6]["Offset_y"]);
 
                 break;
 
             case LookingDirection.Right:
 
-                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[0]["Size_y"]);
-                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[0]["Offset_y"]);
+                attackColliderSize = new Vector2((float)myColliderSet[7]["Size_x"], (float)myColliderSet[7]["Size_y"]);
+                attackColliderOffset = new Vector2((float)myColliderSet[7]["Offset_x"], (float)myColliderSet[7]["Offset_y"]);
 
                 break;
 
