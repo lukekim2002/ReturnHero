@@ -47440,7 +47440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929478148}
   m_Layer: 0
-  m_Name: Stage1-1 MapManager
+  m_Name: Stage1-1 RoomManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47489,7 +47489,7 @@ Transform:
   - {fileID: 281703664}
   - {fileID: 329116460}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931736103
 GameObject:
@@ -49585,7 +49585,7 @@ Transform:
   - {fileID: 367508980}
   - {fileID: 282604895}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1168479312
 PrefabInstance:
