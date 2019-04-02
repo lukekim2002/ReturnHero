@@ -259,6 +259,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 728729042}
+    - target: {fileID: 5724429631625694170, guid: f2058cc652298e54f94c3c2e61e3c88e,
+        type: 3}
+      propertyPath: curFloor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5724429631625694171, guid: f2058cc652298e54f94c3c2e61e3c88e,
         type: 3}
       propertyPath: heroObject
