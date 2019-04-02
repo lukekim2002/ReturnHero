@@ -26,8 +26,14 @@ public class Slot : MonoBehaviour
         itemCountTextMeshPro = this.transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
+    public void SetWeaponSlotImage()
+    {
+        slotImage.sprite = InSlotSpriteManager.instance.BindingImageAndItemID(item.itemID);
+        slotImage.SetNativeSize();
+    }
+
     // 슬롯 아이템 이미지 세팅
-    public void SetSlotImage()
+    public void SetItemSlotImage()
     {
         slotImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(item.itemID);
         slotImage.SetNativeSize();
@@ -49,7 +55,7 @@ public class Slot : MonoBehaviour
     public void InitSlot()
     {
         this.item = new Item();
-        SetSlotImage();
+        SetItemSlotImage();
         item.itemCount = 0;
         InitSlotItemCount();
     }

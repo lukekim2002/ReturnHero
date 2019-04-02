@@ -184,8 +184,14 @@ public class ItemEvent : MonoBehaviour
         _slot.item = Inventory.instance.enteredItemSlot.item;
         Inventory.instance.enteredItemSlot.item = tempItem;
 
-        // 바꾸기 전에 원래 슬롯에 있던 아이템의 ID를 넘김
-        _slot.item.itemID = itemBoxID;
+        if (itemBoxID == 0)
+        {
+            // 바꾸기 전에 원래 슬롯에 있던 아이템의 ID를 넘김
+            _slot.item.itemID = itemBoxID;
+        }
+
+        print("_sloit.item.itemID " + _slot.item.itemID);
+        print("Inventory.instance.enteredItemSlot.item.itemID " + Inventory.instance.enteredItemSlot.item.itemID);
 
         Inventory.instance.ChangeItem(_slot);
         Inventory.instance.ChangeItem(Inventory.instance.enteredItemSlot);

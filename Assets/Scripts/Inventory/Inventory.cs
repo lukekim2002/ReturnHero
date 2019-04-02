@@ -94,18 +94,17 @@ public class Inventory : MonoBehaviour
         }
 
         // weaponSlot의 Slot 컴포넌트
-        weaponSlotScripts = weaponSlot.GetComponent<Slot>(); 
+        weaponSlotScripts = weaponSlot.GetComponent<Slot>();
 
         ItemAddTestMethodCall();
     }
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 1; i <= 25; i++)
+        for (int i = 1; i <= 23; i++)
         {
-            AddEquiment(i);
+            AddItem(i);
         }
-
     }
 
     // Item 추가
@@ -136,7 +135,7 @@ public class Inventory : MonoBehaviour
                 itemSlotScripts[i].item.itemID = mItemID;
                 itemSlotScripts[i].item.itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                itemSlotScripts[i].SetSlotImage();
+                itemSlotScripts[i].SetItemSlotImage();
 
                 break;
             }
@@ -157,7 +156,7 @@ public class Inventory : MonoBehaviour
                 itemSlotScripts[i].item.itemID = mItemID;
                 itemSlotScripts[i].item.itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                itemSlotScripts[i].SetSlotImage();
+                itemSlotScripts[i].SetItemSlotImage();
 
                 InsertItemIDCount(mItemID);
 
@@ -180,7 +179,7 @@ public class Inventory : MonoBehaviour
         if (weaponSlotScripts.item.itemID != mItemID)
         {
             weaponSlotScripts.item.itemID = mItemID;
-            weaponSlotScripts.SetSlotImage();
+            weaponSlotScripts.SetItemSlotImage();
         }
     }
 
@@ -193,7 +192,7 @@ public class Inventory : MonoBehaviour
             accessorySlotScripts[index].item.itemID = mItemID;
             accessorySlotScripts[index].item.itemCount = 1;
             // 인벤토리에 아이템 이미지를 뿌림
-            accessorySlotScripts[index].SetSlotImage();
+            accessorySlotScripts[index].SetItemSlotImage();
         }
     }
 
@@ -206,7 +205,14 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            slot.SetSlotImage();
+            if (slot.slotType == 1)
+                slot.SetWeaponSlotImage();
+
+            else if (slot.slotType == 2)
+                slot.SetItemSlotImage();
+
+            else if (slot.slotType == 3)
+                slot.SetItemSlotImage();
 
             if (slot.item.itemCount > 1)
                 slot.SetSlotItemCount();

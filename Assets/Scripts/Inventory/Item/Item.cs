@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Equipment, // 장비
+    Equipment = 1, // 장비
     Accessory, // 장신구
     Misc // 기타
 }

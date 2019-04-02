@@ -9702,8 +9702,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1957187728}
   - component: {fileID: 1957187727}
+  - component: {fileID: 1957187729}
   m_Layer: 0
-  m_Name: ItemSpriteManager
+  m_Name: SpriteManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9725,10 +9726,11 @@ MonoBehaviour:
   accessorySlotSprite: {fileID: 21300000, guid: 88faee2b7e59ad641acd402094c1fa96,
     type: 3}
   weaponSlotSprite: {fileID: 21300000, guid: b56c1b3739475da4b9f62d80c7bc7849, type: 3}
-  weapon_A_Sprite: {fileID: 21300000, guid: b452f9d07441928459f875fa2e4380e1, type: 3}
-  weapon_B_Sprite: {fileID: 21300000, guid: a18c5f1e65fc8fe4194dc3238572a445, type: 3}
-  weapon_C_Sprite: {fileID: 21300000, guid: abfa5bf375b883347b611a74fb6868f8, type: 3}
+  weapon_A_Sprite: {fileID: 21300000, guid: 56dbc4336c47360418d0ad0eb1a479de, type: 3}
+  weapon_B_Sprite: {fileID: 21300000, guid: b452f9d07441928459f875fa2e4380e1, type: 3}
+  weapon_C_Sprite: {fileID: 21300000, guid: a18c5f1e65fc8fe4194dc3238572a445, type: 3}
   weapon_D_Sprite: {fileID: 21300000, guid: 096596a30a810974295ff4fc2f35151c, type: 3}
+  weapon_E_Sprite: {fileID: 21300000, guid: abfa5bf375b883347b611a74fb6868f8, type: 3}
   ring_Damage_A: {fileID: 21300000, guid: 95f22d967a2b8f24e952f3ed57b95968, type: 3}
   ring_Damage_B: {fileID: 21300000, guid: e1d83393bf77a91488755cd7ac0b6b76, type: 3}
   ring_HP_A: {fileID: 21300000, guid: 7688fa7b365488b438dee48142f8820e, type: 3}
@@ -9781,6 +9783,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1957187729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957187726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ec0e7a44812e845ae837e8828bbff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSlotSprite: {fileID: 21300000, guid: b32eb39eddac507448432631c4b1cba8, type: 3}
+  weapon_A_Sprite: {fileID: 21300000, guid: b811d1a8641ed0e41954978501d551b6, type: 3}
+  weapon_B_Sprite: {fileID: 21300000, guid: 4a5d550b39f598d479ab3207f025cd4c, type: 3}
+  weapon_C_Sprite: {fileID: 21300000, guid: c7c2032dbcc5a214181d1c586f17e322, type: 3}
+  weapon_D_Sprite: {fileID: 21300000, guid: 0dc8ce94fbb99f6469e6402e818b4b46, type: 3}
+  weapon_E_Sprite: {fileID: 21300000, guid: 86f1054c5f84b4c4980b6ea97bb6a0d8, type: 3}
 --- !u!1 &1978923498
 GameObject:
   m_ObjectHideFlags: 0
