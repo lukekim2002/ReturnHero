@@ -101,7 +101,7 @@ public class Production : MonoBehaviour
 
     //TODO : 아이템 재료가 사라지면 Recipe off 시켜줘야 한다.
     // 특정 아이템의 재료가 다 모였는지 검사한다.
-    public void CheckMaterialItems()
+    public void CheckItemMaterials()
     {
         // Production Type의 개수만큼 반복
         for (int i = 0; i < recipeSet.Count; i++)

@@ -83,7 +83,7 @@ public class ProductionListEvent : MonoBehaviour
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
              = UIGeneralManager.instance.productionWeaponViewport;
 
-        productionComponent.CheckMaterialItems();
+        productionComponent.CheckItemMaterials();
 
         OnClickProductionListButton();
     }
@@ -103,7 +103,7 @@ public class ProductionListEvent : MonoBehaviour
             = UIGeneralManager.instance.productionPotionViewport.GetChild(0).GetComponent<RectTransform>();
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
             = UIGeneralManager.instance.productionPotionViewport;
-        productionComponent.CheckMaterialItems();
+        productionComponent.CheckItemMaterials();
 
         OnClickProductionListButton();
     }

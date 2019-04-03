@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour
                 newSlotPos.y = newSlotPos.y - (y * 58f);
                 accessorySlotPrefabs.anchoredPosition = newSlotPos;
 
-                accessorySlotPrefabs.name = "Slot " + ((y * accessorySlot_X) + x);
+                accessorySlotPrefabs.name = "AccessorySlot " + ((y * accessorySlot_X) + x);
                 accessorySlotComponent.itemDescBackGroundPivot.x = (x * (1f / (accessorySlot_X - 1)));
                 accessorySlotComponent.itemDescBackGroundPivot.y = 1;
 
@@ -143,7 +143,7 @@ public class Inventory : MonoBehaviour
 
         InsertItemIDCount(mItemID);
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 
     public void AddEquiment(int mItemID)
@@ -160,7 +160,7 @@ public class Inventory : MonoBehaviour
 
                 InsertItemIDCount(mItemID);
 
-                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
 
                 break;
             }
@@ -246,6 +246,6 @@ public class Inventory : MonoBehaviour
 
         itemSlotScripts[index].RemoveOneItem();
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 }
