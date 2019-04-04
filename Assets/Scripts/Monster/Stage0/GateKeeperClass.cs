@@ -36,6 +36,7 @@ public class GateKeeperClass : MonsterBase {
     [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
+    public Pathfinding.AIDestinationSetter aiDestinationSetter;
     public Animator myAnimator;
 
     public GameObject attackCollider;
@@ -109,6 +110,8 @@ public class GateKeeperClass : MonsterBase {
         mySkill1AttackRange = transform.GetChild(4).gameObject;
         mySkill2AttackRange = transform.GetChild(5).gameObject;
         myAnimator = GetComponent<Animator>();
+        aiDestinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
+        aiDestinationSetter.target = playerObject.transform;
 
         myBase = GetComponent<MonsterBase>();
         if (myBase == null) Debug.LogError("myBase is null.");

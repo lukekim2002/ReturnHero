@@ -49,7 +49,6 @@ public class MonsterDataManager : MonoBehaviour {
     public void ReadDataFromFile()
     {
         monsterDataSet = CSVReader.Read("CSV/Monster/ReturnHero_Monster_DataSet");
-        Debug.Log(monsterDataSet.Count);
     }
 
     public Dictionary<string, object> ThrowDataIntoContainer(int index)

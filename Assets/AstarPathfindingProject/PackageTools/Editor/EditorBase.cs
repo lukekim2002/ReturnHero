@@ -95,12 +95,14 @@ namespace Pathfinding {
 				var attr = target.GetType().GetCustomAttributes(typeof(UniqueComponentAttribute), true);
 				for (int i = 0; i < attr.Length; i++) {
 					string tag = (attr[i] as UniqueComponentAttribute).tag;
+                    /* NullReferenceException 에러 발생. 원인 못 찾아서 전체 주석처리.
 					foreach (var other in (target as MonoBehaviour).GetComponents<MonoBehaviour>()) {
 						if (!other.enabled || other == target) continue;
 						if (other.GetType().GetCustomAttributes(typeof(UniqueComponentAttribute), true).Select(c => (c as UniqueComponentAttribute).tag == tag).Any()) {
 							EditorGUILayout.HelpBox("This component and " + other.GetType().Name + " cannot be used at the same time", MessageType.Warning);
 						}
 					}
+                    */
 				}
 			}
 		}
