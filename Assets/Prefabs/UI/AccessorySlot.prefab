@@ -62,7 +62,7 @@ MonoBehaviour:
   slotNum: 0
   slotType: 2
   item:
-    itemID: -1
+    itemID: 0
     itemCount: 0
   itemDescBackGroundPivot: {x: 0, y: 0}
 --- !u!114 &114480821411641128

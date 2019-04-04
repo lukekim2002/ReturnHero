@@ -2589,6 +2589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!222 &763372039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2609,6 +2611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!1 &765516868
 GameObject:
   m_ObjectHideFlags: 0
@@ -4909,6 +4913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!222 &1172928850
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4929,6 +4935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!1 &1186676848
 GameObject:
   m_ObjectHideFlags: 0
@@ -5620,6 +5628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!114 &1256026045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6481,6 +6491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!222 &1314609624
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6501,6 +6513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!1 &1332663051
 GameObject:
   m_ObjectHideFlags: 0
@@ -8141,6 +8155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!222 &1622033245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8161,6 +8177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!1 &1624330152
 GameObject:
   m_ObjectHideFlags: 0
@@ -9795,7 +9813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ec0e7a44812e845ae837e8828bbff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlotSprite: {fileID: 21300000, guid: b32eb39eddac507448432631c4b1cba8, type: 3}
+  weapon_Slot: {fileID: 21300000, guid: b56c1b3739475da4b9f62d80c7bc7849, type: 3}
   weapon_A_Sprite: {fileID: 21300000, guid: b811d1a8641ed0e41954978501d551b6, type: 3}
   weapon_B_Sprite: {fileID: 21300000, guid: 4a5d550b39f598d479ab3207f025cd4c, type: 3}
   weapon_C_Sprite: {fileID: 21300000, guid: c7c2032dbcc5a214181d1c586f17e322, type: 3}
@@ -10295,6 +10313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!222 &1995564767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10315,6 +10335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8db88637f70ca48aae8837a5c49d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!1 &2015887985
 GameObject:
   m_ObjectHideFlags: 0

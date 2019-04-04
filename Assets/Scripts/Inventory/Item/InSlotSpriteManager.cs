@@ -5,16 +5,16 @@ using UnityEngine;
 public class InSlotSpriteManager : MonoBehaviour
 {
     public static InSlotSpriteManager instance;
-    public Sprite itemSlotSprite;
+    public Sprite weapon_Slot;
     public Sprite weapon_A_Sprite;
     public Sprite weapon_B_Sprite;
     public Sprite weapon_C_Sprite;
     public Sprite weapon_D_Sprite;
     public Sprite weapon_E_Sprite;
 
-    public Sprite ItemSlotSprite
+    public Sprite Weapon_Slot
     {
-        get { return itemSlotSprite; }
+        get { return weapon_Slot; }
     }
     
     public Sprite Weapon_A_Sprite
@@ -52,7 +52,7 @@ public class InSlotSpriteManager : MonoBehaviour
     {
         switch (itemID)
         {
-            case 0: return ItemSlotSprite;
+            case 0: return Weapon_Slot;
             case 1: return Weapon_A_Sprite;
             case 2: return Weapon_B_Sprite;
             case 3: return Weapon_C_Sprite;

@@ -200,25 +200,21 @@ public class Inventory : MonoBehaviour
     public void ChangeItem(Slot slot)
     {
         if (slot.item.itemID == 0)
-        {
-            slot.InitSlot();
-        }
+            slot.InitItemSlot();
+
+        if (slot.slotType == 1)
+            slot.SetWeaponSlotImage();
+
+        else if (slot.slotType == 2)
+            slot.SetItemSlotImage();
+
+        else if (slot.slotType == 3)
+            slot.SetItemSlotImage();
+
+        if (slot.item.itemCount > 1)
+            slot.SetSlotItemCount();
         else
-        {
-            if (slot.slotType == 1)
-                slot.SetWeaponSlotImage();
-
-            else if (slot.slotType == 2)
-                slot.SetItemSlotImage();
-
-            else if (slot.slotType == 3)
-                slot.SetItemSlotImage();
-
-            if (slot.item.itemCount > 1)
-                slot.SetSlotItemCount();
-            else
-                slot.InitSlotItemCount();
-        }
+            slot.InitSlotItemCount();
     }
 
     public void InsertItemIDCount(int mItem)

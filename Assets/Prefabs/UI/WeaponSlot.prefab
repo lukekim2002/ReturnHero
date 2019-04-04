@@ -135,9 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNum: 0
-  slotType: 0
+  slotType: 1
   item:
-    itemID: -2
+    itemID: 0
     itemCount: 0
   itemDescBackGroundPivot: {x: 0, y: 0}
 --- !u!114 &114535453587256882

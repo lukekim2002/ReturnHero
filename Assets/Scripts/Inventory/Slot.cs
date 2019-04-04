@@ -52,18 +52,17 @@ public class Slot : MonoBehaviour
     }
 
     // 슬롯 아이템 칸 비울 때 호출하면 됨
-    public void InitSlot()
+    public void InitItemSlot()
     {
         this.item = new Item();
         SetItemSlotImage();
-        item.itemCount = 0;
         InitSlotItemCount();
     }
 
     // 해당 칸 아이템 모두 삭제
     public void RemoveAllItem()
     {
-        InitSlot();
+        InitItemSlot();
     }
 
     // 해당 칸 아이템 하나 삭제

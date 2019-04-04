@@ -5,8 +5,6 @@ public class ItemSpriteManager : MonoBehaviour
 {
     public static ItemSpriteManager instance;
     public Sprite itemSlotSprite;
-    public Sprite accessorySlotSprite;
-    public Sprite weaponSlotSprite;
     public Sprite weapon_A_Sprite;
     public Sprite weapon_B_Sprite;
     public Sprite weapon_C_Sprite;
@@ -49,16 +47,6 @@ public class ItemSpriteManager : MonoBehaviour
     public Sprite ItemSlotSprite
     {
         get { return itemSlotSprite; }
-    }
-
-    public Sprite AccessorySlotSprite
-    {
-        get { return accessorySlotSprite; }
-    }
-
-    public Sprite WeaponSlotSprite
-    {
-        get { return weaponSlotSprite; }
     }
 
     public Sprite Weapon_A_Sprite
@@ -255,8 +243,6 @@ public class ItemSpriteManager : MonoBehaviour
     {
         switch (itemID)
         {
-            case -2: return WeaponSlotSprite;
-            case -1: return AccessorySlotSprite;
             case 0: return ItemSlotSprite;
             case 1: return Weapon_A_Sprite;
             case 2: return Weapon_B_Sprite;

@@ -45,34 +45,51 @@ public class ItemEvent : EventTrigger
             }
             else
             {
-                if((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 1)
+                if (_slot.slotType == 1)
                 {
-                    Inventory.instance.enteredItemSlot = Inventory.instance.weaponSlot.GetComponent<Slot>();
+                    for (int i = 0; i < Inventory.instance.itemSlotScripts.Count; i++)
+                    {
+                        if (Inventory.instance.itemSlotScripts[i].item.itemID == 0)
+                        {
+                            Inventory.instance.enteredItemSlot = Inventory.instance.itemSlotScripts[i];
+                            ChangeItemData(0);
 
-                    // 그 슬롯이 비어있는가?
-                    if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
-                    {
-                        ChangeItemData(0);
-                        return;
-                    }
-                    else
-                    {
-                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                        return;
+                            break;
+                        }
                     }
                 }
 
-                else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 2)
+                if (_slot.slotType == 3)
                 {
-                    for (int i = 0; i < 6; i++)
+                    if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 1)
                     {
-                        Inventory.instance.enteredItemSlot = Inventory.instance.accessorySlotScripts[i].GetComponent<Slot>();
+                        Inventory.instance.enteredItemSlot = Inventory.instance.weaponSlot.GetComponent<Slot>();
 
                         // 그 슬롯이 비어있는가?
                         if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
                         {
                             ChangeItemData(0);
-                            break;
+                            return;
+                        }
+                        else
+                        {
+                            ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                            return;
+                        }
+                    }
+
+                    else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 2)
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            Inventory.instance.enteredItemSlot = Inventory.instance.accessorySlotScripts[i].GetComponent<Slot>();
+
+                            // 그 슬롯이 비어있는가?
+                            if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
+                            {
+                                ChangeItemData(0);
+                                break;
+                            }
                         }
                     }
                 }
@@ -151,10 +168,7 @@ public class ItemEvent : EventTrigger
                     // 슬롯이 비어 있다면
                     if (Inventory.instance.enteredItemSlot.item.itemID == 0)
                     {
-                        ChangeItemData(-2);
-                    }
-                    else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(Inventory.instance.enteredItemSlot.item.itemID)["ItemType"] != 1)
-                    {
+                        ChangeItemData(0);
                     }
                     else
                     {
@@ -166,10 +180,7 @@ public class ItemEvent : EventTrigger
                     // 슬롯이 비어 있다면
                     if (Inventory.instance.enteredItemSlot.item.itemID == 0)
                     {
-                        ChangeItemData(-1);
-                    }
-                    else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(Inventory.instance.enteredItemSlot.item.itemID)["ItemType"] != 2)
-                    {
+                        ChangeItemData(0);
                     }
                     else
                     {
@@ -193,7 +204,7 @@ public class ItemEvent : EventTrigger
             Inventory.instance.enteredItemSlot = null;
         }
     }
-    
+
     public override void OnPointerEnter(PointerEventData eventData)
     {
         if (!isDraging)
@@ -218,14 +229,6 @@ public class ItemEvent : EventTrigger
         Inventory.instance.enteredItemSlot = null;
     }
 
-    public override void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            print("asdf");
-        }
-    }
-
     private void ReturnOriginalSlot()
     {
         // Item Slot을 제외한 다른 곳이라면 원래 자리로 옮긴다.
@@ -242,7 +245,6 @@ public class ItemEvent : EventTrigger
 
         if (itemBoxID == 0)
         {
-            // 바꾸기 전에 원래 슬롯에 있던 아이템의 ID를 넘김
             _slot.item.itemID = itemBoxID;
         }
 
