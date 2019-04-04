@@ -101,9 +101,20 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 1; i <= 23; i++)
+        for (int i = 1; i <= 5; i++)
         {
-            AddItem(i);
+            AddEquiment(i);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            AddEquiment(i);
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            AddItem(11);
+            AddItem(12);
+            AddItem(13);
         }
     }
 
@@ -227,9 +238,29 @@ public class Inventory : MonoBehaviour
         {
             inventoryItemIDCount[mItem]++;
         }
+
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 
     public void RemoveItemIDCount(int mItemID, int index)
+    {
+        if (itemSlotScripts[index].item.itemCount > 0)
+        {
+            itemSlotScripts[index].RemoveOneItem();
+        }
+
+        if (inventoryItemIDCount[mItemID] > 0)
+        {
+            inventoryItemIDCount[mItemID]--;
+        }
+        else if (inventoryItemIDCount[mItemID] == 0)
+        {
+            inventoryItemIDCount.Remove(mItemID);
+        }
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+    }
+
+    public void RemoveEquimentIDCount(int mItemID, int mIndex)
     {
         if (inventoryItemIDCount[mItemID] > 0)
         {
@@ -239,9 +270,6 @@ public class Inventory : MonoBehaviour
         {
             inventoryItemIDCount.Remove(mItemID);
         }
-
-        itemSlotScripts[index].RemoveOneItem();
-
         UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 }

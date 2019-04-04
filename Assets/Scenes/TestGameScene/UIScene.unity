@@ -2613,54 +2613,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Delegates: []
   delegates: []
---- !u!1 &765516868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 765516870}
-  - component: {fileID: 765516869}
-  m_Layer: 0
-  m_Name: ProductItemSpritemanager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &765516869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765516868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56ca2a3b6aab004eaab6f8f28dc225c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productionWeaponSprite:
-  - {fileID: 21300000, guid: b325b9d7dedb35e4ab61ec1699c071dd, type: 3}
-  - {fileID: 21300000, guid: b0a0cd4c5125f864b8d1d6c9bb0155b4, type: 3}
-  productionPotionSprite:
-  - {fileID: 21300000, guid: c098ff7de553fad4b997dbbf30e85f51, type: 3}
---- !u!4 &765516870
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765516868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773007377
 GameObject:
   m_ObjectHideFlags: 0
@@ -9721,6 +9673,7 @@ GameObject:
   - component: {fileID: 1957187728}
   - component: {fileID: 1957187727}
   - component: {fileID: 1957187729}
+  - component: {fileID: 1957187730}
   m_Layer: 0
   m_Name: SpriteManager
   m_TagString: Untagged
@@ -9741,9 +9694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlotSprite: {fileID: 21300000, guid: e1986c93cdd63a74f9a58d827fbec007, type: 3}
-  accessorySlotSprite: {fileID: 21300000, guid: 88faee2b7e59ad641acd402094c1fa96,
-    type: 3}
-  weaponSlotSprite: {fileID: 21300000, guid: b56c1b3739475da4b9f62d80c7bc7849, type: 3}
   weapon_A_Sprite: {fileID: 21300000, guid: 56dbc4336c47360418d0ad0eb1a479de, type: 3}
   weapon_B_Sprite: {fileID: 21300000, guid: b452f9d07441928459f875fa2e4380e1, type: 3}
   weapon_C_Sprite: {fileID: 21300000, guid: a18c5f1e65fc8fe4194dc3238572a445, type: 3}
@@ -9819,6 +9769,27 @@ MonoBehaviour:
   weapon_C_Sprite: {fileID: 21300000, guid: c7c2032dbcc5a214181d1c586f17e322, type: 3}
   weapon_D_Sprite: {fileID: 21300000, guid: 0dc8ce94fbb99f6469e6402e818b4b46, type: 3}
   weapon_E_Sprite: {fileID: 21300000, guid: 86f1054c5f84b4c4980b6ea97bb6a0d8, type: 3}
+--- !u!114 &1957187730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957187726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56ca2a3b6aab004eaab6f8f28dc225c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productionWeaponSprite:
+  - {fileID: 21300000, guid: b452f9d07441928459f875fa2e4380e1, type: 3}
+  - {fileID: 21300000, guid: a18c5f1e65fc8fe4194dc3238572a445, type: 3}
+  - {fileID: 21300000, guid: 096596a30a810974295ff4fc2f35151c, type: 3}
+  - {fileID: 21300000, guid: abfa5bf375b883347b611a74fb6868f8, type: 3}
+  productionPotionSprite:
+  - {fileID: 21300000, guid: 3ce4109eebbc1f54a858594ef5a271f0, type: 3}
+  - {fileID: 21300000, guid: 29003b6b889adbc4e9ee34ff64c04d6c, type: 3}
+  - {fileID: 21300000, guid: 42ebb7cd30135f14c9d80f6dce391223, type: 3}
 --- !u!1 &1978923498
 GameObject:
   m_ObjectHideFlags: 0

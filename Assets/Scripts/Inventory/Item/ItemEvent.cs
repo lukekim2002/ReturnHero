@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class ItemEvent : EventTrigger
 {
@@ -52,8 +53,8 @@ public class ItemEvent : EventTrigger
                         if (Inventory.instance.itemSlotScripts[i].item.itemID == 0)
                         {
                             Inventory.instance.enteredItemSlot = Inventory.instance.itemSlotScripts[i];
-                            ChangeItemData(0);
-
+                            ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                            Inventory.instance.InsertItemIDCount(Inventory.instance.enteredItemSlot.item.itemID);
                             break;
                         }
                     }
@@ -64,38 +65,38 @@ public class ItemEvent : EventTrigger
                     if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 1)
                     {
                         Inventory.instance.enteredItemSlot = Inventory.instance.weaponSlot.GetComponent<Slot>();
+                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
 
-                        // 그 슬롯이 비어있는가?
-                        if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
+                        Inventory.instance.RemoveEquimentIDCount(Inventory.instance.enteredItemSlot.item.itemID, _slot.slotNum);
+
+                        if (_slot.item.itemID > 0)
                         {
-                            ChangeItemData(0);
-                            return;
+                            Inventory.instance.InsertItemIDCount(_slot.item.itemID);
                         }
-                        else
-                        {
-                            ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                            return;
-                        }
+
+                        return;
+
                     }
 
-                    else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 2)
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            Inventory.instance.enteredItemSlot = Inventory.instance.accessorySlotScripts[i].GetComponent<Slot>();
+                    //else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 2)
+                    //{
+                    //    for (int i = 0; i < 6; i++)
+                    //    {
+                    //        Inventory.instance.enteredItemSlot = Inventory.instance.accessorySlotScripts[i].GetComponent<Slot>();
 
-                            // 그 슬롯이 비어있는가?
-                            if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
-                            {
-                                ChangeItemData(0);
-                                break;
-                            }
-                        }
-                    }
+                    //        // 그 슬롯이 비어있는가?
+                    //        if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
+                    //        {
+                    //            ChangeItemData(0);
+                    //            break;
+                    //        }
+                    //    }
+                    //}
                 }
             }
         }
     }
+
 
     public override void OnDrag(PointerEventData eventData)
     {
@@ -146,17 +147,10 @@ public class ItemEvent : EventTrigger
                 if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"]
                  == Inventory.instance.enteredItemSlot.slotType)
                 {
-                    // 그 슬롯이 비어있는가?
-                    if (Inventory.instance.enteredItemSlot.item.itemID < 0)
-                    {
-                        ChangeItemData(0);
-                        return;
-                    }
-                    else
-                    {
-                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                        return;
-                    }
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                    Inventory.instance.RemoveEquimentIDCount(Inventory.instance.enteredItemSlot.item.itemID, Inventory.instance.enteredItemSlot.slotNum);
+                    return;
+
                 }
             }
 

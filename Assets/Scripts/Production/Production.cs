@@ -108,7 +108,7 @@ public class Production : MonoBehaviour
         {
             // 어떤 아이템을 조합하기 위한 조합식을 매 행마다 초기화해준다.
             productionRecipeDictionary.Clear();
-            // 어떤 아이템을 조합하는데 필요한 아이템들을 매 행마다 초기화해준다.
+            // 어떤 아이템을 조합하는데 필요한 각 아이템들의 개수를 매 행마다 초기화해준다.
             productionRecipeKey.Clear();
 
             // ProductionRecipe.CSV에서 Item1 ~ Item6까지 반복한다.
