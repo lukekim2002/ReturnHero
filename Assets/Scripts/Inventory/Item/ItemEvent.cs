@@ -159,15 +159,8 @@ public class ItemEvent : EventTrigger
             {
                 if (_slot.slotType == 1)
                 {
-                    // 슬롯이 비어 있다면
-                    if (Inventory.instance.enteredItemSlot.item.itemID == 0)
-                    {
-                        ChangeItemData(0);
-                    }
-                    else
-                    {
-                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                    }
+                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                    Inventory.instance.InsertItemIDCount(Inventory.instance.enteredItemSlot.item.itemID);
                 }
                 else if (_slot.slotType == 2)
                 {
