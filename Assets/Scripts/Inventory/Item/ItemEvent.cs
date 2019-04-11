@@ -2,23 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
 
 public class ItemEvent : EventTrigger
 {
-
     #region PRIVATE
     private Slot _slot;
+    // 아이템이 드래그 중인지 아닌지 체크함.
+    private static bool _isItemDraging = false;
     #endregion
 
     #region PUBLIC
-    public static bool isDraging = false;
-    // 아이템이 ProductionSlot에 들어갈 때마다 검사
-    public static bool isItemInProduction = false;
+
     #endregion
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
         _slot = this.GetComponent<Slot>();
     }
@@ -33,9 +30,9 @@ public class ItemEvent : EventTrigger
             }
             else
             {
-                isDraging = true;
+                _isItemDraging = true;
 
-                Inventory.instance.itemDescBackGround.gameObject.SetActive(false);
+                Inventory.instance.itemDescWindow.gameObject.SetActive(false);
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
@@ -52,9 +49,9 @@ public class ItemEvent : EventTrigger
                     {
                         if (Inventory.instance.itemSlotScripts[i].item.itemID == 0)
                         {
-                            Inventory.instance.enteredItemSlot = Inventory.instance.itemSlotScripts[i];
-                            ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                            Inventory.instance.InsertItemIDCount(Inventory.instance.enteredItemSlot.item.itemID);
+                            Inventory.instance.changeItem = Inventory.instance.itemSlotScripts[i];
+                            ChangeItemData();
+                            Inventory.instance.InsertItemIDCount(Inventory.instance.changeItem.item.itemID);
                             break;
                         }
                     }
@@ -64,10 +61,10 @@ public class ItemEvent : EventTrigger
                 {
                     if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 1)
                     {
-                        Inventory.instance.enteredItemSlot = Inventory.instance.weaponSlot.GetComponent<Slot>();
-                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                        Inventory.instance.changeItem = Inventory.instance.weaponSlot.GetComponent<Slot>();
+                        ChangeItemData();
 
-                        Inventory.instance.RemoveEquimentIDCount(Inventory.instance.enteredItemSlot.item.itemID, _slot.slotNum);
+                        Inventory.instance.RemoveEquimentIDCount(Inventory.instance.changeItem.item.itemID, _slot.slotNum);
 
                         if (_slot.item.itemID > 0)
                         {
@@ -123,14 +120,14 @@ public class ItemEvent : EventTrigger
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            isDraging = false;
+            _isItemDraging = false;
 
             if (_slot.item.itemID <= 0)
                 return;
 
-            ReturnOriginalSlot();
+            ReturnToOriginalSlot();
 
-            if (Inventory.instance.enteredItemSlot == null)
+            if (Inventory.instance.changeItem == null)
                 return;
 
             /*
@@ -140,108 +137,96 @@ public class ItemEvent : EventTrigger
              */
 
             // 바꿀 슬롯이 WeaponSlot이나 Accessory 슬롯이라면
-            if (Inventory.instance.enteredItemSlot.slotType < 3)
+            if (Inventory.instance.changeItem.slotType < 3)
             {
                 // Weapon 혹은 Accessory가 아닌 다른 아이템이 Weapon Slot이나 Accessory 슬롯에 들어가는 것을 방지
                 // 드래그한 아이템의 ItemType이 Weapon이나 Accessroy의 slotType이랑 똑같은가?
                 if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"]
-                 == Inventory.instance.enteredItemSlot.slotType)
+                 == Inventory.instance.changeItem.slotType)
                 {
-                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                    Inventory.instance.RemoveEquimentIDCount(Inventory.instance.enteredItemSlot.item.itemID, Inventory.instance.enteredItemSlot.slotNum);
+                    ChangeItemData();
+                    Inventory.instance.RemoveEquimentIDCount(Inventory.instance.changeItem.item.itemID, Inventory.instance.changeItem.slotNum);
                     return;
 
                 }
             }
 
             // 바꿀 슬롯이 Item 슬롯이라면
-            else if (Inventory.instance.enteredItemSlot.slotType == 3)
+            else if (Inventory.instance.changeItem.slotType == 3)
             {
                 if (_slot.slotType == 1)
                 {
-                    ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
-                    Inventory.instance.InsertItemIDCount(Inventory.instance.enteredItemSlot.item.itemID);
+                    ChangeItemData();
+                    Inventory.instance.InsertItemIDCount(Inventory.instance.changeItem.item.itemID);
                 }
                 else if (_slot.slotType == 2)
                 {
                     // 슬롯이 비어 있다면
-                    if (Inventory.instance.enteredItemSlot.item.itemID == 0)
+                    if (Inventory.instance.changeItem.item.itemID == 0)
                     {
-                        ChangeItemData(0);
+                        ChangeItemData();
                     }
                     else
                     {
-                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                        ChangeItemData();
                     }
                 }
                 else if (_slot.slotType == 3)
                 {
                     // 슬롯이 비어 있다면
-                    if (Inventory.instance.enteredItemSlot.item.itemID == 0)
+                    if (Inventory.instance.changeItem.item.itemID == 0)
                     {
-                        ChangeItemData(0);
+                        ChangeItemData();
                     }
                     else
                     {
-                        ChangeItemData(Inventory.instance.enteredItemSlot.item.itemID);
+                        ChangeItemData();
                     }
                 }
             }
 
-            Inventory.instance.enteredItemSlot = null;
+            Inventory.instance.changeItem = null;
         }
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isDraging)
+        if (!_isItemDraging)
         {
             if (_slot.item.itemID > 0)
             {
-                Inventory.instance.itemDescBackGround.gameObject.SetActive(true);
-                Inventory.instance.itemDescBackGround.transform.position = this.transform.position;
-                Inventory.instance.itemDescBackGround.GetComponentInChildren<TextMeshProUGUI>().text = (string)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["Desc"];
+                Inventory.instance.itemDescWindow.gameObject.SetActive(true);
+                Inventory.instance.itemDescWindow.transform.position = this.transform.position;
+                Inventory.instance.itemDescWindow.GetComponentInChildren<TextMeshProUGUI>().text = (string)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["Desc"];
                 Inventory.instance.ChangeSlotPivot(_slot.itemDescBackGroundPivot);
             }
         }
         else
         {
-            Inventory.instance.enteredItemSlot = _slot;
+            Inventory.instance.changeItem = _slot;
         }
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        Inventory.instance.itemDescBackGround.gameObject.SetActive(false);
-        Inventory.instance.enteredItemSlot = null;
+        Inventory.instance.itemDescWindow.gameObject.SetActive(false);
+        Inventory.instance.changeItem = null;
     }
 
-    private void ReturnOriginalSlot()
+    private void ReturnToOriginalSlot()
     {
-        // Item Slot을 제외한 다른 곳이라면 원래 자리로 옮긴다.
         Inventory.instance.draggedItem.GetChild(0).GetComponent<Image>().raycastTarget = true;
         Inventory.instance.draggedItem.GetChild(0).SetParent(this.transform);
         this.transform.GetChild(0).localPosition = Vector2.zero;
     }
 
-    private void ChangeItemData(int itemBoxID)
+    private void ChangeItemData()
     {
         Item tempItem = _slot.item;
-        _slot.item = Inventory.instance.enteredItemSlot.item;
-        Inventory.instance.enteredItemSlot.item = tempItem;
-
-        if (itemBoxID == 0)
-        {
-            _slot.item.itemID = itemBoxID;
-        }
+        _slot.item = Inventory.instance.changeItem.item;
+        Inventory.instance.changeItem.item = tempItem;
 
         Inventory.instance.ChangeItem(_slot);
-        Inventory.instance.ChangeItem(Inventory.instance.enteredItemSlot);
-    }
-
-    public void InsetInProductionSlot()
-    {
-        if (_slot.slotType >= 3)
-            isItemInProduction = true;
+        Inventory.instance.ChangeItem(Inventory.instance.changeItem);
     }
 }

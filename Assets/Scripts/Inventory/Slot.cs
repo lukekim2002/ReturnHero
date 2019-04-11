@@ -48,6 +48,7 @@ public class Slot : MonoBehaviour
     // 슬롯 아이템 수량 초기화
     public void InitSlotItemCount()
     {
+        item.itemCount = 0;
         itemCountTextMeshPro.text = "";
     }
 

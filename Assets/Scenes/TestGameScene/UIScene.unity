@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 223657958}
   - component: {fileID: 223657956}
   m_Layer: 5
-  m_Name: DraggedItem
+  m_Name: ChangeItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8306,8 +8306,8 @@ MonoBehaviour:
   itemSlotScripts: []
   accessorySlotScripts: []
   weaponSlotScripts: {fileID: 0}
-  enteredItemSlot: {fileID: 0}
-  itemDescBackGround: {fileID: 1152424652}
+  changeItem: {fileID: 0}
+  itemDescWindow: {fileID: 1152424652}
 --- !u!1 &1665594923
 GameObject:
   m_ObjectHideFlags: 0

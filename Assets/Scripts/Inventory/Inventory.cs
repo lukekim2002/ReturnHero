@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,16 +14,15 @@ public class Inventory : MonoBehaviour
     public List<Slot> itemSlotScripts = new List<Slot>();
     public List<Slot> accessorySlotScripts = new List<Slot>();
     public Slot weaponSlotScripts;
-    // 자리를 바꿀 아이템 슬롯 위치
-    public Slot enteredItemSlot;
+    // 자리를 바꿀 아이템 슬롯
+    public Slot changeItem;
     // 아이템 설명창
-    public Image itemDescBackGround;
+    public Image itemDescWindow;
 
     public const int accessorySlot_X = 3;
     public const int accessorySlot_Y = 2;
     public const int itemSlot_X = 6;
     public const int itemSlot_Y = 4;
-
     #endregion
 
     private void Awake()
@@ -181,30 +178,7 @@ public class Inventory : MonoBehaviour
     // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
     public void ChangeSlotPivot(Vector2 pivotPos)
     {
-        itemDescBackGround.rectTransform.pivot = pivotPos;
-    }
-
-    // 무기 슬롯의 무기를 교체한다.
-    public void ChangeWeapon(int mItemID)
-    {
-        if (weaponSlotScripts.item.itemID != mItemID)
-        {
-            weaponSlotScripts.item.itemID = mItemID;
-            weaponSlotScripts.SetItemSlotImage();
-        }
-    }
-
-    // 악세사리 슬롯의 악세사리를 교체한다.
-    public void ChangeAccessory(int mItemID, int index)
-    {
-        // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
-        if (accessorySlotScripts[index].item.itemID == 0)
-        {
-            accessorySlotScripts[index].item.itemID = mItemID;
-            accessorySlotScripts[index].item.itemCount = 1;
-            // 인벤토리에 아이템 이미지를 뿌림
-            accessorySlotScripts[index].SetItemSlotImage();
-        }
+        itemDescWindow.rectTransform.pivot = pivotPos;
     }
 
     // 아이템 슬롯 위치를 서로 바꿔줌
@@ -215,10 +189,8 @@ public class Inventory : MonoBehaviour
 
         if (slot.slotType == 1)
             slot.SetWeaponSlotImage();
-
         else if (slot.slotType == 2)
             slot.SetItemSlotImage();
-
         else if (slot.slotType == 3)
             slot.SetItemSlotImage();
 
