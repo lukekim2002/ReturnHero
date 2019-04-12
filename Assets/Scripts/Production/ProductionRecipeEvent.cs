@@ -69,7 +69,7 @@ public class ProductionRecipeEvent : MonoBehaviour
                     {
                         if (Inventory.instance.itemSlotScripts[i].item.itemID == _production.productionMaterialItemsID[j])
                         {
-                            Inventory.instance.RemoveItemIDCount(Inventory.instance.itemSlotScripts[i].item.itemID, i);
+                            Inventory.instance.RemoveItemIDCount(Inventory.instance.itemSlotScripts[i].item.itemID, i, 3);
                             _production.productionMaterialItemsID.RemoveAt(j);
                             // 수량이 있는 아이템이라면
                             if (Inventory.instance.itemSlotScripts[i].item.itemCount > 1)

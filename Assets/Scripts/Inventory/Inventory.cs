@@ -214,26 +214,16 @@ public class Inventory : MonoBehaviour
         UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 
-    public void RemoveItemIDCount(int mItemID, int index)
+    public void RemoveItemIDCount(int mItemID, int index, int slotType)
     {
-        if (itemSlotScripts[index].item.itemCount > 0)
+        if (slotType == 3)
         {
-            itemSlotScripts[index].RemoveOneItem();
+            if (itemSlotScripts[index].item.itemCount > 0)
+            {
+                itemSlotScripts[index].RemoveOneItem();
+            }
         }
 
-        if (inventoryItemIDCount[mItemID] > 0)
-        {
-            inventoryItemIDCount[mItemID]--;
-        }
-        else if (inventoryItemIDCount[mItemID] == 0)
-        {
-            inventoryItemIDCount.Remove(mItemID);
-        }
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
-    }
-
-    public void RemoveEquimentIDCount(int mItemID, int mIndex)
-    {
         if (inventoryItemIDCount[mItemID] > 0)
         {
             inventoryItemIDCount[mItemID]--;
