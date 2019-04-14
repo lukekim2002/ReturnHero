@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,16 +14,15 @@ public class Inventory : MonoBehaviour
     public List<Slot> itemSlotScripts = new List<Slot>();
     public List<Slot> accessorySlotScripts = new List<Slot>();
     public Slot weaponSlotScripts;
-    // 자리를 바꿀 아이템 슬롯 위치
-    public Slot enteredItemSlot;
+    // 자리를 바꿀 아이템 슬롯
+    public Slot changeItem;
     // 아이템 설명창
-    public Image itemDescBackGround;
+    public Image itemDescWindow;
 
     public const int accessorySlot_X = 3;
     public const int accessorySlot_Y = 2;
     public const int itemSlot_X = 6;
     public const int itemSlot_Y = 4;
-
     #endregion
 
     private void Awake()
@@ -84,7 +81,7 @@ public class Inventory : MonoBehaviour
                 newSlotPos.y = newSlotPos.y - (y * 58f);
                 accessorySlotPrefabs.anchoredPosition = newSlotPos;
 
-                accessorySlotPrefabs.name = "Slot " + ((y * accessorySlot_X) + x);
+                accessorySlotPrefabs.name = "AccessorySlot " + ((y * accessorySlot_X) + x);
                 accessorySlotComponent.itemDescBackGroundPivot.x = (x * (1f / (accessorySlot_X - 1)));
                 accessorySlotComponent.itemDescBackGroundPivot.y = 1;
 
@@ -94,18 +91,28 @@ public class Inventory : MonoBehaviour
         }
 
         // weaponSlot의 Slot 컴포넌트
-        weaponSlotScripts = weaponSlot.GetComponent<Slot>(); 
+        weaponSlotScripts = weaponSlot.GetComponent<Slot>();
 
         ItemAddTestMethodCall();
     }
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 1; i <= 25; i++)
+        for (int i = 1; i <= 5; i++)
+        {
+            AddEquiment(i);
+        }
+        for (int i = 0; i < 5; i++)
         {
             AddEquiment(i);
         }
 
+        for (int i = 0; i < 10; i++)
+        {
+            AddItem(11);
+            AddItem(12);
+            AddItem(13);
+        }
     }
 
     // Item 추가
@@ -136,7 +143,7 @@ public class Inventory : MonoBehaviour
                 itemSlotScripts[i].item.itemID = mItemID;
                 itemSlotScripts[i].item.itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                itemSlotScripts[i].SetSlotImage();
+                itemSlotScripts[i].SetItemSlotImage();
 
                 break;
             }
@@ -144,7 +151,7 @@ public class Inventory : MonoBehaviour
 
         InsertItemIDCount(mItemID);
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 
     public void AddEquiment(int mItemID)
@@ -157,11 +164,11 @@ public class Inventory : MonoBehaviour
                 itemSlotScripts[i].item.itemID = mItemID;
                 itemSlotScripts[i].item.itemCount = 1;
                 // 인벤토리에 아이템 이미지를 뿌림
-                itemSlotScripts[i].SetSlotImage();
+                itemSlotScripts[i].SetItemSlotImage();
 
                 InsertItemIDCount(mItemID);
 
-                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
 
                 break;
             }
@@ -171,48 +178,26 @@ public class Inventory : MonoBehaviour
     // 아이템 슬롯에 따라서 ItemDescBackGround의 피벗을 바꿔준다.
     public void ChangeSlotPivot(Vector2 pivotPos)
     {
-        itemDescBackGround.rectTransform.pivot = pivotPos;
-    }
-
-    // 무기 슬롯의 무기를 교체한다.
-    public void ChangeWeapon(int mItemID)
-    {
-        if (weaponSlotScripts.item.itemID != mItemID)
-        {
-            weaponSlotScripts.item.itemID = mItemID;
-            weaponSlotScripts.SetSlotImage();
-        }
-    }
-
-    // 악세사리 슬롯의 악세사리를 교체한다.
-    public void ChangeAccessory(int mItemID, int index)
-    {
-        // 슬롯에 들어간 똑같은 아이템이 하나도 없다면
-        if (accessorySlotScripts[index].item.itemID == 0)
-        {
-            accessorySlotScripts[index].item.itemID = mItemID;
-            accessorySlotScripts[index].item.itemCount = 1;
-            // 인벤토리에 아이템 이미지를 뿌림
-            accessorySlotScripts[index].SetSlotImage();
-        }
+        itemDescWindow.rectTransform.pivot = pivotPos;
     }
 
     // 아이템 슬롯 위치를 서로 바꿔줌
     public void ChangeItem(Slot slot)
     {
         if (slot.item.itemID == 0)
-        {
-            slot.InitSlot();
-        }
-        else
-        {
-            slot.SetSlotImage();
+            slot.InitItemSlot();
 
-            if (slot.item.itemCount > 1)
-                slot.SetSlotItemCount();
-            else
-                slot.InitSlotItemCount();
-        }
+        if (slot.slotType == 1)
+            slot.SetWeaponSlotImage();
+        else if (slot.slotType == 2)
+            slot.SetItemSlotImage();
+        else if (slot.slotType == 3)
+            slot.SetItemSlotImage();
+
+        if (slot.item.itemCount > 1)
+            slot.SetSlotItemCount();
+        else
+            slot.InitSlotItemCount();
     }
 
     public void InsertItemIDCount(int mItem)
@@ -225,10 +210,20 @@ public class Inventory : MonoBehaviour
         {
             inventoryItemIDCount[mItem]++;
         }
+
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 
-    public void RemoveItemIDCount(int mItemID, int index)
+    public void RemoveItemIDCount(int mItemID, int index, int slotType)
     {
+        if (slotType == 3)
+        {
+            if (itemSlotScripts[index].item.itemCount > 0)
+            {
+                itemSlotScripts[index].RemoveOneItem();
+            }
+        }
+
         if (inventoryItemIDCount[mItemID] > 0)
         {
             inventoryItemIDCount[mItemID]--;
@@ -237,9 +232,6 @@ public class Inventory : MonoBehaviour
         {
             inventoryItemIDCount.Remove(mItemID);
         }
-
-        itemSlotScripts[index].RemoveOneItem();
-
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckMaterialItems();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 }

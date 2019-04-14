@@ -1,10 +1,11 @@
 Name,ID,Desc,ItemType,OffensePower,DefensePower
-EmptyWeapon,-2,Null,1,0,0
-EmptyAccessory,-1,Null,2,0,0
-EmptyItem,0,Null,3,0,0
-Bronze Sword,1,Basic Weapon,1,10,0
-Silver Sword,2,Basic Weapon,1,20,0
-Bronze Ring,3,Basic Accessory,2,0,10
-Silver Ring,4,Basic Accessory,2,0,15
-Book,5,Basic Misc,3,0,0
-Ciga,6,Basic Misc,3,0,0
+EmptyWeapon,-2,Null,0,0,0
+EmptyAccessory,-1,Null,0,0,0
+EmptyItem,0,Null,0,0,0
+Weapon_A,1,Basic Weapon,1,10,0
+Weapon_B,2,Null,1,20,0
+Weapon_C,3,10% increase in damage against Spirit type monster,1,0,10
+Weapon_D,4,10% increase in damage against Ice type monster,1,0,15
+Weapon_E,5,10% increase in damage against Fire type monster,1,0,0
+Ciga,6,Basic Misc,2,0,0
+Normal,7,Null,3,0,0

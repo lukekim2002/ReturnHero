@@ -101,14 +101,14 @@ public class Production : MonoBehaviour
 
     //TODO : 아이템 재료가 사라지면 Recipe off 시켜줘야 한다.
     // 특정 아이템의 재료가 다 모였는지 검사한다.
-    public void CheckMaterialItems()
+    public void CheckItemMaterials()
     {
         // Production Type의 개수만큼 반복
         for (int i = 0; i < recipeSet.Count; i++)
         {
             // 어떤 아이템을 조합하기 위한 조합식을 매 행마다 초기화해준다.
             productionRecipeDictionary.Clear();
-            // 어떤 아이템을 조합하는데 필요한 아이템들을 매 행마다 초기화해준다.
+            // 어떤 아이템을 조합하는데 필요한 각 아이템들의 개수를 매 행마다 초기화해준다.
             productionRecipeKey.Clear();
 
             // ProductionRecipe.CSV에서 Item1 ~ Item6까지 반복한다.

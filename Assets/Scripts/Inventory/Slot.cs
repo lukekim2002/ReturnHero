@@ -26,8 +26,14 @@ public class Slot : MonoBehaviour
         itemCountTextMeshPro = this.transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
+    public void SetWeaponSlotImage()
+    {
+        slotImage.sprite = InSlotSpriteManager.instance.BindingImageAndItemID(item.itemID);
+        slotImage.SetNativeSize();
+    }
+
     // 슬롯 아이템 이미지 세팅
-    public void SetSlotImage()
+    public void SetItemSlotImage()
     {
         slotImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(item.itemID);
         slotImage.SetNativeSize();
@@ -42,22 +48,22 @@ public class Slot : MonoBehaviour
     // 슬롯 아이템 수량 초기화
     public void InitSlotItemCount()
     {
+        item.itemCount = 0;
         itemCountTextMeshPro.text = "";
     }
 
     // 슬롯 아이템 칸 비울 때 호출하면 됨
-    public void InitSlot()
+    public void InitItemSlot()
     {
         this.item = new Item();
-        SetSlotImage();
-        item.itemCount = 0;
+        SetItemSlotImage();
         InitSlotItemCount();
     }
 
     // 해당 칸 아이템 모두 삭제
     public void RemoveAllItem()
     {
-        InitSlot();
+        InitItemSlot();
     }
 
     // 해당 칸 아이템 하나 삭제
