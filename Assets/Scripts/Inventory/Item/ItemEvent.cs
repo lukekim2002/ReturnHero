@@ -64,7 +64,7 @@ public class ItemEvent : EventTrigger
                         Inventory.instance.changeItem = Inventory.instance.weaponSlot.GetComponent<Slot>();
                         ChangeItemData();
 
-                        Inventory.instance.RemoveItemIDCount(Inventory.instance.changeItem.item.itemID, _slot.slotNum, 0);
+                        Inventory.instance.RemoveItemIDCount(Inventory.instance.changeItem.item.itemID, _slot.slotNum, Inventory.instance.changeItem.slotType);
 
                         if (_slot.item.itemID > 0)
                         {
@@ -145,7 +145,7 @@ public class ItemEvent : EventTrigger
                  == Inventory.instance.changeItem.slotType)
                 {
                     ChangeItemData();
-                    Inventory.instance.RemoveItemIDCount(Inventory.instance.changeItem.item.itemID, Inventory.instance.changeItem.slotNum, 0);
+                    Inventory.instance.RemoveItemIDCount(Inventory.instance.changeItem.item.itemID, Inventory.instance.changeItem.slotNum, Inventory.instance.changeItem.slotType);
                     return;
 
                 }

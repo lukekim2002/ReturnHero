@@ -216,6 +216,7 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItemIDCount(int mItemID, int index, int slotType)
     {
+        // 지울 데이터 슬롯이 아이템 슬롯이라면
         if (slotType == 3)
         {
             if (itemSlotScripts[index].item.itemCount > 0)
