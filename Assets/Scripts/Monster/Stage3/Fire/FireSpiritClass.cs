@@ -25,7 +25,9 @@ public class FireSpiritClass : MonsterBase
 
     #region PUBLIC VALUES
 
+    [HideInInspector]
     public Dictionary<string, object> myDataSet;
+    [HideInInspector]
     public List<Dictionary<string, object>> myColliderSet;
 
     [Header("Refered Objects")]
@@ -34,10 +36,9 @@ public class FireSpiritClass : MonsterBase
     public GameObject attackCollider;
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
-    public GameObject mySkill1AttackRange;
+    //public GameObject mySkill1AttackRange;
     public Animator myAnimator;
-    public GameObject skillEffect1;
-    public GameObject skillEffect2;
+    //public GameObject skillEffect;
 
     [Header("State Values")]
     public Vector2 myDirection;
@@ -65,14 +66,12 @@ public class FireSpiritClass : MonsterBase
 
     private void Update()
     {
-        myDirection = myBase.direction;
-
-        /*
-        if (_health <= 0)
+        if (isAttacking == false)
         {
-            DyingMotion();
+            myDirection = myBase.direction;
+            myAction = Action.Move;
         }
-        */
+            
 
         if (myAction == Action.Idle && isAttacking == false)
         {
@@ -88,6 +87,12 @@ public class FireSpiritClass : MonsterBase
         }
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (isAttacking == false && _isSkill1AttackReady == true)
+            AttackSkill1();
     }
 
     #endregion
@@ -123,8 +128,8 @@ public class FireSpiritClass : MonsterBase
 
 
         _isMeleeAttackReady = true;
-        _isSkill1AttackReady = true;
-
+        _isSkill1AttackReady = false;
+        StartCoroutine(CoolDownSkill1());
     }
 
     public override void AttackMelee()
@@ -193,7 +198,7 @@ public class FireSpiritClass : MonsterBase
         isAttacking = true;
         //myAttackCase = AttackCase.Skill2;
         aiMoveScript.enabled = false;
-        mySkill1AttackRange.SetActive(false);
+        //mySkill1AttackRange.SetActive(false);
 
         myAnimator.SetInteger("actionNum", 2);
         myAnimator.SetTrigger("isSkill1");
@@ -229,7 +234,6 @@ public class FireSpiritClass : MonsterBase
         isAttacking = false;
         aiMoveScript.enabled = true;
 
-        attackCollider.SetActive(false);
     }
 
     public override IEnumerator CoolDownMelee()
@@ -243,7 +247,7 @@ public class FireSpiritClass : MonsterBase
     {
         yield return new WaitForSeconds(_Skill1CoolDown);
         _isSkill1AttackReady = true;
-        mySkill1AttackRange.SetActive(true);
+        //mySkill1AttackRange.SetActive(true);
     }
 
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
@@ -274,7 +278,7 @@ public class FireSpiritClass : MonsterBase
 
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
-        else if (stateInfo.IsName("Cow_Skill1_Down"))
+        else if (stateInfo.IsName("Skill1"))
             EndAttackSkill1();
         else if (stateInfo.IsName("BeShot"))
             EndGetHit();
@@ -295,16 +299,24 @@ public class FireSpiritClass : MonsterBase
 
         //myAnimator.SetInteger("actionNum", 3);
         myAnimator.SetInteger("actionNum", 4);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
 
-        StartCoroutine(WaitAnimationFinish());
+        //StartCoroutine(WaitAnimationFinish());
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 
     public override void EndGetHit()
     {
         //Debug.Log("GateKeeper EndGetHit");
+
+        if (_health <= 0)
+        {
+            // Dead
+            DyingMotion();
+        }
 
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
@@ -318,20 +330,18 @@ public class FireSpiritClass : MonsterBase
         myAction = Action.Idle;
         aiMoveScript.enabled = false;
 
+        _health -= damage;
+        Debug.Log("current health : " + _health);
+
         myAnimator.SetInteger("actionNum", 3);
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
-        _health -= damage;
-        Debug.Log("current health : " + _health);
+        
 
         StartCoroutine(WaitAnimationFinish());
 
-        if (_health <= 0)
-        {
-            // Dead
-            DyingMotion();
-        }
+        
     }
 
     public override void GetHealed(GameGeneralManager.HealInfo myHeal)
