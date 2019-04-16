@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 
-public class BuffTrigger : BuffDatabase
+public class BuffTrigger
 {
-    public bool isBleeded = false;
-
     public void OnBleeding()
     {
-        HeroGeneralManager.instance.buffList.Add(bleeded);
+        foreach (Buff buff in HeroGeneralManager.instance.buffList)
+        {
+            if (buff.buffName == BuffDatabase.bleeded.buffName)
+            {
+                HeroGeneralManager.instance.buffList.Remove(BuffDatabase.bleeded);
+            }
+        }
+        HeroGeneralManager.instance.buffList.Add(BuffDatabase.bleeded);
     }
 }
