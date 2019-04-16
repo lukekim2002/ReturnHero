@@ -8,7 +8,16 @@ public class Blinded : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            print("Blinded");
+            foreach (Buff buff in collision.GetComponent<BuffManager>().buffList)
+            {
+                if (buff.buffName == "Blinded")
+                {
+                    collision.GetComponent<BuffManager>().buffList.Remove(buff);
+                    break;
+                }
+            }
+
+            collision.GetComponent<BuffManager>().buffList.Add(BuffDatabase.blinded);
         }
     }
 }

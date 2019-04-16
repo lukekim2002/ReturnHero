@@ -8,7 +8,16 @@ public class Burned : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            print("Burned");
+            foreach (Buff buff in collision.GetComponent<BuffManager>().buffList)
+            {
+                if (buff.buffName == "Burned")
+                {
+                    collision.GetComponent<BuffManager>().buffList.Remove(buff);
+                    break;
+                }
+            }
+
+            collision.GetComponent<BuffManager>().buffList.Add(BuffDatabase.burned);
         }
     }
 }

@@ -1,21 +1,44 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class BuffManager : MonoBehaviour
 {
-    void Update()
+    #region PRIVATE
+
+    #endregion
+
+    #region PUBLIC
+    public List<Buff> buffList = new List<Buff>();
+    #endregion
+
+    public void Update()
     {
-        foreach (Buff buff in HeroGeneralManager.instance.buffList)
+        for (int i = buffList.Count - 1; i >= 0; i--)
         {
-            if (buff.buffName == "Bleeded")
+            if (buffList[i].buffName == "Bleeded")
             {
-                BuffDatabase.bleeded.Tick(Time.deltaTime);
-                if (BuffDatabase.bleeded.IsFinished)
-                {
-                    BuffDatabase.bleeded.End();
-                    HeroGeneralManager.instance.buffList.Remove(buff);
-                }
+                BuffTick(buffList[i]);
             }
+
+            if (buffList.Count == 0)
+                break;
+
+            if (buffList[i].buffName == "Burned")
+            {
+                BuffTick(buffList[i]);
+            }
+        }
+    }
+
+    public void BuffTick(Buff buff)
+    {
+        buff.Tick(Time.deltaTime);
+        print(buff.buffName + " : " + buff.buffDurationTime);
+
+        if (buff.IsFinished)
+        {
+            buff.End();
+            buffList.Remove(buff);
         }
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public struct Buff
+public class Buff
 {
     public string buffName;
     public bool isBuffType; // true : Buff, false : Debuff

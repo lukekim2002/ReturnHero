@@ -8,7 +8,16 @@ public class Frosted : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            print("Frosted");
+            foreach (Buff buff in collision.GetComponent<BuffManager>().buffList)
+            {
+                if (buff.buffName == "Frosted")
+                {
+                    collision.GetComponent<BuffManager>().buffList.Remove(buff);
+                    break;
+                }
+            }
+
+            collision.GetComponent<BuffManager>().buffList.Add(BuffDatabase.frosted);
         }
     }
 }
