@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class HeroGeneralManager : MonoBehaviour {
@@ -16,6 +15,7 @@ public class HeroGeneralManager : MonoBehaviour {
     public float skill_MR_CoolTime = 4f;
     public float skill_E_CoolTime = 5f;
     public float skill_R_CoolTime = 30f;
+    public List<Buff> buffList = new List<Buff>();
     #endregion
 
     #region Physics
