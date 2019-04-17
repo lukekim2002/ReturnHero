@@ -17,16 +17,32 @@ public class BuffManager : MonoBehaviour
         {
             if (buffList[i].buffName == "Bleeded")
             {
-                BuffTick(buffList[i]);
+            }
+
+            if (buffList[i].buffName == "Blinded")
+            {
+            }
+
+            if (buffList[i].buffName == "Burned")
+            {
+            }
+
+            if (buffList[i].buffName == "Frosted")
+            {
+            }
+
+            if (buffList[i].buffName == "Poisoned")
+            {
+            }
+
+            if (buffList[i].buffName == "Sturned")
+            {
             }
 
             if (buffList.Count == 0)
                 break;
 
-            if (buffList[i].buffName == "Burned")
-            {
-                BuffTick(buffList[i]);
-            }
+            BuffTick(buffList[i]);
         }
     }
 

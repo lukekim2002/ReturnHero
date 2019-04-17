@@ -40,7 +40,7 @@ public class Buff
 public static class BuffDatabase
 {
     public static Buff sturned = new Buff("Struned", false, 2.0f, 0.0f, 1.0f);
-    public static Buff poison = new Buff("Poison", false, 7.0f, 0.03f, 0.2f);
+    public static Buff poisoned = new Buff("Poisoned", false, 7.0f, 0.03f, 0.2f);
     public static Buff bleeded = new Buff("Bleeded", false, 7.0f, 0.01f, 0.0f);
     public static Buff burned = new Buff("Burned", false, 5.0f, 0.05f, 0.0f);
     public static Buff frosted = new Buff("Frosted", false, 7.0f, 0.0f, 0.5f);
