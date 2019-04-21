@@ -18,6 +18,7 @@ public class Frosted : MonoBehaviour
             }
 
             collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.frosted);
+            collision.GetComponent<BuffManager>().isFrosted = true;
         }
     }
 }
