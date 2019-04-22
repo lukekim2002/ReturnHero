@@ -38,6 +38,9 @@ public class ZombieClass : MonsterBase
     public Action myAction;
     public bool isAttacking = false;
 
+    [HideInInspector]
+    public bool isCoroutineRunning;
+
     #endregion
 
     #region MonoBahvaiour CallBacks
@@ -68,13 +71,16 @@ public class ZombieClass : MonsterBase
             DyingMotion();
         }
 
+        /*
         if (myAction == Action.Idle && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 0);
             myAnimator.SetFloat("actionX", myDirection.x);
             myAnimator.SetFloat("actionY", myDirection.y);
         }
-        else if (myAction == Action.Move && isAttacking == false)
+        */
+
+        if (myAction == Action.Move && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 1);
             myAnimator.SetFloat("moveX", myDirection.x);
@@ -270,6 +276,7 @@ public class ZombieClass : MonsterBase
 
     public override IEnumerator WaitAnimationFinish()
     {
+        isCoroutineRunning = true;
         AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
 
         // Wait Attack State
@@ -286,18 +293,24 @@ public class ZombieClass : MonsterBase
             yield return null;
         }
 
+        isCoroutineRunning = false;
+
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
-        else if (stateInfo.IsName("BeShot"))
+        if (stateInfo.IsName("BeShot"))
+        {
+            print("BeShot State");
             EndGetHit();
-        /*
-        else if (stateInfo.IsName("Die"))
+        }
+            
+        if (stateInfo.IsName("Die"))
             gameObject.SetActive(false);
-            */
+            
     }
 
     public override void DyingMotion()
     {
+        /*
         myAnimator.SetInteger("actionNum", 4);
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
@@ -305,6 +318,7 @@ public class ZombieClass : MonsterBase
         StartCoroutine(WaitAnimationFinish());
 
         gameObject.SetActive(false);
+        */
     }
 
     public override void HitByPlayer(int damage)
@@ -312,22 +326,47 @@ public class ZombieClass : MonsterBase
         myAction = Action.Idle;
         aiMoveScript.enabled = false;
 
+        if (isCoroutineRunning && myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
+        {
+            print("Animator is in Melee state already");
+            StopCoroutine(WaitAnimationFinish());
+        }
+
+        
+        _health -= damage;
+        Debug.Log("current health : " + _health);
+
+        if (_health > 0)
+        {
+            myAnimator.SetTrigger("BeShot");
+        }
+        else
+        {
+            myAnimator.SetTrigger("Dead");
+        }
+
         myAnimator.SetInteger("actionNum", 3);
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
-        _health -= damage;
-        Debug.Log("current health : " + _health);
-
         StartCoroutine(WaitAnimationFinish());
 
-        
     }
 
     public override void EndGetHit()
     {
+        /*
+        if (isCoroutineRunning == false)
+        {
+            //StopCoroutine(WaitAnimationFinish());
+        }
+        */
+
+        print("EndGetHit");
+
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("BeShot");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         aiMoveScript.enabled = true;
