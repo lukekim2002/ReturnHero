@@ -20,7 +20,38 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
     public void AttackMelee_Execute()
     {
         // 스켈레톤 투사체 SetActive
-        skeletonProjectile.SetActive(true);
+        GameObject projectile = Instantiate(skeletonProjectile, transform.position, Quaternion.identity);
+        projectile.GetComponent<SkeletonProjectile>().myDir = transform.GetComponent<SkeletonClass>().myDirection;
+
+        #region Projectile Collider Setting
+
+        if (_dir == Vector2.up)
+        {
+            projectile.GetComponent<SkeletonProjectile>().myColliderSize = new Vector2((float)_behaviour.myColliderSet[4]["Size_x"], (float)_behaviour.myColliderSet[4]["Size_y"]);
+            projectile.GetComponent<SkeletonProjectile>().myColliderOffset = new Vector2((float)_behaviour.myColliderSet[4]["Offset_x"], (float)_behaviour.myColliderSet[4]["Offset_y"]);
+            projectile.GetComponent<Animator>().SetTrigger("isSkeletonAttackUp");
+        }
+        else if (_dir == Vector2.down)
+        {
+            projectile.GetComponent<SkeletonProjectile>().myColliderSize = new Vector2((float)_behaviour.myColliderSet[5]["Size_x"], (float)_behaviour.myColliderSet[5]["Size_y"]);
+            projectile.GetComponent<SkeletonProjectile>().myColliderOffset = new Vector2((float)_behaviour.myColliderSet[5]["Offset_x"], (float)_behaviour.myColliderSet[5]["Offset_y"]);
+            projectile.GetComponent<Animator>().SetTrigger("isSkeletonAttackDown");
+        }
+        else if (_dir == Vector2.left)
+        {
+            projectile.GetComponent<SkeletonProjectile>().myColliderSize = new Vector2((float)_behaviour.myColliderSet[6]["Size_x"], (float)_behaviour.myColliderSet[6]["Size_y"]);
+            projectile.GetComponent<SkeletonProjectile>().myColliderOffset = new Vector2((float)_behaviour.myColliderSet[6]["Offset_x"], (float)_behaviour.myColliderSet[6]["Offset_y"]);
+            projectile.GetComponent<Animator>().SetTrigger("isSkeletonAttackLeft");
+        }
+        else if (_dir == Vector2.right)
+        {
+            projectile.GetComponent<SkeletonProjectile>().myColliderSize = new Vector2((float)_behaviour.myColliderSet[7]["Size_x"], (float)_behaviour.myColliderSet[7]["Size_y"]);
+            projectile.GetComponent<SkeletonProjectile>().myColliderOffset = new Vector2((float)_behaviour.myColliderSet[7]["Offset_x"], (float)_behaviour.myColliderSet[7]["Offset_y"]);
+            projectile.GetComponent<Animator>().SetTrigger("isSkeletonAttackRight");
+        }
+        #endregion
+
+        
     }
 
     public void AttackMelee_Ready()
@@ -31,6 +62,8 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
         _pos += _dir * 0.1f;
         this.transform.position = _pos;
     }
+
+    #region Not Used
 
     public void AttackSkill1_End()
     {
@@ -91,4 +124,6 @@ public class SkeletonAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
     {
         throw new System.NotImplementedException();
     }
+
+    #endregion
 }
