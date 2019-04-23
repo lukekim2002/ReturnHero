@@ -65,6 +65,7 @@ public class ZombieClass : MonsterBase
         if(isAttacking == false)
             myDirection = myBase.direction;
 
+        /*
         if (_health <= 0)
         {
             // Dead
@@ -270,7 +271,7 @@ public class ZombieClass : MonsterBase
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
         return (stateInfo.IsName("Melee")
-            ||  stateInfo.IsName("BeShot")
+            ||  stateInfo.IsName("BeShot_Alive")
             ||  stateInfo.IsName("Die"));
     }
 
@@ -297,9 +298,9 @@ public class ZombieClass : MonsterBase
 
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
-        if (stateInfo.IsName("BeShot"))
+        if (stateInfo.IsName("BeShot_Alive"))
         {
-            print("BeShot State");
+            print("BeShot_Alive State");
             EndGetHit();
         }
             
@@ -328,7 +329,7 @@ public class ZombieClass : MonsterBase
 
         if (isCoroutineRunning && myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
-            print("Animator is in Melee state already");
+            //print("Animator is in Melee state already");
             StopCoroutine(WaitAnimationFinish());
         }
 
