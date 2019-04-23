@@ -60,12 +60,6 @@ public class Slot : MonoBehaviour
         InitSlotItemCount();
     }
 
-    // 해당 칸 아이템 모두 삭제
-    public void RemoveAllItem()
-    {
-        InitItemSlot();
-    }
-
     // 해당 칸 아이템 하나 삭제
     public void RemoveOneItem()
     {
@@ -74,7 +68,7 @@ public class Slot : MonoBehaviour
 
         if (item.itemCount == 0)
         {
-            RemoveAllItem();
+            InitItemSlot();
         }
     }
 }

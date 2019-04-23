@@ -1,11 +1,40 @@
 Name,ID,Desc,ItemType,OffensePower,DefensePower
-EmptyWeapon,-2,Null,0,0,0
-EmptyAccessory,-1,Null,0,0,0
 EmptyItem,0,Null,0,0,0
-Weapon_A,1,Basic Weapon,1,10,0
-Weapon_B,2,Null,1,20,0
-Weapon_C,3,10% increase in damage against Spirit type monster,1,0,10
-Weapon_D,4,10% increase in damage against Ice type monster,1,0,15
-Weapon_E,5,10% increase in damage against Fire type monster,1,0,0
-Ciga,6,Basic Misc,2,0,0
-Normal,7,Null,3,0,0
+Weapon_A,1,,1,0,0
+Weapon_B,2,,1,0,0
+Weapon_C,3,,1,0,0
+Weapon_D,4,,1,0,0
+Weapon_E,5,,1,0,0
+Ring_Damage_A,6,,2,0,0
+Ring_Damage_B,7,,2,0,0
+Ring_HP_A,8,,2,0,0
+Ring_HP_B,9,,2,0,0
+Last,10,,2,0,0
+Healing Potion_A,11,,3,0,0
+Healing Potion_B,12,,3,0,0
+Healing Potion_C,13,,3,0,0
+Drug Immunizing 'Poisoning',14,,3,0,0
+Drug Immunizing 'Burned',15,,3,0,0
+Drug Immunizing 'Frosted',16,,3,0,0
+Cure-All,17,,3,0,0
+Cheap Iron,18,,4,0,0
+Steel,19,,4,0,0
+Leather,20,,4,0,0
+Reinforced Leather_Fire,21,,4,0,0
+Reinforced Leather_Ice,22,,4,0,0
+Leather of Dragon,23,,4,0,0
+Medicinal Herbs_A,24,,4,0,0
+Medicinal Herbs_B,25,,4,0,0
+Medicinal Herbs_C,26,,4,0,0
+Blood Pack_A,27,,4,0,0
+Blood Pack_B,28,,4,0,0
+Toxin_A,29,,4,0,0
+Toxin_B,30,,4,0,0
+Ghost,31,,4,0,0
+Ghost_Nightmare,32,,4,0,0
+Fragment of Bone,33,,4,0,0
+Piece of Moonlight ,34,,4,0,0
+Burning Fire,35,,4,0,0
+Element_Fire,36,,4,0,0
+Fragment of Ice,37,,4,0,0
+Element_Ice,38,,4,0,0

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour {
-
-    //TODO : 카메라 세이크 아름답게 할 것
-
     #region PRIVATE
     private const float cameraShakeAmount = 0.9f;
     private const float cameraShakeDuration = 0.2f;

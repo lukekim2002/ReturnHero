@@ -51,7 +51,10 @@ public class ProductionRecipeEvent : MonoBehaviour
             for (int i = 0; i < 6; i++)
             {
                 UIGeneralManager.instance.productionMaterialsItemSlot[i].sprite = ItemSpriteManager.instance.BindingImageAndItemID(0);
+                UIGeneralManager.instance.productionMaterialsItemSlot[i].SetNativeSize();
             }
+            
+            // NOTE
             UIGeneralManager.instance.afterProductionImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(0);
 
             _isSelectOn = false;
@@ -72,7 +75,7 @@ public class ProductionRecipeEvent : MonoBehaviour
                             Inventory.instance.RemoveItemIDCount(Inventory.instance.itemSlotScripts[i].item.itemID, i, 3);
                             _production.productionMaterialItemsID.RemoveAt(j);
                             // 수량이 있는 아이템이라면
-                            if (Inventory.instance.itemSlotScripts[i].item.itemCount > 1)
+                            if (Inventory.instance.itemSlotScripts[i].item.itemCount > 0)
                             {
                                 i++;
                             }
@@ -83,9 +86,9 @@ public class ProductionRecipeEvent : MonoBehaviour
             }
 
             if (UIGeneralManager.instance.productionCanvas.GetComponent<Production>().productionItemType == 0)
-                Inventory.instance.AddEquiment((int)_production.recipeSet[_production.afterProductionItemID]["ProductionItemID"]);
+                Inventory.instance.AddEquiment((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
             else
-                Inventory.instance.AddItem((int)_production.recipeSet[_production.afterProductionItemID]["ProductionItemID"]);
+                Inventory.instance.AddItem((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
 
             _production.productionMaterialItemsID.Clear();
             StartCoroutine(ProductionSuccessAnimationPlay());
