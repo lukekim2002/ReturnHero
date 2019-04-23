@@ -28,6 +28,8 @@ public class ZombieClass : MonsterBase
     [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
+    public Pathfinding.AIDestinationSetter aiDestinationSetter;
+
     public GameObject attackCollider;
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
@@ -101,6 +103,8 @@ public class ZombieClass : MonsterBase
         attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
         myMeleeAttackRange = transform.GetChild(3).gameObject;
         myAnimator = GetComponent<Animator>();
+        aiDestinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
+        aiDestinationSetter.target = playerObject.transform;
 
         myBase = GetComponent<MonsterBase>();
         if (myBase == null)
@@ -120,10 +124,12 @@ public class ZombieClass : MonsterBase
 
         _isMeleeAttackReady = true;
 
-        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
+        //Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
 
         //aiMoveScript.maxSpeed = _movingSpeed;
     }
+
+    #region Attack
 
     public override void AttackMelee()
     {
@@ -204,6 +210,8 @@ public class ZombieClass : MonsterBase
         
     }
 
+    #endregion
+
     #region NOT USED
 
     public override void AttackSkill1()
@@ -268,6 +276,8 @@ public class ZombieClass : MonsterBase
 
     #endregion
 
+    #region Animator Control
+
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
         return (stateInfo.IsName("Melee")
@@ -309,6 +319,10 @@ public class ZombieClass : MonsterBase
             
     }
 
+    #endregion
+
+    #region Hit
+
     public override void DyingMotion()
     {
         /*
@@ -321,6 +335,8 @@ public class ZombieClass : MonsterBase
         gameObject.SetActive(false);
         */
     }
+
+
 
     public override void HitByPlayer(int damage)
     {
@@ -372,6 +388,8 @@ public class ZombieClass : MonsterBase
         myAnimator.SetFloat("moveY", myDirection.y);
         aiMoveScript.enabled = true;
     }
+
+    #endregion
 
     public override void GetHealed(GameGeneralManager.HealInfo myHeal)
     {

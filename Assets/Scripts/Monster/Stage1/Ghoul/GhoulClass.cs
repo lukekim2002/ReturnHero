@@ -28,6 +28,8 @@ public class GhoulClass : MonsterBase {
     [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
+    public Pathfinding.AIDestinationSetter aiDestinationSetter;
+
     public GameObject attackCollider;
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
@@ -37,6 +39,9 @@ public class GhoulClass : MonsterBase {
     public Vector2 myDirection;
     public Action myAction;
     public bool isAttacking = false;
+
+    [HideInInspector]
+    public bool isCoroutineRunning;
 
     #endregion
 
@@ -61,8 +66,10 @@ public class GhoulClass : MonsterBase {
 
     private void Update()
     {
-        myDirection = myBase.direction;
+        if(isAttacking == false)
+            myDirection = myBase.direction;
 
+        /*
         if (_health <= 0)
         {
             // Dead
@@ -75,7 +82,9 @@ public class GhoulClass : MonsterBase {
             myAnimator.SetFloat("actionX", myDirection.x);
             myAnimator.SetFloat("actionY", myDirection.y);
         }
-        else if (myAction == Action.Move && isAttacking == false)
+        */
+
+        if (myAction == Action.Move && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 1);
             myAnimator.SetFloat("moveX", myDirection.x);
@@ -91,8 +100,10 @@ public class GhoulClass : MonsterBase {
         playerObject = HeroGeneralManager.instance.heroObject;
         attackCollider = transform.GetChild(1).gameObject;
         attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
-        myMeleeAttackRange = transform.GetChild(4).gameObject;
+        myMeleeAttackRange = transform.GetChild(3).gameObject;
         myAnimator = GetComponent<Animator>();
+        aiDestinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
+        aiDestinationSetter.target = playerObject.transform;
 
         myBase = GetComponent<MonsterBase>();
         if (myBase == null)
@@ -106,14 +117,18 @@ public class GhoulClass : MonsterBase {
         _id = (int)myDataSet["ID"];
         _health = (int)myDataSet["Health"];
         _movingSpeed = (float)myDataSet["MovingSpeed"];
+
         _meleeDamage = (int)myDataSet["MeleeDamage"];
         _meleeCoolDown = (int)myDataSet["MeleeCoolDown"];
+
         _isMeleeAttackReady = true;
 
-        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
+        //Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
 
         //saiMoveScript.maxSpeed = _movingSpeed;
     }
+
+    #region Attack
 
     public override void AttackMelee()
     {
@@ -159,6 +174,7 @@ public class GhoulClass : MonsterBase {
         }
 
         myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isMelee");
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
 
@@ -174,6 +190,7 @@ public class GhoulClass : MonsterBase {
     {
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;
@@ -189,6 +206,8 @@ public class GhoulClass : MonsterBase {
         _isMeleeAttackReady = true;
 
     }
+
+    #endregion
 
     #region NOT USED
 
@@ -254,15 +273,18 @@ public class GhoulClass : MonsterBase {
 
     #endregion
 
+    #region Animator Control
+
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
         return (stateInfo.IsName("Melee")
-            ||  stateInfo.IsName("BeShot")
+            ||  stateInfo.IsName("BeShot_Alive")
             ||  stateInfo.IsName("Die"));
     }
 
     public override IEnumerator WaitAnimationFinish()
     {
+        isCoroutineRunning = true;
         AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
 
         // Wait Attack State
@@ -279,14 +301,25 @@ public class GhoulClass : MonsterBase {
             yield return null;
         }
 
+        isCoroutineRunning = false;
+
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
-        else if (stateInfo.IsName("BeShot"))
+
+        if (stateInfo.IsName("BeShot_Alive"))
             EndGetHit();
+
+        if (stateInfo.IsName("Die"))
+            gameObject.SetActive(false);
     }
+
+    #endregion
+
+    #region Hit
 
     public override void DyingMotion()
     {
+        /*
         myAnimator.SetInteger("actionNum", 4);
         myAnimator.SetFloat("actionX", myDirection.x);
         myAnimator.SetFloat("actionY", myDirection.y);
@@ -294,6 +327,7 @@ public class GhoulClass : MonsterBase {
         StartCoroutine(WaitAnimationFinish());
 
         gameObject.SetActive(false);
+        */
     }
 
     public override void HitByPlayer(int damage)
@@ -301,12 +335,27 @@ public class GhoulClass : MonsterBase {
         myAction = Action.Idle;
         aiMoveScript.enabled = false;
 
-        myAnimator.SetInteger("actionNum", 3);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
+        if (isCoroutineRunning && myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
+        {
+            //print("Animator is in Melee state already");
+            StopCoroutine(WaitAnimationFinish());
+        }
 
         _health -= damage;
         Debug.Log("current health : " + _health);
+
+        if (_health > 0)
+        {
+            myAnimator.SetTrigger("BeShot");
+        }
+        else
+        {
+            myAnimator.SetTrigger("Dead");
+        }
+
+        myAnimator.SetInteger("actionNum", 3);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
 
         StartCoroutine(WaitAnimationFinish());
     }
@@ -315,10 +364,13 @@ public class GhoulClass : MonsterBase {
     {
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("BeShot");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         aiMoveScript.enabled = true;
     }
+
+    #endregion
 
     public override void GetHealed(GameGeneralManager.HealInfo myHeal)
     {
