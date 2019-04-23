@@ -128,7 +128,10 @@ public class ItemEvent : EventTrigger
             ReturnToOriginalSlot();
 
             if (Inventory.instance.changeItem == null)
+            {
+                Inventory.instance.RemoveAllItemCount(_slot.item.itemID, _slot.slotNum);
                 return;
+            }
 
             /*
              * WeaponSlot SlotType = 1

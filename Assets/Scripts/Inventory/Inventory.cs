@@ -98,21 +98,13 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 1; i <= 5; i++)
-        {
-            AddEquiment(i);
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            AddEquiment(i);
-        }
+        AddItem(18);
+        AddItem(18);
+        AddItem(18);
+        AddItem(20);
+        AddItem(31);
+        AddItem(32);
 
-        for (int i = 0; i < 10; i++)
-        {
-            AddItem(11);
-            AddItem(12);
-            AddItem(13);
-        }
     }
 
     // Item 추가
@@ -217,7 +209,7 @@ public class Inventory : MonoBehaviour
     public void RemoveItemIDCount(int mItemID, int index, int slotType)
     {
         // 지울 데이터 슬롯이 아이템 슬롯이라면
-        if (slotType == 3)
+        if (slotType >= 3)
         {
             if (itemSlotScripts[index].item.itemCount > 0)
             {
@@ -233,6 +225,14 @@ public class Inventory : MonoBehaviour
         {
             inventoryItemIDCount.Remove(mItemID);
         }
+
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+    }
+
+    public void RemoveAllItemCount(int mItemID, int index)
+    {
+        itemSlotScripts[index].InitItemSlot();
+        inventoryItemIDCount.Remove(mItemID);
         UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Bleeded : MonoBehaviour
+public class Poisoned : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,15 +10,14 @@ public class Bleeded : MonoBehaviour
         {
             foreach (Buff buff in collision.GetComponent<BuffManager>().buffList)
             {
-                if (buff.buffName == "Bleeded")
+                if (buff.buffName == "Poisoned")
                 {
                     collision.GetComponent<BuffManager>().buffList.Remove(buff);
                     break;
                 }
             }
 
-            collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.bleeded);
-            collision.GetComponent<BuffManager>().isBleeded = true;
+            collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.poisoned);
         }
     }
 }

@@ -869,6 +869,7 @@ GameObject:
   - component: {fileID: 20659956249995104}
   - component: {fileID: 81843097794275726}
   - component: {fileID: 1838947921}
+  - component: {fileID: 7050898547450338501}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -953,6 +954,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+--- !u!114 &7050898547450338501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385848457264388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3e9488cdaed9c42ab1d8c06de076a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1507613201681170
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +983,7 @@ GameObject:
   - component: {fileID: 114691415280638632}
   - component: {fileID: 114134650227066006}
   - component: {fileID: 114837657859815288}
+  - component: {fileID: 2248971466338618939}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -1160,6 +1174,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillMREffect: {fileID: 1214905346}
   skillREffect: {fileID: 1179834004}
+--- !u!114 &2248971466338618939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507613201681170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a119388740efc4fac771d970b045a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffList: []
+  isBleeded: 0
+  isBurned: 0
+  isFrosted: 0
+  isPoisoned: 0
 --- !u!1 &1511550426982216
 GameObject:
   m_ObjectHideFlags: 0

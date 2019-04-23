@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Frosted : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        BuffDatabase buffDatabase = new BuffDatabase();
+
         if (collision.CompareTag("Player"))
         {
             foreach (Buff buff in collision.GetComponent<BuffManager>().buffList)
@@ -17,7 +17,8 @@ public class Frosted : MonoBehaviour
                 }
             }
 
-            collision.GetComponent<BuffManager>().buffList.Add(BuffDatabase.frosted);
+            collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.frosted);
+            collision.GetComponent<BuffManager>().isFrosted = true;
         }
     }
 }

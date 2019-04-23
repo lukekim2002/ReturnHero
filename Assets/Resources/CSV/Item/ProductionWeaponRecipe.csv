@@ -1,5 +1,5 @@
-ProductionItemID,Item1,Item2,Item3,Item4,Item5,Item6
-2,0,0,0,0,1,1
-3,0,0,0,0,1,2
-4,0,0,0,1,2,3
-5,1,2,3,4,11,11
+Name,ID,Item1,Item2,Item3,Item4,Item5,Item6
+Weapon_B,2,18,18,18,20,31,32
+Weapon_C,3,18,18,19,20,33,34
+Weapon_D,4,18,18,19,21,35,36
+Weapon_E,5,18,18,19,22,37,38
