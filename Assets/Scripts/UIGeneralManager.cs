@@ -26,7 +26,6 @@ public class UIGeneralManager : MonoBehaviour
 
     public Image map;
     public Image shadowPanel;
-    public Image[] productionMaterialsItemSlot;
     public Image productionSelect;
     public Image afterProductionImage;
 
@@ -43,6 +42,7 @@ public class UIGeneralManager : MonoBehaviour
 
     public RectTransform productionWeaponViewport;
     public RectTransform productionPotionViewport;
+    public RectTransform[] productionMaterialsItemSlot;
 
     private const int FULLSCREEN = 2;
     private const int BRIGHTNESS = 3;

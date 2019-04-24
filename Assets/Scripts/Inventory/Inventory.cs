@@ -98,13 +98,22 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        AddItem(18);
-        AddItem(18);
-        AddItem(18);
-        AddItem(20);
-        AddItem(31);
-        AddItem(32);
+        for (int i = 0; i < 4; i++)
+        {
+            AddItem(18);
+            AddItem(18);
+            AddItem(18);
 
+            AddItem(20);
+            AddItem(31);
+            AddItem(33);
+            AddItem(32);
+            AddItem(34);
+            AddItem(19);
+            AddItem(22);
+            AddItem(21);
+            AddItem(23);
+        }
     }
 
     // Item 추가
@@ -234,5 +243,17 @@ public class Inventory : MonoBehaviour
         itemSlotScripts[index].InitItemSlot();
         inventoryItemIDCount.Remove(mItemID);
         UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+    }
+
+    public void RemoveItemCount(int mItemID, int index, int count)
+    {
+        itemSlotScripts[index].item.itemCount -= count;
+
+        itemSlotScripts[index].SetSlotItemCount();
+
+        if (itemSlotScripts[index].item.itemCount == 0)
+        {
+            itemSlotScripts[index].InitItemSlot();
+        }
     }
 }

@@ -6,12 +6,11 @@ using System.Collections.Generic;
 public class ProductionRecipeEvent : MonoBehaviour
 {
     #region PRIVATE
-    private string[] _readProductionRecipeCSVRow = { "Item1", "Item2", "Item3", "Item4", "Item5", "Item6" };
     private Production _production;
     private static bool _isSelectOn = false;
     #endregion
 
-    #region
+    #region PUBLIC
     public int slotNum;
     #endregion
 
@@ -22,14 +21,27 @@ public class ProductionRecipeEvent : MonoBehaviour
 
     public void OnClickProductionRecipe()
     {
-        _production.productionMaterialItemsID.Clear();
+        _production.currentProductionMaterialItemsID.Clear();
+        _production.currentProductionMaterialItemCount.Clear();
 
         for (int i = 0; i < UIGeneralManager.instance.productionMaterialsItemSlot.Length; i++)
         {
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].sprite
-                = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.recipeSet[slotNum][_readProductionRecipeCSVRow[i]]);
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].SetNativeSize();
-            _production.productionMaterialItemsID.Add((int)_production.recipeSet[slotNum][_readProductionRecipeCSVRow[i]]);
+            UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>().sprite
+                = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVRow[i]]);
+
+            UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().item.itemCount
+                = (int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVItemCountRow[i]];
+
+            if (UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().item.itemCount >= 1)
+            {
+                UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().SetSlotItemCount();
+            }
+
+
+            UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>().SetNativeSize();
+            _production.currentProductionMaterialItemsID.Add((int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVRow[i]]);
+
+            _production.currentProductionMaterialItemCount.Add((int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVItemCountRow[i]]);
         }
 
         UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOn;
@@ -43,18 +55,17 @@ public class ProductionRecipeEvent : MonoBehaviour
 
         _isSelectOn = true;
     }
-     
+
     public void OnClickProductionSelect()
     {
         if (_isSelectOn)
         {
             for (int i = 0; i < 6; i++)
             {
-                UIGeneralManager.instance.productionMaterialsItemSlot[i].sprite = ItemSpriteManager.instance.BindingImageAndItemID(0);
-                UIGeneralManager.instance.productionMaterialsItemSlot[i].SetNativeSize();
+                UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().InitItemSlot();
             }
-            
-            // NOTE
+
+            // NOTE : ItemSlot -> AccessorySlot으로 교체할 것
             UIGeneralManager.instance.afterProductionImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(0);
 
             _isSelectOn = false;
@@ -66,22 +77,36 @@ public class ProductionRecipeEvent : MonoBehaviour
                 {
                     continue;
                 }
-                else 
+                else
                 {
-                    for (int j = 0; j < _production.productionMaterialItemsID.Count; j++)
+                    for (int j = 0; j < _production.currentProductionMaterialItemsID.Count; j++)
                     {
-                        if (Inventory.instance.itemSlotScripts[i].item.itemID == _production.productionMaterialItemsID[j])
+                        if (_production.currentProductionMaterialItemsID[j] == Inventory.instance.itemSlotScripts[i].item.itemID)
                         {
-                            Inventory.instance.RemoveItemIDCount(Inventory.instance.itemSlotScripts[i].item.itemID, i, 3);
-                            _production.productionMaterialItemsID.RemoveAt(j);
-                            // 수량이 있는 아이템이라면
-                            if (Inventory.instance.itemSlotScripts[i].item.itemCount > 0)
+                            if (Inventory.instance.itemSlotScripts[i].item.itemCount
+                                < _production.currentProductionMaterialItemCount[j])
                             {
-                                i++;
+                                _production.currentProductionMaterialItemCount[j] -= Inventory.instance.itemSlotScripts[i].item.itemCount;
+                                Inventory.instance.RemoveAllItemCount(Inventory.instance.itemSlotScripts[i].item.itemID, i);
+
+                                break;
                             }
-                            break;
+                            else if (_production.currentProductionMaterialItemsID[j] == 0)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                Inventory.instance.RemoveItemCount(Inventory.instance.itemSlotScripts[i].item.itemID
+                                    , i, _production.currentProductionMaterialItemCount[j]);
+
+                                _production.currentProductionMaterialItemsID.RemoveAt(j);
+
+                                break;
+                            }
                         }
                     }
+
                 }
             }
 
@@ -90,7 +115,8 @@ public class ProductionRecipeEvent : MonoBehaviour
             else
                 Inventory.instance.AddItem((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
 
-            _production.productionMaterialItemsID.Clear();
+            _production.currentProductionMaterialItemsID.Clear();
+            _production.currentProductionMaterialItemCount.Clear();
             StartCoroutine(ProductionSuccessAnimationPlay());
 
         }

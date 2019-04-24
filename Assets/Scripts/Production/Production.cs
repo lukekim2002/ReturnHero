@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Production : MonoBehaviour
 {
     #region PRIVATE
-    private string[] readProductionRecipeCSVRow = { "Item1", "Item2", "Item3", "Item4", "Item5", "Item6" };
     #endregion
 
     #region PUBLIC
@@ -25,12 +24,15 @@ public class Production : MonoBehaviour
     public Dictionary<int, int> productionRecipeDictionary = new Dictionary<int, int>();
     [HideInInspector]
     public List<int> productionRecipeKey = new List<int>();
+    public string[] readProductionRecipeCSVRow = { "Item1ID", "Item2ID", "Item3ID", "Item4ID", "Item5ID", "Item6ID" };
+    public string[] readProductionRecipeCSVItemCountRow = { "Item1Count", "Item2Count", "Item3Count", "Item4Count", "Item5Count", "Item6Count" };
     // 1 = Weapon, 2 = Potion
     [HideInInspector]
     public int productionItemType = 0;
     public int afterProductionItemID;
     public RectTransform productionRecipeSlot;
-    public List<int> productionMaterialItemsID = new List<int>();
+    public List<int> currentProductionMaterialItemsID = new List<int>();
+    public List<int> currentProductionMaterialItemCount = new List<int>();
     #endregion
 
     private void Awake()
@@ -102,7 +104,7 @@ public class Production : MonoBehaviour
     // 특정 아이템의 재료가 다 모였는지 검사한다.
     public void CheckItemMaterials()
     {
-        // Production Type의 개수만큼 반복
+        // recipeSet의 개수만큼 반복
         for (int i = 0; i < recipeSet.Count; i++)
         {
             // 어떤 아이템을 조합하기 위한 조합식을 매 행마다 초기화해준다.
@@ -116,7 +118,7 @@ public class Production : MonoBehaviour
                 // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 0이라면 그냥 넘어감.
                 if ((int)recipeSet[i][readProductionRecipeCSVRow[j]] == 0)
                 {
-                    continue;
+                    break;
                 }
                 // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 0이 아니라면
                 else
@@ -125,16 +127,17 @@ public class Production : MonoBehaviour
                     if (!productionRecipeDictionary.ContainsKey((int)recipeSet[i][readProductionRecipeCSVRow[j]]))
                     {
                         // productionRecipeDictionary에 현재 CSV에서 가리키고 있는 ItemID를 키로 집어넣고 값으로 1을 집어넣음.
-                        productionRecipeDictionary.Add((int)recipeSet[i][readProductionRecipeCSVRow[j]], 1);
+                        productionRecipeDictionary.Add((int)recipeSet[i][readProductionRecipeCSVRow[j]]
+                            , (int)recipeSet[i][readProductionRecipeCSVItemCountRow[j]]);
                         // productionRecipeKey에 ItemID를 넣음.
                         productionRecipeKey.Add((int)recipeSet[i][readProductionRecipeCSVRow[j]]);
                     }
                     // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 productionRecipeDictinary에 들어갔다면
-                    else
-                    {
-                        // IteproductionRecipeDictionary[ItemID]에 있는 값을 하나씩 올림.
-                        productionRecipeDictionary[(int)recipeSet[i][readProductionRecipeCSVRow[j]]]++;
-                    }
+                    //else
+                    //{
+                    //    // IteproductionRecipeDictionary[ItemID]에 있는 값을 하나씩 올림.
+                    //    productionRecipeDictionary[(int)recipeSet[i][readProductionRecipeCSVRow[j]]]++;
+                    //}
                 }
             }
 
