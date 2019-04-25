@@ -152,7 +152,7 @@ public class Inventory : MonoBehaviour
 
         InsertItemIDCount(mItemID);
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
     public void AddEquiment(int mItemID)
@@ -169,7 +169,7 @@ public class Inventory : MonoBehaviour
 
                 InsertItemIDCount(mItemID);
 
-                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
 
                 break;
             }
@@ -212,7 +212,7 @@ public class Inventory : MonoBehaviour
             inventoryItemIDCount[mItem]++;
         }
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
     public void RemoveItemIDCount(int mItemID, int index, int slotType)
@@ -235,14 +235,14 @@ public class Inventory : MonoBehaviour
             inventoryItemIDCount.Remove(mItemID);
         }
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
     public void RemoveAllItemCount(int mItemID, int index)
     {
         itemSlotScripts[index].InitItemSlot();
         inventoryItemIDCount.Remove(mItemID);
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
     public void RemoveItemCount(int mItemID, int index, int count)

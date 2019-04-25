@@ -21,16 +21,16 @@ public class ProductionRecipeEvent : MonoBehaviour
 
     public void OnClickProductionRecipe()
     {
-        _production.currentProductionMaterialItemsID.Clear();
-        _production.currentProductionMaterialItemCount.Clear();
+        _production.currentMaterialItemID.Clear();
+        _production.currentMaterialCount.Clear();
 
         for (int i = 0; i < UIGeneralManager.instance.productionMaterialsItemSlot.Length; i++)
         {
             UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>().sprite
-                = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVRow[i]]);
+                = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
 
             UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().item.itemCount
-                = (int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVItemCountRow[i]];
+                = (int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]];
 
             if (UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().item.itemCount >= 1)
             {
@@ -39,9 +39,9 @@ public class ProductionRecipeEvent : MonoBehaviour
 
 
             UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>().SetNativeSize();
-            _production.currentProductionMaterialItemsID.Add((int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVRow[i]]);
+            _production.currentMaterialItemID.Add((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
 
-            _production.currentProductionMaterialItemCount.Add((int)_production.recipeSet[slotNum][_production.readProductionRecipeCSVItemCountRow[i]]);
+            _production.currentMaterialCount.Add((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]]);
         }
 
         UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOn;
@@ -79,28 +79,28 @@ public class ProductionRecipeEvent : MonoBehaviour
                 }
                 else
                 {
-                    for (int j = 0; j < _production.currentProductionMaterialItemsID.Count; j++)
+                    for (int j = 0; j < _production.currentMaterialItemID.Count; j++)
                     {
-                        if (_production.currentProductionMaterialItemsID[j] == Inventory.instance.itemSlotScripts[i].item.itemID)
+                        if (_production.currentMaterialItemID[j] == Inventory.instance.itemSlotScripts[i].item.itemID)
                         {
                             if (Inventory.instance.itemSlotScripts[i].item.itemCount
-                                < _production.currentProductionMaterialItemCount[j])
+                                < _production.currentMaterialCount[j])
                             {
-                                _production.currentProductionMaterialItemCount[j] -= Inventory.instance.itemSlotScripts[i].item.itemCount;
+                                _production.currentMaterialCount[j] -= Inventory.instance.itemSlotScripts[i].item.itemCount;
                                 Inventory.instance.RemoveAllItemCount(Inventory.instance.itemSlotScripts[i].item.itemID, i);
 
                                 break;
                             }
-                            else if (_production.currentProductionMaterialItemsID[j] == 0)
+                            else if (_production.currentMaterialItemID[j] == 0)
                             {
                                 continue;
                             }
                             else
                             {
                                 Inventory.instance.RemoveItemCount(Inventory.instance.itemSlotScripts[i].item.itemID
-                                    , i, _production.currentProductionMaterialItemCount[j]);
+                                    , i, _production.currentMaterialCount[j]);
 
-                                _production.currentProductionMaterialItemsID.RemoveAt(j);
+                                _production.currentMaterialItemID.RemoveAt(j);
 
                                 break;
                             }
@@ -111,12 +111,12 @@ public class ProductionRecipeEvent : MonoBehaviour
             }
 
             if (UIGeneralManager.instance.productionCanvas.GetComponent<Production>().productionItemType == 0)
-                Inventory.instance.AddEquiment((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
+                Inventory.instance.AddEquiment((int)_production.currentRecipeSet[_production.afterProductionItemID]["ID"]);
             else
-                Inventory.instance.AddItem((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
+                Inventory.instance.AddItem((int)_production.currentRecipeSet[_production.afterProductionItemID]["ID"]);
 
-            _production.currentProductionMaterialItemsID.Clear();
-            _production.currentProductionMaterialItemCount.Clear();
+            _production.currentMaterialItemID.Clear();
+            _production.currentMaterialCount.Clear();
             StartCoroutine(ProductionSuccessAnimationPlay());
 
         }

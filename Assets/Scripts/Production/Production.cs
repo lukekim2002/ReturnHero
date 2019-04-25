@@ -11,28 +11,32 @@ public class Production : MonoBehaviour
 
     #region PUBLIC
     [HideInInspector]
-    public List<Image> productionWeaponRecpieList;
+    public List<Image> weaponRecpieList;
     [HideInInspector]
-    public List<Image> productionPotionRecpieList;
+    public List<Image> potionRecpieList;
     [HideInInspector]
     public List<Dictionary<string, object>> weaponRecipeSet;
     [HideInInspector]
     public List<Dictionary<string, object>> potionRecipeSet;
     [HideInInspector]
-    public List<Dictionary<string, object>> recipeSet;
+    public List<Dictionary<string, object>> currentRecipeSet;
     [HideInInspector]
-    public Dictionary<int, int> productionRecipeDictionary = new Dictionary<int, int>();
+    public Dictionary<int, int> recipeMaterialItemID = new Dictionary<int, int>();
     [HideInInspector]
-    public List<int> productionRecipeKey = new List<int>();
-    public string[] readProductionRecipeCSVRow = { "Item1ID", "Item2ID", "Item3ID", "Item4ID", "Item5ID", "Item6ID" };
-    public string[] readProductionRecipeCSVItemCountRow = { "Item1Count", "Item2Count", "Item3Count", "Item4Count", "Item5Count", "Item6Count" };
-    // 1 = Weapon, 2 = Potion
+    public List<int> recipeKey = new List<int>();
+    [HideInInspector]
+    public string[] productionRecipeItemIdRow = { "Item1ID", "Item2ID", "Item3ID", "Item4ID", "Item5ID", "Item6ID" };
+    [HideInInspector]
+    public string[] productionRecipeItemCountRow = { "Item1Count", "Item2Count", "Item3Count", "Item4Count", "Item5Count", "Item6Count" };
     [HideInInspector]
     public int productionItemType = 0;
+    [HideInInspector]
     public int afterProductionItemID;
     public RectTransform productionRecipeSlot;
-    public List<int> currentProductionMaterialItemsID = new List<int>();
-    public List<int> currentProductionMaterialItemCount = new List<int>();
+    [HideInInspector]
+    public List<int> currentMaterialItemID = new List<int>();
+    [HideInInspector]
+    public List<int> currentMaterialCount = new List<int>();
     #endregion
 
     private void Awake()
@@ -58,7 +62,7 @@ public class Production : MonoBehaviour
 
             productionRecipeSlotPrefabs.name = "ProductionRecipe" + i;
 
-            productionWeaponRecpieList.Add(productionRecipeSlotPrefabs.GetComponent<Image>());
+            weaponRecpieList.Add(productionRecipeSlotPrefabs.GetComponent<Image>());
             var productionImage = productionRecipeSlotPrefabs.transform.GetChild(0);
             productionImage.GetComponent<Image>().sprite = ProductionRecipeSpriteManager.instance.productionWeaponSprite[i];
             productionImage.GetComponent<Image>().SetNativeSize();
@@ -80,7 +84,7 @@ public class Production : MonoBehaviour
 
             productionRecipeSlotPrefabs.name = "ProductionRecipe" + i;
 
-            productionPotionRecpieList.Add(productionRecipeSlotPrefabs.GetComponent<Image>());
+            potionRecpieList.Add(productionRecipeSlotPrefabs.GetComponent<Image>());
             var productionImage = productionRecipeSlotPrefabs.transform.GetChild(0);
             productionImage.GetComponent<Image>().sprite = ProductionRecipeSpriteManager.instance.productionPotionSprite[i];
             productionImage.GetComponent<Image>().SetNativeSize();
@@ -91,77 +95,63 @@ public class Production : MonoBehaviour
         {
             UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(true);
             UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(false);
-            recipeSet = weaponRecipeSet;
+            currentRecipeSet = weaponRecipeSet;
         }
         else
         {
             UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(true);
             UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(false);
-            recipeSet = potionRecipeSet;
+            currentRecipeSet = potionRecipeSet;
         }
     }
 
     // 특정 아이템의 재료가 다 모였는지 검사한다.
-    public void CheckItemMaterials()
+    public void CheckProductionRecipe()
     {
-        // recipeSet의 개수만큼 반복
-        for (int i = 0; i < recipeSet.Count; i++)
+        for (int i = 0; i < currentRecipeSet.Count; i++)
         {
-            // 어떤 아이템을 조합하기 위한 조합식을 매 행마다 초기화해준다.
-            productionRecipeDictionary.Clear();
-            // 어떤 아이템을 조합하는데 필요한 각 아이템들의 개수를 매 행마다 초기화해준다.
-            productionRecipeKey.Clear();
+            recipeMaterialItemID.Clear();
+            recipeKey.Clear();
 
-            // ProductionRecipe.CSV에서 Item1 ~ Item6까지 반복한다.
-            for (int j = 0; j < readProductionRecipeCSVRow.Length; j++)
+            for (int j = 0; j < productionRecipeItemIdRow.Length; j++)
             {
-                // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 0이라면 그냥 넘어감.
-                if ((int)recipeSet[i][readProductionRecipeCSVRow[j]] == 0)
+                if ((int)currentRecipeSet[i][productionRecipeItemIdRow[j]] == 0)
                 {
                     break;
                 }
-                // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 0이 아니라면
                 else
                 {
-                    // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 productionRecipeDictinary에 들어가지 않았다면
-                    if (!productionRecipeDictionary.ContainsKey((int)recipeSet[i][readProductionRecipeCSVRow[j]]))
+                    if (!recipeMaterialItemID.ContainsKey((int)currentRecipeSet[i][productionRecipeItemIdRow[j]]))
                     {
-                        // productionRecipeDictionary에 현재 CSV에서 가리키고 있는 ItemID를 키로 집어넣고 값으로 1을 집어넣음.
-                        productionRecipeDictionary.Add((int)recipeSet[i][readProductionRecipeCSVRow[j]]
-                            , (int)recipeSet[i][readProductionRecipeCSVItemCountRow[j]]);
+                        recipeMaterialItemID.Add((int)currentRecipeSet[i][productionRecipeItemIdRow[j]]
+                            , (int)currentRecipeSet[i][productionRecipeItemCountRow[j]]);
                         // productionRecipeKey에 ItemID를 넣음.
-                        productionRecipeKey.Add((int)recipeSet[i][readProductionRecipeCSVRow[j]]);
+                        recipeKey.Add((int)currentRecipeSet[i][productionRecipeItemIdRow[j]]);
                     }
-                    // 만약 현재 Row에 있는 현재 Column에 들어간 ItemID가 productionRecipeDictinary에 들어갔다면
-                    //else
-                    //{
-                    //    // IteproductionRecipeDictionary[ItemID]에 있는 값을 하나씩 올림.
-                    //    productionRecipeDictionary[(int)recipeSet[i][readProductionRecipeCSVRow[j]]]++;
-                    //}
                 }
             }
 
             // productionRecipeKey의 개수만큼 반복함.
-            for (int k = 0; k < productionRecipeKey.Count; k++)
+            for (int k = 0; k < recipeKey.Count; k++)
             {
                 // Inventory의 inventoryITemIDCount의 키에 productionRecipeKey[k]가 있다면
-                if (Inventory.instance.inventoryItemIDCount.ContainsKey(productionRecipeKey[k]))
+                if (Inventory.instance.inventoryItemIDCount.ContainsKey(recipeKey[k]))
                 {
                     // 아이템에 있는 제작 재료의 개수가 레시피에 필요한 제작 개수보다 많거나 같으면
-                    if (Inventory.instance.inventoryItemIDCount[productionRecipeKey[k]] >= productionRecipeDictionary[productionRecipeKey[k]])
+                    if (Inventory.instance.inventoryItemIDCount[recipeKey[k]] >= recipeMaterialItemID[recipeKey[k]])
                     {
                         // 끝까지 검사를 다 했고 조건에 맞는다면
-                        if (k == productionRecipeKey.Count - 1)
+                        if (k == recipeKey.Count - 1)
                         {
                             if (productionItemType == 0)
                             {
-                                productionWeaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOn;
-                                productionWeaponRecpieList[i].GetComponent<Button>().enabled = true;
+                                weaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOn;
+                                weaponRecpieList[i].GetComponent<Button>().enabled = true;
                             }
                             else if (productionItemType == 1)
                             {
-                                productionPotionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOn;
-                                productionPotionRecpieList[i].GetComponent<Button>().enabled = true;
+                                potionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOn;
+                                potionRecpieList[i].GetComponent<Button>().enabled = true;
                             }
                             break;
                         }
@@ -170,13 +160,13 @@ public class Production : MonoBehaviour
                     {
                         if (productionItemType == 0)
                         {
-                            productionWeaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
-                            productionWeaponRecpieList[i].GetComponent<Button>().enabled = false;
+                            weaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                            weaponRecpieList[i].GetComponent<Button>().enabled = false;
                         }
                         else if (productionItemType == 1)
                         {
-                            productionPotionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
-                            productionPotionRecpieList[i].GetComponent<Button>().enabled = false;
+                            potionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                            potionRecpieList[i].GetComponent<Button>().enabled = false;
                         }
                         break;
                     }
@@ -185,13 +175,13 @@ public class Production : MonoBehaviour
                 {
                     if (productionItemType == 0)
                     {
-                        productionWeaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
-                        productionWeaponRecpieList[i].GetComponent<Button>().enabled = false;
+                        weaponRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                        weaponRecpieList[i].GetComponent<Button>().enabled = false;
                     }
                     else if (productionItemType == 1)
                     {
-                        productionPotionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
-                        productionPotionRecpieList[i].GetComponent<Button>().enabled = false;
+                        potionRecpieList[i].sprite = UIGeneralManager.instance.productionRecipeOff;
+                        potionRecpieList[i].GetComponent<Button>().enabled = false;
                     }
                     break;
                 }
