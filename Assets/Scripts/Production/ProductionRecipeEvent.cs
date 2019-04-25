@@ -24,29 +24,29 @@ public class ProductionRecipeEvent : MonoBehaviour
         _production.currentMaterialItemID.Clear();
         _production.currentMaterialCount.Clear();
 
+
         for (int i = 0; i < UIGeneralManager.instance.productionMaterialsItemSlot.Length; i++)
         {
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>().sprite
-                = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
+            var slot = UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>();
+            var image = UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>();
 
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().item.itemCount
-                = (int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]];
-
-            if (UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().item.itemCount >= 1)
+            if (slot.item.itemCount >= 1)
             {
-                UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().SetSlotItemCount();
+                slot.SetSlotItemCount();
             }
 
+            slot.item.itemCount = (int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]];
 
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>().SetNativeSize();
+            image.sprite = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
+            image.SetNativeSize();
+
             _production.currentMaterialItemID.Add((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
-
             _production.currentMaterialCount.Add((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]]);
         }
 
         UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOn;
 
-        if (UIGeneralManager.instance.productionCanvas.GetComponent<Production>().productionItemType == 0)
+        if (_production.productionItemType == 0)
             UIGeneralManager.instance.afterProductionImage.sprite = ProductionRecipeSpriteManager.instance.productionWeaponSprite[slotNum];
         else
             UIGeneralManager.instance.afterProductionImage.sprite = ProductionRecipeSpriteManager.instance.productionPotionSprite[slotNum];
@@ -117,6 +117,7 @@ public class ProductionRecipeEvent : MonoBehaviour
 
             _production.currentMaterialItemID.Clear();
             _production.currentMaterialCount.Clear();
+
             StartCoroutine(ProductionSuccessAnimationPlay());
 
         }
@@ -127,7 +128,7 @@ public class ProductionRecipeEvent : MonoBehaviour
     {
         UIGeneralManager.instance.productionSuccessAnimation.gameObject.SetActive(true);
 
-        while (UIGeneralManager.instance.productionSuccessAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.98f)
+        while (UIGeneralManager.instance.productionSuccessAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99f)
         {
             yield return null;
         }

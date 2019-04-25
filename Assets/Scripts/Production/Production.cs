@@ -23,7 +23,7 @@ public class Production : MonoBehaviour
     [HideInInspector]
     public Dictionary<int, int> recipeMaterialItemID = new Dictionary<int, int>();
     [HideInInspector]
-    public List<int> recipeKey = new List<int>();
+    public List<int> recipeKeyFlag = new List<int>();
     [HideInInspector]
     public string[] productionRecipeItemIdRow = { "Item1ID", "Item2ID", "Item3ID", "Item4ID", "Item5ID", "Item6ID" };
     [HideInInspector]
@@ -111,7 +111,7 @@ public class Production : MonoBehaviour
         for (int i = 0; i < currentRecipeSet.Count; i++)
         {
             recipeMaterialItemID.Clear();
-            recipeKey.Clear();
+            recipeKeyFlag.Clear();
 
             for (int j = 0; j < productionRecipeItemIdRow.Length; j++)
             {
@@ -126,22 +126,22 @@ public class Production : MonoBehaviour
                         recipeMaterialItemID.Add((int)currentRecipeSet[i][productionRecipeItemIdRow[j]]
                             , (int)currentRecipeSet[i][productionRecipeItemCountRow[j]]);
                         // productionRecipeKey에 ItemID를 넣음.
-                        recipeKey.Add((int)currentRecipeSet[i][productionRecipeItemIdRow[j]]);
+                        recipeKeyFlag.Add((int)currentRecipeSet[i][productionRecipeItemIdRow[j]]);
                     }
                 }
             }
 
             // productionRecipeKey의 개수만큼 반복함.
-            for (int k = 0; k < recipeKey.Count; k++)
+            for (int k = 0; k < recipeKeyFlag.Count; k++)
             {
                 // Inventory의 inventoryITemIDCount의 키에 productionRecipeKey[k]가 있다면
-                if (Inventory.instance.inventoryItemIDCount.ContainsKey(recipeKey[k]))
+                if (Inventory.instance.inventoryItemIDCount.ContainsKey(recipeKeyFlag[k]))
                 {
                     // 아이템에 있는 제작 재료의 개수가 레시피에 필요한 제작 개수보다 많거나 같으면
-                    if (Inventory.instance.inventoryItemIDCount[recipeKey[k]] >= recipeMaterialItemID[recipeKey[k]])
+                    if (Inventory.instance.inventoryItemIDCount[recipeKeyFlag[k]] >= recipeMaterialItemID[recipeKeyFlag[k]])
                     {
                         // 끝까지 검사를 다 했고 조건에 맞는다면
-                        if (k == recipeKey.Count - 1)
+                        if (k == recipeKeyFlag.Count - 1)
                         {
                             if (productionItemType == 0)
                             {
