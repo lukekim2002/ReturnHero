@@ -98,13 +98,34 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        AddItem(18);
-        AddItem(18);
-        AddItem(18);
-        AddItem(20);
-        AddItem(31);
-        AddItem(32);
+        for (int i = 0; i < 4; i++)
+        {
+            AddItem(18);
+            AddItem(18);
+            AddItem(18);
+            AddItem(18);
+            AddItem(18);
+            AddItem(20);
+            AddItem(20);
+            AddItem(20);
+            AddItem(31);
+            AddItem(31);
+            AddItem(31);
+            AddItem(33);
+            AddItem(33);
+            AddItem(33);
+            AddItem(32);
+            AddItem(32);
+            AddItem(32);
+            AddItem(34);
+            AddItem(34);
+            AddItem(34);
+            AddItem(19);
+            AddItem(22);
+        }
 
+        AddEquiment(1);
+        AddEquiment(2);
     }
 
     // Item 추가
@@ -143,7 +164,7 @@ public class Inventory : MonoBehaviour
 
         InsertItemIDCount(mItemID);
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
     public void AddEquiment(int mItemID)
@@ -160,7 +181,7 @@ public class Inventory : MonoBehaviour
 
                 InsertItemIDCount(mItemID);
 
-                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+                UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
 
                 break;
             }
@@ -203,20 +224,11 @@ public class Inventory : MonoBehaviour
             inventoryItemIDCount[mItem]++;
         }
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
-    public void RemoveItemIDCount(int mItemID, int index, int slotType)
+    public void RemoveItemIDCount(int mItemID)
     {
-        // 지울 데이터 슬롯이 아이템 슬롯이라면
-        if (slotType >= 3)
-        {
-            if (itemSlotScripts[index].item.itemCount > 0)
-            {
-                itemSlotScripts[index].RemoveOneItem();
-            }
-        }
-
         if (inventoryItemIDCount[mItemID] > 0)
         {
             inventoryItemIDCount[mItemID]--;
@@ -226,13 +238,25 @@ public class Inventory : MonoBehaviour
             inventoryItemIDCount.Remove(mItemID);
         }
 
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
-    public void RemoveAllItemCount(int mItemID, int index)
+    public void RemoveAllItem(int mItemID, int mIndex)
     {
-        itemSlotScripts[index].InitItemSlot();
+        itemSlotScripts[mIndex].InitItemSlot();
         inventoryItemIDCount.Remove(mItemID);
-        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckItemMaterials();
+        UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
+    }
+
+    public void RemoveItemMaterials(int mItemID, int index, int count)
+    {
+        itemSlotScripts[index].item.itemCount -= count;
+
+        itemSlotScripts[index].SetSlotItemCount();
+
+        if (itemSlotScripts[index].item.itemCount == 0)
+        {
+            itemSlotScripts[index].InitItemSlot();
+        }
     }
 }

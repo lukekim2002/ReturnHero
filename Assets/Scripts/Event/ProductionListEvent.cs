@@ -75,7 +75,7 @@ public class ProductionListEvent : MonoBehaviour
 
         var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
         productionComponent.productionItemType = 0;
-        productionComponent.recipeSet = productionComponent.weaponRecipeSet;
+        productionComponent.currentRecipeSet = productionComponent.weaponRecipeSet;
         UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(true);
         UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(false);
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
@@ -83,7 +83,7 @@ public class ProductionListEvent : MonoBehaviour
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
              = UIGeneralManager.instance.productionWeaponViewport;
 
-        productionComponent.CheckItemMaterials();
+        productionComponent.CheckProductionRecipe();
 
         OnClickProductionListButton();
     }
@@ -96,14 +96,14 @@ public class ProductionListEvent : MonoBehaviour
 
         var productionComponent = UIGeneralManager.instance.productionCanvas.GetComponent<Production>();
         productionComponent.productionItemType = 1;
-        productionComponent.recipeSet = productionComponent.potionRecipeSet;
+        productionComponent.currentRecipeSet = productionComponent.potionRecipeSet;
         UIGeneralManager.instance.productionPotionViewport.gameObject.SetActive(true);
         UIGeneralManager.instance.productionWeaponViewport.gameObject.SetActive(false);
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().content
             = UIGeneralManager.instance.productionPotionViewport.GetChild(0).GetComponent<RectTransform>();
         UIGeneralManager.instance.productionWeaponViewport.GetComponentInParent<ScrollRect>().viewport
             = UIGeneralManager.instance.productionPotionViewport;
-        productionComponent.CheckItemMaterials();
+        productionComponent.CheckProductionRecipe();
 
         OnClickProductionListButton();
     }

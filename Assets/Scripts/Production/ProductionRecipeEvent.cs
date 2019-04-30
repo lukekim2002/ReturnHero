@@ -6,12 +6,11 @@ using System.Collections.Generic;
 public class ProductionRecipeEvent : MonoBehaviour
 {
     #region PRIVATE
-    private string[] _readProductionRecipeCSVRow = { "Item1", "Item2", "Item3", "Item4", "Item5", "Item6" };
     private Production _production;
     private static bool _isSelectOn = false;
     #endregion
 
-    #region
+    #region PUBLIC
     public int slotNum;
     #endregion
 
@@ -22,19 +21,36 @@ public class ProductionRecipeEvent : MonoBehaviour
 
     public void OnClickProductionRecipe()
     {
-        _production.productionMaterialItemsID.Clear();
+        _production.currentMaterialItemID.Clear();
+        _production.currentMaterialCount.Clear();
+
 
         for (int i = 0; i < UIGeneralManager.instance.productionMaterialsItemSlot.Length; i++)
         {
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].sprite
-                = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.recipeSet[slotNum][_readProductionRecipeCSVRow[i]]);
-            UIGeneralManager.instance.productionMaterialsItemSlot[i].SetNativeSize();
-            _production.productionMaterialItemsID.Add((int)_production.recipeSet[slotNum][_readProductionRecipeCSVRow[i]]);
+            var slot = UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>();
+            var image = UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponentInChildren<Image>();
+
+            slot.item.itemCount = (int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]];
+
+            if (slot.item.itemCount >= 1)
+            {
+                slot.SetSlotItemCount();
+            }
+            else
+            {
+                slot.InitSlotItemCount();
+            }
+
+            image.sprite = ItemSpriteManager.instance.BindingImageAndItemID((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
+            image.SetNativeSize();
+
+            _production.currentMaterialItemID.Add((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemIdRow[i]]);
+            _production.currentMaterialCount.Add((int)_production.currentRecipeSet[slotNum][_production.productionRecipeItemCountRow[i]]);
         }
 
         UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOn;
 
-        if (UIGeneralManager.instance.productionCanvas.GetComponent<Production>().productionItemType == 0)
+        if (_production.productionItemType == 0)
             UIGeneralManager.instance.afterProductionImage.sprite = ProductionRecipeSpriteManager.instance.productionWeaponSprite[slotNum];
         else
             UIGeneralManager.instance.afterProductionImage.sprite = ProductionRecipeSpriteManager.instance.productionPotionSprite[slotNum];
@@ -43,22 +59,21 @@ public class ProductionRecipeEvent : MonoBehaviour
 
         _isSelectOn = true;
     }
-     
+
     public void OnClickProductionSelect()
     {
         if (_isSelectOn)
         {
             for (int i = 0; i < 6; i++)
             {
-                UIGeneralManager.instance.productionMaterialsItemSlot[i].sprite = ItemSpriteManager.instance.BindingImageAndItemID(0);
-                UIGeneralManager.instance.productionMaterialsItemSlot[i].SetNativeSize();
+                UIGeneralManager.instance.productionMaterialsItemSlot[i].GetComponent<Slot>().InitItemSlot();
             }
-            
-            // NOTE
+
+            // NOTE : ItemSlot -> AccessorySlot으로 교체할 것
             UIGeneralManager.instance.afterProductionImage.sprite = ItemSpriteManager.instance.BindingImageAndItemID(0);
+            UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOff;
 
             _isSelectOn = false;
-            UIGeneralManager.instance.productionSelect.sprite = UIGeneralManager.instance.productionSelectOff;
 
             for (int i = Inventory.instance.itemSlotScripts.Count - 1; i >= 0; i--)
             {
@@ -66,31 +81,70 @@ public class ProductionRecipeEvent : MonoBehaviour
                 {
                     continue;
                 }
-                else 
+                else
                 {
-                    for (int j = 0; j < _production.productionMaterialItemsID.Count; j++)
+                    for (int j = 0; j < _production.currentMaterialItemID.Count; j++)
                     {
-                        if (Inventory.instance.itemSlotScripts[i].item.itemID == _production.productionMaterialItemsID[j])
+                        if (_production.currentMaterialItemID[j] == Inventory.instance.itemSlotScripts[i].item.itemID)
                         {
-                            Inventory.instance.RemoveItemIDCount(Inventory.instance.itemSlotScripts[i].item.itemID, i, 3);
-                            _production.productionMaterialItemsID.RemoveAt(j);
-                            // 수량이 있는 아이템이라면
-                            if (Inventory.instance.itemSlotScripts[i].item.itemCount > 0)
+                            // 1)
+                            if (_production.currentMaterialCount[j] != 0)
                             {
-                                i++;
+                                // 2)
+                                if ((Inventory.instance.inventoryItemIDCount[_production.currentMaterialItemID[j]] % 5) != 0)
+                                {
+                                    if (_production.currentMaterialCount[j] >= Inventory.instance.itemSlotScripts[i].item.itemCount)
+                                    {
+                                        Inventory.instance.inventoryItemIDCount[_production.currentMaterialItemID[j]] -= Inventory.instance.itemSlotScripts[i].item.itemCount;
+                                        _production.currentMaterialCount[j] -= Inventory.instance.itemSlotScripts[i].item.itemCount;
+                                        Inventory.instance.itemSlotScripts[i].InitItemSlot();
+                                    }
+                                    else
+                                    {
+                                        Inventory.instance.inventoryItemIDCount[_production.currentMaterialItemID[j]] -= _production.currentMaterialCount[j];
+                                        Inventory.instance.RemoveItemMaterials(_production.currentMaterialItemID[j], i, _production.currentMaterialCount[j]);
+                                        _production.currentMaterialCount[j] = 0;
+                                    }
+
+                                    break;
+                                }
+                                else
+                                {
+                                    // 3)
+                                    if (_production.currentMaterialCount[j] > 5)
+                                    {
+                                        Inventory.instance.inventoryItemIDCount[_production.currentMaterialItemID[j]] -= 5;
+                                        _production.currentMaterialCount[j] -= 5;
+
+                                        Inventory.instance.itemSlotScripts[i].InitItemSlot();
+
+                                        break;
+                                    }
+                                    // 4)
+                                    else
+                                    {
+                                        Inventory.instance.inventoryItemIDCount[_production.currentMaterialItemID[j]] -= _production.currentMaterialCount[j];
+                                        Inventory.instance.RemoveItemMaterials(_production.currentMaterialItemID[j], i, _production.currentMaterialCount[j]);
+                                        _production.currentMaterialCount[j] = 0;
+
+                                        break;
+                                    }
+                                }
                             }
-                            break;
                         }
                     }
+
                 }
             }
 
             if (UIGeneralManager.instance.productionCanvas.GetComponent<Production>().productionItemType == 0)
-                Inventory.instance.AddEquiment((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
+                Inventory.instance.AddEquiment((int)_production.currentRecipeSet[_production.afterProductionItemID]["ID"]);
             else
-                Inventory.instance.AddItem((int)_production.recipeSet[_production.afterProductionItemID]["ID"]);
+                Inventory.instance.AddItem((int)_production.currentRecipeSet[_production.afterProductionItemID]["ID"]);
 
-            _production.productionMaterialItemsID.Clear();
+            _production.currentMaterialItemID.Clear();
+            _production.currentMaterialCount.Clear();
+
             StartCoroutine(ProductionSuccessAnimationPlay());
 
         }
@@ -101,7 +155,7 @@ public class ProductionRecipeEvent : MonoBehaviour
     {
         UIGeneralManager.instance.productionSuccessAnimation.gameObject.SetActive(true);
 
-        while (UIGeneralManager.instance.productionSuccessAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.98f)
+        while (UIGeneralManager.instance.productionSuccessAnimation.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99f)
         {
             yield return null;
         }
