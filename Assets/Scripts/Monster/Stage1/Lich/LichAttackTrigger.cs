@@ -27,6 +27,7 @@ public class LichAttackTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             rootBehaviour._isSkill1TriggerOk = true;
+            //root.SendMessage("AttackSkill1", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

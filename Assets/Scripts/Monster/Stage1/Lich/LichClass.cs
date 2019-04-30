@@ -12,6 +12,7 @@ public class LichClass : MonsterBase {
 
     private bool _isMeleeAttackReady;
     private int _meleeDamage;
+    [SerializeField]
     public float _meleeCoolDown;
 
     private bool _isSkill1AttackReady;
@@ -31,16 +32,22 @@ public class LichClass : MonsterBase {
     [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
+    public Pathfinding.AIDestinationSetter aiDestinationSetter;
+
     public GameObject attackCollider;
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public Animator myAnimator;
-    public GameObject skillEffect;
+
+    //public GameObject skillEffect;
 
     [Header("State Values")]
     public Vector2 myDirection;
     public Action myAction;
     public bool isAttacking = false;
+
+    [HideInInspector]
+    public bool isCoroutineRunning;
 
     #endregion
 
@@ -63,42 +70,46 @@ public class LichClass : MonsterBase {
 
     private void Update()
     {
-        myDirection = myBase.direction;
+        if(isAttacking == false)
+            myDirection = myBase.direction;
 
-        if (_health <= 0)
-        {
-            DyingMotion();
-        }
-
+        
+        /*
         if (myAction == Action.Idle && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 0);
             myAnimator.SetFloat("actionX", myDirection.x);
             myAnimator.SetFloat("actionY", myDirection.y);
         }
-        else if (myAction == Action.Move && isAttacking == false)
+        */
+        if (myAction == Action.Move && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 1);
             myAnimator.SetFloat("moveX", myDirection.x);
             myAnimator.SetFloat("moveY", myDirection.y);
         }
 
-        if (_isSkill1AttackReady && !isAttacking) //&& _isSkill1TriggerOk == true)
+        
+        if (_isSkill1AttackReady && !isAttacking && _isSkill1TriggerOk == true)
         {
             AttackSkill1();
         }
+        
     }
 
     #endregion
 
     public override void Initialize()
     {
+        print("Lich Initialize");
         aiMoveScript = GetComponent<Pathfinding.AIPath>();
         playerObject = HeroGeneralManager.instance.heroObject;
         //attackCollider = transform.GetChild(1).gameObject;
         //attackColliderScript = attackCollider.GetComponent<BoxCollider2D>();
-        myMeleeAttackRange = transform.GetChild(4).gameObject;
+        myMeleeAttackRange = transform.GetChild(3).gameObject;
         myAnimator = GetComponent<Animator>();
+        aiDestinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
+        //aiDestinationSetter.target = playerObject.transform;
 
         myBase = GetComponent<MonsterBase>();
         if (myBase == null)
@@ -122,13 +133,18 @@ public class LichClass : MonsterBase {
         _isSkill1AttackReady = true;
         _isSkill1TriggerOk = true;
 
-        Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
+        //Debug.Log("Initialized : " + _id + ", " + _health + ", " + _movingSpeed + ", " + _meleeDamage + ", " + _meleeCoolDown);
 
         aiMoveScript.maxSpeed = _movingSpeed;
     }
 
+    #region Attack
+
+    #region Melee
+
     public override void AttackMelee()
     {
+        print("Lich Attack Melee");
         if (_isMeleeAttackReady == false && isAttacking == true) return;
         _isMeleeAttackReady = false;
 
@@ -148,6 +164,7 @@ public class LichClass : MonsterBase {
 
     public override void EndAttackMelee()
     {
+        print("Lich End Attack Melee");
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
         myAnimator.ResetTrigger("isMelee");
@@ -165,29 +182,40 @@ public class LichClass : MonsterBase {
 
     }
 
+    #endregion
+
+    #region Skill1
+
     public override void AttackSkill1()
     {
+        print("Lich Attack Skill1");
         if (_isSkill1AttackReady == false && isAttacking == true) return;
         _isSkill1AttackReady = false;
 
         myAction = Action.Attack;
         isAttacking = true;
-        //myAttackCase = AttackCase.Skill1;
         aiMoveScript.enabled = false;
         //mySkill1AttackRange.SetActive(false);
 
         // Instantiate Skeleton and skill1Effect
-        skillEffect.SetActive(true);
+        //skillEffect.SetActive(true);
         //print("Lich AttackSkill1 Executed");
 
+        myAnimator.SetInteger("actionNum", 2);
+        myAnimator.SetTrigger("isSkill1");
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
         StartCoroutine(CoolDownSkill1());
-        Invoke("EndAttackSkill1", 0.5f);
     }
 
     public override void EndAttackSkill1()
     {
+        print("Lich End Attack Skill1");
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isSkill1");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         isAttacking = false;
@@ -199,6 +227,118 @@ public class LichClass : MonsterBase {
         yield return new WaitForSeconds(_Skill1CoolDown);
         _isSkill1AttackReady = true;
     }
+
+    #endregion
+
+    #endregion
+
+    #region Animator Control
+
+    public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
+    {
+        return (stateInfo.IsName("Melee")
+            || stateInfo.IsName("Skill1")
+            || stateInfo.IsName("BeShot_Alive")
+            || stateInfo.IsName("Die"));
+    }
+
+    public override IEnumerator WaitAnimationFinish()
+    {
+        isCoroutineRunning = true;
+        AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+
+        // Wait Attack State
+        while (!CheckAnimatorStateName(stateInfo))
+        {
+            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        // Wait Animation Ends
+        while (stateInfo.normalizedTime <= 0.95f)
+        {
+            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        isCoroutineRunning = false;
+
+        if (stateInfo.IsName("Melee"))
+            EndAttackMelee();
+
+        if (stateInfo.IsName("Skill1"))
+            EndAttackSkill1();
+
+        if (stateInfo.IsName("BeShot_Alive"))
+            EndGetHit();
+
+        if (stateInfo.IsName("Die"))
+            gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region Hit
+
+    public override void HitByPlayer(int damage)
+    {
+        print("Lich Hit");
+        myAction = Action.Idle;
+        aiMoveScript.enabled = false;
+
+        if (isCoroutineRunning &&
+            (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Melee") || 
+            myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Skill1")))
+        {
+            //print("Animator is in Melee state already");
+            StopCoroutine(WaitAnimationFinish());
+        }
+
+        _health -= damage;
+        Debug.Log("current health : " + _health);
+
+        if (_health > 0)
+        {
+            myAnimator.SetTrigger("BeShot");
+        }
+        else
+        {
+            myAnimator.SetTrigger("Dead");
+        }
+
+        myAnimator.SetInteger("actionNum", 3);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
+    }
+
+    public override void EndGetHit()
+    {
+        print("Lich End Hit");
+        myAction = Action.Move;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("BeShot");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        aiMoveScript.enabled = true;
+    }
+
+    public override void DyingMotion()
+    {
+        /*
+        myAnimator.SetInteger("actionNum", 4);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
+        StartCoroutine(WaitAnimationFinish());
+
+        gameObject.SetActive(false);
+        */
+    }
+
+    #endregion
+
 
     #region NOT USED
 
@@ -255,71 +395,13 @@ public class LichClass : MonsterBase {
 
     #endregion
 
-    public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
-    {
-        return (stateInfo.IsName("Melee")
-            ||  stateInfo.IsName("BeShot")
-            ||  stateInfo.IsName("Die"));
-    }
+    
 
-    public override IEnumerator WaitAnimationFinish()
-    {
-        AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
+    
 
-        // Wait Attack State
-        while (!CheckAnimatorStateName(stateInfo))
-        {
-            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
-            yield return null;
-        }
+    
 
-        // Wait Animation Ends
-        while (stateInfo.normalizedTime <= 0.95f)
-        {
-            stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
-            yield return null;
-        }
-
-        if (stateInfo.IsName("Melee"))
-            EndAttackMelee();
-        else if (stateInfo.IsName("BeShot"))
-            EndGetHit();
-    }
-
-    public override void DyingMotion()
-    {
-        myAnimator.SetInteger("actionNum", 4);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
-
-        StartCoroutine(WaitAnimationFinish());
-
-        gameObject.SetActive(false);
-    }
-
-    public override void HitByPlayer(int damage)
-    {
-        myAction = Action.Idle;
-        aiMoveScript.enabled = false;
-
-        myAnimator.SetInteger("actionNum", 3);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
-
-        _health -= damage;
-        Debug.Log("current health : " + _health);
-
-        StartCoroutine(WaitAnimationFinish());
-    }
-
-    public override void EndGetHit()
-    {
-        myAction = Action.Move;
-        myAnimator.SetInteger("actionNum", 1);
-        myAnimator.SetFloat("moveX", myDirection.x);
-        myAnimator.SetFloat("moveY", myDirection.y);
-        aiMoveScript.enabled = true;
-    }
+    
 
     public override void GetHealed(GameGeneralManager.HealInfo myHeal)
     {

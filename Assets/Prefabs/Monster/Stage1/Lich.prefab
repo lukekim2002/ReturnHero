@@ -311,14 +311,15 @@ MonoBehaviour:
   _isSkill1TriggerOk: 0
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
   myAnimator: {fileID: 0}
-  skillEffect: {fileID: 2455296078638766011}
   myDirection: {x: 0, y: 0}
   myAction: 0
   isAttacking: 0
+  isCoroutineRunning: 0
 --- !u!114 &4458885817535877559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df98c688209d44f4898d1abcb63d5fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LichAttackEffect: {fileID: 4993301525934479766}
+  lichAttackEffect: {fileID: 4993301525934479766}
+  lichSkillEffect: {fileID: 2455296078638766011}
 --- !u!1 &1476251196964476
 GameObject:
   m_ObjectHideFlags: 0
