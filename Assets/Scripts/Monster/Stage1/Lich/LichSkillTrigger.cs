@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LichAttackTrigger : MonoBehaviour
+public class LichSkillTrigger : MonoBehaviour
 {
     GameObject root;
     LichClass rootBehaviour;
@@ -17,8 +17,8 @@ public class LichAttackTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //rootBehaviour._isSkill1TriggerOk = false;
-            root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
+            rootBehaviour._isSkill1TriggerOk = false;
+            //root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -26,7 +26,7 @@ public class LichAttackTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //rootBehaviour._isSkill1TriggerOk = true;
+            rootBehaviour._isSkill1TriggerOk = true;
             //root.SendMessage("AttackSkill1", SendMessageOptions.DontRequireReceiver);
         }
     }

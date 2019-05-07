@@ -16,6 +16,7 @@ public class LichClass : MonsterBase {
     public float _meleeCoolDown;
 
     private bool _isSkill1AttackReady;
+    [SerializeField]
     private float _Skill1CoolDown;
     public bool _isSkill1TriggerOk;
 

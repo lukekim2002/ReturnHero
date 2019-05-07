@@ -22,6 +22,8 @@ public class LichAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
     {
         // Lich attackEffect SetActive
         lichAttackEffect.SetActive(true);
+        
+
         //LichAttackEffect.transform.position = HeroGeneralManager.instance.heroObject.transform.position;
     }
 
@@ -38,6 +40,10 @@ public class LichAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
     public void AttackSkill1_Ready()
     {
         lichSkillEffect.SetActive(true);
+        foreach (Transform child in lichSkillEffect.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     public void AttackSkill2_End()
