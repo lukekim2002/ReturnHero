@@ -21,6 +21,8 @@ public class BuffManager : MonoBehaviour
     public bool isBurned = false;
     public bool isFrosted = false;
     public bool isPoisoned = false;
+    public bool isBlinded = false;
+    public bool isSturned = false;
     #endregion
 
     private void Start()
@@ -53,6 +55,16 @@ public class BuffManager : MonoBehaviour
             BuffInit(new Color(0.4235294f, 0.1294118f, 0.4823529f, 1));
             heroCurrentBuff = buffList[buffList.Count - 1];
             isPoisoned = !isPoisoned;
+        }
+        else if (isBlinded)
+        {
+            heroCurrentBuff = buffList[buffList.Count - 1];
+            isBlinded = !isBlinded;
+        }
+        else if (isSturned)
+        {
+            heroCurrentBuff = buffList[buffList.Count - 1];
+            isSturned = !isSturned;
         }
 
         for (int i = buffList.Count - 1; i >= 0; i--)
