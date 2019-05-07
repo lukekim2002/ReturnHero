@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class LichSkillTrigger : MonoBehaviour
 {
-    GameObject root;
+    GameObject parent;
     LichClass rootBehaviour;
 
     private void Awake()
     {
-        root = transform.root.gameObject;
-        rootBehaviour = root.GetComponent<LichClass>();
+        parent = transform.parent.gameObject;
+
+        /*
+        if (transform.parent.name.Equals("MeleeAttackRange"))
+        {
+            rootBehaviour = parent.transform.parent.GetComponent<LichClass>();
+        }
+        else
+        {
+            rootBehaviour = parent.GetComponent<LichClass>();
+        }
+        */
+        rootBehaviour = parent.GetComponent<LichClass>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

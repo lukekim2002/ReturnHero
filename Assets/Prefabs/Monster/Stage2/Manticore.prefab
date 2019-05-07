@@ -2175,7 +2175,7 @@ GameObject:
   - component: {fileID: 8795241942761476351}
   - component: {fileID: 653446345}
   - component: {fileID: 653446346}
-  - component: {fileID: 6680491826008919139}
+  - component: {fileID: 8426112972441445078}
   m_Layer: 0
   m_Name: Skill2AttackRange
   m_TagString: Untagged
@@ -2233,7 +2233,7 @@ EdgeCollider2D:
   m_Points:
   - {x: -2, y: 0}
   - {x: 2, y: 0}
---- !u!114 &6680491826008919139
+--- !u!114 &8426112972441445078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2242,7 +2242,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6806479767639544752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: df1c17085ee2da744bf7fbc6d0cd80b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7792836876272016513
@@ -2255,7 +2255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463514589631978496}
   - component: {fileID: 2131156174256427544}
-  - component: {fileID: 7684464793893255934}
+  - component: {fileID: 5279583432543230354}
   m_Layer: 0
   m_Name: Skill1AttackRange
   m_TagString: Untagged
@@ -2293,7 +2293,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.4
---- !u!114 &7684464793893255934
+--- !u!114 &5279583432543230354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7792836876272016513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08aab51e8332c343b56cb28e4099f03, type: 3}
+  m_Script: {fileID: 11500000, guid: 9789fd4422d196a49978e8b317ec0d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7860530988019333839

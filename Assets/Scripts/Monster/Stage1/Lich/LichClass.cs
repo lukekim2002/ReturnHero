@@ -66,7 +66,7 @@ public class LichClass : MonsterBase {
 
         StartCoroutine(myBase.FindLookingDirection());
 
-        PlayerEnteredRoom();
+        //PlayerEnteredRoom();
     }
 
     private void Update()
@@ -91,7 +91,7 @@ public class LichClass : MonsterBase {
         }
 
         
-        if (_isSkill1AttackReady && !isAttacking && _isSkill1TriggerOk == true)
+        if (myAction != Action.Idle && _isSkill1AttackReady && !isAttacking && _isSkill1TriggerOk == true)
         {
             AttackSkill1();
         }
