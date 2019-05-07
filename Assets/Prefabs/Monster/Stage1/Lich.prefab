@@ -109,6 +109,7 @@ Transform:
   - {fileID: 4710571172422326}
   - {fileID: 4324929618005590}
   - {fileID: 4456365538993806}
+  - {fileID: 8736225500879360682}
   - {fileID: 4993301525934479767}
   - {fileID: 5572040057776525853}
   m_Father: {fileID: 0}
@@ -308,17 +309,19 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   playerObject: {fileID: 0}
   _meleeCoolDown: 0
+  _Skill1CoolDown: 0
   _isSkill1TriggerOk: 0
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
   myAnimator: {fileID: 0}
-  skillEffect: {fileID: 2455296078638766011}
   myDirection: {x: 0, y: 0}
   myAction: 0
   isAttacking: 0
+  isCoroutineRunning: 0
 --- !u!114 &4458885817535877559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df98c688209d44f4898d1abcb63d5fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LichAttackEffect: {fileID: 4993301525934479766}
+  lichAttackEffect: {fileID: 4993301525934479766}
+  lichSkillEffect: {fileID: 2455296078638766011}
 --- !u!1 &1476251196964476
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +523,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a259be084370764ab34c1831ad2face, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &729695677022646904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8736225500879360682}
+  - component: {fileID: 8107668407114515567}
+  - component: {fileID: 4880813486516246512}
+  m_Layer: 0
+  m_Name: SkillAttackRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8736225500879360682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729695677022646904}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.28999996, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4383393366331380}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8107668407114515567
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729695677022646904}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
+--- !u!114 &4880813486516246512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729695677022646904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b994dbc3fd10a4ead204bdc5a6cfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2572734532660277410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -574,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 7421920250413001013, guid: a7d5b6e9ab7b6fd4a90029990032dfc6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7421920250413001013, guid: a7d5b6e9ab7b6fd4a90029990032dfc6,
         type: 3}
@@ -660,7 +724,7 @@ PrefabInstance:
     - target: {fileID: 335390650801221772, guid: a8136824616318a4e856a05b9c788096,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 335390650801221772, guid: a8136824616318a4e856a05b9c788096,
         type: 3}

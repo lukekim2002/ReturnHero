@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EagleMeleeTrigger : MonoBehaviour
 {
-    GameObject root;
+    GameObject parent;
     EagleClass rootBehaviour;
 
     private void Awake()
     {
-        root = transform.root.gameObject;
-        rootBehaviour = root.GetComponent<EagleClass>();
+        parent = transform.parent.gameObject;
+        rootBehaviour = parent.GetComponent<EagleClass>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +18,7 @@ public class EagleMeleeTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             rootBehaviour._isSkill2TriggerOk = false;
-            root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
+            parent.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
         }
     }
 

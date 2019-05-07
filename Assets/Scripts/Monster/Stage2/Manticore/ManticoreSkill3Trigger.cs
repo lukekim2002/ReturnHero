@@ -8,7 +8,7 @@ public class ManticoreSkill3Trigger : MonoBehaviour
 
     private void Awake()
     {
-        myBehaviour = transform.root.transform.GetComponent<ManticoreClass>();
+        myBehaviour = transform.parent.transform.GetComponent<ManticoreClass>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

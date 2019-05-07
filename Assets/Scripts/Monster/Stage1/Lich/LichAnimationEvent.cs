@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class LichAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
 
-    public GameObject LichAttackEffect;
+    public GameObject lichAttackEffect;
+    public GameObject lichSkillEffect;
 
     public void AttackMelee_End()
     {
         // Lich attackEffect SetInactive
-        LichAttackEffect.SetActive(false);
+        lichAttackEffect.SetActive(false);
     }
 
     public void AttackMelee_Execute()
@@ -20,13 +21,15 @@ public class LichAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
     public void AttackMelee_Ready()
     {
         // Lich attackEffect SetActive
-        LichAttackEffect.SetActive(true);
+        lichAttackEffect.SetActive(true);
+        
+
         //LichAttackEffect.transform.position = HeroGeneralManager.instance.heroObject.transform.position;
     }
 
     public void AttackSkill1_End()
     {
-        throw new System.NotImplementedException();
+        lichSkillEffect.SetActive(false);
     }
 
     public void AttackSkill1_Execute()
@@ -36,7 +39,11 @@ public class LichAnimationEvent : MonoBehaviour, IMonsterAnimationEvent {
 
     public void AttackSkill1_Ready()
     {
-        throw new System.NotImplementedException();
+        lichSkillEffect.SetActive(true);
+        foreach (Transform child in lichSkillEffect.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     public void AttackSkill2_End()

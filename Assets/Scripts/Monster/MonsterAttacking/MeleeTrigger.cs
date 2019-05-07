@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class MeleeTrigger : MonoBehaviour
 {
-    GameObject root;
+    GameObject parent;
 
     private void Awake()
     {
-        root = transform.root.gameObject;
+        parent = transform.parent.gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            //Debug.Log(transform.name);
-            root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
+            
+
+            if (transform.parent.name.Equals("MeleeAttackRange"))
+            {
+                parent.transform.parent.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
+            }
+            else
+            {
+                parent.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
+            }
+            
         }
     }
 }

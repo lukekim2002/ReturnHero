@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LichAttackTrigger : MonoBehaviour
+public class LichSkillTrigger : MonoBehaviour
 {
     GameObject parent;
     LichClass rootBehaviour;
@@ -11,6 +11,7 @@ public class LichAttackTrigger : MonoBehaviour
     {
         parent = transform.parent.gameObject;
 
+        /*
         if (transform.parent.name.Equals("MeleeAttackRange"))
         {
             rootBehaviour = parent.transform.parent.GetComponent<LichClass>();
@@ -19,23 +20,25 @@ public class LichAttackTrigger : MonoBehaviour
         {
             rootBehaviour = parent.GetComponent<LichClass>();
         }
-        
+        */
+        rootBehaviour = parent.GetComponent<LichClass>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (transform.parent.name.Equals("MeleeAttackRange"))
-            {
-                parent.transform.parent.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
-            }
-            else
-            {
-                parent.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
-            }
+            rootBehaviour._isSkill1TriggerOk = false;
+            //root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
         }
     }
 
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            rootBehaviour._isSkill1TriggerOk = true;
+            //root.SendMessage("AttackSkill1", SendMessageOptions.DontRequireReceiver);
+        }
+    }
 }

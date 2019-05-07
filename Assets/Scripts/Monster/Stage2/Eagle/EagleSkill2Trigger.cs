@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EagleSkill2Trigger : MonoBehaviour
 {
-    GameObject root;
+    GameObject parent;
     EagleClass rootBehaviour;
 
     private void Awake()
     {
-        root = transform.root.gameObject;
-        rootBehaviour = root.GetComponent<EagleClass>();
+        parent = transform.parent.gameObject;
+        rootBehaviour = parent.GetComponent<EagleClass>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +20,15 @@ public class EagleSkill2Trigger : MonoBehaviour
             if (rootBehaviour._isSkill2TriggerOk == true)
             {
                 rootBehaviour._isSkill2TriggerOk = false;
-                root.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
+
+                if (parent.transform.name.Equals("Skill2AttackRange"))
+                {
+                    parent.transform.parent.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
+                }
+                else
+                {
+                    parent.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
     }

@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class ManticoreAttackRange : MonoBehaviour
 {
-    GameObject root;
+    GameObject parent;
 
     void Awake()
     {
-        root = transform.root.gameObject;
+        parent = transform.parent.gameObject;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (root.transform.GetComponent<ManticoreClass>()._isSkill3TriggerOk == true)
+            if (parent.transform.GetComponent<ManticoreClass>()._isSkill3TriggerOk == true)
             {
-                root.transform.GetComponent<ManticoreClass>()._isSkill3TriggerOk = false;
-                root.SendMessage("AttackSkill3", SendMessageOptions.DontRequireReceiver);
+                parent.transform.GetComponent<ManticoreClass>()._isSkill3TriggerOk = false;
+                parent.SendMessage("AttackSkill3", SendMessageOptions.DontRequireReceiver);
             }
             else
             {
-                root.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
+                parent.SendMessage("AttackMelee", SendMessageOptions.DontRequireReceiver);
             }
                 
         }
