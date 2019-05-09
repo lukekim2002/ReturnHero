@@ -552,4 +552,8 @@ public class GateKeeperClass : MonsterBase {
         aiMoveScript.enabled = true;
     }
 
+    public override void ResetAnimatorTrigger()
+    {
+        throw new NotImplementedException();
+    }
 }

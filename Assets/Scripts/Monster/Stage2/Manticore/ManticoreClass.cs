@@ -509,4 +509,9 @@ public class ManticoreClass : MonsterBase
         myAction = Action.Move;
         aiMoveScript.enabled = true;
     }
+
+    public override void ResetAnimatorTrigger()
+    {
+        throw new System.NotImplementedException();
+    }
 }

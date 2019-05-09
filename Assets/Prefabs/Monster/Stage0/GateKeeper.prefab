@@ -415,6 +415,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
   myAnimator: {fileID: 0}
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
@@ -425,6 +426,7 @@ MonoBehaviour:
   myAction: 0
   myAttackCase: 0
   isAttacking: 0
+  isCoroutineRunning: 0
 --- !u!114 &114030768875141364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4402603487238360
 Transform:
   m_ObjectHideFlags: 0

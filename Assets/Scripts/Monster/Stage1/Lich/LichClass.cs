@@ -425,5 +425,8 @@ public class LichClass : MonsterBase {
         aiMoveScript.enabled = true;
     }
 
-
+    public override void ResetAnimatorTrigger()
+    {
+        throw new System.NotImplementedException();
+    }
 }

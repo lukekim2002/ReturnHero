@@ -410,7 +410,8 @@ public class NecromancerClass : MonsterBase {
 
         if (isCoroutineRunning &&
            (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Melee") ||
-           myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Skill")))
+           myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Skill1") ||
+           myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Skill2")))
         {
             //print("Animator is in Melee state already");
             StopCoroutine(WaitAnimationFinish());
@@ -498,5 +499,10 @@ public class NecromancerClass : MonsterBase {
     {
         myAction = Action.Move;
         aiMoveScript.enabled = true;
+    }
+
+    public override void ResetAnimatorTrigger()
+    {
+        throw new System.NotImplementedException();
     }
 }
