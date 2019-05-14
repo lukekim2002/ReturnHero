@@ -4995,17 +4995,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c80cdb8c455a5f499bc50b6d7f2ca46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productionWeaponRecpieList: []
-  productionPotionRecpieList: []
-  productionRecipeKey: 
-  readProductionRecipeCSVRow:
+  weaponRecpieList: []
+  potionRecpieList: []
+  recipeKeyFlag: 
+  productionRecipeItemIdRow:
   - Item1ID
   - Item2ID
   - Item3ID
   - Item4ID
   - Item5ID
   - Item6ID
-  readProductionRecipeCSVItemCountRow:
+  productionRecipeItemCountRow:
   - Item1Count
   - Item2Count
   - Item3Count
@@ -5016,8 +5016,8 @@ MonoBehaviour:
   afterProductionItemID: 0
   productionRecipeSlot: {fileID: 224940660939849822, guid: e2733d83538daad43b69a9e45c3198db,
     type: 3}
-  currentProductionMaterialItemsID: 
-  currentProductionMaterialItemCount: 
+  currentMaterialItemID: 
+  currentMaterialCount: 
 --- !u!223 &1225559345
 Canvas:
   m_ObjectHideFlags: 0

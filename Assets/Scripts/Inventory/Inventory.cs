@@ -103,8 +103,6 @@ public class Inventory : MonoBehaviour
             AddItem(18);
             AddItem(18);
             AddItem(18);
-            AddItem(18);
-            AddItem(18);
             AddItem(20);
             AddItem(20);
             AddItem(20);
