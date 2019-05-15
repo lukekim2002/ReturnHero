@@ -9424,9 +9424,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 096596a30a810974295ff4fc2f35151c, type: 3}
   - {fileID: 21300000, guid: abfa5bf375b883347b611a74fb6868f8, type: 3}
   productionPotionSprite:
+  - {fileID: 21300000, guid: 43ae0b03539c8d2478f957816d43b7f8, type: 3}
   - {fileID: 21300000, guid: 3ce4109eebbc1f54a858594ef5a271f0, type: 3}
   - {fileID: 21300000, guid: 29003b6b889adbc4e9ee34ff64c04d6c, type: 3}
-  - {fileID: 21300000, guid: 42ebb7cd30135f14c9d80f6dce391223, type: 3}
+  - {fileID: 21300000, guid: 9785b1cc7ac72d1429de0b2e2f3c587a, type: 3}
+  - {fileID: 21300000, guid: cd2ce769ed426934baef36e584fe98a7, type: 3}
+  - {fileID: 21300000, guid: db8bdf54dedfa484ba35da17ee9286e8, type: 3}
 --- !u!114 &1957187731
 MonoBehaviour:
   m_ObjectHideFlags: 0

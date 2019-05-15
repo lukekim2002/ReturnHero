@@ -98,33 +98,26 @@ public class Inventory : MonoBehaviour
 
     public void ItemAddTestMethodCall()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
-            AddItem(18);
-            AddItem(18);
-            AddItem(18);
+            AddItem(11);
+            AddItem(12);
             AddItem(20);
-            AddItem(20);
-            AddItem(20);
-            AddItem(31);
-            AddItem(31);
-            AddItem(31);
-            AddItem(33);
-            AddItem(33);
-            AddItem(33);
-            AddItem(32);
-            AddItem(32);
-            AddItem(32);
-            AddItem(34);
-            AddItem(34);
-            AddItem(34);
-            AddItem(19);
+            AddItem(21);
             AddItem(22);
+            AddItem(23);
+            AddItem(24);
+            AddItem(25);
+            AddItem(26);
+            AddItem(29);
+            AddItem(30);
+            AddItem(32);
+            AddItem(33);
+            AddItem(34);
+            AddItem(36);
+            AddItem(37);
+            AddItem(38);
         }
-
-        AddEquiment(1);
-        AddEquiment(2);
-        AddEquiment(6);
     }
 
     // Item 추가
