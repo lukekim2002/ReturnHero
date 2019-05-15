@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     public RectTransform weaponSlot;
     public RectTransform itemSlot;
-    public RectTransform accessroySlot;
+    public RectTransform accessorySlot;
     public RectTransform draggedItem;
     public Dictionary<int, int> inventoryItemIDCount = new Dictionary<int, int>();
     public List<Slot> itemSlotScripts = new List<Slot>();
@@ -70,13 +70,13 @@ public class Inventory : MonoBehaviour
         {
             for (int x = 0; x < accessorySlot_X; x++)
             {
-                RectTransform accessorySlotPrefabs = Instantiate(accessroySlot);
+                RectTransform accessorySlotPrefabs = Instantiate(accessorySlot);
                 var accessorySlotComponent = accessorySlotPrefabs.GetComponent<Slot>();
 
                 accessorySlotPrefabs.transform.SetParent(this.transform.GetChild(2));
                 accessorySlotPrefabs.transform.localScale = new Vector2(1, 1);
 
-                Vector2 newSlotPos = accessroySlot.transform.position;
+                Vector2 newSlotPos = accessorySlot.transform.position;
                 newSlotPos.x = newSlotPos.x + (x * 58f);
                 newSlotPos.y = newSlotPos.y - (y * 58f);
                 accessorySlotPrefabs.anchoredPosition = newSlotPos;
@@ -124,6 +124,7 @@ public class Inventory : MonoBehaviour
 
         AddEquiment(1);
         AddEquiment(2);
+        AddEquiment(6);
     }
 
     // Item 추가
@@ -201,7 +202,7 @@ public class Inventory : MonoBehaviour
         if (slot.slotType == 1)
             slot.SetWeaponSlotImage();
         else if (slot.slotType == 2)
-            slot.SetItemSlotImage();
+            slot.SetAccessorySlotImage();
         else if (slot.slotType == 3)
             slot.SetItemSlotImage();
 
@@ -209,6 +210,8 @@ public class Inventory : MonoBehaviour
             slot.SetSlotItemCount();
         else
             slot.InitSlotItemCount();
+
+        //UIGeneralManager.instance.productionCanvas.GetComponent<Production>().CheckProductionRecipe();
     }
 
     public void InsertItemIDCount(int mItem)

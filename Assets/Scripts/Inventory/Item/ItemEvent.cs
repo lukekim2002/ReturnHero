@@ -48,7 +48,7 @@ public class ItemEvent : EventTrigger
             }
             else
             {
-                if (_slot.slotType == 1)
+                if (_slot.slotType <= 2)
                 {
                     for (int i = 0; i < Inventory.instance.itemSlotScripts.Count; i++)
                     {
@@ -62,7 +62,7 @@ public class ItemEvent : EventTrigger
                     }
                 }
 
-                if (_slot.slotType == 3)
+                else if (_slot.slotType == 3)
                 {
                     if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 1)
                     {
@@ -82,23 +82,36 @@ public class ItemEvent : EventTrigger
                         }
 
                         return;
-
                     }
 
-                    //else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 2)
-                    //{
-                    //    for (int i = 0; i < 6; i++)
-                    //    {
-                    //        Inventory.instance.enteredItemSlot = Inventory.instance.accessorySlotScripts[i].GetComponent<Slot>();
+                    else if ((int)ItemDatabase.instance.ThrowDataIntoContainer(_slot.item.itemID)["ItemType"] == 2)
+                    {
+                        for (int i = 0; i < Inventory.instance.accessorySlotScripts.Count; i++)
+                        {
+                            if (Inventory.instance.accessorySlotScripts[i].item.itemID == 0)
+                            {
+                                Inventory.instance.changeItem = Inventory.instance.accessorySlotScripts[i].GetComponent<Slot>();
 
-                    //        // 그 슬롯이 비어있는가?
-                    //        if (Inventory.instance.enteredItemSlot.item.itemID <= 0)
-                    //        {
-                    //            ChangeItemData(0);
-                    //            break;
-                    //        }
-                    //    }
-                    //}
+                                break;
+                            }
+                        }
+                        ChangeItemData();
+
+                        if (_slot.item.itemCount > 0)
+                        {
+                            _slot.RemoveOneItem();
+                        }
+
+                        Inventory.instance.RemoveItemIDCount(Inventory.instance.changeItem.item.itemID);
+
+                        if (_slot.item.itemID > 0)
+                        {
+                            Inventory.instance.InsertItemIDCount(_slot.item.itemID);
+                        }
+
+                        return;
+
+                    }
                 }
             }
         }
