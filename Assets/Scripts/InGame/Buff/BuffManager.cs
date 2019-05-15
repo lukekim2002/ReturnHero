@@ -6,14 +6,14 @@ public class BuffManager : MonoBehaviour
     #region PRIVATE
     private Color heroColor = new Color(1f, 1f, 1f, 1f);
     private Buff heroCurrentBuff;
+    private int buffColorIndex = 0;
+    private int buffColorFlag = 1;
     private float buffAnimationTime = 0.1f;
-    private float buffAlpha = 1.0f;
-    private float buffAlphaCalcuateTime = 0.1f;
     private float buffTime;
     private float buffDuration;
-    private float[,] buffColorR = new float[6, 6];
-    private float[,] buffColorG = new float[6, 6];
-    private float[,] buffColorB = new float[6, 6];
+    private float[] buffColorR = new float[5] { 0.5960785f, 0.509804f, 0.509804f, 0.4705882f, 0.4235294f };
+    private float[] buffColorG = new float[5] { 0.3921569f, 0.3294118f, 0.2588235f, 0.1960784f, 0.1294118f };
+    private float[] buffColorB = new float[5] { 0.6392157f, 0.6039216f, 0.5607843f, 0.5215687f, 0.4823529f };
 
     private SpriteRenderer heroSpriterenderer;
     #endregion
@@ -29,7 +29,7 @@ public class BuffManager : MonoBehaviour
     #endregion
 
     private void Start()
-    {   
+    {
         heroSpriterenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -37,25 +37,25 @@ public class BuffManager : MonoBehaviour
     {
         if (isBleeded)
         {
-            BuffInit(new Color(0.7411765f, 0.1921569f, 0.0627451f, 1));
+            BuffInit();
             heroCurrentBuff = buffList[buffList.Count - 1];
             isBleeded = !isBleeded;
         }
         else if (isBurned)
         {
-            BuffInit(new Color(0.7411765f, 0.1921569f, 0.0627451f, 1));
+            BuffInit();
             heroCurrentBuff = buffList[buffList.Count - 1];
             isBurned = !isBurned;
         }
         else if (isFrosted)
         {
-            BuffInit(new Color(0.0627451f, 0.6627451f, 0.7411765f, 1));
+            BuffInit();
             heroCurrentBuff = buffList[buffList.Count - 1];
             isFrosted = !isFrosted;
         }
         else if (isPoisoned)
         {
-            BuffInit(new Color(0.5960785f, 0.3921569f, 0.6392157f, 1));
+            BuffInit();
             heroCurrentBuff = buffList[buffList.Count - 1];
             isPoisoned = !isPoisoned;
         }
@@ -92,17 +92,17 @@ public class BuffManager : MonoBehaviour
 
             if (buffList.Count == 0)
             {
-                BuffInit(new Color(1f, 1f, 1f, 1f));
+                BuffInit();
             }
         }
     }
 
-    public void BuffInit(Color m_Color)
+    public void BuffInit()
     {
-        this.heroColor = m_Color;
-        heroSpriterenderer.color = m_Color;
-        buffAlpha = 1.0f;
-        buffAlphaCalcuateTime = 0.1f;
+        this.heroColor = new Color(1, 1, 1, 1);
+        heroSpriterenderer.color = new Color(1, 1, 1, 1);
+        buffColorIndex = 0;
+        buffColorFlag = 1;
         buffAnimationTime = 0.1f;
     }
 
@@ -110,13 +110,14 @@ public class BuffManager : MonoBehaviour
     {
         if (heroCurrentBuff.buffTime - heroCurrentBuff.buffDurationTime >= buffAnimationTime)
         {
+            print(buffColorIndex);
             buffAnimationTime += 0.1f;
-            buffAlpha -= buffAlphaCalcuateTime;
-            heroSpriterenderer.color = new Color(heroColor.r, heroColor.g, heroColor.b, buffAlpha);
+            buffColorIndex += buffColorFlag;
+            heroSpriterenderer.color = new Color(buffColorR[buffColorIndex], buffColorG[buffColorIndex], buffColorB[buffColorIndex], 0.5f);
 
-            if (buffAlpha >= 1.0f || buffAlpha <= 0.5f)
+            if (buffColorIndex == 0 || buffColorIndex == 4)
             {
-                buffAlphaCalcuateTime *= -1;
+                buffColorFlag *= -1;
             }
         }
     }
