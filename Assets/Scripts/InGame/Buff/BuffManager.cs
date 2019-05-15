@@ -11,8 +11,11 @@ public class BuffManager : MonoBehaviour
     private float buffAlphaCalcuateTime = 0.1f;
     private float buffTime;
     private float buffDuration;
+    private float[,] buffColorR = new float[6, 6];
+    private float[,] buffColorG = new float[6, 6];
+    private float[,] buffColorB = new float[6, 6];
+
     private SpriteRenderer heroSpriterenderer;
-    private BuffDatabase buffDatabase = new BuffDatabase();
     #endregion
 
     #region PUBLIC
@@ -26,7 +29,7 @@ public class BuffManager : MonoBehaviour
     #endregion
 
     private void Start()
-    {
+    {   
         heroSpriterenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -52,7 +55,7 @@ public class BuffManager : MonoBehaviour
         }
         else if (isPoisoned)
         {
-            BuffInit(new Color(0.4235294f, 0.1294118f, 0.4823529f, 1));
+            BuffInit(new Color(0.5960785f, 0.3921569f, 0.6392157f, 1));
             heroCurrentBuff = buffList[buffList.Count - 1];
             isPoisoned = !isPoisoned;
         }
