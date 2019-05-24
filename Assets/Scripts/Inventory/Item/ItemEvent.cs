@@ -81,6 +81,10 @@ public class ItemEvent : EventTrigger
                             Inventory.instance.InsertItemIDCount(_slot.item.itemID);
                         }
 
+                        HeroGeneralManager.instance.heroObject.GetComponent<Animator>().runtimeAnimatorController
+                            = HeroGeneralManager.instance.weaponAnimators[Inventory.instance.changeItem.item.itemID - 1];
+
+
                         return;
                     }
 

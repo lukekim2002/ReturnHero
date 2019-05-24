@@ -162,6 +162,11 @@ public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
         this.transform.position = heroPos;
     }
 
+    void ISkillInterface.Skill_E_EffectOn()
+    {
+        throw new System.NotImplementedException();
+    }
+
     void ISkillInterface.Skill_E_End()
     {
         HeroController.heroState = HeroController.HEROSTATE.IDLE;

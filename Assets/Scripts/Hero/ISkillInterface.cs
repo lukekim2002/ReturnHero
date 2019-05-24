@@ -6,6 +6,7 @@ public interface ISkillInterface
 {
     void Skill_E_Ready();
     void Skill_E_Execute();
+    void Skill_E_EffectOn();
     void Skill_E_End();
 
     void Skill_MR_Ready();
