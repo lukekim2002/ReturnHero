@@ -94,6 +94,9 @@ public class Inventory : MonoBehaviour
         weaponSlotScripts = weaponSlot.GetComponent<Slot>();
 
         ItemAddTestMethodCall();
+        weaponSlotScripts.item.itemID = 1;
+        weaponSlot.GetComponentInChildren<Image>().sprite = InWeaponSlotSpriteManager.instance.BindingImageAndItemID(1);
+        weaponSlot.GetComponentInChildren<Image>().SetNativeSize();
     }
 
     public void ItemAddTestMethodCall()

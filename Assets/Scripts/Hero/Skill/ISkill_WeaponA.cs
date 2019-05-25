@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ISkill_Sword : MonoBehaviour, IWeaponInterface, ISkillInterface {
+public class ISkill_WeaponA : MonoBehaviour, IWeaponInterface, ISkillInterface {
 
     #region PRIVATE
     private HeroController _heroController;

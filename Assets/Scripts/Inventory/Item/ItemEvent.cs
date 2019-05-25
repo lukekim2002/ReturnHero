@@ -83,6 +83,9 @@ public class ItemEvent : EventTrigger
 
                         HeroGeneralManager.instance.heroObject.GetComponent<Animator>().runtimeAnimatorController
                             = HeroGeneralManager.instance.weaponAnimators[Inventory.instance.changeItem.item.itemID - 1];
+                        print(Inventory.instance.changeItem.item.itemID - 1);
+                        HeroGeneralManager.instance.heroObject.GetComponent<SkillManager>().currentWeaponSkill
+                            = HeroGeneralManager.instance.heroObject.GetComponent<SkillManager>().ISkillWeapon[Inventory.instance.changeItem.item.itemID - 1];
 
 
                         return;
@@ -197,6 +200,15 @@ public class ItemEvent : EventTrigger
                     {
                         ChangeItemData();
                         Inventory.instance.RemoveItemIDCount(Inventory.instance.changeItem.item.itemID);
+
+                        if (Inventory.instance.changeItem.slotType == 1)
+                        {
+                            HeroGeneralManager.instance.heroObject.GetComponent<Animator>().runtimeAnimatorController
+    = HeroGeneralManager.instance.weaponAnimators[Inventory.instance.changeItem.item.itemID - 1];
+                            HeroGeneralManager.instance.heroObject.GetComponent<SkillManager>().currentWeaponSkill
+    = HeroGeneralManager.instance.heroObject.GetComponent<SkillManager>().ISkillWeapon[Inventory.instance.changeItem.item.itemID - 1];
+                        }
+
                         return;
 
                     }

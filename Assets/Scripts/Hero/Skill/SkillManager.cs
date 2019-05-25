@@ -5,25 +5,17 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     #region PRIVATE
-    public ISkill_WeaponB skill_WeaponB;
-    public ISkill_WeaponC skill_WeaponC;
     #endregion
 
     #region PUBLIC
-    public static SkillManager instance;
+    public ISkillInterface[] ISkillWeapon = new ISkillInterface[] { new ISkill_WeaponA()
+        , new ISkill_WeaponB(), new ISkill_WeaponC(), new ISkill_WeaponD(), new ISkill_WeaponE() };
     public ISkillInterface currentWeaponSkill;
-    public ISkillInterface[] ISkillWeapon = new ISkillInterface[] { new ISkill_Sword(), new ISkill_WeaponB(), new ISkill_WeaponC() };
     #endregion
-
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-    }
 
     private void Start()
     {
-        currentWeaponSkill = ISkillWeapon[2];
+        currentWeaponSkill = ISkillWeapon[0];
     }
 
     public void ISkillInterface_Skill_MR_Ready()
