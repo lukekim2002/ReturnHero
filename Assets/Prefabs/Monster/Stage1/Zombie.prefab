@@ -308,7 +308,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306522922355218}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
@@ -367,6 +367,7 @@ MonoBehaviour:
   _meleeCoolDown: 0
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
@@ -374,6 +375,7 @@ MonoBehaviour:
   myDirection: {x: 0, y: 0}
   myAction: 0
   isAttacking: 0
+  isCoroutineRunning: 0
 --- !u!114 &114056450680542770
 MonoBehaviour:
   m_ObjectHideFlags: 0

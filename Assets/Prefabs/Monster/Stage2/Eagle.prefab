@@ -284,7 +284,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5804044642907251056}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
@@ -349,7 +349,6 @@ MonoBehaviour:
   mySkill2AttackRange: {fileID: 0}
   myDirection: {x: 0, y: 0}
   myAction: 0
-  myAttackCase: 0
   isAttacking: 0
 --- !u!114 &7263984965100771288
 MonoBehaviour:

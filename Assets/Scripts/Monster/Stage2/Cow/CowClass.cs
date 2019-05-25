@@ -32,11 +32,14 @@ public class CowClass : MonsterBase
     [Header("Refered Objects")]
     public MonsterBase myBase;
     public Pathfinding.AIPath aiMoveScript;
+    public Pathfinding.AIDestinationSetter aiDestinationSetter;
+
     public GameObject attackCollider;
     public BoxCollider2D attackColliderScript;
     public GameObject myMeleeAttackRange;
     public GameObject mySkill1AttackRange;
     public Animator myAnimator;
+
     public GameObject skillEffect1;
     public GameObject skillEffect2;
 
@@ -44,6 +47,9 @@ public class CowClass : MonsterBase
     public Vector2 myDirection;
     public Action myAction;
     public bool isAttacking = false;
+
+    [HideInInspector]
+    public bool isCoroutineRunning;
 
     #endregion
 
@@ -66,32 +72,30 @@ public class CowClass : MonsterBase
 
     private void Update()
     {
-        myDirection = myBase.direction;
+        if(isAttacking == false)
+            myDirection = myBase.direction;
 
+     
         /*
-        if (_health <= 0)
-        {
-            DyingMotion();
-        }
-        */
-
         if (myAction == Action.Idle && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 0);
             myAnimator.SetFloat("actionX", myDirection.x);
             myAnimator.SetFloat("actionY", myDirection.y);
         }
-        else if (myAction == Action.Move && isAttacking == false)
+        */
+        if (myAction == Action.Move && isAttacking == false)
         {
             myAnimator.SetInteger("actionNum", 1);
             myAnimator.SetFloat("moveX", myDirection.x);
             myAnimator.SetFloat("moveY", myDirection.y);
         }
-
-        if (_isSkill1AttackReady == true && _isSkill1TriggerOk == true)
+        /*
+        if (myAction == Action.Move && !isAttacking && _isSkill1AttackReady && _isSkill1TriggerOk)
         {
             AttackSkill1();
         }
+        */
     }
 
     #endregion
@@ -107,6 +111,8 @@ public class CowClass : MonsterBase
         myMeleeAttackRange = transform.GetChild(3).gameObject;
         mySkill1AttackRange = transform.GetChild(4).gameObject;
         myAnimator = GetComponent<Animator>();
+        aiDestinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
+        //aiDestinationSetter.target = playerObject.transform;
 
         myBase = GetComponent<MonsterBase>();
         if (myBase == null) Debug.LogError("myBase is null.");
@@ -128,9 +134,11 @@ public class CowClass : MonsterBase
 
         _isMeleeAttackReady = true;
         _isSkill1AttackReady = true;
-        _isSkill1TriggerOk = false;
+        //_isSkill1TriggerOk = true;
 
     }
+
+    #region Melee
 
     public override void AttackMelee()
     {
@@ -189,6 +197,30 @@ public class CowClass : MonsterBase
         StartCoroutine(CoolDownMelee());
     }
 
+    public override void EndAttackMelee()
+    {
+        myAction = Action.Move;
+        //myAttackCase = AttackCase.None;
+        myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("isMelee");
+        myAnimator.SetFloat("moveX", myDirection.x);
+        myAnimator.SetFloat("moveY", myDirection.y);
+        isAttacking = false;
+        aiMoveScript.enabled = true;
+
+        attackCollider.SetActive(false);
+    }
+
+    public override IEnumerator CoolDownMelee()
+    {
+        yield return new WaitForSeconds(_meleeCoolDown);
+        _isMeleeAttackReady = true;
+        myMeleeAttackRange.SetActive(true);
+    }
+    #endregion
+
+    #region Skill1
+
     public override void AttackSkill1()
     {
         if (_isSkill1AttackReady == false && isAttacking == true) return;
@@ -209,19 +241,7 @@ public class CowClass : MonsterBase
         StartCoroutine(CoolDownSkill1());
     }
 
-    public override void EndAttackMelee()
-    {
-        myAction = Action.Move;
-        //myAttackCase = AttackCase.None;
-        myAnimator.SetInteger("actionNum", 1);
-        myAnimator.ResetTrigger("isMelee");
-        myAnimator.SetFloat("moveX", myDirection.x);
-        myAnimator.SetFloat("moveY", myDirection.y);
-        isAttacking = false;
-        aiMoveScript.enabled = true;
-
-        attackCollider.SetActive(false);
-    }
+    
 
     public override void EndAttackSkill1()
     {
@@ -235,14 +255,10 @@ public class CowClass : MonsterBase
         aiMoveScript.enabled = true;
 
         attackCollider.SetActive(false);
+
     }
 
-    public override IEnumerator CoolDownMelee()
-    {
-        yield return new WaitForSeconds(_meleeCoolDown);
-        _isMeleeAttackReady = true;
-        myMeleeAttackRange.SetActive(true);
-    }
+    
 
     public override IEnumerator CoolDownSkill1()
     {
@@ -251,16 +267,21 @@ public class CowClass : MonsterBase
         mySkill1AttackRange.SetActive(true);
     }
 
+    #endregion
+
+    #region Animation Control
+
     public override bool CheckAnimatorStateName(AnimatorStateInfo stateInfo)
     {
         return (stateInfo.IsName("Melee")
             ||  stateInfo.IsName("Skill1")
-            ||  stateInfo.IsName("BeShot")
+            ||  stateInfo.IsName("BeShot_Alive")
             ||  stateInfo.IsName("Die"));
     }
 
     public override IEnumerator WaitAnimationFinish()
     {
+        isCoroutineRunning = true;
         AnimatorStateInfo stateInfo = myAnimator.GetCurrentAnimatorStateInfo(0);
 
         // Wait Attack State
@@ -277,33 +298,37 @@ public class CowClass : MonsterBase
             yield return null;
         }
 
+        isCoroutineRunning = false;
+
         if (stateInfo.IsName("Melee"))
             EndAttackMelee();
-        else if (stateInfo.IsName("Cow_Skill1_Down"))
+
+        if (stateInfo.IsName("Skill1"))
             EndAttackSkill1();
-        else if (stateInfo.IsName("BeShot"))
+
+        if (stateInfo.IsName("BeShot_Alive"))
             EndGetHit();
-        /*
-        else if(stateInfo.IsName("Die"))
+        
+        if(stateInfo.IsName("Die"))
             gameObject.SetActive(false);
-            */
+            
     }
 
+    public override void ResetAnimatorTrigger()
+    {
+        myAnimator.ResetTrigger("isMelee");
+        myAnimator.ResetTrigger("isSkill1");
+        myAnimator.ResetTrigger("BeShot");
+        myAnimator.ResetTrigger("Dead");
+    }
 
+    #endregion
 
 
 
     public override void DyingMotion()
     {
-        Debug.Log("Die");
-
-
-        //myAnimator.SetInteger("actionNum", 3);
-        myAnimator.SetInteger("actionNum", 4);
-
-        StartCoroutine(WaitAnimationFinish());
-
-        gameObject.SetActive(false);
+        
     }
 
 
@@ -313,6 +338,7 @@ public class CowClass : MonsterBase
 
         myAction = Action.Move;
         myAnimator.SetInteger("actionNum", 1);
+        myAnimator.ResetTrigger("BeShot");
         myAnimator.SetFloat("moveX", myDirection.x);
         myAnimator.SetFloat("moveY", myDirection.y);
         aiMoveScript.enabled = true;
@@ -323,20 +349,33 @@ public class CowClass : MonsterBase
         myAction = Action.Idle;
         aiMoveScript.enabled = false;
 
-        myAnimator.SetInteger("actionNum", 3);
-        myAnimator.SetFloat("actionX", myDirection.x);
-        myAnimator.SetFloat("actionY", myDirection.y);
+        if (isCoroutineRunning &&
+           (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Melee") ||
+           myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Skill1")))
+        {
+            //print("Animator is in Melee state already");
+            ResetAnimatorTrigger();
+            StopCoroutine(WaitAnimationFinish());
+        }
 
         _health -= damage;
         Debug.Log("current health : " + _health);
 
+        if (_health > 0)
+        {
+            myAnimator.SetTrigger("BeShot");
+        }
+        else
+        {
+            myAnimator.SetTrigger("Dead");
+        }
+
+        myAnimator.SetInteger("actionNum", 3);
+        myAnimator.SetFloat("actionX", myDirection.x);
+        myAnimator.SetFloat("actionY", myDirection.y);
+
         StartCoroutine(WaitAnimationFinish());
 
-        if (_health <= 0)
-        {
-            // Dead
-            DyingMotion();
-        }
     }
 
     public override void GetHealed(GameGeneralManager.HealInfo myHeal)
@@ -413,4 +452,6 @@ public class CowClass : MonsterBase
         myAction = Action.Move;
         aiMoveScript.enabled = true;
     }
+
+    
 }

@@ -9,7 +9,7 @@ public class EagleSkill2Trigger : MonoBehaviour
 
     private void Awake()
     {
-        parent = transform.parent.gameObject;
+        parent = transform.parent.transform.parent.gameObject;
         rootBehaviour = parent.GetComponent<EagleClass>();
     }
 
@@ -21,14 +21,8 @@ public class EagleSkill2Trigger : MonoBehaviour
             {
                 rootBehaviour._isSkill2TriggerOk = false;
 
-                if (parent.transform.name.Equals("Skill2AttackRange"))
-                {
-                    parent.transform.parent.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
-                }
-                else
-                {
-                    parent.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
-                }
+                parent.SendMessage("AttackSkill2", SendMessageOptions.DontRequireReceiver);
+               
             }
         }
     }

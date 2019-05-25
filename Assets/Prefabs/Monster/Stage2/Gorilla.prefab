@@ -42,7 +42,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -436,6 +436,7 @@ MonoBehaviour:
   _meleeCoolDown: 0
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
@@ -443,6 +444,7 @@ MonoBehaviour:
   myDirection: {x: 0, y: 0}
   myAction: 0
   isAttacking: 0
+  isCoroutineRunning: 0
 --- !u!114 &7141142352235623119
 MonoBehaviour:
   m_ObjectHideFlags: 0

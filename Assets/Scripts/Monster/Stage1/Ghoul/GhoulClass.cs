@@ -392,4 +392,9 @@ public class GhoulClass : MonsterBase {
         myAction = Action.Move;
         aiMoveScript.enabled = true;
     }
+
+    public override void ResetAnimatorTrigger()
+    {
+        throw new NotImplementedException();
+    }
 }

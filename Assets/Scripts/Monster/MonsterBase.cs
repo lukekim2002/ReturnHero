@@ -124,6 +124,7 @@ public abstract class MonsterBase : MonoBehaviour {
 
     public abstract bool CheckAnimatorStateName(AnimatorStateInfo stateInfo);
     public abstract IEnumerator WaitAnimationFinish();
+    public abstract void ResetAnimatorTrigger();
 
     public abstract void DyingMotion();
     public abstract void HitByPlayer(int damage);

@@ -44,7 +44,7 @@ public class HeroAttackCollider : MonoBehaviour
                 // R Attack
             }
 
-            collision.transform.root.gameObject.SendMessage("HitByPlayer", 250, SendMessageOptions.DontRequireReceiver);
+            collision.transform.parent.gameObject.SendMessage("HitByPlayer", 250, SendMessageOptions.DontRequireReceiver);
         }
     }
 }

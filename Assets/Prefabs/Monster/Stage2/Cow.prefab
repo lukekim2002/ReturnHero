@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2645577712336230756}
   - component: {fileID: 8540426301101462161}
-  - component: {fileID: 1241019257521324127}
+  - component: {fileID: 2016065486}
   m_Layer: 0
   m_Name: Skill1AttackRange
   m_TagString: Untagged
@@ -48,7 +48,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
---- !u!114 &1241019257521324127
+--- !u!114 &2016065486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 287558981997365867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 765904ed54eee7344be9ee016739c5be, type: 3}
+  m_Script: {fileID: 11500000, guid: 9789fd4422d196a49978e8b317ec0d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5995765038688311393
@@ -547,6 +547,7 @@ MonoBehaviour:
   _isSkill1TriggerOk: 0
   myBase: {fileID: 0}
   aiMoveScript: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
   attackCollider: {fileID: 0}
   attackColliderScript: {fileID: 0}
   myMeleeAttackRange: {fileID: 0}
@@ -557,6 +558,7 @@ MonoBehaviour:
   myDirection: {x: 0, y: 0}
   myAction: 0
   isAttacking: 0
+  isCoroutineRunning: 0
 --- !u!114 &926360747426460161
 MonoBehaviour:
   m_ObjectHideFlags: 0
