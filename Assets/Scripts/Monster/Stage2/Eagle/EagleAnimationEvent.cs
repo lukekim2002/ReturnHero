@@ -69,6 +69,8 @@ public class EagleAnimationEvent : MonoBehaviour, IMonsterAnimationEvent
 
         _wallPoint = GameGeneralManager.instance.IsWallInFrontOfCharacter(_pos, _dir, 2.02f);
 
+        Debug.Log(_wallPoint);
+
         if (_wallPoint != Vector2.zero)
         {
             float magnitude = (_wallPoint - _pos).magnitude;
