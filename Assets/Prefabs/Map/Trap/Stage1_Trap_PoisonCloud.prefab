@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7064345815089601693}
   - component: {fileID: 7064345815089601692}
   - component: {fileID: 7064345815089601691}
+  - component: {fileID: 8196099663805753248}
+  - component: {fileID: 4564602367373676661}
   m_Layer: 0
   m_Name: Stage1_Trap_PoisonCloud
   m_TagString: Untagged
@@ -111,7 +113,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -127,6 +129,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.74, y: 1.4}
   m_EdgeRadius: 0
+--- !u!114 &8196099663805753248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064345815089601690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c879d182bab74438eeb1a5a6167c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4564602367373676661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064345815089601690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c879d182bab74438eeb1a5a6167c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7064345816145496666
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,9 +218,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1861650685
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -28,7 +28,13 @@ public class Slot : MonoBehaviour
 
     public void SetWeaponSlotImage()
     {
-        slotImage.sprite = InSlotSpriteManager.instance.BindingImageAndItemID(item.itemID);
+        slotImage.sprite = InWeaponSlotSpriteManager.instance.BindingImageAndItemID(item.itemID);
+        slotImage.SetNativeSize();
+    }
+
+    public void SetAccessorySlotImage()
+    {
+        slotImage.sprite = InAccessorySlotSpriteManager.instance.BindingImageAndItemID(item.itemID);
         slotImage.SetNativeSize();
     }
 

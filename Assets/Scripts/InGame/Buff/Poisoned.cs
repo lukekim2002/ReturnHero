@@ -18,6 +18,7 @@ public class Poisoned : MonoBehaviour
             }
 
             collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.poisoned);
+            collision.GetComponent<BuffManager>().isPoisoned = true;
         }
     }
 }

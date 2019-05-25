@@ -4,15 +4,16 @@ using System.Collections.Generic;
 public class BuffManager : MonoBehaviour
 {
     #region PRIVATE
-    private Color heroColor = new Color(1f, 1f, 1f, 1f);
-    private Buff heroCurrentBuff;
-    private float buffAnimationTime = 0.1f;
-    private float buffAlpha = 1.0f;
-    private float buffAlphaCalcuateTime = 0.1f;
-    private float buffTime;
-    private float buffDuration;
-    private SpriteRenderer heroSpriterenderer;
-    private BuffDatabase buffDatabase = new BuffDatabase();
+    private Buff _heroCurrentBuff;
+    private Color _heroColor = new Color(1f, 1f, 1f, 1f);
+    private float _buffAnimationTime = 0.1f;
+    private float _buffTime;
+    private float _buffDuration;
+    private int _buffColorIndex = 0;
+    private int _buffColorFlag = 1;
+    private List<Dictionary<string, object>> _buffSet;
+    private string _currentBuffName;
+    private SpriteRenderer _heroSpriterenderer;
     #endregion
 
     #region PUBLIC
@@ -21,38 +22,55 @@ public class BuffManager : MonoBehaviour
     public bool isBurned = false;
     public bool isFrosted = false;
     public bool isPoisoned = false;
+    public bool isBlinded = false;
+    public bool isSturned = false;
     #endregion
 
     private void Start()
     {
-        heroSpriterenderer = GetComponent<SpriteRenderer>();
+        _heroSpriterenderer = GetComponent<SpriteRenderer>();
+        _buffSet = CSVReader.Read("CSV/Condition_Abnormal");
     }
 
     private void Update()
     {
         if (isBleeded)
         {
-            BuffInit(new Color(0.7411765f, 0.1921569f, 0.0627451f, 1));
-            heroCurrentBuff = buffList[buffList.Count - 1];
+            BuffInit();
+            _heroCurrentBuff = buffList[buffList.Count - 1];
+            _currentBuffName = "Bleeded";
             isBleeded = !isBleeded;
         }
         else if (isBurned)
         {
-            BuffInit(new Color(0.7411765f, 0.1921569f, 0.0627451f, 1));
-            heroCurrentBuff = buffList[buffList.Count - 1];
+            BuffInit();
+            _heroCurrentBuff = buffList[buffList.Count - 1];
+            _currentBuffName = "Burned";
             isBurned = !isBurned;
         }
         else if (isFrosted)
         {
-            BuffInit(new Color(0.0627451f, 0.6627451f, 0.7411765f, 1));
-            heroCurrentBuff = buffList[buffList.Count - 1];
+            BuffInit();
+            _heroCurrentBuff = buffList[buffList.Count - 1];
+            _currentBuffName = "Frosted";
             isFrosted = !isFrosted;
         }
         else if (isPoisoned)
         {
-            BuffInit(new Color(0.4235294f, 0.1294118f, 0.4823529f, 1));
-            heroCurrentBuff = buffList[buffList.Count - 1];
+            BuffInit();
+            _heroCurrentBuff = buffList[buffList.Count - 1];
+            _currentBuffName = "Poisoned";
             isPoisoned = !isPoisoned;
+        }
+        else if (isBlinded)
+        {
+            _heroCurrentBuff = buffList[buffList.Count - 1];
+            isBlinded = !isBlinded;
+        }
+        else if (isSturned)
+        {
+            _heroCurrentBuff = buffList[buffList.Count - 1];
+            isSturned = !isSturned;
         }
 
         for (int i = buffList.Count - 1; i >= 0; i--)
@@ -77,31 +95,33 @@ public class BuffManager : MonoBehaviour
 
             if (buffList.Count == 0)
             {
-                BuffInit(new Color(1f, 1f, 1f, 1f));
+                BuffInit();
+                _heroSpriterenderer.color = new Color(1, 1, 1, 1);
             }
         }
     }
 
-    public void BuffInit(Color m_Color)
+    public void BuffInit()
     {
-        this.heroColor = m_Color;
-        heroSpriterenderer.color = m_Color;
-        buffAlpha = 1.0f;
-        buffAlphaCalcuateTime = 0.1f;
-        buffAnimationTime = 0.1f;
+        _buffColorIndex = 0;
+        _buffColorFlag = 1;
+        _buffAnimationTime = 0.1f;
     }
 
     public void BuffAnimation()
     {
-        if (heroCurrentBuff.buffTime - heroCurrentBuff.buffDurationTime >= buffAnimationTime)
+        if (_heroCurrentBuff.buffTime - _heroCurrentBuff.buffDurationTime >= _buffAnimationTime)
         {
-            buffAnimationTime += 0.1f;
-            buffAlpha -= buffAlphaCalcuateTime;
-            heroSpriterenderer.color = new Color(heroColor.r, heroColor.g, heroColor.b, buffAlpha);
+            _buffAnimationTime += 0.1f;
+            _heroSpriterenderer.color = new Color((float)_buffSet[_buffColorIndex * 3][_currentBuffName]
+                , (float)_buffSet[_buffColorIndex * 3 + 1][_currentBuffName], (float)_buffSet[_buffColorIndex * 3 + 2][_currentBuffName], 0.5f);
 
-            if (buffAlpha >= 1.0f || buffAlpha <= 0.5f)
+            print(_heroSpriterenderer.color);
+            _buffColorIndex += _buffColorFlag;
+
+            if (_buffColorIndex == 0 || _buffColorIndex == 4)
             {
-                buffAlphaCalcuateTime *= -1;
+                _buffColorFlag *= -1;
             }
         }
     }

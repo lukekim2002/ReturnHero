@@ -36,7 +36,7 @@ public class CameraControl : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (GameGeneralManager.instance.curFloor == 0)
         {

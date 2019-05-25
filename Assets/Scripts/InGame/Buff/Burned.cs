@@ -18,6 +18,7 @@ public class Burned : MonoBehaviour
             }
 
             collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.burned);
+            collision.GetComponent<BuffManager>().isBurned = true;
         }
     }
 }

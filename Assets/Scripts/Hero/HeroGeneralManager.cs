@@ -5,10 +5,11 @@ public class HeroGeneralManager : MonoBehaviour {
 
     #region PUBLIC STATIC VARAIBLES
     public static HeroGeneralManager instance = null;
-    
+
     #endregion
 
     #region General
+    public RuntimeAnimatorController[] weaponAnimators;
     public GameObject heroObject;
     public decimal health = 3;
     public float skill_Space_CoolTime = 1f;

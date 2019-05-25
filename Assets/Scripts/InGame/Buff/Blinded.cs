@@ -18,6 +18,7 @@ public class Blinded : MonoBehaviour
             }
 
             collision.GetComponent<BuffManager>().buffList.Add(buffDatabase.blinded);
+            collision.GetComponent<BuffManager>().isBleeded = true;
         }
     }
 }
